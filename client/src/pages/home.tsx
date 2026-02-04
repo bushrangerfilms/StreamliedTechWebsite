@@ -108,53 +108,62 @@ export default function Home() {
       {/* Before / After */}
       <section className="py-20" data-testid="section-before-after">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-4">
-                <div className="inline-block px-4 py-1 bg-destructive/10 text-destructive rounded-full text-sm font-medium mb-4">
-                  Before
-                </div>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                    <p className="text-muted-foreground">Paper, spreadsheets, email chains, and photos scattered across devices</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                    <p className="text-muted-foreground">Reporting that's manual, late, and inconsistent</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                    <p className="text-muted-foreground">Close-out that drifts because ownership isn't clear</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                    <p className="text-muted-foreground">Compliance evidence built in a scramble instead of captured as you go</p>
-                  </li>
-                </ul>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <img 
+                  src="/images/dashboard-analytics.jpg" 
+                  alt="Clean dashboard with real-time visibility" 
+                  className="rounded-xl shadow-lg w-full"
+                />
               </div>
-              <div className="space-y-4">
-                <div className="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                  After
+              <div className="order-1 lg:order-2 grid sm:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <div className="inline-block px-4 py-1 bg-destructive/10 text-destructive rounded-full text-sm font-medium mb-4">
+                    Before
+                  </div>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground text-sm">Paper, spreadsheets, email chains scattered everywhere</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground text-sm">Reporting that's manual, late, and inconsistent</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground text-sm">Close-out drifts, ownership unclear</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground text-sm">Compliance scrambles at audit time</p>
+                    </li>
+                  </ul>
                 </div>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <p className="text-foreground font-medium">Live visibility without chasing people</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <p className="text-foreground font-medium">Reporting generated from the work being done</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <p className="text-foreground font-medium">Issues captured, assigned, verified, and closed properly</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <p className="text-foreground font-medium">Records that are audit-ready by default</p>
-                  </li>
-                </ul>
+                <div className="space-y-4">
+                  <div className="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+                    After
+                  </div>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-foreground font-medium text-sm">Live visibility without chasing</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-foreground font-medium text-sm">Reporting generated automatically</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-foreground font-medium text-sm">Issues captured and closed properly</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-foreground font-medium text-sm">Audit-ready by default</p>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -164,17 +173,25 @@ export default function Home() {
       {/* Where Automation Delivers ROI */}
       <section className="py-20 bg-slate-50" data-testid="section-roi">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              Where automation delivers real ROI
-            </h2>
-            <p className="text-lg text-muted-foreground mb-3 text-center">
-              You'll see ROI fastest where admin, risk, and rework stack up.
-            </p>
-            <p className="text-base text-foreground font-medium mb-12 text-center">
-              You get custom apps built around your specific process — not generic templates.
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-5 gap-12 items-start">
+              <div className="lg:col-span-2">
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+                  Where automation delivers real ROI
+                </h2>
+                <p className="text-lg text-muted-foreground mb-3">
+                  You'll see ROI fastest where admin, risk, and rework stack up.
+                </p>
+                <p className="text-base text-foreground font-medium mb-6">
+                  You get custom apps built around your specific process — not generic templates.
+                </p>
+                <img 
+                  src="/images/workflow-abstract.jpg" 
+                  alt="Connected workflow automation" 
+                  className="rounded-xl shadow-md w-full hidden lg:block"
+                />
+              </div>
+              <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
                 <h3 className="font-display font-semibold text-lg mb-3">Safety & compliance workflows</h3>
                 <p className="text-sm text-muted-foreground">
@@ -211,6 +228,7 @@ export default function Home() {
                   Document collection, review steps, approval flows
                 </p>
               </div>
+              </div>
             </div>
           </div>
         </div>
@@ -219,45 +237,62 @@ export default function Home() {
       {/* How You Start */}
       <section className="py-20" data-testid="section-engagement">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-12 text-center">
-              How you start (low risk)
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
-              <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-xl flex items-center justify-center mx-auto mb-4">
-                  1
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8">
+                  How you start (low risk)
+                </h2>
+                <div className="space-y-6 mb-8">
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="font-display font-semibold text-lg mb-1">Ops review</h3>
+                      <p className="text-sm text-muted-foreground">
+                        You show us the bottlenecks; we map the workflow and the ROI
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="font-display font-semibold text-lg mb-1">Pilot (2–4 weeks)</h3>
+                      <p className="text-sm text-muted-foreground">
+                        One workflow end-to-end, running in the real world
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="font-display font-semibold text-lg mb-1">Rollout</h3>
+                      <p className="text-sm text-muted-foreground">
+                        You expand only when value is proven
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-display font-semibold text-lg mb-2">Ops review</h3>
+                <p className="text-muted-foreground mb-2">
+                  This isn't a multi-month IT project, and you don't commit to a big rollout upfront.
+                </p>
                 <p className="text-sm text-muted-foreground">
-                  You show us the bottlenecks; we map the workflow and the ROI
+                  Your pilot can be a <strong>custom app</strong> or an end-to-end workflow automation — whichever removes the bottleneck fastest.
                 </p>
               </div>
-              <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-xl flex items-center justify-center mx-auto mb-4">
-                  2
-                </div>
-                <h3 className="font-display font-semibold text-lg mb-2">Pilot (2–4 weeks)</h3>
-                <p className="text-sm text-muted-foreground">
-                  One workflow end-to-end, running in the real world
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-xl flex items-center justify-center mx-auto mb-4">
-                  3
-                </div>
-                <h3 className="font-display font-semibold text-lg mb-2">Rollout</h3>
-                <p className="text-sm text-muted-foreground">
-                  You expand only when value is proven
-                </p>
+              <div>
+                <img 
+                  src="/images/team-collaboration.jpg" 
+                  alt="Team collaborating on workflow mapping" 
+                  className="rounded-xl shadow-lg w-full"
+                />
               </div>
             </div>
-            <p className="text-center text-muted-foreground mb-4">
-              This isn't a multi-month IT project, and you don't commit to a big rollout upfront.
-            </p>
-            <p className="text-center text-sm text-muted-foreground">
-              Your pilot can be a <strong>custom app</strong> or an end-to-end workflow automation — whichever removes the bottleneck fastest.
-            </p>
           </div>
         </div>
       </section>
@@ -350,13 +385,21 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20" data-testid="section-final-cta">
-        <div className="container mx-auto px-6">
+      <section className="py-20 relative overflow-hidden" data-testid="section-final-cta">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/professional-work.jpg" 
+            alt="Professional working" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-slate-900/85"></div>
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
               Book a free call
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-lg text-slate-200 mb-8">
               Bring one workflow that's causing friction. You'll leave with a practical next step and a clear view of whether a pilot is worth doing.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
