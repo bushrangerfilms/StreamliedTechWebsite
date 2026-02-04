@@ -151,7 +151,7 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <img 
-                  src="/images/app-training-dashboard.png" 
+                  src="/images/dashboard-analytics.jpg" 
                   alt="Clean dashboard with real-time visibility" 
                   className="rounded-xl shadow-lg w-full"
                 />
@@ -225,8 +225,8 @@ export default function Home() {
                   You get custom apps built around your specific process - not generic templates.
                 </p>
                 <img 
-                  src="/images/app-analytics.png" 
-                  alt="Analytics dashboard showing real ROI" 
+                  src="/images/workflow-abstract.jpg" 
+                  alt="Connected workflow automation" 
                   className="rounded-xl shadow-md w-full hidden lg:block"
                 />
               </div>
@@ -326,8 +326,8 @@ export default function Home() {
               </div>
               <div>
                 <img 
-                  src="/images/app-scheduling.png" 
-                  alt="Scheduling system example" 
+                  src="/images/team-collaboration.jpg" 
+                  alt="Team collaborating on workflow mapping" 
                   className="rounded-xl shadow-lg w-full"
                 />
               </div>
