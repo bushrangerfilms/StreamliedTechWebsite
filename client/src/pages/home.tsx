@@ -448,7 +448,7 @@ export default function Home() {
                 <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</Link>
               </div>
               <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
+                <a href="https://www.facebook.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
                   <Facebook className="w-5 h-5" />
                 </a>
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-twitter">
