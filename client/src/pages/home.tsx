@@ -40,7 +40,9 @@ export default function Home() {
               Take the friction out of your day-to-day operations.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              You don't need more admin. You need visibility, clean handovers, and systems that work the way your team does. We design custom automation that reduces drag, cuts rework, and keeps your operations moving.
+              Delays, rework, and manual handovers create unnecessary pressure, costs and errors.
+              <br /><br />
+              We design automation that reduces friction, cuts rework, and keeps your work moving the way it should - with less complexity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
