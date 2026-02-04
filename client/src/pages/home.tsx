@@ -336,7 +336,7 @@ export default function Home() {
               </div>
               <div>
                 <img 
-                  src="/images/team-collaboration.jpg" 
+                  src="/images/team-meeting-dashboards.png" 
                   alt="Team collaborating on workflow mapping" 
                   className="rounded-xl shadow-lg w-full"
                 />
