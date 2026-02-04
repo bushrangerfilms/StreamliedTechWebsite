@@ -37,7 +37,7 @@ export default function Home() {
         <div className="relative z-10 container mx-auto px-6 py-24 md:py-32">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              Significantly speed up your workflows.
+              Take the friction out of your day-to-day operations.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
               You don't need more admin. You need visibility, clean handovers, and systems that work the way your team does. We design custom automation that reduces drag, cuts rework, and keeps your operations moving.
