@@ -178,6 +178,10 @@ export default function Home() {
                       <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
                       <p className="text-muted-foreground text-sm">Compliance scrambles at audit time</p>
                     </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
+                      <p className="text-muted-foreground text-sm">Long chain of delayed human touch points</p>
+                    </li>
                   </ul>
                 </div>
                 <div className="space-y-4">
@@ -200,6 +204,10 @@ export default function Home() {
                     <li className="flex items-start gap-3">
                       <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                       <p className="text-foreground font-medium text-sm">Audit-ready by default</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-foreground font-medium text-sm">Progress steps with AI and automated notifications to next human required</p>
                     </li>
                   </ul>
                 </div>
