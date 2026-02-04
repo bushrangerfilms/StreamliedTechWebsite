@@ -1,0 +1,151 @@
+# Replit Build Prompt — Streamlined Tech Website Refresh (Homepage)
+
+You are Replit AI acting as a senior conversion-focused web designer + front-end implementer.
+
+## Goal
+Refresh the **Streamlined Tech – Intelligent AI Automations** homepage so it:
+1) **Appeals strongly to Australian mining + construction** decision makers,  
+2) **Does NOT deter other industries**, and  
+3) **Does not feel generic** (“trying to appeal to everyone so resonates with no one”).
+
+I will attach screenshots of the current homepage for reference. Keep the existing overall branding feel (clean, modern, blue), but improve positioning, copy structure, and hero credibility.
+
+## Non-Negotiables
+- KEEP the **footer exactly** as it is (layout + icons + links + logo placement).
+- KEEP the **“Book A Free Call”** button style and CTA wording (you may reposition it / repeat it, but do not rename it).
+- The page must include a clear **reference + link to AutoListing.io** (our real-estate automation product) but positioned as **proof of capability**, not a distraction.
+- Avoid hype/buzzwords. Avoid “AI magic”. No emojis. No exclamation marks.
+
+## Target Audience (Primary + Secondary)
+Primary:
+- Australian **mining** and **construction** companies
+- Roles: Operations Managers, HSE Managers, Project Directors, Commercial Managers, Executives
+
+Secondary:
+- Other operationally complex businesses (logistics, field services, industrial services, professional services)  
+We must not list “every industry” or sound unfocused.
+
+## Positioning Principle (Critical)
+Be **specific about where we are proven**, not exclusive about who we serve.
+
+We lead with the idea:
+- “Operational automation for high-pressure environments”
+- “If it works under high compliance, high risk, high admin-load conditions, it works anywhere.”
+
+## Hero Section Requirements
+Current hero is too generic. Replace it.
+
+Hero must:
+- Signal operational seriousness and credibility (mining/construction should recognise their world)
+- Still be industry-neutral enough to not repel others
+- Avoid cliché AI visuals (no robots, brains, holograms, floating code)
+
+Hero image direction:
+- Preferred: “human-in-control” — an operations leader/supervisor with a tablet in an industrial/ops environment OR a calm control-room / site-inspection moment.
+- Add a subtle dark overlay for text readability.
+- No rotating hero carousel.
+
+Hero copy direction (example, you can refine):
+Headline: **Operational automation for high-pressure environments.**
+Subhead: **We design AI-powered systems that remove admin drag, reduce risk, and give leaders real visibility — proven in construction, mining, and operationally complex businesses.**
+CTA: **Book A Free Call**
+
+## Required Page Structure (Homepage)
+Rebuild the homepage content in this order (keep it as a single scrolling page):
+
+### 1) HERO
+- Headline + subhead + CTA
+- Secondary micro-line under CTA: “15-minute ops review. No hard sell.”
+- Keep above-the-fold clean.
+
+### 2) PROOF ANCHOR (New Section)
+Title: **Where this work is battle-tested**
+Short copy explaining:
+- Built for environments where mistakes are costly, compliance matters, and manual work doesn’t scale.
+- Mention 3 proof areas only (do not list 10 industries):
+  - Construction & infrastructure
+  - Mining & industrial operations
+  - Property workflows via **AutoListing.io** (linked)
+Close with a line like:
+- “If it works under those conditions, it works anywhere.”
+
+### 3) PAIN → OUTCOME (Before/After)
+A simple two-column block (or stacked on mobile):
+**Before:** paper, Excel sprawl, email chains, manual reporting, reactive safety, audit panic  
+**After:** live visibility, audit-ready compliance, reduced admin load, faster decisions, scalable systems
+
+### 4) WHAT WE DELIVER (Outcome Buckets, Not Tool Lists)
+Rename “What can be automated?” into:
+**Where automation delivers real ROI**
+Group into 4–6 outcome buckets with 1–2 concrete examples each:
+- Safety & compliance workflows (incident reporting, corrective actions, audit trails)
+- Defects/NCRs & close-out (capture, assign, verify, trend)
+- Project reporting & admin (weekly reporting, progress summaries, photo logging)
+- Workforce coordination (training/competency checks, scheduling triggers, approvals)
+- Customer/internal comms (routing, follow-ups, escalation logic)
+- Optional: quoting/tenders/approvals (only if it fits cleanly)
+
+Do NOT present a long generic list (lead gen, social posts, etc.) unless it’s framed as a minor capability.
+
+### 5) ENGAGEMENT MODEL (Reduce Fear of Big IT Projects)
+Section: **How we start (low risk)**
+Present a simple 3-step engagement:
+1. Ops Review (map bottlenecks, quantify ROI)
+2. Pilot (2–4 weeks, one workflow end-to-end)
+3. Rollout (expand only if value is proven)
+Emphasise: not a “multi-month IT project”.
+
+### 6) AUTOLISTING.IO PROOF (New Section)
+Purpose: show we build real systems, not demos.
+
+Heading: **From custom systems to productised automation**
+Copy points:
+- Streamlined Tech is the team behind **AutoListing.io**
+- AutoListing.io is a real working automation platform (link it)
+- This demonstrates we can build reliable, scalable automation systems
+Keep this section short and credible.
+
+### 7) VALUES / PRINCIPLES (Optional)
+You can keep the three blue cards (“Customer Focused / Goal-Driven / Human-Centric”) but rewrite the copy to be less generic and more operational:
+- “Less admin. More control.”
+- “Built for auditability.”
+- “Designed for real workflows.”
+
+Only keep if it supports conversion; otherwise remove or simplify.
+
+### 8) TECH STACK (De-emphasised)
+Keep a “Some Tech We Use” section but position it as:
+- “We choose tools based on reliability, scalability, and auditability — not trends.”
+This section must be lower on the page and not lead the narrative.
+
+### 9) FINAL CTA
+Repeat the CTA (“Book A Free Call”) with reassurance:
+- exploratory call
+- practical, ROI-focused
+- no pressure
+
+### 10) FOOTER (Unchanged)
+Keep exactly as-is.
+
+## Copywriting Rules (Strict)
+- No hype, no exaggerated claims, no “revolutionary/cutting-edge”.
+- Write in plain English; suitable for Australian business readers.
+- Make claims only if we can plausibly support them (avoid “guarantee” statements unless currently true and legally safe).
+- Avoid “we do everything for everyone” language.
+- Avoid long industry lists. We anchor on mining/construction as proof, but remain open.
+
+## Design / UX Guidance
+- Maintain current brand colours and general feel.
+- Improve spacing and hierarchy: tighter hero, clear section breaks, skimmable headings.
+- Make the page feel “enterprise-credible”, not “agency template”.
+- Mobile responsive.
+
+## Deliverables
+1) Updated homepage layout + copy in code (React/Next or plain HTML/CSS — match the current project stack).
+2) Ensure the AutoListing.io link is visible in the “proof” section and “productised automation” section.
+3) Ensure all CTAs correctly link to the existing booking URL (reuse existing).
+4) Footer unchanged.
+
+## Context Assets
+- I will provide screenshots of the current homepage for layout reference and what must be preserved (footer + CTA button style).
+- Use the screenshots only as a baseline; implement the improved structure and copy above.
