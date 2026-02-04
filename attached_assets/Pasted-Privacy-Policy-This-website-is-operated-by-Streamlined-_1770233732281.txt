@@ -1,0 +1,85 @@
+Privacy Policy
+
+This website is operated by Streamlined Tech ("we", "us", or "our"). We are committed to protecting the privacy of visitors and users of our website and to complying with applicable data protection laws. This Privacy Policy outlines how we collect, use, and safeguard any personal data you provide through this site or by communicating with us electronically.
+
+By using our website, you agree to the terms outlined in this policy.
+
+What Information We Collect
+
+We may collect and process the following types of personal data:
+
+1. Information you provide to us:
+You may give us information about yourself by filling out forms on our website—such as contact forms, enquiry forms, or service request forms. This information can include your name, email address, and phone number.
+
+2. Information we collect automatically:
+Each time you visit our site, we may automatically collect technical and usage information, including:
+
+A truncated and anonymised version of your IP address
+
+Browser type and version
+
+Operating system and platform
+
+The pages you visit and actions you take (e.g., clicks, downloads)
+
+Page load speeds, visit duration, and errors encountered
+
+Date, time, and source of your visit
+
+This data is collected anonymously and is not linked to you as an individual.
+
+Cookies
+
+We use cookies to enhance your browsing experience, help us understand site usage, and improve performance. Cookies distinguish you from other users, allowing us to tailor the website for better usability and relevance.
+
+How We Use Your Data
+
+We use the information we collect to:
+
+Information you provide:
+
+Respond to your enquiries or service requests
+
+Provide you with relevant information or marketing communications (only if requested by you)
+
+Information we collect automatically:
+
+Improve and optimise website performance and content delivery
+
+Ensure the website remains secure and functions correctly
+
+Analyse trends and statistics using tools such as Google Analytics
+(Learn how Google uses data: https://support.google.com/analytics/answer/6004245)
+
+How Your Information Is Stored and Shared
+
+Your personal information may be:
+
+Sent to us directly via email
+
+Stored securely on servers provided by our trusted third-party web host and CRM provider, HighLevel, LLC.
+
+HighLevel acts on our instructions and meets high standards for data protection and security. They do not access, modify, or delete any data unless we explicitly authorise it. Your data is never sold, rented, or shared with third parties for commercial purposes.
+
+We take every reasonable step to protect your data, but transmission over the internet can never be completely secure. Any information you send is at your own risk. Once received, we apply strict controls to prevent unauthorised access.
+
+Third-Party Links
+
+Our website may contain links to other websites. If you click through to a third-party site, please be aware that they have their own privacy policies, and we are not responsible for their practices or content.
+
+Your Rights – Access and Control
+
+You have the right to request access to the personal data we hold about you (a "Subject Access Request"). If you would like to make such a request, please contact us in writing at peter@streamlinedai.tech. We may request additional details to verify your identity or locate relevant data.
+
+If you believe your data has been misused or mishandled, you also have the right to lodge a complaint with the Data Protection Commission (DPC) in Ireland or your local supervisory authority.
+
+Policy Updates
+
+We may update this Privacy Policy from time to time. All changes will be posted on this page. Please check back periodically to stay informed.
+
+Contact Us
+
+If you have questions, comments, or concerns about this Privacy Policy or how we handle your personal information, please contact:
+
+Peter Harris
+📧 peter@streamlinedai.tech

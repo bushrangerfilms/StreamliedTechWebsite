@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Home() {
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
@@ -441,7 +442,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div className="flex gap-6 text-sm">
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
+                <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</a>
               </div>
               <div className="flex gap-4">
