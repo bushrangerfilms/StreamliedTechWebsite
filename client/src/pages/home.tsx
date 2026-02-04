@@ -9,14 +9,12 @@ export default function Home() {
       {/* Header */}
       <header className="border-b border-border bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-              <div className="w-6 h-6 border-2 border-white rounded-full"></div>
-            </div>
-            <div>
-              <div className="font-display font-bold text-lg leading-tight">Streamlined Tech</div>
-              <div className="text-xs text-muted-foreground">Intelligent AI Automations</div>
-            </div>
+          <div className="flex items-center">
+            <img 
+              src="/images/logo.png" 
+              alt="Streamlined Tech - Intelligent AI Automations" 
+              className="h-12 w-auto"
+            />
           </div>
           <Button asChild size="lg" data-testid="button-cta-header">
             <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
@@ -374,14 +372,12 @@ export default function Home() {
       <footer className="bg-white border-t border-border py-12">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                <div className="w-7 h-7 border-2 border-white rounded-full"></div>
-              </div>
-              <div>
-                <div className="font-display font-bold text-lg leading-tight">Streamlined Tech</div>
-                <div className="text-sm text-muted-foreground">Intelligent AI Automations</div>
-              </div>
+            <div className="flex items-center">
+              <img 
+                src="/images/logo.png" 
+                alt="Streamlined Tech - Intelligent AI Automations" 
+                className="h-14 w-auto"
+              />
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div className="flex gap-6 text-sm">
