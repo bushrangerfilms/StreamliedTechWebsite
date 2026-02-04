@@ -443,7 +443,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div className="flex gap-6 text-sm">
                 <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</a>
+                <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</Link>
               </div>
               <div className="flex gap-4">
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
