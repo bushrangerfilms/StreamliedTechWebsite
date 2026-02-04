@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 
@@ -451,13 +451,10 @@ export default function Home() {
                 <a href="https://www.facebook.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-twitter">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="https://www.instagram.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-instagram">
+                                <a href="https://www.instagram.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-instagram">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-youtube">
+                <a href="https://www.youtube.com/@StreamlinedTechAI" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-youtube">
                   <Youtube className="w-5 h-5" />
                 </a>
                 <a href="https://www.tiktok.com/@streamlinedtech" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-tiktok">
