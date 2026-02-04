@@ -346,7 +346,7 @@ export default function Home() {
             <div className="space-y-4 text-lg">
               <p>You're not buying a slide deck. You're getting systems that run.</p>
               <p>
-                Streamlined Tech built{" "}
+                You can watch Streamlined Tech's Real Estate automation platform demo video here:{" "}
                 <a 
                   href="https://autolisting.io" 
                   target="_blank" 
@@ -356,9 +356,8 @@ export default function Home() {
                 >
                   AutoListing.io
                 </a>
-                {" "}- a working automation platform.
               </p>
-              <p>That's your proof we can build reliable, scalable automation, not just prototypes.</p>
+              <p>Build reliable, scalable automation, not just prototypes.</p>
             </div>
           </div>
         </div>
