@@ -1,7 +1,9 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { usePageTracking } from "@/hooks/use-page-tracking";
 
 export default function Terms() {
+  usePageTracking();
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b bg-white sticky top-0 z-50">

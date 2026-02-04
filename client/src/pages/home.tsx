@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { Link } from "wouter";
+import { usePageTracking } from "@/hooks/use-page-tracking";
 
 export default function Home() {
+  usePageTracking();
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   return (
