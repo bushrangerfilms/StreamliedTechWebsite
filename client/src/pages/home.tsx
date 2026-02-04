@@ -37,10 +37,10 @@ export default function Home() {
         <div className="relative z-10 container mx-auto px-6 py-24 md:py-32">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              Operational automation for high‑pressure environments.
+              Automation that significantly speeds up your workflows.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              You don't need more admin. You need visibility, clean handovers, and workflows that stand up under compliance pressure. We design automation systems that <strong>significantly speed up your workflows</strong>, reduce risk, and keep your operations moving — proven in construction and mining environments, practical enough to work anywhere.
+              You don't need more admin. You need visibility, clean handovers, and systems that work the way your team does. We design custom automation that reduces drag, cuts rework, and keeps your operations moving.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -59,60 +59,99 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Proof Anchor */}
-      <section className="py-20 bg-slate-50" data-testid="section-proof">
+      {/* App Screenshots Showcase */}
+      <section className="py-20 bg-slate-50" data-testid="section-apps">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-center">
-              Where this work is battle-tested
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
+              Custom apps built for how you work
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 text-center max-w-2xl mx-auto">
-              When you're operating under tight timelines, high compliance, and constant change, manual work doesn't just waste time — it creates gaps. We build for that reality.
+            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
+              Real systems we've built - from training management to scheduling, analytics to field operations. Each one designed around the specific process it supports.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-2">Construction & infrastructure</h3>
-                <p className="text-muted-foreground">workflows</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
+                <img 
+                  src="/images/app-training-dashboard.png" 
+                  alt="Training management dashboard" 
+                  className="w-full h-auto"
+                />
               </div>
-              <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-2">Mining & industrial operations</h3>
-                <p className="text-muted-foreground">workflows</p>
+              <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
+                <img 
+                  src="/images/app-scheduling.png" 
+                  alt="Scheduling and calendar management" 
+                  className="w-full h-auto"
+                />
               </div>
-              <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-2">Product proof</h3>
-                <p className="text-muted-foreground">
-                  We're the team behind{" "}
-                  <a 
-                    href="https://autolisting.io" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-primary hover:underline font-medium"
-                    data-testid="link-autolisting-proof"
-                  >
-                    AutoListing.io
-                  </a>
-                  {" "}— a working automation platform
-                </p>
+              <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
+                <img 
+                  src="/images/app-analytics.png" 
+                  alt="Analytics and reporting dashboard" 
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
+                <img 
+                  src="/images/app-intake.png" 
+                  alt="Data intake and processing" 
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border flex items-center justify-center p-4 gap-4">
+                <img 
+                  src="/images/app-renewals-mobile.png" 
+                  alt="Mobile renewals tracking" 
+                  className="h-64 w-auto rounded-lg shadow-sm"
+                />
+                <img 
+                  src="/images/app-video-mobile.png" 
+                  alt="Mobile video creation" 
+                  className="h-64 w-auto rounded-lg shadow-sm"
+                />
+              </div>
+              <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border flex items-center justify-center p-4 gap-4">
+                <img 
+                  src="/images/app-settings-mobile.png" 
+                  alt="Mobile settings and branding" 
+                  className="h-64 w-auto rounded-lg shadow-sm"
+                />
+                <img 
+                  src="/images/app-scanning-mobile.png" 
+                  alt="Mobile scanning interface" 
+                  className="h-64 w-auto rounded-lg shadow-sm"
+                />
               </div>
             </div>
-            <p className="text-center text-lg font-medium text-foreground mb-4">
-              If it holds up there, it holds up anywhere.
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Anchor */}
+      <section className="py-20" data-testid="section-experience">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              Built by someone who understands operational pressure
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              With 20+ years of hands-on experience across mining and construction - from on the tools to training package production - we understand what it takes to build systems that hold up under real-world conditions.
             </p>
-            <p className="text-sm text-muted-foreground text-center">
-              Led by 20+ years across mining and construction roles, from on the tools to training package production.
+            <p className="text-base text-foreground font-medium">
+              If your workflows involve compliance, coordination, and constant change, we've seen it before.
             </p>
           </div>
         </div>
       </section>
 
       {/* Before / After */}
-      <section className="py-20" data-testid="section-before-after">
+      <section className="py-20 bg-slate-50" data-testid="section-before-after">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <img 
-                  src="/images/dashboard-analytics.jpg" 
+                  src="/images/app-training-dashboard.png" 
                   alt="Clean dashboard with real-time visibility" 
                   className="rounded-xl shadow-lg w-full"
                 />
@@ -171,7 +210,7 @@ export default function Home() {
       </section>
 
       {/* Where Automation Delivers ROI */}
-      <section className="py-20 bg-slate-50" data-testid="section-roi">
+      <section className="py-20" data-testid="section-roi">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-5 gap-12 items-start">
@@ -183,29 +222,29 @@ export default function Home() {
                   You'll see ROI fastest where admin, risk, and rework stack up.
                 </p>
                 <p className="text-base text-foreground font-medium mb-6">
-                  You get custom apps built around your specific process — not generic templates.
+                  You get custom apps built around your specific process - not generic templates.
                 </p>
                 <img 
-                  src="/images/construction-app.png" 
-                  alt="Construction worker using defect tracking app" 
+                  src="/images/app-analytics.png" 
+                  alt="Analytics dashboard showing real ROI" 
                   className="rounded-xl shadow-md w-full hidden lg:block"
                 />
               </div>
               <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Safety & compliance workflows</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Safety and compliance workflows</h3>
                 <p className="text-sm text-muted-foreground">
                   Incident capture, corrective actions, audit trails, approval routing
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Defects, NCRs & close‑out</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Defects, NCRs and close-out</h3>
                 <p className="text-sm text-muted-foreground">
-                  Photo capture, assign + verify, close-out tracking, trend visibility
+                  Photo capture, assign and verify, close-out tracking, trend visibility
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Project reporting & admin</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Project reporting and admin</h3>
                 <p className="text-sm text-muted-foreground">
                   Weekly reporting packs, progress summaries, photo logging, follow-ups
                 </p>
@@ -213,7 +252,7 @@ export default function Home() {
               <div className="bg-white p-6 rounded-lg border border-border">
                 <h3 className="font-display font-semibold text-lg mb-3">Workforce coordination</h3>
                 <p className="text-sm text-muted-foreground">
-                  Competency/training checks, onboarding steps, approvals, reminders
+                  Competency and training checks, onboarding steps, approvals, reminders
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
@@ -223,7 +262,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Quoting, tenders & approvals</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Quoting, tenders and approvals</h3>
                 <p className="text-sm text-muted-foreground">
                   Document collection, review steps, approval flows
                 </p>
@@ -235,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* How You Start */}
-      <section className="py-20" data-testid="section-engagement">
+      <section className="py-20 bg-slate-50" data-testid="section-engagement">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -260,7 +299,7 @@ export default function Home() {
                       2
                     </div>
                     <div>
-                      <h3 className="font-display font-semibold text-lg mb-1">Pilot (2–4 weeks)</h3>
+                      <h3 className="font-display font-semibold text-lg mb-1">Pilot (2-4 weeks)</h3>
                       <p className="text-sm text-muted-foreground">
                         One workflow end-to-end, running in the real world
                       </p>
@@ -282,13 +321,13 @@ export default function Home() {
                   This isn't a multi-month IT project, and you don't commit to a big rollout upfront.
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Your pilot can be a <strong>custom app</strong> or an end-to-end workflow automation — whichever removes the bottleneck fastest.
+                  Your pilot can be a <strong>custom app</strong> or an end-to-end workflow automation - whichever removes the bottleneck fastest.
                 </p>
               </div>
               <div>
                 <img 
-                  src="/images/team-collaboration.jpg" 
-                  alt="Team collaborating on workflow mapping" 
+                  src="/images/app-scheduling.png" 
+                  alt="Scheduling system example" 
                   className="rounded-xl shadow-lg w-full"
                 />
               </div>
@@ -317,7 +356,7 @@ export default function Home() {
                 >
                   AutoListing.io
                 </a>
-                {" "}— a working automation platform.
+                {" "}- a working automation platform.
               </p>
               <p>That's your proof we can build reliable, scalable automation, not just prototypes.</p>
             </div>
@@ -361,7 +400,7 @@ export default function Home() {
               Some tech we use
             </h2>
             <p className="text-muted-foreground text-center mb-12">
-              We choose tools based on reliability, scalability, and auditability — not trends.
+              We choose tools based on reliability, scalability, and auditability - not trends.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-items-center opacity-60">
               <div className="text-center text-sm font-medium">Perplexity</div>
@@ -378,7 +417,7 @@ export default function Home() {
               <div className="text-center text-sm font-medium">Runway</div>
               <div className="text-center text-sm font-medium">Pinecone</div>
               <div className="text-center text-sm font-medium">Zapier</div>
-              <div className="text-center text-sm font-medium opacity-50">& many more...</div>
+              <div className="text-center text-sm font-medium opacity-50">and many more...</div>
             </div>
           </div>
         </div>
@@ -425,7 +464,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div className="flex gap-6 text-sm">
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms & Conditions</a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</a>
               </div>
               <div className="flex gap-4">
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
