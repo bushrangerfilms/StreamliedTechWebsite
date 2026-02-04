@@ -454,7 +454,7 @@ export default function Home() {
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-twitter">
                   <Twitter className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-instagram">
+                <a href="https://www.instagram.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-instagram">
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-youtube">
