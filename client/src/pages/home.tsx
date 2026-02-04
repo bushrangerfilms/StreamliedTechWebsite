@@ -10,13 +10,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border bg-white sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img 
               src="/images/logo.png" 
               alt="Streamlined Tech - Intelligent AI Automations" 
-              className="h-12 w-auto"
+              className="h-[72px] w-auto"
             />
           </div>
           <Button asChild size="lg" data-testid="button-cta-header">
