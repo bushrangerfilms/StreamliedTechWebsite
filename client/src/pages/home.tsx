@@ -225,8 +225,8 @@ export default function Home() {
                   You get custom apps built around your specific process - not generic templates.
                 </p>
                 <img 
-                  src="/images/workflow-abstract.jpg" 
-                  alt="Connected workflow automation" 
+                  src="/images/construction-app.png" 
+                  alt="Construction worker using mobile app" 
                   className="rounded-xl shadow-md w-full hidden lg:block"
                 />
               </div>
