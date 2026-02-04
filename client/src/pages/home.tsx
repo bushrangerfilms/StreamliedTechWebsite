@@ -399,37 +399,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack */}
-      <section className="py-20 bg-slate-50" data-testid="section-tech">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-display font-bold mb-3 text-center">
-              Some tech we use
-            </h2>
-            <p className="text-muted-foreground text-center mb-12">
-              We choose tools based on reliability, scalability, and auditability - not trends.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-items-center opacity-60">
-              <div className="text-center text-sm font-medium">Perplexity</div>
-              <div className="text-center text-sm font-medium">11ElevenLabs</div>
-              <div className="text-center text-sm font-medium">HighLevel</div>
-              <div className="text-center text-sm font-medium">n8n</div>
-              <div className="text-center text-sm font-medium">Calendly</div>
-              <div className="text-center text-sm font-medium">Claude</div>
-              <div className="text-center text-sm font-medium">Google VEO 3</div>
-              <div className="text-center text-sm font-medium">Make</div>
-              <div className="text-center text-sm font-medium">OpenAI</div>
-              <div className="text-center text-sm font-medium">Kling AI</div>
-              <div className="text-center text-sm font-medium">APIFY</div>
-              <div className="text-center text-sm font-medium">Runway</div>
-              <div className="text-center text-sm font-medium">Pinecone</div>
-              <div className="text-center text-sm font-medium">Zapier</div>
-              <div className="text-center text-sm font-medium opacity-50">and many more...</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Final CTA */}
       <section className="py-20 relative overflow-hidden" data-testid="section-final-cta">
         <div className="absolute inset-0 z-0">
