@@ -404,6 +404,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Security Section */}
+      <section className="py-20 bg-slate-900 text-white" data-testid="section-security">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              Security built for real operations
+            </h2>
+            <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+              <p>
+                We use modern, enterprise-grade security practices including secure authentication, encrypted data storage, and strict access controls.
+              </p>
+              <p>
+                Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.
+              </p>
+              <p>
+                The same security principles used in financial and enterprise systems are applied by default.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-20 relative overflow-hidden" data-testid="section-final-cta">
         <div className="absolute inset-0 z-0">
