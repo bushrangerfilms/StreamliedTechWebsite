@@ -405,13 +405,21 @@ export default function Home() {
       </section>
 
       {/* Security Section */}
-      <section className="py-20 bg-slate-900 text-white" data-testid="section-security">
-        <div className="container mx-auto px-6">
+      <section className="py-20 relative overflow-hidden" data-testid="section-security">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/security-bg.jpg" 
+            alt="Security infrastructure"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-slate-900/85" />
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
               Security built for real operations
             </h2>
-            <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+            <div className="space-y-6 text-slate-200 text-lg leading-relaxed">
               <p>
                 We use modern, enterprise-grade security practices including secure authentication, encrypted data storage, and strict access controls.
               </p>
