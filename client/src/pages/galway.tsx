@@ -351,6 +351,11 @@ export default function Galway() {
       <section className="py-20 bg-primary text-primary-foreground" data-testid="section-founder">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
+            <img
+              src="/images/pete-harris.jpg"
+              alt="Pete Harris, founder of Streamlined Tech"
+              className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
+            />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               You deal with me, not an agency
             </h2>
