@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieConsent } from "@/components/cookie-consent";
 import Home from "@/pages/home";
+import Galway from "@/pages/galway";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Admin from "@/pages/admin";
@@ -14,6 +15,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/galway" component={Galway} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/dev" component={Admin} />
