@@ -77,7 +77,7 @@ export default function Galway() {
               The jobs I take off your plate
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Most businesses lose hours every week to the same handful of admin jobs. Each one below is fixable with a small system, not a big IT project.
+              Most businesses lose hours every week to the same handful of admin jobs. Each one below is fixable with a small system, not a big IT project. And if you're flat out and can't get staff, these systems free the hours a new hire would have covered, so you can take on more work with the team you have.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
