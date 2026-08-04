@@ -394,6 +394,18 @@ export default function Business() {
         </div>
       </section>
 
+      {/* Tagline band */}
+      <section className="py-16 bg-slate-900" data-testid="section-tagline">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-3xl md:text-4xl font-display font-bold text-white mb-5">
+            As AI advances, so will you.
+          </p>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.
+          </p>
+        </div>
+      </section>
+
       {/* Where I Work */}
       <section className="py-20" data-testid="section-areas">
         <div className="container mx-auto px-6">
