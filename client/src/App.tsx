@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CookieConsent } from "@/components/cookie-consent";
 import Home from "@/pages/home";
-import Galway from "@/pages/galway";
+import Business from "@/pages/business";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Admin from "@/pages/admin";
@@ -15,7 +15,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/galway" component={Galway} />
+      <Route path="/business" component={Business} />
+      {/* Legacy alias: /galway is in the signature of outreach emails already sent, keep it working. */}
+      <Route path="/galway" component={Business} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/dev" component={Admin} />

@@ -4,13 +4,13 @@ import { Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 
-export default function Galway() {
+export default function Business() {
   usePageTracking();
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = "Streamlined Tech Galway | Simple apps and automation for local businesses";
+    document.title = "Streamlined Tech | Workflow automation and custom business systems, Ireland";
     return () => {
       document.title = previousTitle;
     };
@@ -42,15 +42,15 @@ export default function Galway() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-slate-200 rounded-full text-sm font-medium mb-6">
               <MapPin className="w-4 h-4" />
-              Galway, Ireland
+              Based in Galway. Working across Ireland.
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              Less paperwork for Galway businesses.
+              Take on more work without finding another hire.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
               I'm Pete Harris, founder of Streamlined Tech, based here in Galway.
               <br /><br />
-              I build simple apps and automations that take the admin out of running a local business: chasing quotes and invoices, juggling bookings, collecting documents, rekeying orders.
+              I build software that takes the admin out of a business: the chasing, the reminders, the rekeying, the reporting. That can be one workflow to prove the idea, or a full review of how your operation runs with custom systems built around it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -77,7 +77,7 @@ export default function Galway() {
               The jobs I take off your plate
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Most businesses lose hours every week to the same handful of admin jobs. Each one below is fixable with a small system, not a big IT project. And if you're flat out and can't get staff, these systems free the hours a new hire would have covered, so you can take on more work with the team you have.
+              Most businesses lose hours every week to the same handful of admin jobs. These are the usual suspects, and in a bigger operation there are normally a dozen more sitting behind them. If you're flat out and can't get staff, this is the work that frees the hours a new hire would have covered, so you can take on more with the team you have.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
@@ -284,65 +284,71 @@ export default function Galway() {
         </div>
       </section>
 
-      {/* How You Start */}
+      {/* Two Ways To Work */}
       <section className="py-20 bg-slate-50" data-testid="section-engagement">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8">
-                  Start small. Prove it works.
-                </h2>
-                <div className="space-y-6 mb-8">
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
-                      1
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-lg mb-1">A quick call</h3>
-                      <p className="text-sm text-muted-foreground">
-                        You tell me the job that eats your time. I'll show you a working system close to your problem, live on the call.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
-                      2
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-lg mb-1">A fixed price</h3>
-                      <p className="text-sm text-muted-foreground">
-                        One workflow, one agreed price before we start. Small build, small money, no surprises.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
-                      3
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-lg mb-1">About a week</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Most first builds are working end-to-end inside a week or two. You expand only if it earns it.
-                      </p>
-                    </div>
-                  </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
+              Two ways to work with me
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
+              Same builder either way. The difference is how much of the business you want to put under the microscope on day one.
+            </p>
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div className="bg-white rounded-xl border border-border p-8 flex flex-col">
+                <div className="inline-flex self-start items-center px-3 py-1 bg-slate-100 text-foreground rounded-full text-xs font-semibold uppercase tracking-wide mb-5">
+                  Low risk start
                 </div>
-                <p className="text-muted-foreground mb-2">
-                  This is not a multi-month IT project, and you don't commit to anything big upfront.
+                <h3 className="text-2xl font-display font-bold mb-4">Fix one job first</h3>
+                <p className="text-muted-foreground mb-4">
+                  Pick the single job that eats the most time. I build that one thing for a price agreed before we start, and it is usually working end to end inside a week or two.
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  The first build is deliberately small. It exists to prove, in your business, that this pays for itself.
+                <p className="text-muted-foreground mb-6">
+                  This is what I suggest to most new clients, and it is a suggestion rather than a limit. It gets automation into the business without disrupting how your team works, and it lets you judge me on something real before you commit to anything larger.
                 </p>
+                <ul className="space-y-3 mt-auto">
+                  {[
+                    "One workflow, one fixed price",
+                    "Working inside a week or two",
+                    "No disruption to the team",
+                    "You expand only if it earns it",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-sm text-foreground font-medium">{item}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div>
-                <img
-                  src="/images/team-collaboration.jpg"
-                  alt="Working through a workflow together"
-                  className="rounded-xl shadow-lg w-full"
-                />
+              <div className="bg-white rounded-xl border-2 border-primary p-8 flex flex-col">
+                <div className="inline-flex self-start items-center px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-semibold uppercase tracking-wide mb-5">
+                  Full engagement
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-4">Or take the whole operation apart</h3>
+                <p className="text-muted-foreground mb-4">
+                  A full audit of how work actually moves through your business, department by department: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. This is a programme of work measured in months, not a one week fix.
+                </p>
+                <ul className="space-y-3 mt-auto">
+                  {[
+                    "Full operational audit, floor to office",
+                    "Prioritised plan, costed before anything is built",
+                    "Custom systems across the business, not templates",
+                    "Built and maintained by the person who audited you",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <p className="text-sm text-foreground font-medium">{item}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
+            <p className="text-center text-muted-foreground mt-10 max-w-2xl mx-auto">
+              Most clients start on the left and move to the right once the first build has paid for itself. You are welcome to start on either.
+            </p>
           </div>
         </div>
       </section>
@@ -364,7 +370,10 @@ export default function Galway() {
                 I'm the founder and the builder. No account managers, no offshore team, no layers.
               </p>
               <p>
-                Before software I spent 20+ years in mining and construction operations, so I know what admin pressure looks like from the inside. Now I build and run my own software company,{" "}
+                Before software I spent 20+ years in mining and construction operations, running sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.
+              </p>
+              <p>
+                I also build and run my own software company,{" "}
                 <a
                   href="https://autolisting.io"
                   target="_blank"
@@ -374,10 +383,10 @@ export default function Galway() {
                 >
                   AutoListing.io
                 </a>
-                , which automates property marketing for real estate agents every day.
+                , a full production platform that automates property marketing for real estate agents every day. It is not a demo. It has customers, billing, and uptime to keep.
               </p>
               <p>
-                The systems I'd build for you are the same kind I run myself.
+                So the systems I'd build for you are the same kind I build and run for myself.
               </p>
             </div>
           </div>
@@ -392,17 +401,17 @@ export default function Galway() {
               Where I work
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Galway city and county, and anywhere within an hour or so of it:
+              I'm based in Galway and work across the west, the Mid-West and the midlands, on site:
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {["Galway city", "Oranmore", "Athenry", "Tuam", "Loughrea", "Gort", "Ballinasloe", "Ennis", "Athlone", "Limerick"].map((town) => (
+              {["Galway city", "Oranmore", "Athenry", "Tuam", "Loughrea", "Ballinasloe", "Ennis", "Shannon", "Limerick", "Athlone", "Roscommon", "Castlebar"].map((town) => (
                 <span key={town} className="px-4 py-1.5 bg-slate-100 text-foreground rounded-full text-sm font-medium">
                   {town}
                 </span>
               ))}
             </div>
             <p className="text-base text-muted-foreground">
-              Remote works fine too. But being local means I can sit at your counter, see the actual workflow, and call back in when something needs tweaking.
+              Anywhere else in Ireland works too, remotely or by travelling to you for the parts that need me in the room. Being on site matters most during an audit, when I need to stand where the work actually happens and watch it.
             </p>
           </div>
         </div>
@@ -448,10 +457,10 @@ export default function Galway() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
-              Tell me the job that eats your evenings
+              Tell me where the hours are going
             </h2>
             <p className="text-lg text-slate-200 mb-8">
-              Fifteen minutes on the phone will tell us both whether it's fixable. If it's not, I'll say so.
+              One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
               <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
