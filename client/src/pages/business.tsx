@@ -10,7 +10,7 @@ export default function Business() {
 
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = "Streamlined Tech | Workflow automation and custom business systems, Ireland";
+    document.title = "Streamlined Tech | AI adoption for Irish businesses";
     return () => {
       document.title = previousTitle;
     };
@@ -45,12 +45,12 @@ export default function Business() {
               Based in Galway. Working across Ireland.
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              Take on more work without finding another hire.
+              Grow your business without hiring more people.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
               I'm Pete Harris, founder of Streamlined Tech, based here in Galway.
               <br /><br />
-              I build software that takes the admin out of a business: the chasing, the reminders, the rekeying, the reporting. That can be one workflow to prove the idea, or a full review of how your operation runs with custom systems built around it.
+              I help businesses adopt AI. That means software that takes the admin out of the day, the chasing, the reminders, the rekeying, the reporting, and a team that knows how to use AI to multiply its own output. It can start with one workflow to prove the idea, or a full review of how your operation runs with custom systems built around it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -77,7 +77,7 @@ export default function Business() {
               The jobs I take off your plate
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Most businesses lose hours every week to the same handful of admin jobs. These are the usual suspects, and in a bigger operation there are normally a dozen more sitting behind them. If you're flat out and can't get staff, this is the work that frees the hours a new hire would have covered, so you can take on more with the team you have.
+              Most businesses lose hours every week to the same handful of admin jobs. These are the usual suspects, and in a bigger operation there are normally a dozen more sitting behind them. Taking them off your people does two things: it frees the hours a new hire would have covered, and it frees up your team's headspace for the work that actually needs a person.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
@@ -329,13 +329,14 @@ export default function Business() {
                   A full audit of how work actually moves through your business, department by department: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. This is a programme of work measured in months, not a one week fix.
+                  You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. And along the way I teach your staff to use AI themselves, so the gains keep compounding after I'm gone. This is a programme of work measured in months, not a one week fix.
                 </p>
                 <ul className="space-y-3 mt-auto">
                   {[
                     "Full operational audit, floor to office",
                     "Prioritised plan, costed before anything is built",
                     "Custom systems across the business, not templates",
+                    "Your staff taught to use AI, not left dependent on me",
                     "Built and maintained by the person who audited you",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
