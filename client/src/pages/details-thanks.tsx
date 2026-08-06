@@ -20,7 +20,7 @@ export default function DetailsThanks() {
         <div className="container mx-auto px-6 pt-8 pb-16">
           <div className="inline-block bg-white rounded-lg px-3 py-2 mb-14">
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Streamlined Tech"
               className="h-10 w-auto"
               width="133"

@@ -14,9 +14,11 @@ export default function Home() {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/images/logo.png" 
+              src="/images/logo.webp" 
               alt="Streamlined Tech - Intelligent AI Automations" 
               className="h-[72px] w-auto"
+              width="389"
+              height="144"
             />
           </div>
           <Button asChild size="lg" data-testid="button-cta-header">
@@ -30,31 +32,36 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/hero-operations.jpg" 
-            alt="Operations professional with tablet" 
+          <img
+            src="/images/hero-operations.webp"
+            alt="Operations professional with tablet"
             className="w-full h-full object-cover"
+            width="1280"
+            height="771"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70"></div>
         </div>
-        <div className="relative z-10 container mx-auto px-6 py-24 md:py-32">
+        <div className="relative z-10 container mx-auto px-6 py-16 md:py-28">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              Take the friction out of your day-to-day operations.
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight" data-testid="text-hero-headline">
+              AI that answers your crew's questions. Built for mining and construction.
             </h1>
-            <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              Delays, rework, and manual handovers create unnecessary pressure, costs and errors.
-              <br /><br />
-              We design automation that reduces friction, cuts rework, and keeps your work moving the way it should - with less complexity.
+            <p className="text-lg md:text-xl text-slate-200 mb-5 leading-relaxed">
+              If you got here from the Handy video: that's the kind of assistant we build. Trained on your gear, your procedures and your history, alongside custom apps that take the admin out of running a site.
+            </p>
+            <p className="text-sm text-slate-300 mb-8">
+              20+ years on mining and construction sites, not a software house guessing at your job.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Book A Free Call
-                </a>
+                <Link href="/details">Get the full rundown</Link>
               </Button>
-              <div className="text-sm text-slate-300">
-                15-minute ops review. No hard sell.
+              <div className="text-sm text-slate-300 sm:self-center">
+                Prefer to talk?{" "}
+                <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline text-slate-200">
+                  Book a free call.
+                </a>
               </div>
             </div>
             <p className="text-sm text-slate-400 mt-6">
@@ -77,55 +84,79 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img 
-                  src="/images/app-training-dashboard.png" 
-                  alt="Training management dashboard" 
+                  src="/images/app-training-dashboard.webp" 
+                  alt="Training management dashboard"
                   className="w-full h-auto"
-                />
+                  width="1200"
+                  height="742"
+                  loading="lazy"
+                  />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img 
-                  src="/images/app-scheduling.png" 
-                  alt="Scheduling and calendar management" 
+                  src="/images/app-scheduling.webp" 
+                  alt="Scheduling and calendar management"
                   className="w-full h-auto"
-                />
+                  width="1200"
+                  height="779"
+                  loading="lazy"
+                  />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img 
-                  src="/images/app-analytics.png" 
-                  alt="Analytics and reporting dashboard" 
+                  src="/images/app-analytics.webp" 
+                  alt="Analytics and reporting dashboard"
                   className="w-full h-auto"
-                />
+                  width="1200"
+                  height="723"
+                  loading="lazy"
+                  />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img 
-                  src="/images/app-intake.png" 
-                  alt="Data intake and processing" 
+                  src="/images/app-intake.webp" 
+                  alt="Data intake and processing"
                   className="w-full h-auto"
-                />
+                  width="1200"
+                  height="928"
+                  loading="lazy"
+                  />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border flex items-center justify-center p-4 gap-4">
                 <img 
-                  src="/images/app-renewals-mobile.png" 
-                  alt="Mobile renewals tracking" 
+                  src="/images/app-renewals-mobile.webp" 
+                  alt="Mobile renewals tracking"
                   className="h-64 w-auto rounded-lg shadow-sm"
-                />
+                  width="640"
+                  height="1386"
+                  loading="lazy"
+                  />
                 <img 
-                  src="/images/app-video-mobile.png" 
-                  alt="Mobile video creation" 
+                  src="/images/app-video-mobile.webp" 
+                  alt="Mobile video creation"
                   className="h-64 w-auto rounded-lg shadow-sm"
-                />
+                  width="640"
+                  height="1387"
+                  loading="lazy"
+                  />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border flex items-center justify-center p-4 gap-4">
                 <img 
-                  src="/images/app-settings-mobile.png" 
-                  alt="Mobile settings and branding" 
+                  src="/images/app-settings-mobile.webp" 
+                  alt="Mobile settings and branding"
                   className="h-64 w-auto rounded-lg shadow-sm"
-                />
+                  width="640"
+                  height="1383"
+                  loading="lazy"
+                  />
                 <img 
-                  src="/images/app-scanning-mobile.png" 
-                  alt="Mobile scanning interface" 
+                  src="/images/app-scanning-mobile.webp" 
+                  alt="Mobile scanning interface"
                   className="h-64 w-auto rounded-lg shadow-sm"
-                />
+                  width="640"
+                  height="1383"
+                  loading="lazy"
+                  />
               </div>
             </div>
           </div>
@@ -136,11 +167,19 @@ export default function Home() {
       <section className="py-20" data-testid="section-experience">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
+            <img
+              src="/images/pete-harris.jpg"
+              alt="Pete Harris, founder of Streamlined Tech"
+              className="w-24 h-24 rounded-full object-cover mx-auto mb-6"
+              width="96"
+              height="96"
+              loading="lazy"
+            />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Built by someone who understands operational pressure
+              Built by Pete Harris, 20+ years on mining and construction sites
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              With 20+ years of hands-on experience across mining and construction - from on the tools to training package production - we understand what it takes to build systems that hold up under real-world conditions.
+              From on the tools to training package production, we understand what it takes to build systems that hold up under real-world conditions.
             </p>
             <p className="text-base text-foreground font-medium">
               If your workflows involve compliance, coordination, and constant change, we've seen it before.
@@ -156,10 +195,13 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <img 
-                  src="/images/dashboard-analytics.jpg" 
-                  alt="Clean dashboard with real-time visibility" 
+                  src="/images/dashboard-analytics.webp" 
+                  alt="Clean dashboard with real-time visibility"
                   className="rounded-xl shadow-lg w-full"
-                />
+                  width="1280"
+                  height="853"
+                  loading="lazy"
+                  />
               </div>
               <div className="order-1 lg:order-2 grid sm:grid-cols-2 gap-8">
                 <div className="space-y-4">
@@ -212,7 +254,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-start gap-3">
                       <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <p className="text-foreground font-medium text-sm">Progress steps with AI and automated notifications to next human required</p>
+                      <p className="text-foreground font-medium text-sm">Ask the AI a question about a job, a fault or a process and get a straight answer</p>
                     </li>
                   </ul>
                 </div>
@@ -238,10 +280,13 @@ export default function Home() {
                   You get custom apps built around your specific process - not generic templates.
                 </p>
                 <img 
-                  src="/images/construction-app.png" 
-                  alt="Construction worker using mobile app" 
+                  src="/images/construction-app.webp" 
+                  alt="Construction worker using mobile app"
                   className="rounded-xl shadow-md w-full hidden lg:block"
-                />
+                  width="1200"
+                  height="840"
+                  loading="lazy"
+                  />
               </div>
               <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
@@ -339,10 +384,13 @@ export default function Home() {
               </div>
               <div>
                 <img 
-                  src="/images/team-collaboration.jpg" 
-                  alt="Team collaborating on workflow mapping" 
+                  src="/images/team-collaboration.webp" 
+                  alt="Team collaborating on workflow mapping"
                   className="rounded-xl shadow-lg w-full"
-                />
+                  width="1280"
+                  height="853"
+                  loading="lazy"
+                  />
               </div>
             </div>
           </div>
@@ -359,16 +407,7 @@ export default function Home() {
             <div className="space-y-4 text-lg">
               <p>You're not buying a slide deck. You're getting systems that run.</p>
               <p>
-                You can watch Streamlined Tech's Real Estate automation platform demo video here:{" "}
-                <a 
-                  href="https://autolisting.io" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="underline hover:no-underline font-semibold"
-                  data-testid="link-autolisting-main"
-                >
-                  AutoListing.io
-                </a>
+                We also built and run AutoListing.io, a real estate automation platform used by agents day in, day out. Proof this isn't just prototypes.
               </p>
               <p>Build reliable, scalable automation, not just prototypes.</p>
             </div>
@@ -408,10 +447,13 @@ export default function Home() {
       <section className="py-20 relative overflow-hidden" data-testid="section-security">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/security-bg.jpg" 
+            src="/images/security-bg.webp" 
             alt="Security infrastructure"
             className="w-full h-full object-cover"
-          />
+            width="1280"
+            height="448"
+            loading="lazy"
+            />
           <div className="absolute inset-0 bg-slate-900/85" />
         </div>
         <div className="container mx-auto px-6 relative z-10">
@@ -438,10 +480,13 @@ export default function Home() {
       <section className="py-20 relative overflow-hidden" data-testid="section-final-cta">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/professional-work.jpg" 
-            alt="Professional working" 
+            src="/images/professional-work.webp" 
+            alt="Professional working"
             className="w-full h-full object-cover"
-          />
+            width="1280"
+            height="853"
+            loading="lazy"
+            />
           <div className="absolute inset-0 bg-slate-900/85"></div>
         </div>
         <div className="container mx-auto px-6 relative z-10">
@@ -467,9 +512,12 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div className="flex items-center">
               <img 
-                src="/images/logo.png" 
+                src="/images/logo.webp" 
                 alt="Streamlined Tech - Intelligent AI Automations" 
                 className="h-14 w-auto"
+                width="389"
+                height="144"
+                loading="lazy"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">

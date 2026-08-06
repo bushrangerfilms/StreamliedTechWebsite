@@ -23,7 +23,7 @@ export default function Business() {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Streamlined Tech - Intelligent AI Automations"
               className="h-[72px] w-auto"
             />
@@ -496,7 +496,7 @@ export default function Business() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div className="flex items-center">
               <img
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Streamlined Tech - Intelligent AI Automations"
                 className="h-14 w-auto"
               />
