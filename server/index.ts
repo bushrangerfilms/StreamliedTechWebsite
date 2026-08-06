@@ -94,7 +94,9 @@ app.use((req, res, next) => {
     {
       port,
       host: "0.0.0.0",
-      reusePort: true,
+      // reusePort is unsupported on macOS sockets (ENOTSUP); only needed
+      // in clustered Linux deploys anyway.
+      reusePort: process.platform !== "darwin",
     },
     () => {
       log(`serving on port ${port}`);

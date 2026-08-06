@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { processDetailsLead } from "./details-lead-core";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -15,6 +16,16 @@ export async function registerRoutes(
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ error: "Failed to track" });
+    }
+  });
+
+  app.post("/api/details-lead", async (req, res) => {
+    try {
+      const result = await processDetailsLead(req.body, (req.headers["user-agent"] as string) || null);
+      res.status(result.status).json(result.body);
+    } catch (error) {
+      console.error("details-lead: unexpected error", error);
+      res.status(500).json({ error: "Failed" });
     }
   });
 

@@ -76,6 +76,7 @@ export default function Privacy() {
           <ul className="list-disc pl-6 space-y-2">
             <li>Sent to us directly via email</li>
             <li>Stored securely on servers provided by our trusted third-party web host and CRM provider, HighLevel, LLC.</li>
+            <li>Stored securely with Supabase (database hosting) and processed by Resend (email delivery) when you submit a form on our website requesting information from us.</li>
           </ul>
           <p>
             HighLevel acts on our instructions and meets high standards for data protection and security. They do not access, modify, or delete any data unless we explicitly authorise it. Your data is never sold, rented, or shared with third parties for commercial purposes.

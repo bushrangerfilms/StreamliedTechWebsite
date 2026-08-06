@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
@@ -21,6 +22,11 @@ export function CookieConsent() {
     localStorage.setItem("cookie-consent", "essential");
     setShowBanner(false);
   };
+
+  // The /details capture funnel sets no marketing cookies (tracking is
+  // consent-gated and never granted here), so the banner would only cover
+  // the form on mobile.
+  if (location.startsWith("/details")) return null;
 
   if (!showBanner) return null;
 
