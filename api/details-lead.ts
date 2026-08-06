@@ -1,4 +1,4 @@
-import { processDetailsLead } from "../server/details-lead-core";
+import { processDetailsLead } from "../server/details-lead-core.js";
 
 // Vercel serverless function: the production home of POST /api/details-lead.
 // The Express server in server/ only runs in local dev; production is a

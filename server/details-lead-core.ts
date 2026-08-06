@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { buildDetailsEmail } from "./details-email";
+import { buildDetailsEmail } from "./details-email.js";
 
 // Shared by the Express dev server (server/routes.ts) and the Vercel
 // serverless function (api/details-lead.ts) — production runs only the
