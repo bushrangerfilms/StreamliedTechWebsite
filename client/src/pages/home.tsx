@@ -7,9 +7,9 @@ import { useSeo } from "@/hooks/use-seo";
 export default function Home() {
   usePageTracking();
   useSeo({
-    title: "Streamlined Tech – AI automation for mining and construction",
+    title: "Streamlined Tech – Custom internal apps for mining and construction",
     description:
-      "AI and workflow automation for mining and construction operations. Cut admin, automate reporting and stay audit-ready. Built by Pete Harris, 20+ years on site.",
+      "Custom internal apps and workflow automation for mining and construction. Track progress, close out defects and automate the follow-ups, so work stops stalling between steps.",
     canonical: "/",
   });
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
@@ -51,11 +51,14 @@ export default function Home() {
         </div>
         <div className="relative z-10 container mx-auto px-6 py-16 md:py-28">
           <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-wide text-amber-400 mb-4 uppercase">
+              For mining and construction
+            </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight" data-testid="text-hero-headline">
-              AI that answers your crew's questions. Built for mining and construction.
+              Custom internal apps that take the admin off your site.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-5 leading-relaxed">
-              If you got here from the Handy video: that's the kind of assistant we build. Trained on your gear, your procedures and your history, alongside custom apps that take the admin out of running a site.
+              Progress tracking, defects and close-out, follow-ups that happen without anyone chasing. The ordinary systems that stop work stalling between steps, built around how your site already runs.
             </p>
             <p className="text-sm text-slate-300 mb-8">
               20+ years on mining and construction sites, not a software house guessing at your job.
@@ -73,6 +76,11 @@ export default function Home() {
             </div>
             <p className="text-sm text-slate-400 mt-6">
               Pilot-first. Audit-friendly. Built around how your team actually works.
+            </p>
+            {/* Bridge for traffic arriving from the Handy video: keeps the
+                assistant honest without letting it lead the page. */}
+            <p className="text-sm text-slate-400 mt-3">
+              If you got here from the Handy video, we build assistants like that too. They work best sitting on top of systems that already hold good data.
             </p>
           </div>
         </div>
