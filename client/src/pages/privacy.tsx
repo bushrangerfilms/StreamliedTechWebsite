@@ -2,14 +2,11 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 export default function Privacy() {
   usePageTracking();
-  useSeo({
-    title: "Privacy Policy | Streamlined Tech",
-    description: "How Streamlined Tech collects, uses and stores your data.",
-    canonical: "/privacy",
-  });
+  useSeo(ROUTE_SEO.privacy);
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b bg-white sticky top-0 z-50">

@@ -3,6 +3,7 @@ import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 // Australian market landing page. Deliberately leads on internal apps and
 // ongoing workflow systems rather than AI assistants: the assistant is the
@@ -11,12 +12,7 @@ export default function Australia() {
   usePageTracking();
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
-  useSeo({
-    title: "Internal apps for Australian mining and construction | Streamlined Tech",
-    description:
-      "Custom internal apps and workflow automation for Australian mining and construction operations. Progress tracking, defects and close-out, follow-ups that happen without chasing.",
-    canonical: "/australia",
-  });
+  useSeo(ROUTE_SEO.australia);
 
   const theWork = [
     {

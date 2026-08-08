@@ -1,15 +1,7 @@
 import { useEffect } from "react";
+import { SITE_ORIGIN, type RouteSeo } from "@/lib/seo-routes";
 
-const SITE_ORIGIN = "https://streamlinedai.tech";
-
-interface SeoOptions {
-  title: string;
-  description: string;
-  /** Path only, e.g. "/business". Aliased routes point at their canonical path. */
-  canonical: string;
-  /** Keep the page out of search results. Crawling stays allowed so the tag is seen. */
-  noindex?: boolean;
-}
+type SeoOptions = Pick<RouteSeo, "title" | "description" | "canonical" | "noindex">;
 
 function setMeta(selector: string, attr: string, value: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(selector);
