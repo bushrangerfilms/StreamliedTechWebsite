@@ -348,7 +348,7 @@ export default function Australia() {
                 I'm Pete Harris. Australian, now based in Ireland, and I still do most of my work with Australian operations. No account managers, no offshore team, no layers between you and the person building it.
               </p>
               <p>
-                Before software I spent 20+ years in mining and construction operations, running sites where the paperwork was the bottleneck. That is why this work is worth having from me: I can read an operation, not just write code for one.
+                I've spent 20+ years around mining and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why this work is worth having from me: I can read an operation, not just write code for one.
               </p>
               <p>
                 I also build and run my own software company,{" "}
