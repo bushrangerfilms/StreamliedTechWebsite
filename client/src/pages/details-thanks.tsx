@@ -1,18 +1,17 @@
-import { useEffect } from "react";
 import { usePageTracking } from "@/hooks/use-page-tracking";
+import { useSeo } from "@/hooks/use-seo";
 
 // Distinct route (not an inline state) so form completions show up in
 // page tracking without any extra analytics wiring.
 export default function DetailsThanks() {
   usePageTracking();
 
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = "On its way | Streamlined Tech";
-    return () => {
-      document.title = previousTitle;
-    };
-  }, []);
+  useSeo({
+    title: "On its way | Streamlined Tech",
+    description: "Thanks for getting in touch with Streamlined Tech.",
+    canonical: "/details/thanks",
+    noindex: true,
+  });
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

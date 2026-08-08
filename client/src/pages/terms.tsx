@@ -1,9 +1,15 @@
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { usePageTracking } from "@/hooks/use-page-tracking";
+import { useSeo } from "@/hooks/use-seo";
 
 export default function Terms() {
   usePageTracking();
+  useSeo({
+    title: "Terms and Conditions | Streamlined Tech",
+    description: "The terms that apply to Streamlined Tech's services and website.",
+    canonical: "/terms",
+  });
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b bg-white sticky top-0 z-50">
