@@ -2,9 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
+import { useSeo } from "@/hooks/use-seo";
 
 export default function Home() {
   usePageTracking();
+  useSeo({
+    title: "Streamlined Tech – AI automation for mining and construction",
+    description:
+      "AI and workflow automation for mining and construction operations. Cut admin, automate reporting and stay audit-ready. Built by Pete Harris, 20+ years on site.",
+    canonical: "/",
+  });
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   return (

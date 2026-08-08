@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { usePageTracking } from "@/hooks/use-page-tracking";
+import { useSeo } from "@/hooks/use-seo";
 
 // Single-purpose capture page reached from "Comment AI" replies on the
 // Mining Boom video. No site nav, no footer links, no competing CTAs:
@@ -21,17 +22,21 @@ export default function Details() {
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string }>({});
 
+  // Campaign-only landing page: reachable from the comment link, kept out of
+  // search results so it never competes with the homepage.
+  useSeo({
+    title: "The full rundown | Streamlined Tech",
+    description: "What Streamlined Tech builds for mining and construction crews.",
+    canonical: "/details",
+    noindex: true,
+  });
+
   useEffect(() => {
-    const previousTitle = document.title;
-    document.title = "The full rundown | Streamlined Tech";
     // Persist the ?src= platform tag before anything else can navigate.
     const src = new URLSearchParams(window.location.search).get("src");
     if (src) {
       sessionStorage.setItem("details-src", src.slice(0, 60));
     }
-    return () => {
-      document.title = previousTitle;
-    };
   }, []);
 
   const validate = () => {

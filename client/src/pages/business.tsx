@@ -3,18 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
+import { useSeo } from "@/hooks/use-seo";
 
 export default function Business() {
   usePageTracking();
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = "Streamlined Tech | AI adoption for Irish businesses";
-    return () => {
-      document.title = previousTitle;
-    };
-  }, []);
+  // /galway serves this same component, so the canonical is pinned to
+  // /business and the two routes are not treated as duplicates.
+  useSeo({
+    title: "Streamlined Tech | AI adoption for Irish businesses",
+    description:
+      "Practical AI adoption for Irish businesses. An audit of where your time actually goes, then automation built around how you already work.",
+    canonical: "/business",
+  });
 
   return (
     <div className="min-h-screen bg-background">

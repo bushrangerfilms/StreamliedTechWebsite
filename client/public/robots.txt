@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# /dev, /details and /details/thanks are kept out of results with a noindex
+# meta tag rather than a Disallow here. Blocking the crawl would stop Google
+# ever reading that tag, and /details is linked publicly from campaign
+# comments, so a blocked URL could still surface as a bare link.
+
+Sitemap: https://streamlinedai.tech/sitemap.xml

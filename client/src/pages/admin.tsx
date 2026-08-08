@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
 import { ArrowLeft, Eye, FileText, TrendingUp, Calendar } from "lucide-react";
+import { useSeo } from "@/hooks/use-seo";
 
 interface Analytics {
   totalViews: number;
@@ -19,6 +20,13 @@ interface Analytics {
 }
 
 export default function Admin() {
+  useSeo({
+    title: "Admin | Streamlined Tech",
+    description: "Internal analytics.",
+    canonical: "/dev",
+    noindex: true,
+  });
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
