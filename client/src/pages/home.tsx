@@ -3,15 +3,11 @@ import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 export default function Home() {
   usePageTracking();
-  useSeo({
-    title: "Streamlined Tech – Custom internal apps for mining and construction",
-    description:
-      "Custom internal apps and workflow automation for mining and construction. Track progress, close out defects and automate the follow-ups, so work stops stalling between steps.",
-    canonical: "/",
-  });
+  useSeo(ROUTE_SEO.home);
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   return (

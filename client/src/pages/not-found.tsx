@@ -2,16 +2,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 export default function NotFound() {
   // The host rewrites every unmatched path to index.html with a 200, so this
   // is the only place a soft 404 can be kept out of the index.
-  useSeo({
-    title: "Page not found | Streamlined Tech",
-    description: "That page does not exist.",
-    canonical: "/",
-    noindex: true,
-  });
+  useSeo(ROUTE_SEO.notFound);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">

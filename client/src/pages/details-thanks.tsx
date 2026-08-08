@@ -1,17 +1,13 @@
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 // Distinct route (not an inline state) so form completions show up in
 // page tracking without any extra analytics wiring.
 export default function DetailsThanks() {
   usePageTracking();
 
-  useSeo({
-    title: "On its way | Streamlined Tech",
-    description: "Thanks for getting in touch with Streamlined Tech.",
-    canonical: "/details/thanks",
-    noindex: true,
-  });
+  useSeo(ROUTE_SEO.detailsThanks);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

@@ -4,6 +4,7 @@ import { Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 export default function Business() {
   usePageTracking();
@@ -11,12 +12,7 @@ export default function Business() {
 
   // /galway serves this same component, so the canonical is pinned to
   // /business and the two routes are not treated as duplicates.
-  useSeo({
-    title: "Streamlined Tech | AI adoption for Irish businesses",
-    description:
-      "Practical AI adoption for Irish businesses. An audit of where your time actually goes, then automation built around how you already work.",
-    canonical: "/business",
-  });
+  useSeo(ROUTE_SEO.business);
 
   return (
     <div className="min-h-screen bg-background">

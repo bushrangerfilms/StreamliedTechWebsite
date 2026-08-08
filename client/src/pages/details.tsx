@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
+import { ROUTE_SEO } from "@/lib/seo-routes";
 
 // Single-purpose capture page reached from "Comment AI" replies on the
 // Mining Boom video. No site nav, no footer links, no competing CTAs:
@@ -24,12 +25,7 @@ export default function Details() {
 
   // Campaign-only landing page: reachable from the comment link, kept out of
   // search results so it never competes with the homepage.
-  useSeo({
-    title: "The full rundown | Streamlined Tech",
-    description: "What Streamlined Tech builds for mining and construction crews.",
-    canonical: "/details",
-    noindex: true,
-  });
+  useSeo(ROUTE_SEO.details);
 
   useEffect(() => {
     // Persist the ?src= platform tag before anything else can navigate.

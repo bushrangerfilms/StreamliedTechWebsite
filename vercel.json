@@ -1,5 +1,12 @@
 {
   "rewrites": [
+    { "source": "/business", "destination": "/business.html" },
+    { "source": "/galway", "destination": "/business.html" },
+    { "source": "/australia", "destination": "/australia.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/details", "destination": "/details.html" },
+    { "source": "/details/thanks", "destination": "/details/thanks.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
