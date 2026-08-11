@@ -123,12 +123,9 @@ export default function Business() {
       <section className="py-20 bg-slate-50" data-testid="section-apps">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-12 text-center">
               Real systems, already built
             </h2>
-            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              These are working systems I've built, not mock-ups. On a call I can show you the one closest to your problem, running live.
-            </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
@@ -348,6 +345,39 @@ export default function Business() {
             <p className="text-center text-muted-foreground mt-10 max-w-2xl mx-auto">
               Most clients start on the left and move to the right once the first build has paid for itself. You are welcome to start on either.
             </p>
+            {/* Price ladder. Pete's call 9 Aug 2026: zero pricing was stopping people making contact.
+                These are the price list, NOT delivered case studies, so the copy must never imply
+                they are past jobs. Emails still carry no price; this page is where the anchor lives. */}
+            <div className="max-w-3xl mx-auto mt-14 bg-white rounded-xl border border-border p-8">
+              <h3 className="text-2xl font-display font-bold mb-3 text-center">What it costs</h3>
+              <p className="text-muted-foreground mb-6 text-center">
+                The price is agreed before anything starts. To give you an idea:
+              </p>
+              <ul className="space-y-4">
+                {[
+                  {
+                    scope: "One workflow, built end to end",
+                    price: "from €3,900, usually working inside two weeks",
+                  },
+                  {
+                    scope: "A bigger piece across a few connected jobs",
+                    price: "€6,500 to €9,500",
+                  },
+                  {
+                    scope: "A full review of how work moves through the business, with the systems built around it",
+                    price: "priced after the review",
+                  },
+                ].map((tier) => (
+                  <li key={tier.scope} className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                    <p className="text-foreground">
+                      <span className="font-medium">{tier.scope}:</span>{" "}
+                      <span className="text-muted-foreground">{tier.price}</span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
