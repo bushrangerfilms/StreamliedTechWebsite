@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
 import { Link } from "wouter";
@@ -6,13 +5,11 @@ import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
 
-export default function Business() {
+export default function Contractors() {
   usePageTracking();
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
-  // /galway serves this same component, so the canonical is pinned to
-  // /business and the two routes are not treated as duplicates.
-  useSeo(ROUTE_SEO.business);
+  useSeo(ROUTE_SEO.contractors);
 
   return (
     <div className="min-h-screen bg-background">
@@ -40,15 +37,16 @@ export default function Business() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-slate-200 rounded-full text-sm font-medium mb-6">
               <MapPin className="w-4 h-4" />
-              Based in Galway. Working across Ireland.
+              Galway based. On sites across Ireland.
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              Grow your business without hiring more people.
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 leading-tight" data-testid="text-hero-headline">
+              Custom internal apps for construction and heavy industry.
             </h1>
+            <p className="text-xl md:text-2xl text-primary-foreground font-display font-semibold text-slate-100 mb-6">
+              Grow your business without hiring more people.
+            </p>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              I'm Pete Harris, founder of Streamlined Tech, based here in Galway.
-              <br /><br />
-              I help businesses adopt AI. That means custom internal apps that take the admin out of the day, the chasing, the reminders, the rekeying, the reporting, in the office and out in the field, and a team that knows how to use AI to multiply its own output. It can start with one workflow to prove the idea, or a full review of how your operation runs with custom systems built around it.
+              I'm Pete Harris, founder of Streamlined Tech. 20+ years around mining and construction, from on the tools to training package production and now building the software. You deal with me directly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -67,67 +65,80 @@ export default function Business() {
         </div>
       </section>
 
-      {/* Sector routing */}
-      <section className="py-5 bg-primary/5 border-b border-border" data-testid="section-sector-link">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-base text-foreground">
-            In construction or heavy industry?{" "}
-            <Link href="/contractors" className="text-primary font-semibold underline hover:no-underline" data-testid="link-contractors">
-              See what an internal app looks like on your jobs
-            </Link>
+      {/* Where to start */}
+      <section className="py-16 bg-slate-50" data-testid="section-hook">
+        <div className="container mx-auto px-6">
+          <p className="text-xl md:text-2xl font-display font-medium text-center max-w-3xl mx-auto leading-relaxed">
+            You already know AI could be taking work off your plate. The hard part is knowing where to start.{" "}
+            <span className="text-primary font-semibold">That's what we do.</span>
           </p>
         </div>
       </section>
 
-      {/* What I Fix */}
-      <section className="py-20" data-testid="section-fixes">
+      {/* Example builds */}
+      <section className="py-20" data-testid="section-examples">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              The jobs I take off your plate
+              Designed around your specific needs
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Most businesses lose hours every week to the same handful of admin jobs. These are the usual suspects, and in a bigger operation there are normally a dozen more sitting behind them. Every build is designed around your specific operation, so treat these as examples rather than a menu. Taking them off your people does two things: it frees the hours a new hire would have covered, and it frees up your team's headspace for the work that actually needs a person.
+              No two operations run the same way, so every build is custom. For example, your app could:
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Chasing quotes and invoices</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Every job on one screen</h3>
                 <p className="text-sm text-muted-foreground">
-                  Quotes followed up after you send them. Invoices chased politely until they're paid.
+                  From booked to done, visibly moving or visibly stuck, across every crew.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Scheduling and reminders</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Scheduling crews and machines</h3>
                 <p className="text-sm text-muted-foreground">
-                  Jobs, crews and bookings that write straight into the diary, with reminders that reduce no-shows.
+                  The right crew and the right machine on the right job, without the whiteboard.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Renewals and expiry dates</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Follow-ups that send themselves</h3>
                 <p className="text-sm text-muted-foreground">
-                  NCT, CVRT, insurance, certs, service-due dates. Reminders go out on time, every time.
+                  Quotes chased, invoices chased, reminders out on time, so nobody is ringing around.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Orders without rekeying</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Dockets, timesheets and sign-offs</h3>
                 <p className="text-sm text-muted-foreground">
-                  Orders land in a list your team works from, not on the answering machine or a PDF form.
+                  Filled in from the phone and filed where the office can see them, off paper for good.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Timesheets, dockets and sign-offs</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Pre-starts and safety checks</h3>
                 <p className="text-sm text-muted-foreground">
-                  Filled in from the phone and filed where the office can see them, not living on paper in the van.
+                  Answered from the cab and stored where the auditor can find them.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Your week's numbers</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Service and cert dates</h3>
                 <p className="text-sm text-muted-foreground">
-                  One screen with the numbers that matter. No spreadsheet wrangling on a Sunday night.
+                  CVRT, insurance, calibrations and service-due dates that flag themselves before they bite.
                 </p>
               </div>
             </div>
+            <p className="text-lg text-muted-foreground mt-12 text-center max-w-3xl mx-auto">
+              Software usually fails because it asks too much of people, so we keep the screens simple for the crew on site. The real work happens in the background, where the app takes on the admin your office does by hand today.
+            </p>
           </div>
+        </div>
+      </section>
+
+      {/* Ownership band */}
+      <section className="py-16 bg-slate-900" data-testid="section-ownership">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+            It's your app. Built around how you already run jobs. You stay in control.
+          </p>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            Your internal app can become the central hub of all operations.
+          </p>
         </div>
       </section>
 
@@ -141,22 +152,22 @@ export default function Business() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
-                  src="/images/app-training-dashboard.png"
-                  alt="Staff training and certification tracking dashboard"
+                  src="/images/app-scheduling.png"
+                  alt="Job and crew scheduling"
                   className="w-full h-auto"
                 />
                 <p className="text-sm text-muted-foreground p-4">
-                  Staff certs and training tracked before the audit asks.
+                  Crews and jobs that write themselves into the schedule.
                 </p>
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
-                  src="/images/app-scheduling.png"
-                  alt="Scheduling and calendar management"
+                  src="/images/app-training-dashboard.png"
+                  alt="Crew training and certification tracking dashboard"
                   className="w-full h-auto"
                 />
                 <p className="text-sm text-muted-foreground p-4">
-                  Bookings and jobs that write themselves into the diary.
+                  Crew tickets and training tracked before the audit asks.
                 </p>
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
@@ -172,11 +183,11 @@ export default function Business() {
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
                   src="/images/app-intake.png"
-                  alt="Order and client intake without rekeying"
+                  alt="Order and job request intake without rekeying"
                   className="w-full h-auto"
                 />
                 <p className="text-sm text-muted-foreground p-4">
-                  Orders and new client details captured once, typed never.
+                  Orders and job requests captured once, typed never.
                 </p>
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
@@ -188,103 +199,30 @@ export default function Business() {
                   />
                   <img
                     src="/images/app-video-mobile.png"
-                    alt="Mobile content creation"
+                    alt="Mobile app views"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
-                  Renewals and expiry dates tracked from the phone.
+                  CVRT, insurance and service dates tracked from the phone.
                 </p>
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <div className="flex items-center justify-center p-4 gap-4">
                   <img
                     src="/images/app-settings-mobile.png"
-                    alt="Mobile settings and branding"
+                    alt="Mobile settings"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
                   <img
                     src="/images/app-scanning-mobile.png"
-                    alt="Mobile document scanning"
+                    alt="Mobile docket scanning"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
-                  Dockets and paperwork photographed, filed, and followed up.
+                  Dockets photographed, filed, and followed up.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Before / After */}
-      <section className="py-20" data-testid="section-before-after">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <img
-                  src="/images/dashboard-analytics.jpg"
-                  alt="Clean dashboard with real-time visibility"
-                  className="rounded-xl shadow-lg w-full"
-                />
-              </div>
-              <div className="order-1 lg:order-2 grid sm:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <div className="inline-block px-4 py-1 bg-destructive/10 text-destructive rounded-full text-sm font-medium mb-4">
-                    Before
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                      <p className="text-muted-foreground text-sm">Evenings lost to invoicing and paperwork</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                      <p className="text-muted-foreground text-sm">Quotes sent out and never followed up</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                      <p className="text-muted-foreground text-sm">The diary lives in someone's head</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                      <p className="text-muted-foreground text-sm">Deadline scrambles for documents and certs</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-destructive mt-2 flex-shrink-0"></div>
-                      <p className="text-muted-foreground text-sm">Everything on the phone, nothing written down</p>
-                    </li>
-                  </ul>
-                </div>
-                <div className="space-y-4">
-                  <div className="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                    After
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <p className="text-foreground font-medium text-sm">Admin runs itself in the background</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <p className="text-foreground font-medium text-sm">Every quote followed up, every time</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <p className="text-foreground font-medium text-sm">Bookings and reminders happen automatically</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <p className="text-foreground font-medium text-sm">Documents collected ahead of the deadline</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                      <p className="text-foreground font-medium text-sm">You see the whole week on one screen</p>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -292,32 +230,32 @@ export default function Business() {
       </section>
 
       {/* Two Ways To Work */}
-      <section className="py-20 bg-slate-50" data-testid="section-engagement">
+      <section className="py-20" data-testid="section-engagement">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
               Two ways to work with me
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Same builder either way. The difference is how much of the business you want to put under the microscope on day one.
+              Same builder either way. The difference is how much of the operation you want to put under the microscope on day one.
             </p>
             <div className="grid lg:grid-cols-2 gap-8">
               <div className="bg-white rounded-xl border border-border p-8 flex flex-col">
                 <div className="inline-flex self-start items-center px-3 py-1 bg-slate-100 text-foreground rounded-full text-xs font-semibold uppercase tracking-wide mb-5">
                   Low risk start
                 </div>
-                <h3 className="text-2xl font-display font-bold mb-4">Fix one job first</h3>
+                <h3 className="text-2xl font-display font-bold mb-4">Start with one job</h3>
                 <p className="text-muted-foreground mb-4">
                   Pick the single job that eats the most time. I build that one thing for a price agreed before we start, and it is usually working end to end inside a week or two.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  This is what I suggest to most new clients, and it is a suggestion rather than a limit. It gets automation into the business without disrupting how your team works, and it lets you judge me on something real before you commit to anything larger.
+                  This is what I suggest to most new clients, and it is a suggestion rather than a limit. It gets automation into the business without disrupting how your crews work, and it lets you judge me on something real before you commit to anything larger.
                 </p>
                 <ul className="space-y-3 mt-auto">
                   {[
                     "One workflow, one fixed price",
                     "Working inside a week or two",
-                    "No disruption to the team",
+                    "No disruption to the crews",
                     "You expand only if it earns it",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -333,14 +271,14 @@ export default function Business() {
                 </div>
                 <h3 className="text-2xl font-display font-bold mb-4">Or take the whole operation apart</h3>
                 <p className="text-muted-foreground mb-4">
-                  A full audit of how work actually moves through your business, department by department: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.
+                  A full audit of how work actually moves through your operation, yard to site to office: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.
                 </p>
                 <p className="text-muted-foreground mb-6">
                   You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. And along the way I teach your staff to use AI themselves, so the gains keep compounding after I'm gone. This is a programme of work measured in months, not a one week fix.
                 </p>
                 <ul className="space-y-3 mt-auto">
                   {[
-                    "Full operational audit, floor to office",
+                    "Full operational audit, site to office",
                     "Prioritised plan, costed before anything is built",
                     "Custom systems across the business, not templates",
                     "Your staff taught to use AI, not left dependent on me",
@@ -357,9 +295,6 @@ export default function Business() {
             <p className="text-center text-muted-foreground mt-10 max-w-2xl mx-auto">
               Most clients start on the left and move to the right once the first build has paid for itself. You are welcome to start on either.
             </p>
-            {/* Price ladder. Pete's call 9 Aug 2026: zero pricing was stopping people making contact.
-                These are the price list, NOT delivered case studies, so the copy must never imply
-                they are past jobs. Emails still carry no price; this page is where the anchor lives. */}
             <div className="max-w-3xl mx-auto mt-14 bg-white rounded-xl border border-border p-8">
               <h3 className="text-2xl font-display font-bold mb-3 text-center">What it costs</h3>
               <p className="text-muted-foreground mb-6 text-center">
@@ -376,7 +311,7 @@ export default function Business() {
                     price: "€6,500 to €9,500",
                   },
                   {
-                    scope: "A full review of how work moves through the business, with the systems built around it",
+                    scope: "A full review of how work moves through the operation, with the systems built around it",
                     price: "priced after the review",
                   },
                 ].map((tier) => (
@@ -521,7 +456,7 @@ export default function Business() {
               </a>
             </Button>
             <p className="text-sm text-slate-300 mt-6">
-              Or email{" "}
+              Or call 085 190 5252, or email{" "}
               <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline" data-testid="link-email">
                 peter@streamlinedai.tech
               </a>
@@ -544,6 +479,7 @@ export default function Business() {
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div className="flex gap-6 text-sm">
                 <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
+                <Link href="/business" className="text-muted-foreground hover:text-foreground transition-colors">For all businesses</Link>
                 <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
                 <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</Link>
               </div>

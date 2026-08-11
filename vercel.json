@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/business", "destination": "/business.html" },
     { "source": "/galway", "destination": "/business.html" },
+    { "source": "/contractors", "destination": "/contractors.html" },
     { "source": "/australia", "destination": "/australia.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
