@@ -35,6 +35,13 @@ export const ROUTE_SEO = {
       "Practical AI adoption for Irish businesses. An audit of where your time actually goes, then automation built around how you already work.",
     canonical: "/business",
   },
+  contractors: {
+    path: "/contractors",
+    title: "Internal apps for construction and heavy industry | Streamlined Tech",
+    description:
+      "Custom AI-powered internal apps for construction and heavy industry contractors in Ireland. Every job on one screen, crews and machines scheduled, dockets and timesheets off paper. Built in Galway.",
+    canonical: "/contractors",
+  },
   australia: {
     path: "/australia",
     title: "Internal apps for Australian mining and construction | Streamlined Tech",
@@ -92,6 +99,7 @@ export const ROUTE_SEO = {
 export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.home,
   ROUTE_SEO.business,
+  ROUTE_SEO.contractors,
   ROUTE_SEO.australia,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
