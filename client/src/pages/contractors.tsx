@@ -43,7 +43,7 @@ export default function Contractors() {
               Custom internal apps for construction and heavy industry.
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground font-display font-semibold text-slate-100 mb-6">
-              Grow your business without hiring more people.
+              Grow the fleet without growing the office.
             </p>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
               I'm Pete Harris, founder of Streamlined Tech. 20+ years around mining and construction, from on the tools to training package production and now building the software. You deal with me directly.
