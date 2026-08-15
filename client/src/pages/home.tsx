@@ -57,7 +57,7 @@ export default function Home() {
               Progress tracking, defects and close-out, follow-ups that happen without anyone chasing. The ordinary systems that stop work stalling between steps, built around how your site already runs.
             </p>
             <p className="text-sm text-slate-300 mb-8">
-              20+ years around mining and construction sites, not a software house guessing at your job.
+              20+ years in heavy industries and on construction sites, not a software house guessing at your job.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -187,7 +187,7 @@ export default function Home() {
               loading="lazy"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Built by Pete Harris, 20+ years around mining and construction sites
+              Built by Pete Harris, 20+ years in heavy industries and on construction sites
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               From on the tools to training package production and now the software itself, we understand what it takes to build systems that hold up under real-world conditions.

@@ -411,7 +411,7 @@ export default function Business() {
                 I'm the founder and the builder. No account managers, no offshore team, no layers.
               </p>
               <p>
-                I've spent 20+ years around mining and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.
+                I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.
               </p>
               <p>
                 I also build and run my own software company,{" "}
