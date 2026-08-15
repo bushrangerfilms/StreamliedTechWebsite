@@ -46,7 +46,7 @@ export default function Contractors() {
               Grow the fleet without growing the office.
             </p>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              I'm Pete Harris, founder of Streamlined Tech. 20+ years around mining and construction, from on the tools to training package production and now building the software. You deal with me directly.
+              I'm Pete Harris, founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. You deal with me directly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -346,7 +346,7 @@ export default function Contractors() {
                 I'm the founder and the builder. No account managers, no offshore team, no layers.
               </p>
               <p>
-                I've spent 20+ years around mining and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.
+                I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.
               </p>
               <p>
                 I also build and run my own software company,{" "}
