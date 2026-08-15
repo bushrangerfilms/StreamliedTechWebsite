@@ -93,9 +93,9 @@ export default function Contractors() {
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Scheduling crews and machines</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">The full job pack in the crew's hand</h3>
                 <p className="text-sm text-muted-foreground">
-                  The right crew and the right machine on the right job, without the whiteboard.
+                  JHA, SOP, job description, contacts, job history and the pre-start checklist, all on the phone before they leave the yard.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
