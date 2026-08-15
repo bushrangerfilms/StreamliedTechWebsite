@@ -124,7 +124,7 @@ export default function Contractors() {
               </div>
             </div>
             <p className="text-lg text-muted-foreground mt-12 text-center max-w-3xl mx-auto">
-              Software usually fails because it asks too much of people, so we keep the screens simple for the crew on site. The real work happens in the background, where the app takes on the admin your office does by hand today.
+              We work with you to identify the best tasks to start automating with your app for the biggest return. We specialise in making complex systems simple and as automated as possible.
             </p>
           </div>
         </div>
