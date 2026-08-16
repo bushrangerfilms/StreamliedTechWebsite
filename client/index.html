@@ -52,15 +52,13 @@
       }
     </script>
 
-    <!-- Vercel Web Analytics + Speed Insights. Both are cookieless and
-         first-party (served from this domain), so they need no consent gate.
-         The catch-all SPA rewrite in vercel.json must exclude /_vercel/ or
-         these URLs would return the app shell instead of the scripts. -->
+    <!-- Vercel Speed Insights, cookieless and first-party, so no consent
+         gate. Web Analytics is injected from client/src/main.tsx because its
+         script lives at a per-project path only known at build time. The
+         catch-all SPA rewrite in vercel.json must keep excluding /_vercel/. -->
     <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
       window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
-    <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
   </head>
   <body>

@@ -6,7 +6,25 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 import { prerenderMetaPlugin } from "./vite-plugin-prerender-meta";
 
+// Vercel Web Analytics v2 serves its script and beacon from a per-project
+// unique path, handed to the build as VERCEL_OBSERVABILITY_CLIENT_CONFIG (or
+// the VITE_-prefixed copy when system env exposure is on). Baked in here so
+// client/src/main.tsx can pass it to inject(); without it the package falls
+// back to /_vercel/insights/*, which this project does not serve.
+const observabilityClientConfig =
+  process.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG ??
+  process.env.VERCEL_OBSERVABILITY_CLIENT_CONFIG ??
+  "";
+if (process.env.VERCEL && !observabilityClientConfig) {
+  console.warn("[analytics] VERCEL_OBSERVABILITY_CLIENT_CONFIG missing at build; Web Analytics will not record.");
+} else if (observabilityClientConfig) {
+  console.log("[analytics] observability client config found at build");
+}
+
 export default defineConfig({
+  define: {
+    "import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG": JSON.stringify(observabilityClientConfig),
+  },
   plugins: [
     react(),
     runtimeErrorOverlay(),
