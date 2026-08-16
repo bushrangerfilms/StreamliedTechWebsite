@@ -36,11 +36,11 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/hero-operations.webp"
-            alt="Operations professional with tablet"
-            className="w-full h-full object-cover"
-            width="1280"
-            height="771"
+            src="/images/hero-mining.webp"
+            alt="Site supervisor in hi-vis checking his phone beside a ute on an open-cut mine haul road, haul truck behind"
+            className="w-full h-full object-cover object-[68%_center] md:object-center"
+            width="1672"
+            height="941"
             fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70"></div>
