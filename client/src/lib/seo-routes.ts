@@ -9,6 +9,12 @@ export interface RouteSeo {
   canonical: string;
   /** Keep out of results. Crawling stays allowed so the tag is seen. */
   noindex?: boolean;
+  /**
+   * Path of a 1200x630 share image, when a route should not use the shell's
+   * generic card. Only the prerendered head uses it: link scrapers never run
+   * the client, so there is no runtime counterpart.
+   */
+  image?: string;
 }
 
 /**
@@ -27,6 +33,7 @@ export const ROUTE_SEO = {
     description:
       "Custom internal apps and workflow automation for mining and construction. Track progress, close out defects and automate the follow-ups, so work stops stalling between steps.",
     canonical: "/",
+    image: "/images/og-card-mining.png",
   },
   business: {
     path: "/business",
@@ -55,6 +62,7 @@ export const ROUTE_SEO = {
     description:
       "Custom internal apps and workflow automation for Australian mining and construction operations. Progress tracking, defects and close-out, follow-ups that happen without chasing.",
     canonical: "/australia",
+    image: "/images/og-card-mining.png",
   },
   privacy: {
     path: "/privacy",
@@ -74,6 +82,7 @@ export const ROUTE_SEO = {
     description: "What Streamlined Tech builds for mining and construction crews.",
     canonical: "/details",
     noindex: true,
+    image: "/images/og-card-mining.png",
   },
   detailsThanks: {
     path: "/details/thanks",

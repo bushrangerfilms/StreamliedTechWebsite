@@ -15,18 +15,18 @@ export default function Home() {
       {/* Header */}
       <header className="border-b border-border bg-white sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center">
-            <img 
-              src="/images/logo.webp" 
-              alt="Streamlined Tech - Intelligent AI Automations" 
-              className="h-[72px] w-auto"
+          <Link href="/" className="flex items-center">
+            <img
+              src="/images/logo.webp"
+              alt="Streamlined Tech - Intelligent AI Automations"
+              className="h-14 md:h-[72px] w-auto"
               width="389"
               height="144"
             />
-          </div>
-          <Button asChild size="lg" data-testid="button-cta-header">
+          </Link>
+          <Button asChild size="lg" className="min-h-11" data-testid="button-cta-header">
             <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-              Book A Free Call
+              Book a free call
             </a>
           </Button>
         </div>
@@ -45,10 +45,10 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70"></div>
         </div>
-        <div className="relative z-10 container mx-auto px-6 py-16 md:py-28">
+        <div className="relative z-10 container mx-auto px-6 py-8 md:py-28">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-wide text-amber-400 mb-4 uppercase">
-              For mining and construction
+              For Australian mining and construction
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight" data-testid="text-hero-headline">
               Custom internal apps that take the admin off your site.
@@ -56,7 +56,7 @@ export default function Home() {
             <p className="text-lg md:text-xl text-slate-200 mb-5 leading-relaxed">
               Progress tracking, defects and close-out, follow-ups that happen without anyone chasing. The ordinary systems that stop work stalling between steps, built around how your site already runs.
             </p>
-            <p className="text-sm text-slate-300 mb-8">
+            <p className="text-sm text-slate-300 mb-6 md:mb-8">
               20+ years in heavy industries and on construction sites, not a software house guessing at your job.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -71,12 +71,12 @@ export default function Home() {
               </div>
             </div>
             <p className="text-sm text-slate-400 mt-6">
-              Pilot-first. Audit-friendly. Built around how your team actually works.
+              Start with one workflow, on one site, with an audit trail from day one. Calls booked to suit Australian hours.
             </p>
             {/* Bridge for traffic arriving from the Handy video: keeps the
                 assistant honest without letting it lead the page. */}
             <p className="text-sm text-slate-400 mt-3">
-              If you got here from the Handy video, we build assistants like that too. They work best sitting on top of systems that already hold good data.
+              If you got here from the Handy video: yes, we build assistants like Handy too, ones that answer off your own run sheets and manuals. They work best on top of the kind of systems below.
             </p>
           </div>
         </div>
@@ -194,6 +194,13 @@ export default function Home() {
             </p>
             <p className="text-base text-foreground font-medium">
               If your workflows involve compliance, coordination, and constant change, we've seen it before.
+            </p>
+            <p className="text-base text-muted-foreground mt-4">
+              Pete is Australian, now based in Ireland.{" "}
+              <Link href="/australia" className="underline hover:no-underline">
+                How that works for Australian sites
+              </Link>
+              .
             </p>
           </div>
         </div>
@@ -368,7 +375,7 @@ export default function Home() {
                       2
                     </div>
                     <div>
-                      <h3 className="font-display font-semibold text-lg mb-1">Pilot (2-4 weeks)</h3>
+                      <h3 className="font-display font-semibold text-lg mb-1">Pilot</h3>
                       <p className="text-sm text-muted-foreground">
                         One workflow end-to-end, running in the real world
                       </p>
@@ -413,14 +420,13 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              From custom systems to productised automation
+              Systems that have to stay up, not demos
             </h2>
             <div className="space-y-4 text-lg">
               <p>You're not buying a slide deck. You're getting systems that run.</p>
               <p>
-                We also built and run AutoListing.io, a real estate automation platform used by agents day in, day out. Proof this isn't just prototypes.
+                We also build and run AutoListing.io, our own software product with customers, billing and uptime to keep. The systems we'd build for your site are the same kind we run for ourselves.
               </p>
-              <p>Build reliable, scalable automation, not just prototypes.</p>
             </div>
           </div>
         </div>
@@ -510,9 +516,15 @@ export default function Home() {
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
               <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book A Free Call
+                Book a free call
               </a>
             </Button>
+            <p className="text-sm text-slate-300 mt-6">
+              Or email{" "}
+              <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline" data-testid="link-email">
+                peter@streamlinedai.tech
+              </a>
+            </p>
           </div>
         </div>
       </section>
@@ -533,6 +545,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div className="flex gap-6 text-sm">
+                <Link href="/australia" className="text-muted-foreground hover:text-foreground transition-colors">Australia</Link>
                 <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
                 <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</Link>
               </div>

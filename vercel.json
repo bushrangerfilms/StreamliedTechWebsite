@@ -1,4 +1,11 @@
 {
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ],
   "rewrites": [
     { "source": "/business", "destination": "/business.html" },
     { "source": "/galway", "destination": "/business.html" },
@@ -9,6 +16,6 @@
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/details", "destination": "/details.html" },
     { "source": "/details/thanks", "destination": "/details/thanks.html" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|_vercel/).*)", "destination": "/index.html" }
   ]
 }
