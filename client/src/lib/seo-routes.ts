@@ -42,6 +42,13 @@ export const ROUTE_SEO = {
       "Custom AI-powered internal apps for construction and heavy industry contractors in Ireland. Every job on one screen, crews and machines scheduled, dockets and timesheets off paper. Built in Galway.",
     canonical: "/contractors",
   },
+  installers: {
+    path: "/installers",
+    title: "Internal apps for solar and home energy upgrade installers | Streamlined Tech",
+    description:
+      "Custom AI-powered internal apps for solar PV and home energy upgrade installers in Ireland. Grant packs that build themselves, enquiries that arrive ready to quote, NC6 and NC7 filed every install. Built in Galway.",
+    canonical: "/installers",
+  },
   australia: {
     path: "/australia",
     title: "Internal apps for Australian mining and construction | Streamlined Tech",
@@ -100,6 +107,7 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.home,
   ROUTE_SEO.business,
   ROUTE_SEO.contractors,
+  ROUTE_SEO.installers,
   ROUTE_SEO.australia,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
