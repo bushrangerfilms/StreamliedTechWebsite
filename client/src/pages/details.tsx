@@ -68,9 +68,13 @@ export default function Details() {
       if (!res.ok) {
         throw new Error("Request failed");
       }
-      navigate("/details/thanks");
+      // The API captures the lead even if the email send fails; the thanks
+      // page adjusts its promise so nobody is told a mail is coming when it
+      // is not.
+      const data = (await res.json().catch(() => ({}))) as { emailSent?: boolean };
+      navigate(data.emailSent === false ? "/details/thanks?email=pending" : "/details/thanks");
     } catch {
-      setError("Something went wrong sending that. Give it another try, or email peter@streamlinedai.tech directly.");
+      setError("Something went wrong sending that. Give it another try, or email me directly at");
       setSubmitting(false);
     }
   };
@@ -79,8 +83,8 @@ export default function Details() {
     <div className="min-h-screen bg-background">
       {/* Hero band */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div className="container mx-auto px-6 pt-8 pb-12 md:pb-16">
-          <div className="inline-block bg-white rounded-lg px-3 py-2 mb-10">
+        <div className="container mx-auto px-6 pt-6 pb-8 md:pt-8 md:pb-16">
+          <div className="inline-block bg-white rounded-lg px-3 py-2 mb-6 md:mb-10">
             <img
               src="/images/logo.webp"
               alt="Streamlined Tech"
@@ -93,11 +97,11 @@ export default function Details() {
             <div className="inline-flex items-center px-4 py-1.5 bg-white/10 text-slate-200 rounded-full text-sm font-medium mb-5" data-testid="badge-context">
               From the Handy video
             </div>
-            <h1 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 leading-tight" data-testid="text-details-headline">
+            <h1 className="text-2xl md:text-4xl font-display font-bold text-white mb-4 leading-tight" data-testid="text-details-headline">
               Here's what we actually build for mining and construction crews.
             </h1>
             <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-              Tell us your name and work email and we'll send the full rundown straight away: what we build, and how the assistant from that video works in real life.
+              Tell us your name and email and we'll send the full rundown straight away: what we build, and how the assistant from that video works in real life.
             </p>
           </div>
         </div>
@@ -123,7 +127,7 @@ export default function Details() {
                 {fieldErrors.name && <p className="text-sm text-destructive mt-1">{fieldErrors.name}</p>}
               </div>
               <div>
-                <Label htmlFor="details-email" className="mb-2 block">Work email</Label>
+                <Label htmlFor="details-email" className="mb-2 block">Email</Label>
                 <Input
                   id="details-email"
                   name="email"
@@ -163,7 +167,12 @@ export default function Details() {
                   onChange={(e) => setWebsite(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-destructive" data-testid="text-submit-error">{error}</p>}
+              {error && (
+                <p className="text-sm text-destructive" data-testid="text-submit-error">
+                  {error}{" "}
+                  <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline">peter@streamlinedai.tech</a>
+                </p>
+              )}
               <Button
                 type="submit"
                 size="lg"

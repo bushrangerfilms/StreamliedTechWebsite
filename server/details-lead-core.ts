@@ -61,7 +61,9 @@ export async function processDetailsLead(
   const [lead] = (await insertRes.json()) as Array<{ id: string }>;
 
   // Email failure never fails the request: the lead is captured either way,
-  // and email_sent=false marks rows needing a manual send.
+  // and email_sent=false marks rows needing a manual send. The flag is also
+  // returned so the thanks page can stop promising a mail that did not go.
+  let emailSent = false;
   if (resendKey) {
     try {
       const { subject, html, text } = buildDetailsEmail(name);
@@ -80,6 +82,9 @@ export async function processDetailsLead(
           text,
         }),
       });
+      if (sendRes.ok) {
+        emailSent = true;
+      }
       if (sendRes.ok && lead?.id) {
         await fetch(`${supabaseUrl}/rest/v1/website_leads?id=eq.${lead.id}`, {
           method: "PATCH",
@@ -100,5 +105,5 @@ export async function processDetailsLead(
     console.error("details-lead: RESEND_API not set, lead saved without email");
   }
 
-  return { status: 200, body: { success: true } };
+  return { status: 200, body: { success: true, emailSent } };
 }

@@ -94,7 +94,7 @@ export default function Australia() {
           </Link>
           <Button asChild size="lg" data-testid="button-cta-header">
             <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-              Book A Free Call
+              Book a free call
             </a>
           </Button>
         </div>
@@ -130,7 +130,7 @@ export default function Australia() {
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
                 <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Book A Free Call
+                  Book a free call
                 </a>
               </Button>
               <div className="text-sm text-slate-300 sm:self-center">
@@ -437,7 +437,7 @@ export default function Australia() {
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
               <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book A Free Call
+                Book a free call
               </a>
             </Button>
             <p className="text-sm text-slate-300 mt-6">

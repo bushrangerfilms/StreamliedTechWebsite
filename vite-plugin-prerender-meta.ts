@@ -85,6 +85,11 @@ function applyMeta(shell: string, route: RouteSeo): string {
   html = replaceMetaContent(html, "property", "og:url", canonicalUrl);
   html = replaceMetaContent(html, "name", "twitter:title", route.title);
   html = replaceMetaContent(html, "name", "twitter:description", route.description);
+  if (route.image) {
+    const imageUrl = `${SITE_ORIGIN}${route.image}`;
+    html = replaceMetaContent(html, "property", "og:image", imageUrl);
+    html = replaceMetaContent(html, "name", "twitter:image", imageUrl);
+  }
 
   html = html.replace(
     /<link\s+rel="canonical"\s+href="[^"]*"\s*\/>/i,

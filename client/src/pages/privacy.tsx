@@ -52,7 +52,7 @@ export default function Privacy() {
 
           <h2 className="text-xl font-display font-semibold mt-8 mb-4">Cookies</h2>
           <p>
-            We use cookies to enhance your browsing experience, help us understand site usage, and improve performance. Cookies distinguish you from other users, allowing us to tailor the website for better usability and relevance.
+            This website does not set tracking or advertising cookies. Visit counts and page performance are measured with Vercel Web Analytics and Vercel Speed Insights, which are cookieless and do not identify you as an individual. Our hosting provider may set strictly necessary cookies required to serve the site securely.
           </p>
 
           <h2 className="text-xl font-display font-semibold mt-8 mb-4">How We Use Your Data</h2>
@@ -69,8 +69,8 @@ export default function Privacy() {
             <li>Improve and optimise website performance and content delivery</li>
             <li>Ensure the website remains secure and functions correctly</li>
             <li>
-              Analyse trends and statistics using tools such as Google Analytics
-              (<a href="https://support.google.com/analytics/answer/6004245" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Learn how Google uses data</a>)
+              Analyse visit counts and page performance using Vercel Web Analytics and Speed Insights
+              (<a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">how Vercel handles this data</a>)
             </li>
           </ul>
 
@@ -78,11 +78,15 @@ export default function Privacy() {
           <p>Your personal information may be:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Sent to us directly via email</li>
-            <li>Stored securely on servers provided by our trusted third-party web host and CRM provider, HighLevel, LLC.</li>
+            <li>Hosted and served by Vercel, Inc., our website hosting provider, which processes standard server logs to deliver and secure the site.</li>
             <li>Stored securely with Supabase (database hosting) and processed by Resend (email delivery) when you submit a form on our website requesting information from us.</li>
+            <li>Processed by Calendly if you choose to book a call through the booking links on this site. Calendly's own privacy policy also applies to that booking.</li>
           </ul>
           <p>
-            HighLevel acts on our instructions and meets high standards for data protection and security. They do not access, modify, or delete any data unless we explicitly authorise it. Your data is never sold, rented, or shared with third parties for commercial purposes.
+            These providers act on our instructions and meet high standards for data protection and security. They do not access, modify, or delete any data unless we explicitly authorise it. Your data is never sold, rented, or shared with third parties for commercial purposes.
+          </p>
+          <p>
+            Details you send us through a form or by email are kept for as long as we are in contact with you about your enquiry, and deleted when you ask us to.
           </p>
           <p>
             We take every reasonable step to protect your data, but transmission over the internet can never be completely secure. Any information you send is at your own risk. Once received, we apply strict controls to prevent unauthorised access.
