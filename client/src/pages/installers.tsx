@@ -111,9 +111,9 @@ export default function Installers() {
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Site surveys and commissioning off paper</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">The job pack in the crew's hand</h3>
                 <p className="text-sm text-muted-foreground">
-                  Survey sheets, commissioning records and customer sign-offs done on the phone and filed where the office can find them.
+                  Survey, roof plan, MPRN, grant offer, customer contact and the commissioning checklist on the phone before the van leaves the yard, with sign-offs done on site and filed.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
