@@ -43,7 +43,7 @@ export default function Installers() {
               Custom internal apps for solar and home energy upgrade installers.
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground font-display font-semibold text-slate-100 mb-6">
-              Grow the order book without growing the office.
+              More jobs on the books without more hours in the office.
             </p>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
               I'm Pete Harris, founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. You deal with me directly.
@@ -87,9 +87,9 @@ export default function Installers() {
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border border-border">
-                <h3 className="font-display font-semibold text-lg mb-3">Every job on one screen</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Every enquiry, quote and job on one screen</h3>
                 <p className="text-sm text-muted-foreground">
-                  From enquiry to grant paid, visibly moving or visibly stuck, across every crew.
+                  From first contact to grant paid, visibly moving or visibly stuck, with any quote that has gone quiet flagged before it is lost.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg border border-border">
@@ -187,7 +187,7 @@ export default function Installers() {
                   className="w-full h-auto"
                 />
                 <p className="text-sm text-muted-foreground p-4">
-                  Enquiries captured once, typed never.
+                  Enquiries captured once, quote sent, never retyped.
                 </p>
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
@@ -221,7 +221,7 @@ export default function Installers() {
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
-                  Install photos captured, filed, and followed up.
+                  Install photos captured, NC6 filed, BER received, pack ready.
                 </p>
               </div>
             </div>
