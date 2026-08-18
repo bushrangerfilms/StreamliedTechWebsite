@@ -105,5 +105,43 @@ export async function processDetailsLead(
     console.error("details-lead: RESEND_API not set, lead saved without email");
   }
 
+  // Alert Pete on every real submission. Independent of the lead's email so
+  // neither send can block the other; failure is logged, never fatal.
+  if (resendKey) {
+    try {
+      const esc = (v: string | null | undefined) =>
+        String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const notifyRes = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${resendKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "Streamlined Tech site <pete@updates.streamlinedai.tech>",
+          reply_to: email,
+          to: ["streamlinedtechai@gmail.com"],
+          subject: `New rundown request: ${name}${company ? ` (${company})` : ""}`,
+          html: `<div style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.6; color: #1a1a1a;">
+<p><strong>${esc(name)}</strong> asked for the rundown on streamlinedai.tech/details.</p>
+<table cellpadding="4" style="border-collapse: collapse;">
+<tr><td style="color:#666;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
+<tr><td style="color:#666;">Company</td><td>${esc(company) || "not given"}</td></tr>
+<tr><td style="color:#666;">Source</td><td>${esc(source) || "direct"}</td></tr>
+<tr><td style="color:#666;">Confirmation email</td><td>${emailSent ? "sent" : "NOT sent, send manually"}</td></tr>
+</table>
+<p>Reply to this email to reply to them directly.</p>
+</div>`,
+          text: `${name} asked for the rundown.\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nConfirmation email: ${emailSent ? "sent" : "NOT sent, send manually"}`,
+        }),
+      });
+      if (!notifyRes.ok) {
+        console.error("details-lead: notify send failed", notifyRes.status, await notifyRes.text());
+      }
+    } catch (notifyError) {
+      console.error("details-lead: notify error", notifyError);
+    }
+  }
+
   return { status: 200, body: { success: true, emailSent } };
 }
