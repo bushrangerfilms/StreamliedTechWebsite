@@ -33,11 +33,12 @@ export default function DetailsThanks() {
             </h1>
             <p className="text-base md:text-lg text-slate-200 leading-relaxed mb-4">
               {emailPending
-                ? "Thanks. I'll be in touch myself with a rundown put together for your operation."
-                : "A quick confirmation is on its way to your inbox. The proper rundown comes from me personally, put together for your operation rather than a generic pack, so give it a day or two."}
+                ? "Thanks. We'll be in touch soon with a rundown put together for your operation."
+                : "A quick confirmation is on its way to your inbox, and we'll be in touch soon with a rundown put together for your operation."}
             </p>
             <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-              I'm in Ireland, so if you're writing from Australia I'm likely asleep while you read this and you'll hear back in your next working day. If you have a question in the meantime, email{" "}
+              There's more on the site if you want a look in the meantime:{" "}
+              <a href="https://streamlinedai.tech?src=details-thanks" className="underline hover:no-underline">streamlinedai.tech</a>. Questions? Email{" "}
               <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline">peter@streamlinedai.tech</a>.
             </p>
           </div>
