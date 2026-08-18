@@ -101,7 +101,7 @@ export default function Details() {
               Here's what we actually build for mining and construction crews.
             </h1>
             <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-              Tell us your name and email and we'll send the full rundown straight away: what we build, and how the assistant from that video works in real life.
+              Internal apps, automated workflows and AI where it earns its place. Leave your name and email and we'll put together a rundown of what that could look like for an operation like yours.
             </p>
           </div>
         </div>
@@ -187,7 +187,7 @@ export default function Details() {
                 )}
               </Button>
               <p className="text-xs text-muted-foreground text-center">
-                One email, no spam.{" "}
+                No spam, and no automated blast. Pete puts the rundown together himself, so give it a day or two.{" "}
                 <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
                   Privacy Policy
                 </a>
@@ -218,7 +218,7 @@ export default function Details() {
       <section className="container mx-auto px-6 pb-12">
         <div className="max-w-2xl mx-auto bg-slate-50 rounded-xl p-6">
           <p className="text-muted-foreground leading-relaxed">
-            Handy's a bit of fun, but the idea behind it is real. It's the same kind of thing we build for crews: an assistant trained on your gear, your procedures and your history, so people can ask it a question on site and get a straight answer back instead of digging through manuals or waiting on a call.
+            Handy's a bit of fun, and an assistant like that is one thing we can build. It's a small part of the picture though. Most of the value is in the systems underneath: internal apps built around how your site actually runs, workflows that move themselves along without someone chasing, and AI put to work wherever it genuinely helps. Every part of an operation has admin that can be streamlined, big outfit or small.
           </p>
         </div>
       </section>

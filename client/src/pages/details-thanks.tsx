@@ -29,25 +29,17 @@ export default function DetailsThanks() {
           </div>
           <div className="max-w-2xl">
             <h1 className="text-3xl md:text-4xl font-display font-bold text-white mb-5" data-testid="text-thanks-headline">
-              {emailPending ? "Got your details." : "On its way."}
+              Got your details.
             </h1>
-            {emailPending ? (
-              <p className="text-base md:text-lg text-slate-200 leading-relaxed mb-4">
-                Thanks. The rundown didn't go out automatically just now, so I'll send it across myself. If nothing lands within the hour, email me at{" "}
-                <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline">peter@streamlinedai.tech</a>.
-              </p>
-            ) : (
-              <>
-                <p className="text-base md:text-lg text-slate-200 leading-relaxed mb-4">
-                  The rundown is on its way to your inbox. Can't find it? Check spam once, then drag it into your main inbox so the next one doesn't get lost.
-                </p>
-                <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-                  Replies come straight to me, so if you've got a question just hit reply. If it hasn't turned up at all, email{" "}
-                  <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline">peter@streamlinedai.tech</a>{" "}
-                  and I'll send it across.
-                </p>
-              </>
-            )}
+            <p className="text-base md:text-lg text-slate-200 leading-relaxed mb-4">
+              {emailPending
+                ? "Thanks. I'll be in touch myself with a rundown put together for your operation."
+                : "A quick confirmation is on its way to your inbox. The proper rundown comes from me personally, put together for your operation rather than a generic pack, so give it a day or two."}
+            </p>
+            <p className="text-base md:text-lg text-slate-200 leading-relaxed">
+              I'm in Ireland, so if you're writing from Australia I'm likely asleep while you read this and you'll hear back in your next working day. If you have a question in the meantime, email{" "}
+              <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline">peter@streamlinedai.tech</a>.
+            </p>
           </div>
         </div>
       </section>
