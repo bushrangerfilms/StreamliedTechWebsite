@@ -187,7 +187,7 @@ export default function Details() {
                 )}
               </Button>
               <p className="text-xs text-muted-foreground text-center">
-                No spam, and no automated blast. Pete puts the rundown together himself, so give it a day or two.{" "}
+                No spam. Pete puts the rundown together himself.{" "}
                 <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
                   Privacy Policy
                 </a>
