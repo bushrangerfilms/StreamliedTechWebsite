@@ -123,8 +123,9 @@ export async function processDetailsLead(
           to: ["streamlinedtechai@gmail.com"],
           subject: `New rundown request: ${name}${company ? ` (${company})` : ""}`,
           html: `<div style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.6; color: #1a1a1a;">
-<p><strong>${esc(name)}</strong> asked for the rundown on streamlinedai.tech/details.</p>
+<p>New rundown request from streamlinedai.tech/details.</p>
 <table cellpadding="4" style="border-collapse: collapse;">
+<tr><td style="color:#666;">Name</td><td><strong>${esc(name)}</strong></td></tr>
 <tr><td style="color:#666;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
 <tr><td style="color:#666;">Company</td><td>${esc(company) || "not given"}</td></tr>
 <tr><td style="color:#666;">Source</td><td>${esc(source) || "direct"}</td></tr>
@@ -132,7 +133,7 @@ export async function processDetailsLead(
 </table>
 <p>Reply to this email to reply to them directly.</p>
 </div>`,
-          text: `${name} asked for the rundown.\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nConfirmation email: ${emailSent ? "sent" : "NOT sent, send manually"}`,
+          text: `New rundown request.\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nConfirmation email: ${emailSent ? "sent" : "NOT sent, send manually"}`,
         }),
       });
       if (!notifyRes.ok) {
