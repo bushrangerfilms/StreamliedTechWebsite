@@ -19,6 +19,8 @@ export default function DetailsThanks() {
 
   const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
   const leadId = typeof window !== "undefined" ? sessionStorage.getItem("details-lead-id") : null;
+  const aboutAlreadyGiven =
+    typeof window !== "undefined" && sessionStorage.getItem("details-about-done") === "1";
   const [about, setAbout] = useState("");
   const [aboutState, setAboutState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -67,7 +69,7 @@ export default function DetailsThanks() {
             </p>
           </div>
 
-          {leadId && (
+          {leadId && !aboutAlreadyGiven && (
             <div className="max-w-2xl mt-10 bg-white/10 rounded-xl p-5" data-testid="card-business-about">
               <h2 className="text-lg font-display font-semibold text-white mb-2">
                 Make the rundown sharper
