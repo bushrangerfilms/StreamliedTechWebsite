@@ -28,6 +28,7 @@ export function buildDetailsEmail(name: string): { subject: string; html: string
     "None of it is off the shelf. It is built around how your business already runs, then developed further as the work changes. Usually the best way in is one workflow that is causing friction, get that running, then widen it once it is earning its keep.",
     "I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software, so I know what it looks like when admin gets in the way of the actual work.",
     "If you want to get ahead of it, hit reply and tell me a bit about your operation and what's causing the friction. It makes the rundown a lot more useful. Replies come straight to me and I answer everything myself.",
+    "Or if you'd rather talk it through, book a discovery call and we'll look at your operation together: <a href='https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows'>book a time here</a>.",
     "Pete",
     "Peter Harris<br>Streamlined Tech<br>peter@streamlinedai.tech",
   ];

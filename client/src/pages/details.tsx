@@ -71,7 +71,8 @@ export default function Details() {
       // The API captures the lead even if the email send fails; the thanks
       // page adjusts its promise so nobody is told a mail is coming when it
       // is not.
-      const data = (await res.json().catch(() => ({}))) as { emailSent?: boolean };
+      const data = (await res.json().catch(() => ({}))) as { emailSent?: boolean; leadId?: string | null };
+      if (data.leadId) sessionStorage.setItem("details-lead-id", data.leadId);
       navigate(data.emailSent === false ? "/details/thanks?email=pending" : "/details/thanks");
     } catch {
       setError("Something went wrong sending that. Give it another try, or email me directly at");
