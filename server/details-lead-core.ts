@@ -10,6 +10,7 @@ export const detailsLeadSchema = z.object({
   email: z.string().trim().email().max(320),
   company: z.string().trim().max(200).nullish(),
   source: z.string().trim().max(60).nullish(),
+  about: z.string().trim().max(2000).nullish(),
   // Honeypot field: real visitors submit it empty.
   website: z.string().max(200).optional().default(""),
 });
@@ -22,7 +23,7 @@ export async function processDetailsLead(
   if (!parsed.success) {
     return { status: 400, body: { error: "Invalid submission" } };
   }
-  const { name, email, company, source, website } = parsed.data;
+  const { name, email, company, source, about, website } = parsed.data;
 
   // Honeypot filled means a bot: pretend success, store nothing.
   if (website) {
@@ -51,6 +52,7 @@ export async function processDetailsLead(
       email,
       company: company || null,
       source: source || null,
+      business_about: about || null,
       user_agent: userAgent,
     }),
   });
@@ -129,11 +131,12 @@ export async function processDetailsLead(
 <tr><td style="color:#666;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
 <tr><td style="color:#666;">Company</td><td>${esc(company) || "not given"}</td></tr>
 <tr><td style="color:#666;">Source</td><td>${esc(source) || "direct"}</td></tr>
+<tr><td style="color:#666;">Business</td><td>${esc(about) || "not given"}</td></tr>
 <tr><td style="color:#666;">Confirmation email</td><td>${emailSent ? "sent" : "NOT sent, send manually"}</td></tr>
 </table>
 <p>Reply to this email to reply to them directly.</p>
 </div>`,
-          text: `New rundown request.\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nConfirmation email: ${emailSent ? "sent" : "NOT sent, send manually"}`,
+          text: `New rundown request.\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nBusiness: ${about || "not given"}\nConfirmation email: ${emailSent ? "sent" : "NOT sent, send manually"}`,
         }),
       });
       if (!notifyRes.ok) {

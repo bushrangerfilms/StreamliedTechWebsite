@@ -17,6 +17,7 @@ export default function Details() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
+  const [about, setAbout] = useState("");
   // Honeypot: real visitors never see or fill this field.
   const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -61,6 +62,7 @@ export default function Details() {
           name: name.trim(),
           email: email.trim(),
           company: company.trim() || null,
+          about: about.trim() || null,
           source: sessionStorage.getItem("details-src") || null,
           website,
         }),
@@ -73,6 +75,7 @@ export default function Details() {
       // is not.
       const data = (await res.json().catch(() => ({}))) as { emailSent?: boolean; leadId?: string | null };
       if (data.leadId) sessionStorage.setItem("details-lead-id", data.leadId);
+      if (about.trim()) sessionStorage.setItem("details-about-done", "1");
       navigate(data.emailSent === false ? "/details/thanks?email=pending" : "/details/thanks");
     } catch {
       setError("Something went wrong sending that. Give it another try, or email me directly at");
@@ -153,6 +156,19 @@ export default function Details() {
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   data-testid="input-company"
+                />
+              </div>
+              <div>
+                <Label htmlFor="details-about" className="mb-2 block">What does your business do? (optional)</Label>
+                <textarea
+                  id="details-about"
+                  name="about"
+                  rows={2}
+                  className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  placeholder="A line or two, plus what's eating the most time. It makes the rundown a lot more useful."
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
+                  data-testid="input-about"
                 />
               </div>
               {/* Honeypot, hidden from real visitors */}
