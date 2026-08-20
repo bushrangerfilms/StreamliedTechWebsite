@@ -144,5 +144,5 @@ export async function processDetailsLead(
     }
   }
 
-  return { status: 200, body: { success: true, emailSent } };
+  return { status: 200, body: { success: true, emailSent, leadId: lead?.id || null } };
 }
