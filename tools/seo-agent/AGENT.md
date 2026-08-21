@@ -37,8 +37,9 @@ journey from the most common entry points". So this agent reports by **buyer jou
 consideration, conversion queries per persona) as well as by keyword, and its content suggestions
 name the page that should catch the searcher at each stage. The journeys, intent traps and proposed
 pages are in `config/keywords.json` under `_journeys`, `_intent_traps`, `_page_map` and
-`_proposed_pages`; the research behind them is in `research/JOURNEY-MAP.md` and
-`research/CONTENT-GAPS.md` (Aug 2026 SERP captures, Irish and Australian Google).
+`_proposed_pages`. The full research behind them (journey map, content gaps with H2 outlines, the 33 SERP
+captures) is deliberately kept outside this public repo, in Pete's `Documents/Claude/streamlined-local/seo/`;
+the runtime summary in keywords.json is what you work from.
 
 ## Environment
 
@@ -184,7 +185,7 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   stops Google reading the tag, and `/details` is linked publicly from campaign comments.
 - **Never remove the `google-site-verification` meta tag** from `client/index.html`.
 - **Never write an em dash or en dash** in a PR, issue, commit or title. Never "10x", never a rank
-  claim, never a promise figure. Use the wording in `copy_rules` and `research/CONTENT-GAPS.md`.
+  claim, never a promise figure. Use the wording in `copy_rules` and the `_proposed_pages` titles.
 - **Never propose chatbots, customer self-booking or customer portals** for contractors or installers;
   the offer is custom internal apps and the unglamorous work (every job on one screen, job packs,
   dockets and timesheets off paper, follow-ups that send themselves).
@@ -203,7 +204,7 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   indexing is a Search Console UI action Pete must do; keep flagging it until the verdict changes.
 - Titles over 65 chars on `/` (67), `/contractors` (68), `/installers` (77), `/australia` (71);
   descriptions over 165 on the same four (174 to 214). The homepage title has an en dash. The
-  research in `research/CONTENT-GAPS.md` proposes replacements; Pete decides.
+  research (held by Pete, summarised in `_proposed_pages`) proposes replacements; Pete decides.
 - Mobile LCP about 3.5 s on every core route (desktop perf 99). PageSpeed sometimes returns 400 for a
   strategy; report it as "could not measure", do not retry in a loop.
 - 16 images over 100 KB under `client/public/images`; several PNGs are unreferenced leftovers beside
@@ -218,5 +219,4 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
 - Link files as `path/to/file.ts#L12`.
 - For every content gap, give the route and a concrete title and description that already pass the
   copy rules, not generic advice.
-- The taglines in `CONTEXT` (`research/JOURNEY-MAP.md` carries them) may be used on pages; never in
-  anything that reads as an email.
+- The tagline bank may be used on pages; never in anything that reads as an email.

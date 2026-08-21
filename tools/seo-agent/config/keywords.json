@@ -1,9 +1,816 @@
 {
-  "_comment": "PROVISIONAL seed list written 2026-08-21 so the toolkit can be dry-run; replaced by the journey research output the same day. Top-level keys that do not start with _ are clusters of lowercase phrases matched exactly against GSC queries.",
-  "identity_set_up_ai": ["set up ai", "set up ai for my business", "set up ai systems", "set-up ai", "ai setup for business", "how to set up ai for my business", "how do i add ai to my business"],
-  "ai_for_business_ie": ["ai for business", "ai for small business ireland", "ai automation agency ireland", "ai consultant galway", "automate my business with ai", "ai adoption ireland"],
-  "contractors_heavy_industry_ie": ["ai apps for contractors", "apps for contractors", "job management software for contractors ireland", "construction app ireland", "ai for construction companies", "custom internal apps for construction", "plant hire software ireland", "quarry management software", "civil engineering contractor software ireland"],
-  "installers_ie": ["solar installer software ireland", "heat pump installer software ireland", "seai grant paperwork software", "solar project management software"],
-  "australia_mining_construction": ["mining contractor software australia", "prestart checklist app", "mine site paperwork app", "job management software for mining contractors", "construction timesheet app australia"],
-  "custom_app_buyer_ie": ["custom software development ireland", "app developers galway", "custom internal apps", "how can i get a custom app made for my business", "software company galway"]
+  "_comment": "Target keywords for streamlinedai.tech, built 21 Aug 2026 from 33 real Google SERP captures (Irish and Australian) and autocomplete, traced as five buyer journeys and checked by three blind refuters. Top-level keys that do not start with _ are clusters of lowercase phrases matched exactly against GSC query strings by checks/gsc-snapshot.mjs. _journeys, _intent_traps, _page_map and _proposed_pages are the runtime summary the agent reports against; the full research (journey map, content gaps, SERP captures) is kept outside this public repo. Edit freely; the agent reads this file every run.",
+  "identity_set_up_ai": [
+    "set up ai for business in ireland",
+    "set-up ai for business in ireland",
+    "set up ai for business",
+    "set-up ai for business",
+    "setup ai for business",
+    "ai setup for business",
+    "how to set up ai for my business",
+    "set up ai systems",
+    "set up ai",
+    "ai for heavy industry"
+  ],
+  "ai_for_business_ie": [
+    "ai for small business ireland",
+    "ai for business ireland",
+    "ai for business",
+    "how do i add ai to my business",
+    "how much does ai cost for a small business",
+    "how do i incorporate ai in my business",
+    "how can i use ai in my small business",
+    "best ai for small business ireland",
+    "automate my business with ai",
+    "automate my business"
+  ],
+  "ai_automation_agency_ie": [
+    "ai automation ireland",
+    "ai automation agency ireland",
+    "ai automation agencies ireland",
+    "ai automation agency ireland near me",
+    "ai automation agencies",
+    "ai automation agencies near me",
+    "ai consultancy ireland",
+    "how much do ai automation agencies charge"
+  ],
+  "galway_local": [
+    "ai consultant galway",
+    "ai consultant galway cost",
+    "best ai consultant galway",
+    "how much does an ai consultant charge",
+    "what does an ai consultant actually do",
+    "app developers galway",
+    "best app developers galway",
+    "software company galway"
+  ],
+  "custom_app_buyer_ie": [
+    "custom software development ireland",
+    "custom software development ireland cost",
+    "how much does custom software development cost",
+    "how can i get a custom app made for my business",
+    "how much does it cost to get a custom app made",
+    "how do i get an app made for my business",
+    "how much does it cost to develop an app in ireland",
+    "custom internal apps for business",
+    "custom app development for small business",
+    "bespoke ai development ireland"
+  ],
+  "contractors_heavy_industry_ie": [
+    "ai apps for contractors",
+    "ai apps for contractors ireland",
+    "ai apps for construction management",
+    "is there an ai app for contractors",
+    "ai for construction companies",
+    "ai for construction companies near galway",
+    "ai for construction companies near ireland",
+    "job management software for contractors ireland",
+    "job management software for contractors",
+    "job tracking app for contractors"
+  ],
+  "sector_long_tail_ie": [
+    "quarry management software",
+    "plant hire software ireland",
+    "small plant hire software ireland",
+    "haulage software ireland",
+    "digital dockets construction ireland",
+    "timesheet app construction ireland",
+    "pre start checklist app ireland",
+    "walkaround check app ireland",
+    "civil engineering contractor software ireland",
+    "civil engineering contractor software galway",
+    "groundworks contractor software ireland"
+  ],
+  "installers_ie": [
+    "solar installer software ireland",
+    "heat pump installer software ireland",
+    "heat pump installer software",
+    "solar installer crm",
+    "solar project management software",
+    "solar installation management software",
+    "residential heat pump installer software ireland",
+    "solar installer job management software",
+    "solar installer job management software ireland",
+    "heat pump installer software cost"
+  ],
+  "australia_mining_construction": [
+    "mine site paperwork app",
+    "prestart checklist app",
+    "pre start checklist for machinery",
+    "job management software for mining contractors",
+    "mining contractor software",
+    "mining contractor software perth",
+    "custom software for mining companies",
+    "civil contractor timesheet app",
+    "construction timesheet app australia",
+    "mining software australia"
+  ],
+  "_journeys": [
+    {
+      "id": "smb_set_up_ai_ie",
+      "persona": "Owner or manager of an Irish SMB (5 to 60 staff) who wants AI set up in the business and does not yet know what that means in practice",
+      "market": "IE",
+      "entry_queries": [
+        "set up ai for business in ireland",
+        "how do i add ai to my business",
+        "ai for small business ireland"
+      ],
+      "consideration_queries": [
+        "automate my business with ai",
+        "ai automation ireland",
+        "how much does ai cost for a small business",
+        "how much do ai automation agencies charge"
+      ],
+      "conversion_queries": [
+        "ai automation agency ireland",
+        "ai consultant galway",
+        "ai automation agencies ireland",
+        "ai automation agency ireland near me",
+        "ai consultancy ireland"
+      ],
+      "target_page": "/business",
+      "proposed_page": "/guide/set-up-ai-for-business-ireland",
+      "competitors": [
+        "digitalbridge.ie",
+        "bowsy.ie",
+        "enterprise.gov.ie",
+        "aisolutionsireland.ie",
+        "brandstart.ie",
+        "radium.ie",
+        "aiautomationagency.ie",
+        "strydasolutions.com"
+      ],
+      "notes": "Entry SERPs are guides, state initiatives and AI Overviews; the AI Overview on files 01 and 06 independently tells the searcher to pick one repetitive task first, which matches the fix-one-job offer. Conversion SERPs are fully vendor-occupied with local packs that streamlinedai.tech is absent from. Bare 'how do i add ai to my business' and 'automate my business with ai' are polluted (start-an-AI-business videos, DIY tools) and are used as FAQ answers, never as a title or H1."
+    },
+    {
+      "id": "contractors_heavy_industry_ie",
+      "persona": "Owner-run construction and heavy industry contractor in Ireland (civils, groundworks, plant hire, quarry, readymix, precast, haulage, tippers, road surfacing, drain cleaning, demolition, council fleets) with an office of one to five people",
+      "market": "IE",
+      "entry_queries": [
+        "ai apps for contractors",
+        "ai for construction companies",
+        "job management software for contractors ireland"
+      ],
+      "consideration_queries": [
+        "quarry management software",
+        "plant hire software ireland",
+        "small plant hire software ireland",
+        "haulage software ireland",
+        "timesheet app construction ireland",
+        "pre start checklist app ireland",
+        "digital dockets construction ireland"
+      ],
+      "conversion_queries": [
+        "ai for construction companies near galway",
+        "ai for construction companies near ireland",
+        "civil engineering contractor software galway",
+        "small plant hire software ireland"
+      ],
+      "target_page": "/contractors",
+      "proposed_page": "/contractors/quarry, /contractors/haulage, /contractors/civils",
+      "competitors": [
+        "jobflow.ie",
+        "tradifyhq.com",
+        "archdesk.com",
+        "herbstsoftware.com",
+        "eaglesoft.ie",
+        "quarrysoftware.ie",
+        "jpoint.ie",
+        "eureka.ie",
+        "stratum.ie",
+        "check-it.ie",
+        "thisiswdi.com"
+      ],
+      "notes": "Generic entry terms return US/UK SaaS ads and AI-tool listicles with zero Irish or bespoke results. Sector terms are held by Irish ERP and SaaS incumbents at the full-subscription end. Every sector capture NOTE names the same gap, dockets, weighbridge tickets, walkaround checks and job packs off paper for the small owner-run operator who does not want an ERP. File 13 shows Google itself suggesting 'near galway' and 'near ireland'."
+    },
+    {
+      "id": "installers_ie",
+      "persona": "Irish solar PV, heat pump, insulation or retrofit One Stop Shop installer (3 to 30 staff) carrying SEAI grant paperwork, quotes and job scheduling on spreadsheets",
+      "market": "IE",
+      "entry_queries": [
+        "solar installer software ireland",
+        "heat pump installer software ireland"
+      ],
+      "consideration_queries": [
+        "solar installer crm",
+        "solar project management software",
+        "heat pump installer software",
+        "residential heat pump installer software ireland",
+        "solar installation management software"
+      ],
+      "conversion_queries": [
+        "solar installer job management software",
+        "solar installer job management software ireland",
+        "heat pump installer software cost"
+      ],
+      "target_page": "/installers",
+      "proposed_page": "/installers/seai-grant-paperwork",
+      "competitors": [
+        "easy-pv.ie",
+        "heavengreenenergy.com",
+        "caolu.ie",
+        "voltflo.com",
+        "jobflow.ie",
+        "heatpunk.ie",
+        "spruce.eco"
+      ],
+      "notes": "Both captured SERPs are led by design software, manufacturer tools and sales CRMs; jobflow.ie holds the only job-management slot on each at EUR59 a month. Position 6 on the solar query is a local pack of actual installer businesses, so part of that SERP is homeowner hire intent. No ranking result leads with grant pack, NC6 or NC7 paperwork. The 'seai grant software' autocomplete seed returned nothing, a coverage gap, so the grant page is fed from /installers rather than chased as a head term."
+    },
+    {
+      "id": "custom_app_buyer_galway_ie",
+      "persona": "Irish business owner who has decided to get a custom app or system built rather than buy a SaaS subscription, asking about cost, time and who to trust, plus the Galway searcher looking for an app developer or AI consultant nearby",
+      "market": "IE",
+      "entry_queries": [
+        "custom software development ireland",
+        "app developers galway",
+        "ai consultant galway",
+        "custom internal apps for business"
+      ],
+      "consideration_queries": [
+        "how can i get a custom app made for my business",
+        "how much does it cost to get a custom app made",
+        "how much does custom software development cost",
+        "how do i get an app made for my business"
+      ],
+      "conversion_queries": [
+        "custom software development ireland cost",
+        "app developers galway",
+        "ai consultant galway",
+        "software company galway",
+        "best app developers galway",
+        "best ai consultant galway"
+      ],
+      "target_page": "/business",
+      "proposed_page": "/how-it-works",
+      "competitors": [
+        "hst.ie",
+        "squareroot.ie",
+        "gbasolutions.ie",
+        "appdesign.ie",
+        "tadco.ie",
+        "armour.ie",
+        "strydasolutions.com",
+        "launchbox.tech"
+      ],
+      "notes": "Cost is the PAA theme on three of the five SERPs. File 14's price anchor is hst.ie at EUR5,000 to 6,000 per month per engineer, which makes the public from EUR3,900 figure a differentiator. Galway queries fire two local packs (six firms) and a three-slot pack; streamlinedai.tech is in neither and has no Google Business Profile. 'app developers galway' partly expects customer-facing mobile apps, so the landing page must say 'custom internal apps' in the first line."
+    },
+    {
+      "id": "australia_mining_construction",
+      "persona": "Australian mining and construction contractor (earthworks, civil, maintenance, haulage crews on mine sites, WA and Perth heavy, FIFO crews), a supervisor or owner wanting prestarts, paperwork and job records off paper",
+      "market": "AU",
+      "entry_queries": [
+        "prestart checklist app",
+        "construction timesheet app australia",
+        "mining software australia"
+      ],
+      "consideration_queries": [
+        "civil contractor timesheet app",
+        "pre start checklist for machinery",
+        "custom software for mining companies",
+        "mining contractor software"
+      ],
+      "conversion_queries": [
+        "mine site paperwork app",
+        "job management software for mining contractors",
+        "mining contractor software perth"
+      ],
+      "target_page": "/australia",
+      "proposed_page": "/australia/mine-site-paperwork",
+      "competitors": [
+        "prestartr.com",
+        "kynection.com.au",
+        "civdocs.com.au",
+        "basecode.com.au",
+        "assessor.com.au",
+        "pronto.net",
+        "appinventiv.com"
+      ],
+      "notes": "Generic head terms return ERP vendors, offshore dev shops and 691 LinkedIn job postings. The buyer-correct shape appears only when the paperwork noun meets the sector noun (file 03 civdocs, file 07 prestartr and kynection). AU spells it 'prestart', one word. 'ai for mining companies australia' is removed from the entry list per the intent refuter and kept only as a trap. AU autocomplete lists are identical to IE for 53 of 55 seeds, so AU autocomplete evidence is treated as unconfirmed."
+    }
+  ],
+  "_intent_traps": [
+    {
+      "query": "ai for business",
+      "trap": "Autocomplete (autocomplete.json 'ai for business|ie') is university courses: ucd, tu dublin, nci, springboard, masters. Named by Pete, so tracked, but never a title or H1.",
+      "use_instead": "ai for small business ireland"
+    },
+    {
+      "query": "ai for business ireland",
+      "trap": "Autocomplete mixes msc, masters and course completions with 'ai companies ireland' and 'ai jobs in ireland'. Downgraded to low per the intent refuter.",
+      "use_instead": "ai for small business ireland"
+    },
+    {
+      "query": "set up ai",
+      "trap": "Autocomplete is AIB bank account set-up, Airtag and Airbnb; Google reads 'ai' as AIB or a typo. Tracked only as the root of qualified variants.",
+      "use_instead": "set up ai for business in ireland"
+    },
+    {
+      "query": "set up ai systems",
+      "trap": "Autocomplete seed returned zero suggestions in both markets. Coverage gap, not proof of zero demand. Pete's term, tracked at low priority.",
+      "use_instead": "set up ai for business"
+    },
+    {
+      "query": "ai setup service",
+      "trap": "Autocomplete is ServiceNow branded set-up tasks plus chatbot set-up. Not tracked.",
+      "use_instead": "set up ai for business in ireland"
+    },
+    {
+      "query": "how do i add ai to my business",
+      "trap": "serps/google-ie/02: top videos are about starting an AI-services business, Irish vendors appear only as ads. Answer it as an FAQ on the guide page; do not title a page on it. The refuter rejected 'set up ai for my business ireland' as a substitute because that seed has zero autocomplete.",
+      "use_instead": "how do i add ai to my business ireland"
+    },
+    {
+      "query": "automate my business with ai",
+      "trap": "serps/google-ie/06: DIY tools (Zapier, Make, n8n) and start-an-AI-agency creator videos. The AI Overview framing matches the offer, so mirror it in an FAQ, but the head term is the agency query.",
+      "use_instead": "ai automation ireland"
+    },
+    {
+      "query": "automate admin",
+      "trap": "Autocomplete is almost entirely Microsoft PowerShell certification content (AZ-040). Not tracked.",
+      "use_instead": "how much does ai cost for a small business"
+    },
+    {
+      "query": "ai workflow automation",
+      "trap": "Autocomplete is tool platforms (n8n twice), courses and jobs. Not tracked.",
+      "use_instead": "ai automation ireland"
+    },
+    {
+      "query": "ai adoption ireland",
+      "trap": "Autocomplete pairs it with 'is adoption legal in ireland' and definitional queries. Dropped entirely per the intent refuter.",
+      "use_instead": "ai for small business ireland"
+    },
+    {
+      "query": "ai consultancy ireland",
+      "trap": "Exact phrase reads as buyer intent but four of six autocomplete neighbours are salary and job queries. Track the exact phrase only.",
+      "use_instead": "ai consultancy ireland (exact), ai consultant galway"
+    },
+    {
+      "query": "ai for heavy industry",
+      "trap": "serps/google-ie/19: Siemens, McKinsey, IBM, MIT, zero SMB intent. 'Heavy industry' is Pete's identity phrase on-page (the 20+ years claim, 'We set up heavy industry with AI'), not a search target.",
+      "use_instead": "quarry management software, plant hire software ireland, haulage software ireland"
+    },
+    {
+      "query": "apps for contractors",
+      "trap": "serps/google-ie/08 splits three ways (trade SaaS, IT contractors, agri contractors) and autocomplete adds a find-me-work slice ('apps for contractors to find work', 'to bid on jobs'). Not tracked bare.",
+      "use_instead": "ai apps for contractors ireland, or the sector noun (plant hire, haulage, quarry, civils)"
+    },
+    {
+      "query": "ai apps for contractors",
+      "trap": "serps/google-ie/07: US/UK AI-tool roundups and estimating tools, zero Irish or bespoke results. Pete's term, tracked at medium; the Ireland-qualified form is the head term.",
+      "use_instead": "ai apps for contractors ireland"
+    },
+    {
+      "query": "docket app ireland",
+      "trap": "serps/google-ie/22: US court dockets, receipt apps and product names. Not tracked.",
+      "use_instead": "digital dockets construction ireland"
+    },
+    {
+      "query": "fleet management software ireland",
+      "trap": "serps/google-ie/12: GPS telematics and vehicle tracking (Trackmatic, Geotab, Tranzaura). Not tracked.",
+      "use_instead": "walkaround check app ireland, and council-fleet vocabulary (daily return, runs, CVRT) on sector pages"
+    },
+    {
+      "query": "haulage software ireland",
+      "trap": "serps/google-ie/21: freight Transport Management Systems (Eureka MoveIT, Stratum) for pallet and ferry freight. The AI Overview's own prompt names 'bulk/tippers' as a separate segment. Tracked low; page copy uses tipper and bulk vocabulary.",
+      "use_instead": "haulage software ireland with tipper, bulk and quarry haulage wording on the page"
+    },
+    {
+      "query": "quarry management software",
+      "trap": "serps/google-ie/18: Herbst, Eagle and Switch hold the ERP end, and PAA drifts to mining and process mining. Tracked; the page speaks to the small operator who wants dockets and weighbridge tickets off paper without an ERP.",
+      "use_instead": "small plant hire software ireland, quarry management software (with small-operator copy)"
+    },
+    {
+      "query": "civil engineering contractor software ireland",
+      "trap": "serps/google-ie/25: a local pack of real Galway and Gort civils firms, Google half-reads it as 'find a contractor'. Tracked low; the Galway plus software variant is the target.",
+      "use_instead": "civil engineering contractor software galway"
+    },
+    {
+      "query": "solar installer software ireland",
+      "trap": "serps/google-ie/16: position 6 is a local pack of solar installer businesses (PureVolt Galway, Solar Home Ireland Athenry, NuSolas Shannon), so part of the SERP is homeowner hire intent. Keep the head term, expect less than the full position to be buyers.",
+      "use_instead": "solar installer job management software"
+    },
+    {
+      "query": "solar installer crm",
+      "trap": "Autocomplete neighbours are job seekers (job description, career, salary). The exact phrase still reads as software intent. Track exact only.",
+      "use_instead": "solar installer crm (exact)"
+    },
+    {
+      "query": "heat pump installers near me",
+      "trap": "Consumer directory intent, a homeowner hiring an installer. Not tracked.",
+      "use_instead": "heat pump installer software ireland"
+    },
+    {
+      "query": "best software for solar system design",
+      "trap": "Design-tool category (easy-pv.ie, SurgePV, heatpunk.ie). Wrong product. Not tracked.",
+      "use_instead": "solar installer job management software"
+    },
+    {
+      "query": "custom internal apps for business",
+      "trap": "serps/google-ie/20: no-code platforms (Retool, Power Apps, Softr, Zapier, OutSystems) and build-it-yourself videos. Tracked medium; pair 'custom' with 'built for you' on the page and answer the PAA question.",
+      "use_instead": "how can i get a custom app made for my business"
+    },
+    {
+      "query": "internal tools development",
+      "trap": "Autocomplete is developer jobs, salary and reddit. Not tracked.",
+      "use_instead": "custom internal apps for business"
+    },
+    {
+      "query": "app developers galway",
+      "trap": "Strong local signal (two packs, six firms) but 'app developer' often means customer-facing mobile apps. Tracked high; the first line of the landing page must say custom internal apps.",
+      "use_instead": "app developers galway with 'custom internal apps' in the title and first paragraph"
+    },
+    {
+      "query": "it company galway",
+      "trap": "Reads as managed IT and helpdesk. Removed from the list per the intent refuter.",
+      "use_instead": "software company galway"
+    },
+    {
+      "query": "how much does custom software development cost",
+      "trap": "Not an intent trap. The refuter reclassified it as a pricing-model mismatch: hst.ie prices per engineer per month (EUR5,000 to 6,000), Streamlined Tech prices a first build from EUR3,900. A genuine target where price is the differentiator.",
+      "use_instead": "how much does custom software development cost (answer it on /how-it-works)"
+    },
+    {
+      "query": "mining software australia",
+      "trap": "serps/google-au/01: mining ERP (Pronto), offshore dev shops and 691 LinkedIn job postings. Tracked low as a first-typed term.",
+      "use_instead": "job management software for mining contractors, mine site paperwork app"
+    },
+    {
+      "query": "ai for mining companies australia",
+      "trap": "serps/google-au/05: investor and enterprise content (BHP, Rio Tinto, Fortescue); autocomplete for 'ai for mining' is bitcoin, crypto and courses. Removed from entry queries, not tracked.",
+      "use_instead": "mining contractor software, mine site paperwork app"
+    },
+    {
+      "query": "fifo app",
+      "trap": "Autocomplete is FIFO apprenticeships and job applications. Not tracked.",
+      "use_instead": "prestart checklist app"
+    },
+    {
+      "query": "mine site software",
+      "trap": "Three thin completions including 'web mining software'. Not tracked.",
+      "use_instead": "mine site paperwork app"
+    },
+    {
+      "query": "construction apps australia",
+      "trap": "serps/google-au/02: tradies and builders listicles (aroflo, builtsimple, yakkalabour). Not tracked; useful only for AU vocabulary.",
+      "use_instead": "civil contractor timesheet app, construction timesheet app australia"
+    },
+    {
+      "query": "custom software for mining companies",
+      "trap": "Buyer segment mismatch rather than a trap: offshore shops (vrinsoft, tatvasoft, appinventiv) speak to mine operators. Tracked; page copy says contractor, not company.",
+      "use_instead": "mining contractor software, mining contractor software perth"
+    },
+    {
+      "query": "prestart checklist app",
+      "trap": "serps/google-au/06: free apps dominate (Prestart App, Ideagen Plant Assessor free, DIGI CLIP). Tracked high because the Perth earthworks Facebook thread shows crews searching it, but the play is a page section that feeds prestarts into the job pack, not outranking free checklist apps.",
+      "use_instead": "prestart checklist app as a section on /australia, with mine site paperwork app as the page head term"
+    }
+  ],
+  "_page_map": {
+    "/": [
+      "set up ai for business",
+      "set-up ai for business",
+      "setup ai for business",
+      "ai setup for business",
+      "set up ai systems",
+      "ai for heavy industry",
+      "bespoke ai development ireland"
+    ],
+    "/business": [
+      "ai for small business ireland",
+      "set up ai for business in ireland",
+      "how to set up ai for my business",
+      "ai automation ireland",
+      "ai automation agency ireland",
+      "ai consultancy ireland",
+      "ai consultant galway",
+      "app developers galway",
+      "software company galway",
+      "custom software development ireland",
+      "custom internal apps for business",
+      "custom app development for small business"
+    ],
+    "/contractors": [
+      "ai apps for contractors ireland",
+      "ai apps for contractors",
+      "ai for construction companies near galway",
+      "ai for construction companies near ireland",
+      "job management software for contractors ireland",
+      "digital dockets construction ireland",
+      "timesheet app construction ireland",
+      "pre start checklist app ireland",
+      "walkaround check app ireland",
+      "quarry management software",
+      "plant hire software ireland",
+      "small plant hire software ireland"
+    ],
+    "/installers": [
+      "solar installer software ireland",
+      "heat pump installer software ireland",
+      "solar installer job management software",
+      "solar installer job management software ireland",
+      "solar project management software",
+      "solar installer crm",
+      "residential heat pump installer software ireland",
+      "heat pump installer software cost"
+    ],
+    "/australia": [
+      "mine site paperwork app",
+      "prestart checklist app",
+      "pre start checklist for machinery",
+      "job management software for mining contractors",
+      "mining contractor software",
+      "mining contractor software perth",
+      "civil contractor timesheet app",
+      "construction timesheet app australia",
+      "custom software for mining companies"
+    ]
+  },
+  "_proposed_pages": [
+    {
+      "route": "/business",
+      "journey": "smb_set_up_ai_ie, custom_app_buyer_galway_ie",
+      "stage": "consideration and conversion (existing page, title and description change plus new sections)",
+      "title": "Custom AI Apps for Irish Businesses, Galway | Streamlined Tech",
+      "description": "Custom internal apps for owner-run Irish businesses. Built in Galway, working across Ireland. From EUR3,900, first build working inside two weeks.",
+      "h1": "Grow your business without hiring more people.",
+      "h2_outline": [
+        "Pick one repetitive job to hand to AI first",
+        "What a custom internal app is, and why it is not a chatbot or a no-code builder",
+        "What does custom software development cost in Ireland",
+        "What does an AI consultant actually do, and how this is different",
+        "Built in Galway, working across Ireland",
+        "What the first two weeks look like"
+      ],
+      "internal_links": [
+        "/how-it-works",
+        "/guide/set-up-ai-for-business-ireland",
+        "/contractors",
+        "/installers"
+      ],
+      "priority": "high"
+    },
+    {
+      "route": "/how-it-works",
+      "journey": "custom_app_buyer_galway_ie",
+      "stage": "consideration (new page)",
+      "title": "Custom Internal App Cost and Timeline | Streamlined Tech",
+      "description": "What a custom internal app costs in Ireland and how long the first build takes. From EUR3,900, working inside two weeks.",
+      "h1": "What a custom internal app costs, and how long it takes",
+      "h2_outline": [
+        "How much does it cost to get a custom app made in Ireland",
+        "How do I get an app made for my business",
+        "Should you build it yourself or get it built for you",
+        "What counts as a custom internal app",
+        "What happens after the first build"
+      ],
+      "internal_links": [
+        "/business",
+        "/contractors",
+        "/installers",
+        "/details"
+      ],
+      "priority": "high"
+    },
+    {
+      "route": "/guide/set-up-ai-for-business-ireland",
+      "journey": "smb_set_up_ai_ie",
+      "stage": "entry (new page)",
+      "title": "Set Up AI for Your Business in Ireland | Streamlined Tech",
+      "description": "Plain-English steps to set up AI for an Irish SMB. Pick one job, build one app, working inside two weeks.",
+      "h1": "How to set up AI for your business",
+      "h2_outline": [
+        "What set up AI actually means for a small business",
+        "How do I add AI to my business without hiring anyone",
+        "How much does AI cost for a small business in Ireland",
+        "Do you need someone to run it",
+        "Picking the first job to hand to AI",
+        "What Streamlined Tech builds instead of a chatbot"
+      ],
+      "internal_links": [
+        "/business",
+        "/how-it-works",
+        "/contractors",
+        "/installers"
+      ],
+      "priority": "high"
+    },
+    {
+      "route": "/contractors",
+      "journey": "contractors_heavy_industry_ie",
+      "stage": "entry (existing page, title and description change plus new sections)",
+      "title": "Custom Apps for Irish Contractors | Streamlined Tech",
+      "description": "Custom apps for construction and heavy industry contractors in Ireland. Jobs, dockets, timesheets and walkaround checks off paper.",
+      "h1": "Custom apps for Irish contractors and heavy industry crews",
+      "h2_outline": [
+        "What software do contractors in Ireland actually use",
+        "Every job, crew and machine on one screen",
+        "Dockets and timesheets off paper and into the office",
+        "Walkaround checks and pre-starts that get done",
+        "When off-the-shelf job software does not fit",
+        "Quarry, plant hire, haulage and civils pages"
+      ],
+      "internal_links": [
+        "/contractors/quarry",
+        "/contractors/haulage",
+        "/contractors/civils",
+        "/",
+        "/business"
+      ],
+      "priority": "high"
+    },
+    {
+      "route": "/contractors/quarry",
+      "journey": "contractors_heavy_industry_ie",
+      "stage": "consideration (new page)",
+      "title": "Quarry and Plant Hire Software Ireland | Streamlined Tech",
+      "description": "Dockets, weighbridge tickets and pre-starts off paper for Irish quarry, readymix and plant hire operators. Built for the small yard, not a full ERP.",
+      "h1": "Custom apps for Irish quarry and plant hire operators",
+      "h2_outline": [
+        "Weighbridge tickets and dockets without the paperwork",
+        "One screen for every job, truck and driver",
+        "Pre-starts and walkaround checks that get done",
+        "Built for the small operator, not a full ERP",
+        "What a first build costs and how long it takes"
+      ],
+      "internal_links": [
+        "/contractors",
+        "/how-it-works",
+        "/"
+      ],
+      "priority": "high"
+    },
+    {
+      "route": "/installers",
+      "journey": "installers_ie",
+      "stage": "entry (existing page, title and description change plus new sections)",
+      "title": "Solar & Heat Pump Installer Apps Ireland | Streamlined Tech",
+      "description": "Custom apps for Irish solar, heat pump and retrofit installers. Job packs, grant paperwork and schedules off paper. First build working inside two weeks.",
+      "h1": "More jobs on the books without more hours in the office.",
+      "h2_outline": [
+        "Every job on one screen, from survey to commissioning",
+        "Grant paperwork and job packs off paper",
+        "What we build is not design software or a sales CRM",
+        "Built for SEAI-registered solar, heat pump and retrofit One Stop Shops",
+        "What it costs and how fast you are working"
+      ],
+      "internal_links": [
+        "/installers/seai-grant-paperwork",
+        "/how-it-works",
+        "/business",
+        "/contractors"
+      ],
+      "priority": "high"
+    },
+    {
+      "route": "/australia",
+      "journey": "australia_mining_construction",
+      "stage": "entry (existing page, title and description change plus a prestart section)",
+      "title": "Mining & Construction Apps for AU Crews | Streamlined Tech",
+      "description": "We build apps that get prestarts, dockets and job packs off paper for mining and construction contractor crews in Australia.",
+      "h1": "Get your crew's paperwork off paper",
+      "h2_outline": [
+        "What we build for mining and construction contractors",
+        "Prestarts that feed straight into the job pack",
+        "Dockets and timesheets your crew fills in from the ute or the cab",
+        "Job records and safety records in one place, not a folder",
+        "Built around your crew, not a template",
+        "How it works and what it costs to get started"
+      ],
+      "internal_links": [
+        "/australia/mine-site-paperwork",
+        "/",
+        "/business"
+      ],
+      "priority": "medium"
+    },
+    {
+      "route": "/",
+      "journey": "australia_mining_construction, smb_set_up_ai_ie",
+      "stage": "conversion (existing page, title and description change plus founder H2 fix)",
+      "title": "Custom Apps for Heavy Industry & Construction | Streamlined Tech",
+      "description": "We build the internal app your crew is missing. Jobs, dockets, timesheets and reporting, set up around your business. Based in Galway, Ireland.",
+      "h1": "We build the software your crew is missing",
+      "h2_outline": [
+        "Built for your jobs, not a generic system",
+        "20+ years in heavy industries and construction, from on the tools to training package production and now building the software",
+        "What a first build looks like",
+        "Where this fits, from quarries and civils to installers and Australian mining contractors",
+        "Talk to us about your crew's paperwork"
+      ],
+      "internal_links": [
+        "/business",
+        "/contractors",
+        "/installers",
+        "/australia",
+        "/how-it-works"
+      ],
+      "priority": "medium"
+    },
+    {
+      "route": "/contractors/civils",
+      "journey": "contractors_heavy_industry_ie",
+      "stage": "consideration and conversion (new page)",
+      "title": "Civils and Groundworks Software Ireland | Streamlined Tech",
+      "description": "Custom apps for Irish civils, groundworks and drainage contractors, built in Galway. Job packs and sign-offs off paper.",
+      "h1": "Custom apps for Irish civils and groundworks contractors",
+      "h2_outline": [
+        "Job packs for groundworks, earthworks, roads and drainage",
+        "Dockets and sign-offs on site, not back in the office",
+        "Built in Galway for Irish civils contractors",
+        "Why a generic construction platform does not fit a small crew",
+        "What a first build costs and how long it takes"
+      ],
+      "internal_links": [
+        "/contractors",
+        "/how-it-works",
+        "/"
+      ],
+      "priority": "medium"
+    },
+    {
+      "route": "/contractors/haulage",
+      "journey": "contractors_heavy_industry_ie",
+      "stage": "consideration (new page)",
+      "title": "Haulage and Tipper Software Ireland | Streamlined Tech",
+      "description": "Runs, dockets and CVRT dates off paper for Irish tipper, bulk and quarry haulage fleets. Built for the small fleet, not a freight TMS.",
+      "h1": "Custom apps for Irish tipper and bulk haulage operators",
+      "h2_outline": [
+        "Runs and daily returns without the office chasing paper",
+        "Dockets and weighbridge tickets in the cab",
+        "CVRT dates and walkaround checks that do not get missed",
+        "Built for tipper and bulk haulage, not pallet networks",
+        "What a first build costs and how long it takes"
+      ],
+      "internal_links": [
+        "/contractors",
+        "/contractors/quarry",
+        "/how-it-works"
+      ],
+      "priority": "medium"
+    },
+    {
+      "route": "/australia/mine-site-paperwork",
+      "journey": "australia_mining_construction",
+      "stage": "consideration and conversion (new page, or a long section on /australia if a new route is too costly)",
+      "title": "Mine Site Paperwork App for Contractors | Streamlined Tech",
+      "description": "Prestarts, dockets and inspections built into one app for your crew, off paper and out of the ute glovebox. Built for mining contractors.",
+      "h1": "One app for prestarts, dockets and job records",
+      "h2_outline": [
+        "What is a prestart checklist, and why crews still do it on paper",
+        "Job packs that carry the prestart, the docket and the sign-off",
+        "Inspections and safety records without a spreadsheet",
+        "Works offline on site, syncs when your crew is back in range",
+        "Not an off-the-shelf ERP, built around how your crew actually works"
+      ],
+      "internal_links": [
+        "/australia",
+        "/"
+      ],
+      "priority": "medium"
+    },
+    {
+      "route": "/installers/seai-grant-paperwork",
+      "journey": "installers_ie",
+      "stage": "consideration (new page)",
+      "title": "SEAI Grant Paperwork Apps for Installers | Streamlined Tech",
+      "description": "An app that fills the grant pack, NC6 and NC7 forms from the job instead of a spreadsheet. Built for Irish solar and heat pump installers.",
+      "h1": "Grant packs and NC6 NC7 forms that fill themselves from the job",
+      "h2_outline": [
+        "Where the grant paperwork actually goes wrong today",
+        "What the app does with the grant pack, NC6 and NC7",
+        "How it connects to the job pack your crew already carries",
+        "Built for SEAI-registered solar, heat pump and retrofit installers",
+        "Get a build started"
+      ],
+      "internal_links": [
+        "/installers",
+        "/how-it-works",
+        "/business"
+      ],
+      "priority": "low"
+    }
+  ],
+  "_non_page_actions": [
+    {
+      "action": "Create a Google Business Profile for Streamlined Tech",
+      "why": "serps/google-ie/05 (ai consultant galway) shows a three-slot Places pack (AiSe, Galvia, Authorised Ai) and serps/google-ie/15 (app developers galway) shows two packs with six Galway firms; serps/google-ie/04 (ai automation agency ireland) also has a local pack. streamlinedai.tech is absent from all three and the file 05 NOTE records that Streamlined Tech has no Google Business Profile. Without one the business cannot appear in any pack regardless of page content.",
+      "fields": "Primary category software company. Services listed as custom internal app development and AI-powered business systems. Service area Galway and Ireland. Posts and photos in house vocabulary (jobs, dockets, timesheets, reporting).",
+      "priority": "high"
+    }
+  ],
+  "_refuter_application": {
+    "intent": "All fix and drop verdicts applied. Dropped from the list: ai adoption ireland, ai good for business ireland, it company galway, apps for contractors (bare), docket app ireland, fleet management software ireland, construction management software ireland, seai grant software (zero autocomplete), zero paper mining app (a result title, not a query), all branded competitor lookups (stratum tms, tadco apps, buildpass australia, gearbox prestart app), all free-tool and start-an-AI-business queries, and the AI Overview's own chat prompt. Downgraded and kept: how do i add ai to my business, automate my business with ai, ai for business ireland, ai apps for contractors, civil engineering contractor software ireland, walkaround check app ireland, mining contractor software. Constructed phrases (quarry dockets ireland, tipper haulage dockets ireland, dockets off paper, job pack app mining, custom software and ai consultancy galway, custom internal app for owner run business ireland, one stop shop installer software ireland, best app for civil contractors) are on-page vocabulary only. ai for mining companies australia removed from entry queries. Two new traps added: the apps-for-contractors find-work family and the solar installer local pack.",
+    "voice": "The homepage founder H2 now uses the canonical wording with no colon joining its clauses. All other interceptions were kept as judged.",
+    "evidence": "Every competitor statement in JOURNEY-MAP.md and CONTENT-GAPS.md is limited to what the serps/*.md capture says. The hst.ie price is file 14's figure (EUR5,000 to 6,000 per month per engineer, dedicated teams EUR15,000 to 25,000). assessor.com.au is recorded as free per file 06. No competitor page was fetched beyond its SERP snippet; the journeys' fetched true detail (CTAs, trial terms, VAT, sector lists, product sub-names) is discarded.",
+    "overrules": "None."
+  },
+  "_unreadable": [
+    "No competitor page was available beyond its SERP snippet. The journeys marked 13 hosts as fetched but no fetched-page file exists in the scratchpad, so digitalbridge.ie, brandstart.ie, radium.ie, strydasolutions.com, jobflow.ie, check-it.ie, hst.ie, gbasolutions.ie, caolu.ie, voltflo.com, civdocs.com.au, kynection.com.au, basecode.com.au and assessor.com.au are treated as snippet-only.",
+    "thisiswdi.com (no page content returned), archdesk.com/en-ie/who-we-serve/heavy-civil (HTTP 404), appdesign.ie (HTTP 403), prestartr.com (HTTP 403), digitalbridge.ie exact ranking URL (HTTP 404) per the journey files.",
+    "bing_serps.json holds 40 queries and every one is empty (no organic, no PAA, no related searches). It is a coverage gap, not evidence.",
+    "autocomplete.json AU lists are identical to IE for 53 of 55 seeds (only 'fifo app' and 'mining software' differ), so the AU autocomplete harvest probably did not honour gl=au. AU autocomplete is treated as unconfirmed; AU SERP captures (serps/google-au) are used instead.",
+    "Zero-suggestion autocomplete seeds (coverage gaps, not zero demand): set up ai systems, set up ai for my business, seai grant software, installer software ireland, custom internal apps, custom software galway, bespoke software ireland, workflow automation ireland, business process automation ireland, civil engineering software ireland, construction app ireland, ai consultant galway, ai automation galway.",
+    "No SERP was captured for the bare phrases 'set up ai', 'set up ai systems', 'setup ai for business' or for any AU query containing 'set up ai' or 'ai apps for contractors'; those keywords rest on Pete's brief and the autocomplete seed 'ai set up for business'.",
+    "GSC itself: only 4 queries with impressions in 28 days and 0 of 7 submitted URLs indexed, so there is no ranking data to weigh against the SERP evidence yet."
+  ]
 }

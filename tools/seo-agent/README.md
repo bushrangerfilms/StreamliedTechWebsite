@@ -14,9 +14,6 @@ tools/seo-agent/
 ├── config/
 │   ├── keywords.json      # target keyword clusters + _journeys, _intent_traps, _page_map, _proposed_pages
 │   └── checks.json        # routes, file paths, PR scopes, copy rules, thresholds, IndexNow key
-├── research/
-│   ├── JOURNEY-MAP.md     # buyer journeys traced from Irish and Australian Google, Aug 2026
-│   └── CONTENT-GAPS.md    # proposed pages and sections, in priority order
 ├── lib/
 │   ├── env.mjs            # loads ~/Documents/Claude/.env.seo-agent locally; passthrough remotely
 │   ├── gsc-client.mjs     # Search Console API (env vars first, local creds file second)
