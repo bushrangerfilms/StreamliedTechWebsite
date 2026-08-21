@@ -29,38 +29,38 @@ export interface RouteSeo {
 export const ROUTE_SEO = {
   home: {
     path: "/",
-    title: "Streamlined Tech – Custom internal apps for mining and construction",
+    title: "Custom Apps for Mining and Construction | Streamlined Tech",
     description:
-      "Custom internal apps and workflow automation for mining and construction. Track progress, close out defects and automate the follow-ups, so work stops stalling between steps.",
+      "Custom internal apps for mining and construction crews. Jobs, dockets, timesheets and reporting off paper, set up around how your site already runs.",
     canonical: "/",
     image: "/images/og-card-mining.png",
   },
   business: {
     path: "/business",
-    title: "Streamlined Tech | AI adoption for Irish businesses",
+    title: "Custom AI Apps for Irish Businesses, Galway | Streamlined Tech",
     description:
-      "Practical AI adoption for Irish businesses. An audit of where your time actually goes, then automation built around how you already work.",
+      "Custom internal apps for owner-run Irish businesses. Built in Galway, working across Ireland. From EUR3,900, first build working inside two weeks.",
     canonical: "/business",
   },
   contractors: {
     path: "/contractors",
-    title: "Internal apps for construction and heavy industry | Streamlined Tech",
+    title: "Custom Apps for Irish Contractors | Streamlined Tech",
     description:
-      "Custom AI-powered internal apps for construction and heavy industry contractors in Ireland. Every job on one screen, crews and machines scheduled, dockets and timesheets off paper. Built in Galway.",
+      "Custom apps for construction and heavy industry contractors in Ireland. Jobs, dockets, timesheets and walkaround checks off paper. Built in Galway.",
     canonical: "/contractors",
   },
   installers: {
     path: "/installers",
-    title: "Internal apps for solar and home energy upgrade installers | Streamlined Tech",
+    title: "Solar and Heat Pump Installer Apps, Ireland | Streamlined Tech",
     description:
-      "Custom AI-powered internal apps for solar PV and home energy upgrade installers in Ireland. Grant packs that build themselves, enquiries that arrive ready to quote, NC6 and NC7 filed every install. Built in Galway.",
+      "Custom apps for Irish solar, heat pump and retrofit installers. Grant packs, NC6 and NC7 forms and job packs off paper. Built in Galway.",
     canonical: "/installers",
   },
   australia: {
     path: "/australia",
-    title: "Internal apps for Australian mining and construction | Streamlined Tech",
+    title: "Mining and Construction Apps, Australia | Streamlined Tech",
     description:
-      "Custom internal apps and workflow automation for Australian mining and construction operations. Progress tracking, defects and close-out, follow-ups that happen without chasing.",
+      "We build apps that get prestarts, dockets and job packs off paper for mining and construction contractor crews in Australia.",
     canonical: "/australia",
     image: "/images/og-card-mining.png",
   },
