@@ -1,0 +1,9 @@
+{
+  "_comment": "PROVISIONAL seed list written 2026-08-21 so the toolkit can be dry-run; replaced by the journey research output the same day. Top-level keys that do not start with _ are clusters of lowercase phrases matched exactly against GSC queries.",
+  "identity_set_up_ai": ["set up ai", "set up ai for my business", "set up ai systems", "set-up ai", "ai setup for business", "how to set up ai for my business", "how do i add ai to my business"],
+  "ai_for_business_ie": ["ai for business", "ai for small business ireland", "ai automation agency ireland", "ai consultant galway", "automate my business with ai", "ai adoption ireland"],
+  "contractors_heavy_industry_ie": ["ai apps for contractors", "apps for contractors", "job management software for contractors ireland", "construction app ireland", "ai for construction companies", "custom internal apps for construction", "plant hire software ireland", "quarry management software", "civil engineering contractor software ireland"],
+  "installers_ie": ["solar installer software ireland", "heat pump installer software ireland", "seai grant paperwork software", "solar project management software"],
+  "australia_mining_construction": ["mining contractor software australia", "prestart checklist app", "mine site paperwork app", "job management software for mining contractors", "construction timesheet app australia"],
+  "custom_app_buyer_ie": ["custom software development ireland", "app developers galway", "custom internal apps", "how can i get a custom app made for my business", "software company galway"]
+}

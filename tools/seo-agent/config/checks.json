@@ -1,0 +1,206 @@
+{
+  "_comment": "What the streamlinedai.tech SEO agent checks each run. Edit freely. The site is a Vite SPA on Vercel with PRERENDERED per-route meta: client/src/lib/seo-routes.ts is the single source of truth, vite-plugin-prerender-meta.ts writes one HTML file per route, vercel.json rewrites each route to its file, client/public/sitemap.xml lists the indexable ones. Adding a route means touching all three plus App.tsx; the route-wiring check exists to catch a missed one.",
+  "site": {
+    "domain": "streamlinedai.tech",
+    "origin": "https://streamlinedai.tech",
+    "gsc_property": "https://streamlinedai.tech/",
+    "_gsc_note": "URL-prefix property (not sc-domain). Owner streamlinedtechai@gmail.com, verified by the meta tag in client/index.html. The OAuth refresh token used by the AutoListing agent already has siteOwner access to this property (verified 21 Aug 2026), so the same GSC_* env vars are used.",
+    "public_dir": "client/public",
+    "marketing_routes": [
+      "/",
+      "/business",
+      "/contractors",
+      "/installers",
+      "/australia",
+      "/privacy",
+      "/terms"
+    ],
+    "cwv_routes": [
+      "/",
+      "/business",
+      "/contractors",
+      "/installers",
+      "/australia"
+    ],
+    "noindex_routes": [
+      "/details",
+      "/details/thanks",
+      "/dev"
+    ],
+    "aliases": {
+      "/galway": "/business"
+    },
+    "seo_routes_file": "client/src/lib/seo-routes.ts",
+    "vercel_json": "vercel.json",
+    "sitemap_file": "client/public/sitemap.xml",
+    "robots_file": "client/public/robots.txt",
+    "app_router_file": "client/src/App.tsx",
+    "page_sources": {
+      "/": "client/src/pages/home.tsx",
+      "/business": "client/src/pages/business.tsx",
+      "/contractors": "client/src/pages/contractors.tsx",
+      "/installers": "client/src/pages/installers.tsx",
+      "/australia": "client/src/pages/australia.tsx",
+      "/details": "client/src/pages/details.tsx",
+      "/privacy": "client/src/pages/privacy.tsx",
+      "/terms": "client/src/pages/terms.tsx"
+    }
+  },
+  "lookback_days": 28,
+  "_pr_scopes_comment": "Concentric PR scopes. Each scope = its own branch and PR, never bundled. Mechanical = blind autofix (sitemap, robots). Metadata = field-level edits in seo-routes.ts that do not change meaning. Perf = image/resource hints. Content = title/description rewrites backed by GSC evidence. Anything else goes in the issue.",
+  "pr_scopes": {
+    "mechanical_pr_allowlist": [
+      "client/public/sitemap.xml",
+      "client/public/robots.txt"
+    ],
+    "metadata_pr_allowlist": [
+      "client/src/lib/seo-routes.ts"
+    ],
+    "metadata_pr_allowed_changes": [
+      "Trim a description over 160 characters to 160 or fewer, keeping its meaning and every fact",
+      "Replace an em dash or en dash in a title or description with a comma, full stop or the word 'for', rewording if needed so the sentence still reads plainly",
+      "Add a missing optional field to an existing ROUTE_SEO entry (image for a route that has a 1200x630 card in client/public/images; noindex for a route the issue history says must stay out of results)",
+      "Correct a canonical that points at a path not in ROUTE_SEO"
+    ],
+    "metadata_pr_forbidden": [
+      "Change what a title or description says (that is content_pr scope and needs GSC evidence)",
+      "Add or remove a route entry or touch PRERENDER_ROUTES (a new route needs vercel.json and App.tsx changes too; raise it in the issue)",
+      "Touch vercel.json, client/index.html, vite-plugin-prerender-meta.ts, App.tsx, any page file, server/, api/, shared/, or any .env file",
+      "Alter the founder claim, prices, or any tagline"
+    ],
+    "perf_pr_allowlist": [
+      "client/index.html",
+      "client/src/pages/*.tsx"
+    ],
+    "perf_pr_allowed_changes": [
+      "Add loading=\"lazy\" and decoding=\"async\" to <img> elements that are below the fold (never the hero or the LCP candidate)",
+      "Add explicit width and height attributes to <img> elements that lack them",
+      "Add a <link rel=\"preload\" as=\"image\"> for an LCP candidate that has none (home and /australia already preload their hero images)",
+      "Add fetchpriority=\"high\" to an LCP candidate <img>"
+    ],
+    "perf_pr_forbidden": [
+      "Change an image src, swap formats, or reference a file that is not committed",
+      "Lazy-load the hero",
+      "Remove existing preload or fetchpriority hints",
+      "Any layout, class, copy or component change"
+    ],
+    "content_pr_allowlist": [
+      "client/src/lib/seo-routes.ts"
+    ],
+    "content_pr_allowed_changes": [
+      "Rewrite one route's title (max 65 chars, must contain 'Streamlined Tech') to target a striking-distance query from GSC (position 4-20, at least 10 impressions in the lookback window)",
+      "Rewrite that route's description (50-160 chars) for the same query"
+    ],
+    "content_pr_required_evidence": "The PR body names the GSC query, its current position and impressions, the route, and shows before/after. The new copy must pass every rule in copy_rules. One content PR per run at most.",
+    "content_pr_forbidden": [
+      "Any rewrite without GSC striking-distance evidence (speculative rewrites go in the issue as suggestions)",
+      "Touching H1s, hero copy, body copy, CTAs, navigation or footer",
+      "A title or description that breaks a copy rule"
+    ]
+  },
+  "copy_rules": {
+    "_comment": "Pete's voice rules, enforced by checks/copy-rules.mjs on live titles/descriptions and on page source text. Violations are reported; the agent may only fix dashes in seo-routes.ts (metadata scope).",
+    "banned_characters": {
+      "em_dash": "—",
+      "en_dash": "–"
+    },
+    "banned_patterns": [
+      {
+        "name": "multiplier_claim",
+        "regex": "\\b\\d+(\\.\\d+)?x\\b",
+        "flags": "i",
+        "severity": "warning",
+        "why": "hard promise figure (Pete: no 10x in print)"
+      },
+      {
+        "name": "seconds_claim",
+        "regex": "(<|under|less than|in)\\s*\\d+\\s*(seconds|secs)",
+        "flags": "i",
+        "severity": "warning",
+        "why": "hard promise figure"
+      },
+      {
+        "name": "percent_claim",
+        "regex": "\\b\\d{1,3}\\s?%",
+        "flags": "",
+        "severity": "info",
+        "why": "check it is a public fact, not a promise"
+      },
+      {
+        "name": "superlative",
+        "regex": "\\b(world'?s (leading|best|first)|#1|number one|the leading|market[- ]leading|best[- ]in[- ]class|award[- ]winning|ireland'?s (best|leading))\\b",
+        "flags": "i",
+        "severity": "warning",
+        "why": "unsubstantiated rank claim"
+      },
+      {
+        "name": "ai_tell_word",
+        "regex": "\\b(leverage|leveraging|delve|seamless(ly)?|robust|spearhead(ed)?|cutting[- ]edge|game[- ]changing|empower(ing)?)\\b",
+        "flags": "i",
+        "severity": "info",
+        "why": "reads as AI-written in Pete's voice"
+      },
+      {
+        "name": "set_up_hyphenated_verb",
+        "regex": "\\bset-up (ai|your|the|a|an)\\b",
+        "flags": "i",
+        "severity": "info",
+        "why": "verb form is two words: set up"
+      }
+    ],
+    "founder_claim": {
+      "trigger": "20+ years",
+      "required_prefix": "20+ years in heavy industries",
+      "exceptions": {
+        "/australia": "20+ years around mining and construction"
+      }
+    },
+    "title_must_contain": "Streamlined Tech",
+    "description_colon_info_threshold": 2
+  },
+  "report_email_to": "streamlinedtechai@gmail.com",
+  "github_repo": "bushrangerfilms/StreamliedTechWebsite",
+  "github_issue_repo": "bushrangerfilms/StreamliedTechWebsite",
+  "thresholds": {
+    "striking_distance_min_position": 4,
+    "striking_distance_max_position": 20,
+    "striking_distance_min_impressions": 10,
+    "cwv_lcp_warning_ms": 2500,
+    "cwv_inp_warning_ms": 200,
+    "cwv_cls_warning": 0.1,
+    "rank_movement_alert": 3,
+    "meta_description_max_chars": 165,
+    "meta_description_target_chars": 160,
+    "image_size_warning_kb": 100,
+    "image_size_critical_kb": 500,
+    "title_max_chars": 65
+  },
+  "_pre_pr_smoke_checks_comment": "This repo has no CI, so these are the only gates. 'npm run check' is tsc; 'npx vite build' runs the client build including the prerender plugin, which is what turns seo-routes.ts into the live HTML heads. Install with npm ci first.",
+  "pre_pr_smoke_checks": [
+    "npm run check",
+    "npx vite build"
+  ],
+  "serp_spot_check": {
+    "_comment": "Optional, via the WebSearch tool only (Google blocks scripted fetches and the agent never works around a bot check). WebSearch is US-weighted, so label results 'WebSearch, not Irish Google'. Cap at max_queries per run, entry queries first.",
+    "enabled": true,
+    "max_queries": 8
+  },
+  "indexnow": {
+    "_comment": "Public verification key, not a secret. Bing/Yandex/Naver fetch https://streamlinedai.tech/<key>.txt to verify. Submit only URLs a PR actually added.",
+    "key": "1f3cce5cfb39edf11d01772177cf1062e8df7fcfb1cdcf91da6468bb2ceefd19",
+    "key_file_path": "client/public/1f3cce5cfb39edf11d01772177cf1062e8df7fcfb1cdcf91da6468bb2ceefd19.txt"
+  },
+  "link_check": {
+    "_comment": "Hosts that answer non-browser clients with 4xx/999 regardless of the page's health. A non-2xx from these is reported as likely_bot_block, not broken.",
+    "bot_block_hosts": [
+      "facebook.com",
+      "www.facebook.com",
+      "linkedin.com",
+      "www.linkedin.com",
+      "instagram.com",
+      "www.instagram.com",
+      "x.com",
+      "twitter.com"
+    ]
+  }
+}
