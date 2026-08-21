@@ -43,7 +43,7 @@ the runtime summary in keywords.json is what you work from.
 
 ## Environment
 
-- `GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`, `GSC_REFRESH_TOKEN` are exported by the routine prompt. The
+- `GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`, `GSC_REFRESH_TOKEN` are written to `~/.seo-agent.env` by the routine prompt. The
   same Google OAuth client and token as the AutoListing agent; the token's account owns this property
   too. `PSI_API_KEY` may be exported for PageSpeed; if absent the check runs keyless and may hit 429.
 - `GH_TOKEN` is a fine-grained PAT; `gh` may or may not be installed in the sandbox. If `gh` is
@@ -56,6 +56,12 @@ the runtime summary in keywords.json is what you work from.
 ## Each run
 
 ### 1. Gather
+
+The sandbox shell does NOT keep `export`s between tool calls. The routine's setup block writes the
+credentials to `~/.seo-agent.env`, which `lib/env.mjs` reads, so the checks work from any call. If
+that file is missing, export the GSC_* vars in the SAME Bash call as the run. A run that finishes in
+a few seconds with `gsc-snapshot` or `indexing-status` marked `ok: false` has no credentials; fix
+that before reading anything else.
 
 ```bash
 cd tools/seo-agent

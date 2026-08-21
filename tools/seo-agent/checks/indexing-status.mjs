@@ -69,6 +69,10 @@ for (const r of results.filter(r => r.mobile_usability_issues > 0 && !r.error)) 
   });
 }
 
+if (errors.length === results.length && results.length > 0) {
+  console.error(`indexing-status: URL Inspection failed for every route (${errors[0].error}); this is a failed check, not a clean site.`);
+  process.exitCode = 2;
+}
 console.log(JSON.stringify({
   site: SITE,
   origin: ORIGIN,

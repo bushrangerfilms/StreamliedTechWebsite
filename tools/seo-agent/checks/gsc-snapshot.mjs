@@ -95,4 +95,10 @@ const output = {
   raw_top_queries: currentRows.slice(0, 50),
 };
 
+const apiErrors = [topQueries, topPages, queriesByCountry, prevTopQueries].filter(r => r && r._error).map(r => `${r._label}: ${r._error}`);
+if (apiErrors.length) {
+  output.errors = apiErrors;
+  console.error(`gsc-snapshot: ${apiErrors.length} GSC request(s) failed; this is a failed check, not zero traffic.\n  ${apiErrors.join('\n  ')}`);
+  process.exitCode = 2;
+}
 console.log(JSON.stringify(output, null, 2));
