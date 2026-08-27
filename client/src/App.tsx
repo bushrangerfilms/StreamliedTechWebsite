@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Business from "@/pages/business";
 import Contractors from "@/pages/contractors";
+import HowItWorks from "@/pages/how-it-works";
 import Installers from "@/pages/installers";
 import Australia from "@/pages/australia";
 import Details from "@/pages/details";
@@ -23,6 +24,7 @@ function Router() {
       {/* Legacy alias: /galway is in the signature of outreach emails already sent, keep it working. */}
       <Route path="/galway" component={Business} />
       <Route path="/contractors" component={Contractors} />
+      <Route path="/how-it-works" component={HowItWorks} />
       <Route path="/installers" component={Installers} />
       <Route path="/australia" component={Australia} />
       <Route path="/details" component={Details} />

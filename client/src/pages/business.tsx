@@ -389,6 +389,13 @@ export default function Business() {
                   </li>
                 ))}
               </ul>
+              <p className="text-center text-muted-foreground mt-6 text-sm">
+                The longer answer on cost and timeline is on{" "}
+                <Link href="/how-it-works" className="text-primary underline hover:no-underline" data-testid="link-how-it-works">
+                  the how it works page
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>
