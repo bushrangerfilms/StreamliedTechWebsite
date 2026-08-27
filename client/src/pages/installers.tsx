@@ -152,7 +152,7 @@ export default function Installers() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
-                  src="/images/app-scheduling.png"
+                  src="/images/app-scheduling.webp"
                   alt="Survey and install scheduling"
                   className="w-full h-auto"
                 />
@@ -162,7 +162,7 @@ export default function Installers() {
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
-                  src="/images/app-training-dashboard.png"
+                  src="/images/app-training-dashboard.webp"
                   alt="Installer training and certification tracking dashboard"
                   className="w-full h-auto"
                 />
@@ -172,7 +172,7 @@ export default function Installers() {
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
-                  src="/images/app-analytics.png"
+                  src="/images/app-analytics.webp"
                   alt="Analytics and reporting dashboard"
                   className="w-full h-auto"
                 />
@@ -182,7 +182,7 @@ export default function Installers() {
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <img
-                  src="/images/app-intake.png"
+                  src="/images/app-intake.webp"
                   alt="Enquiry intake without rekeying"
                   className="w-full h-auto"
                 />
@@ -193,12 +193,12 @@ export default function Installers() {
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <div className="flex items-center justify-center p-4 gap-4">
                   <img
-                    src="/images/app-renewals-mobile.png"
+                    src="/images/app-renewals-mobile.webp"
                     alt="Mobile renewals and expiry tracking"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
                   <img
-                    src="/images/app-video-mobile.png"
+                    src="/images/app-video-mobile.webp"
                     alt="Mobile app views"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
@@ -210,12 +210,12 @@ export default function Installers() {
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
                 <div className="flex items-center justify-center p-4 gap-4">
                   <img
-                    src="/images/app-settings-mobile.png"
+                    src="/images/app-settings-mobile.webp"
                     alt="Mobile settings"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
                   <img
-                    src="/images/app-scanning-mobile.png"
+                    src="/images/app-scanning-mobile.webp"
                     alt="Mobile install photo capture"
                     className="h-64 w-auto rounded-lg shadow-sm"
                   />
