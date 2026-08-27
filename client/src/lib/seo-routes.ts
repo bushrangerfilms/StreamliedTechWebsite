@@ -49,6 +49,13 @@ export const ROUTE_SEO = {
       "Custom apps for construction and heavy industry contractors in Ireland. Jobs, dockets, timesheets and walkaround checks off paper. Built in Galway.",
     canonical: "/contractors",
   },
+  howItWorks: {
+    path: "/how-it-works",
+    title: "Custom Internal App Cost and Timeline | Streamlined Tech",
+    description:
+      "What a custom internal app costs in Ireland and how long the first build takes. From EUR3,900, working inside two weeks.",
+    canonical: "/how-it-works",
+  },
   installers: {
     path: "/installers",
     title: "Solar and Heat Pump Installer Apps, Ireland | Streamlined Tech",
@@ -116,6 +123,7 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.home,
   ROUTE_SEO.business,
   ROUTE_SEO.contractors,
+  ROUTE_SEO.howItWorks,
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,
   ROUTE_SEO.privacy,
