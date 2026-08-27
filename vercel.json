@@ -6,6 +6,11 @@
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ],
+  "redirects": [
+    { "source": "/privacy-policy", "destination": "/privacy", "statusCode": 301 },
+    { "source": "/terms--conditions", "destination": "/terms", "statusCode": 301 },
+    { "source": "/home-8692-4637", "destination": "/", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/business", "destination": "/business.html" },
     { "source": "/galway", "destination": "/business.html" },
