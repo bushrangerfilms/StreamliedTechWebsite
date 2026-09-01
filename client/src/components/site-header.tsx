@@ -17,7 +17,11 @@ const NAV_LINKS = [
  * pages (/details, /ai-employees form section) are the only deliberate
  * exceptions to using it.
  */
-export function SiteHeader() {
+/**
+ * minimal hides the nav links (logo + CTA only) for campaign landers,
+ * where every nav item is an exit from a paid click.
+ */
+export function SiteHeader({ minimal = false }: { minimal?: boolean } = {}) {
   return (
     <header className="border-b border-border bg-white sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
@@ -30,7 +34,7 @@ export function SiteHeader() {
             height="144"
           />
         </Link>
-        <nav className="hidden md:flex items-center gap-6" aria-label="Main">
+        <nav className={minimal ? "hidden" : "hidden md:flex items-center gap-6"} aria-label="Main">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
