@@ -100,7 +100,7 @@ function aiEmployeesRoute(r: {
         "@type": "AggregateOffer",
         lowPrice: r.lowPrice,
         priceCurrency: r.priceCurrency,
-        description: `${r.offerPriceText} a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts.`,
+        description: `${r.offerPriceText} a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts. Minimum one month, paid fortnightly, no lock-in contract; after the first month it can be stopped with two weeks' notice.`,
       },
     },
     // Mirror of the rendered page copy for crawlers that do not run JS.
@@ -115,6 +115,9 @@ function aiEmployeesRoute(r: {
         <p class="mb-6">A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
         <h2 class="text-xl font-display font-bold mb-2">${r.priceHeading}</h2>
         <p class="mb-6">${r.priceBody}</p>
+        <p class="mb-2"><strong>Minimum one month.</strong> Long enough to prove it, short enough to be a fair test.</p>
+        <p class="mb-2"><strong>Paid fortnightly.</strong> Like the rest of the payroll. No big figure up front.</p>
+        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice, and the AI employee stops with it.</p>
         <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech is Pete Harris, based in Galway, Ireland, and also builds and runs AutoListing.io and Rangplan.ie.</p>
       </main>`,
   };
@@ -188,13 +191,13 @@ export const ROUTE_SEO = {
     regionPath: "ie",
     title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
-      "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+      "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-ie.png",
     eyebrow: "For businesses in Ireland",
     headline: "AI Employees from €15K a year",
     priceHeading: "From €15K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
     country: "Ireland",
     offerAudience: "Offered to businesses in Ireland.",
     lowPrice: "15000",
@@ -209,13 +212,13 @@ export const ROUTE_SEO = {
     regionPath: "au",
     title: "AI Employees from AU$25K/year, Australia | Streamlined Tech",
     description:
-      "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+      "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-au.png",
     eyebrow: "For businesses in Australia",
     headline: "AI Employees from AU$25K a year",
     priceHeading: "From AU$25K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
     country: "Australia",
     offerAudience: "Offered to businesses in Australia.",
     lowPrice: "25000",
@@ -226,13 +229,13 @@ export const ROUTE_SEO = {
     regionPath: "uk",
     title: "AI Employees from £13K/year, UK | Streamlined Tech",
     description:
-      "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+      "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-uk.png",
     eyebrow: "For businesses in the UK",
     headline: "AI Employees from £13K a year",
     priceHeading: "From £13K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
     country: "United Kingdom",
     offerAudience: "Offered to businesses in the UK.",
     lowPrice: "13000",
@@ -243,13 +246,13 @@ export const ROUTE_SEO = {
     regionPath: "us",
     title: "AI Employees from $17K/year, United States | Streamlined Tech",
     description:
-      "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+      "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-us.png",
     eyebrow: "For businesses in the United States",
     headline: "AI Employees from $17K a year",
     priceHeading: "From $17K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
     country: "United States",
     offerAudience: "Offered to businesses in the United States.",
     lowPrice: "17000",

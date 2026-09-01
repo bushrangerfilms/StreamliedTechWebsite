@@ -37,7 +37,7 @@ const REGIONS: Record<string, RegionConfig> = {
     heroHeadline: "AI Employees from €15K a year",
     priceHeading: "From €15K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
     source: "ai-employees-ie",
   },
   // AU, UK and US anchors are €15K converted at rounded market rates. A
@@ -49,7 +49,7 @@ const REGIONS: Record<string, RegionConfig> = {
     heroHeadline: "AI Employees from AU$25K a year",
     priceHeading: "From AU$25K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
     heroNote: "Calls booked to suit Australian hours.",
     source: "ai-employees-au",
   },
@@ -59,7 +59,7 @@ const REGIONS: Record<string, RegionConfig> = {
     heroHeadline: "AI Employees from £13K a year",
     priceHeading: "From £13K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
     source: "ai-employees-uk",
   },
   us: {
@@ -68,7 +68,7 @@ const REGIONS: Record<string, RegionConfig> = {
     heroHeadline: "AI Employees from $17K a year",
     priceHeading: "From $17K a year",
     priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
     source: "ai-employees-us",
   },
 };
@@ -202,6 +202,28 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
               <p className="text-muted-foreground leading-relaxed">
                 {region.priceBody}
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Commercial terms, identical across regions. Pete's call 1 Sep:
+          one month minimum, two weeks' notice. Mirrored in seo-routes
+          staticHtml and the offer JSON-LD; keep the three in sync. */}
+      <section className="pb-16" data-testid="section-terms">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 border border-border rounded-lg bg-white p-7">
+            <div>
+              <h3 className="font-display font-bold mb-1">Minimum one month.</h3>
+              <p className="text-sm text-muted-foreground">Long enough to prove it, short enough to be a fair test.</p>
+            </div>
+            <div>
+              <h3 className="font-display font-bold mb-1">Paid fortnightly.</h3>
+              <p className="text-sm text-muted-foreground">Like the rest of the payroll. No big figure up front.</p>
+            </div>
+            <div>
+              <h3 className="font-display font-bold mb-1">No lock-in contract.</h3>
+              <p className="text-sm text-muted-foreground">After the first month you can stop with two weeks' notice, and the AI employee stops with it.</p>
             </div>
           </div>
         </div>
