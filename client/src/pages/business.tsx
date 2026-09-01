@@ -144,6 +144,8 @@ export default function Business() {
                   src="/images/app-training-dashboard.webp"
                   alt="Staff training and certification tracking dashboard"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Staff certs and training tracked before the audit asks.
@@ -154,6 +156,8 @@ export default function Business() {
                   src="/images/app-scheduling.webp"
                   alt="Scheduling and calendar management"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Bookings and jobs that write themselves into the diary.
@@ -164,6 +168,8 @@ export default function Business() {
                   src="/images/app-analytics.webp"
                   alt="Analytics and reporting dashboard"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   The week's numbers on one screen, updated automatically.
@@ -174,6 +180,8 @@ export default function Business() {
                   src="/images/app-intake.webp"
                   alt="Order and client intake without rekeying"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Orders and new client details captured once, typed never.
@@ -185,11 +193,15 @@ export default function Business() {
                     src="/images/app-renewals-mobile.webp"
                     alt="Mobile renewals and expiry tracking"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/images/app-video-mobile.webp"
                     alt="Mobile content creation"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
@@ -202,11 +214,15 @@ export default function Business() {
                     src="/images/app-settings-mobile.webp"
                     alt="Mobile settings and branding"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/images/app-scanning-mobile.webp"
                     alt="Mobile document scanning"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
@@ -228,6 +244,8 @@ export default function Business() {
                   src="/images/dashboard-analytics.jpg"
                   alt="Clean dashboard with real-time visibility"
                   className="rounded-xl shadow-lg w-full"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="order-1 lg:order-2 grid sm:grid-cols-2 gap-8">
@@ -409,6 +427,8 @@ export default function Business() {
               src="/images/pete-harris.jpg"
               alt="Pete Harris, founder of Streamlined Tech"
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
+              loading="lazy"
+              decoding="async"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               You deal with me, not an agency
@@ -484,6 +504,8 @@ export default function Business() {
             src="/images/security-bg.jpg"
             alt="Security infrastructure"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-slate-900/85" />
         </div>
@@ -511,6 +533,8 @@ export default function Business() {
             src="/images/professional-work.jpg"
             alt="Professional working"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-slate-900/85"></div>
         </div>
@@ -546,6 +570,8 @@ export default function Business() {
                 src="/images/logo.webp"
                 alt="Streamlined Tech - Intelligent AI Automations"
                 className="h-14 w-auto"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">

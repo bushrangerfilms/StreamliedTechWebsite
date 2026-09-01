@@ -155,6 +155,8 @@ export default function Installers() {
                   src="/images/app-scheduling.webp"
                   alt="Survey and install scheduling"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Surveys and installs that write themselves into the schedule.
@@ -165,6 +167,8 @@ export default function Installers() {
                   src="/images/app-training-dashboard.webp"
                   alt="Installer training and certification tracking dashboard"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Installer certs and training tracked before the audit asks.
@@ -175,6 +179,8 @@ export default function Installers() {
                   src="/images/app-analytics.webp"
                   alt="Analytics and reporting dashboard"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   The week's numbers on one screen, updated automatically.
@@ -185,6 +191,8 @@ export default function Installers() {
                   src="/images/app-intake.webp"
                   alt="Enquiry intake without rekeying"
                   className="w-full h-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Enquiries captured once, quote sent, never retyped.
@@ -196,11 +204,15 @@ export default function Installers() {
                     src="/images/app-renewals-mobile.webp"
                     alt="Mobile renewals and expiry tracking"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/images/app-video-mobile.webp"
                     alt="Mobile app views"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
@@ -213,11 +225,15 @@ export default function Installers() {
                     src="/images/app-settings-mobile.webp"
                     alt="Mobile settings"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/images/app-scanning-mobile.webp"
                     alt="Mobile install photo capture"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
@@ -337,6 +353,8 @@ export default function Installers() {
               src="/images/pete-harris.jpg"
               alt="Pete Harris, founder of Streamlined Tech"
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
+              loading="lazy"
+              decoding="async"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               You deal with me, not an agency
@@ -412,6 +430,8 @@ export default function Installers() {
             src="/images/security-bg.jpg"
             alt="Security infrastructure"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-slate-900/85" />
         </div>
@@ -439,6 +459,8 @@ export default function Installers() {
             src="/images/professional-work.jpg"
             alt="Professional working"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-slate-900/85"></div>
         </div>
@@ -474,6 +496,8 @@ export default function Installers() {
                 src="/images/logo.webp"
                 alt="Streamlined Tech - Intelligent AI Automations"
                 className="h-14 w-auto"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">

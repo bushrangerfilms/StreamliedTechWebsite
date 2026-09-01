@@ -213,6 +213,7 @@ export default function Australia() {
                   width="1280"
                   height="896"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -338,6 +339,7 @@ export default function Australia() {
               alt="Pete Harris, founder of Streamlined Tech"
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
               loading="lazy"
+              decoding="async"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               You deal with me, not an agency
@@ -399,6 +401,7 @@ export default function Australia() {
             alt="Security infrastructure"
             className="w-full h-full object-cover"
             loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-slate-900/85" />
         </div>
@@ -427,6 +430,7 @@ export default function Australia() {
             alt="Professional working"
             className="w-full h-full object-cover"
             loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-slate-900/85"></div>
         </div>
@@ -463,6 +467,7 @@ export default function Australia() {
                 alt="Streamlined Tech - Intelligent AI Automations"
                 className="h-14 w-auto"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">

@@ -104,6 +104,7 @@ export default function Home() {
                   width="1200"
                   height="742"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
@@ -114,6 +115,7 @@ export default function Home() {
                   width="1200"
                   height="779"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
@@ -124,6 +126,7 @@ export default function Home() {
                   width="1200"
                   height="723"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
@@ -134,6 +137,7 @@ export default function Home() {
                   width="1200"
                   height="928"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border flex items-center justify-center p-4 gap-4">
@@ -144,6 +148,7 @@ export default function Home() {
                   width="640"
                   height="1386"
                   loading="lazy"
+                  decoding="async"
                   />
                 <img 
                   src="/images/app-video-mobile.webp" 
@@ -152,6 +157,7 @@ export default function Home() {
                   width="640"
                   height="1387"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="bg-white rounded-xl shadow-md overflow-hidden border border-border flex items-center justify-center p-4 gap-4">
@@ -162,6 +168,7 @@ export default function Home() {
                   width="640"
                   height="1383"
                   loading="lazy"
+                  decoding="async"
                   />
                 <img 
                   src="/images/app-scanning-mobile.webp" 
@@ -170,6 +177,7 @@ export default function Home() {
                   width="640"
                   height="1383"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
             </div>
@@ -188,6 +196,7 @@ export default function Home() {
               width="96"
               height="96"
               loading="lazy"
+              decoding="async"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Built by Pete Harris, 20+ years in heavy industries and on construction sites
@@ -222,6 +231,7 @@ export default function Home() {
                   width="1280"
                   height="853"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="order-1 lg:order-2 grid sm:grid-cols-2 gap-8">
@@ -307,6 +317,7 @@ export default function Home() {
                   width="1200"
                   height="840"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
               <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
@@ -411,6 +422,7 @@ export default function Home() {
                   width="1280"
                   height="853"
                   loading="lazy"
+                  decoding="async"
                   />
               </div>
             </div>
@@ -473,6 +485,7 @@ export default function Home() {
             width="1280"
             height="448"
             loading="lazy"
+            decoding="async"
             />
           <div className="absolute inset-0 bg-slate-900/85" />
         </div>
@@ -506,6 +519,7 @@ export default function Home() {
             width="1280"
             height="853"
             loading="lazy"
+            decoding="async"
             />
           <div className="absolute inset-0 bg-slate-900/85"></div>
         </div>
@@ -544,6 +558,7 @@ export default function Home() {
                 width="389"
                 height="144"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
