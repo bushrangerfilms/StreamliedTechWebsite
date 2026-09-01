@@ -15,6 +15,13 @@ export interface RouteSeo {
    * the client, so there is no runtime counterpart.
    */
   image?: string;
+  /**
+   * LCP image preloads for this route. The prerender plugin strips the
+   * shell's image preloads and injects these instead, so a page with a
+   * gradient hero preloads nothing and /australia preloads its mining pair
+   * without every other route paying for it.
+   */
+  preloads?: { href: string; media?: string }[];
 }
 
 /**
@@ -29,11 +36,12 @@ export interface RouteSeo {
 export const ROUTE_SEO = {
   home: {
     path: "/",
-    title: "Custom Apps for Mining and Construction | Streamlined Tech",
+    title: "Set Your Business Up with AI | Streamlined Tech",
     description:
-      "Custom internal apps for mining and construction crews. Jobs, dockets, timesheets and reporting off paper, set up around how your site already runs.",
+      "We set businesses up with AI. Custom internal apps and automation around how you already run, from Galway for Irish businesses and Australian operations.",
     canonical: "/",
-    image: "/images/og-card-mining.png",
+    image: "/images/og-card-home.png",
+    preloads: [{ href: "/images/hero-operations.webp" }],
   },
   business: {
     path: "/business",
@@ -48,6 +56,13 @@ export const ROUTE_SEO = {
     description:
       "Custom apps for construction and heavy industry contractors in Ireland. Jobs, dockets, timesheets and walkaround checks off paper. Built in Galway.",
     canonical: "/contractors",
+  },
+  guideSetUpAi: {
+    path: "/guide/set-up-ai-for-business-ireland",
+    title: "Set Up AI for Your Business in Ireland | Streamlined Tech",
+    description:
+      "Plain-English steps to set up AI for an Irish SMB. Pick one job, build one app, working inside two weeks.",
+    canonical: "/guide/set-up-ai-for-business-ireland",
   },
   howItWorks: {
     path: "/how-it-works",
@@ -70,6 +85,29 @@ export const ROUTE_SEO = {
       "We build apps that get prestarts, dockets and job packs off paper for mining and construction contractor crews in Australia.",
     canonical: "/australia",
     image: "/images/og-card-mining.png",
+    preloads: [
+      { href: "/images/hero-mining-portrait.webp", media: "(max-width: 767px)" },
+      { href: "/images/hero-mining.webp", media: "(min-width: 768px)" },
+    ],
+  },
+  products: {
+    path: "/products",
+    title: "Software Products We Build and Run | Streamlined Tech",
+    description:
+      "AutoListing.io and Rangplan.ie, the software products Streamlined Tech builds and runs, and the proof behind the client work.",
+    canonical: "/products",
+  },
+  aiEmployees: {
+    // Campaign landing page for the AI Employees ad. Noindex: it exists to
+    // match the ad's message, not to rank, and the trend term stays
+    // quarantined here.
+    path: "/ai-employees",
+    title: "AI Employees | Streamlined Tech",
+    description:
+      "AI employees set up around how your business already runs, from EUR15K a year with human support. Full custom set-up for your business.",
+    canonical: "/ai-employees",
+    noindex: true,
+    image: "/images/og-card-home.png",
   },
   privacy: {
     path: "/privacy",
@@ -123,9 +161,12 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.home,
   ROUTE_SEO.business,
   ROUTE_SEO.contractors,
+  ROUTE_SEO.guideSetUpAi,
   ROUTE_SEO.howItWorks,
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,
+  ROUTE_SEO.products,
+  ROUTE_SEO.aiEmployees,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
   ROUTE_SEO.details,

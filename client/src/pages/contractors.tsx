@@ -1,35 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
+import { SiteHeader, BOOKING_URL } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function Contractors() {
   usePageTracking();
-  const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   useSeo(ROUTE_SEO.contractors);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-white sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center">
-            <img
-              src="/images/logo.webp"
-              alt="Streamlined Tech - Intelligent AI Automations"
-              className="h-[72px] w-auto"
-            />
-          </div>
-          <Button asChild size="lg" data-testid="button-cta-header">
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-              Book A Free Call
-            </a>
-          </Button>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -50,7 +35,7 @@ export default function Contractors() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                   Book A Free Call
                 </a>
               </Button>
@@ -451,7 +436,7 @@ export default function Contractors() {
               One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 Book A Free Call
               </a>
             </Button>
@@ -465,47 +450,7 @@ export default function Contractors() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-border py-12">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            <div className="flex items-center">
-              <img
-                src="/images/logo.webp"
-                alt="Streamlined Tech - Intelligent AI Automations"
-                className="h-14 w-auto"
-              />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
-              <div className="flex gap-6 text-sm">
-                <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <Link href="/business" className="text-muted-foreground hover:text-foreground transition-colors">For all businesses</Link>
-                <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
-                <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</Link>
-              </div>
-              <div className="flex gap-4">
-                <a href="https://www.facebook.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="https://www.instagram.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-instagram">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="https://www.youtube.com/@StreamlinedTechAI" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-youtube">
-                  <Youtube className="w-5 h-5" />
-                </a>
-                <a href="https://www.tiktok.com/@streamlinedtech" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-tiktok">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                  </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/peter-harris-62b05a57/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-linkedin">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

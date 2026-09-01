@@ -103,5 +103,20 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
+  // The shell carries the home route's LCP image preloads. Strip them and
+  // inject this route's own, so a gradient-hero page preloads nothing and
+  // /australia preloads its mining pair without every other route paying
+  // for it.
+  html = html.replace(/[ \t]*<link\s+rel="preload"\s+as="image"[^>]*\/>\r?\n?/gi, "");
+  if (route.preloads?.length) {
+    const tags = route.preloads
+      .map((p) => {
+        const media = p.media ? ` media="${escapeAttr(p.media)}"` : "";
+        return `    <link rel="preload" as="image" href="${escapeAttr(p.href)}"${media} fetchpriority="high" />\n`;
+      })
+      .join("");
+    html = html.replace(/<link rel="preconnect"/i, `${tags}    <link rel="preconnect"`);
+  }
+
   return html;
 }
