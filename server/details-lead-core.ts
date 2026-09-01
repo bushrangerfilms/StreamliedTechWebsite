@@ -10,6 +10,8 @@ export const detailsLeadSchema = z.object({
   email: z.string().trim().email().max(320),
   company: z.string().trim().max(200).nullish(),
   source: z.string().trim().max(60).nullish(),
+  // The AI Employee role asked for on the quote form; details go in about.
+  role: z.string().trim().max(200).nullish(),
   about: z.string().trim().max(2000).nullish(),
   // "quote" (the /ai-employees form) skips the Handy rundown confirmation
   // email, which is written for the mining video audience. The lead is still
@@ -27,7 +29,7 @@ export async function processDetailsLead(
   if (!parsed.success) {
     return { status: 400, body: { error: "Invalid submission" } };
   }
-  const { name, email, company, source, about, website } = parsed.data;
+  const { name, email, company, source, role, about, website } = parsed.data;
   const isQuote = parsed.data.variant === "quote";
 
   // Honeypot filled means a bot: pretend success, store nothing.
@@ -57,6 +59,7 @@ export async function processDetailsLead(
       email,
       company: company || null,
       source: source || null,
+      role: role || null,
       business_about: about || null,
       user_agent: userAgent,
     }),
@@ -136,12 +139,13 @@ export async function processDetailsLead(
 <tr><td style="color:#666;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
 <tr><td style="color:#666;">Company</td><td>${esc(company) || "not given"}</td></tr>
 <tr><td style="color:#666;">Source</td><td>${esc(source) || "direct"}</td></tr>
-<tr><td style="color:#666;">Business</td><td>${esc(about) || "not given"}</td></tr>
+${role ? `<tr><td style="color:#666;">AI Employee role</td><td><strong>${esc(role)}</strong></td></tr>` : ""}
+<tr><td style="color:#666;">${isQuote ? "Role details" : "Business"}</td><td>${esc(about) || "not given"}</td></tr>
 <tr><td style="color:#666;">Confirmation email</td><td>${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}</td></tr>
 </table>
 <p>Reply to this email to reply to them directly.</p>
 </div>`,
-          text: `${isQuote ? "New AI employee quote request." : "New rundown request."}\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nBusiness: ${about || "not given"}\nConfirmation email: ${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}`,
+          text: `${isQuote ? "New AI employee quote request." : "New rundown request."}\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\n${role ? `AI Employee role: ${role}\n` : ""}${isQuote ? "Role details" : "Business"}: ${about || "not given"}\nConfirmation email: ${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}`,
         }),
       });
       if (!notifyRes.ok) {

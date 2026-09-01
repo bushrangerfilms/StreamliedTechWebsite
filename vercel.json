@@ -11,7 +11,8 @@
     { "source": "/terms--conditions", "destination": "/terms", "statusCode": 301 },
     { "source": "/home-8692-4637", "destination": "/", "statusCode": 301 },
     { "source": "/mining", "destination": "/australia", "statusCode": 302 },
-    { "source": "/au", "destination": "/australia", "statusCode": 302 }
+    { "source": "/au", "destination": "/australia", "statusCode": 302 },
+    { "source": "/ai-employees", "destination": "/ai-employees/ie", "statusCode": 302 }
   ],
   "rewrites": [
     { "source": "/business", "destination": "/business.html" },
@@ -22,7 +23,7 @@
     { "source": "/installers", "destination": "/installers.html" },
     { "source": "/australia", "destination": "/australia.html" },
     { "source": "/products", "destination": "/products.html" },
-    { "source": "/ai-employees", "destination": "/ai-employees.html" },
+    { "source": "/ai-employees/ie", "destination": "/ai-employees/ie.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/details", "destination": "/details.html" },

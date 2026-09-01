@@ -113,17 +113,18 @@ export const ROUTE_SEO = {
       "AutoListing.io and Rangplan.ie, the software products Streamlined Tech builds and runs, and the proof behind the client work.",
     canonical: "/products",
   },
-  aiEmployees: {
-    // Campaign landing page for the AI Employees ad. Noindex: it exists to
-    // match the ad's message, not to rank, and the trend term stays
-    // quarantined here.
-    path: "/ai-employees",
+  aiEmployeesIe: {
+    // Ireland campaign landing page for the AI Employees ad (one URL per
+    // region and currency; /ai-employees redirects here). Noindex: it
+    // exists to match the ad's message, not to rank, and the trend term
+    // stays quarantined here.
+    path: "/ai-employees/ie",
     title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
       "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. Works 24/7.",
-    canonical: "/ai-employees",
+    canonical: "/ai-employees/ie",
     noindex: true,
-    image: "/images/og-card-ai-employees.png",
+    image: "/images/og-card-ai-employees-ie.png",
     // Machine-readable offer, so ad platforms and AI crawlers pointed at
     // this landing page pick up the actual offer rather than guessing from
     // the site at large.
@@ -132,7 +133,7 @@ export const ROUTE_SEO = {
       "@type": "Service",
       name: "AI Employees",
       serviceType: "AI employee set-up and support",
-      url: "https://streamlinedai.tech/ai-employees",
+      url: "https://streamlinedai.tech/ai-employees/ie",
       description:
         "An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock. Offered to businesses in Ireland.",
       provider: {
@@ -221,7 +222,7 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,
   ROUTE_SEO.products,
-  ROUTE_SEO.aiEmployees,
+  ROUTE_SEO.aiEmployeesIe,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
   ROUTE_SEO.details,

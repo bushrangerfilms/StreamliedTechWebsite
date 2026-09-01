@@ -6,23 +6,51 @@ import { Spinner } from "@/components/ui/spinner";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
-import { ROUTE_SEO } from "@/lib/seo-routes";
+import { ROUTE_SEO, type RouteSeo } from "@/lib/seo-routes";
 import { SiteHeader, BOOKING_URL } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import NotFound from "@/pages/not-found";
 
-// Campaign landing page for the "AI Employees from €15K/year" ad. Noindex on
-// purpose: it exists to match the ad's message, not to rank, and the trend
-// term stays quarantined here so it can be retired with one edit. The root
-// hero carries a one-line bridge to it for people who type the domain
-// instead of clicking the ad.
-export default function AiEmployees() {
+// Campaign landing pages for the "AI Employees" ads, one URL per region so
+// each ad geo gets its own currency and wording (/ai-employees/ie today,
+// /ai-employees/au etc. when those campaigns exist). Noindex on purpose:
+// they exist to match the ad's message, not to rank, and the trend term
+// stays quarantined here. Adding a region: add a REGIONS entry, a ROUTE_SEO
+// entry, a vercel.json rewrite, a checks.json noindex/page_sources entry,
+// and a region og-card image.
+interface RegionConfig {
+  seo: RouteSeo;
+  eyebrow: string;
+  heroHeadline: string;
+  priceHeading: string;
+  priceBody: string;
+  /** Default lead source tag when no ?src= arrives with the click. */
+  source: string;
+}
+
+const REGIONS: Record<string, RegionConfig> = {
+  ie: {
+    seo: ROUTE_SEO.aiEmployeesIe,
+    eyebrow: "For businesses in Ireland",
+    heroHeadline: "AI Employees from €15K a year",
+    priceHeading: "From €15K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
+    source: "ai-employees-ie",
+  },
+};
+
+export default function AiEmployees({ params }: { params: { region: string } }) {
+  const region = REGIONS[params.region];
+
   usePageTracking();
-  useSeo(ROUTE_SEO.aiEmployees);
+  useSeo(region ? region.seo : ROUTE_SEO.notFound);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [about, setAbout] = useState("");
+  const [role, setRole] = useState("");
+  const [details, setDetails] = useState("");
   // Honeypot: real visitors never see or fill this field.
   const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -37,6 +65,10 @@ export default function AiEmployees() {
       sessionStorage.setItem("ai-employees-src", src.slice(0, 60));
     }
   }, []);
+
+  if (!region) {
+    return <NotFound />;
+  }
 
   const validate = () => {
     const errors: { name?: string; email?: string } = {};
@@ -64,8 +96,9 @@ export default function AiEmployees() {
           name: name.trim(),
           email: email.trim(),
           company: company.trim() || null,
-          about: about.trim() || null,
-          source: sessionStorage.getItem("ai-employees-src") || "ai-employees",
+          role: role.trim() || null,
+          about: details.trim() || null,
+          source: sessionStorage.getItem("ai-employees-src") || region.source,
           variant: "quote",
           website,
         }),
@@ -89,10 +122,10 @@ export default function AiEmployees() {
         <div className="relative z-10 container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-wide text-amber-400 mb-4 uppercase">
-              For businesses in Ireland
+              {region.eyebrow}
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              AI Employees from €15K a year
+              {region.heroHeadline}
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
               An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.
@@ -129,9 +162,9 @@ export default function AiEmployees() {
               </p>
             </div>
             <div className="bg-white p-7 rounded-lg border border-border">
-              <h2 className="text-xl font-display font-bold mb-3">From €15K a year</h2>
+              <h2 className="text-xl font-display font-bold mb-3">{region.priceHeading}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.
+                {region.priceBody}
               </p>
             </div>
           </div>
@@ -144,7 +177,7 @@ export default function AiEmployees() {
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">Get a quote</h2>
             <p className="text-muted-foreground text-center mb-8">
-              Tell me the job you'd hand over first and I'll come back with a figure and how it would work in your business.
+              Tell me the role you'd hand over first and I'll come back with a figure and how it would work in your business.
             </p>
             <div className="bg-white rounded-xl border border-border shadow-md p-6 md:p-8">
               {submitted ? (
@@ -191,7 +224,7 @@ export default function AiEmployees() {
                       {fieldErrors.email && <p className="text-sm text-destructive mt-1">{fieldErrors.email}</p>}
                     </div>
                     <div>
-                      <Label htmlFor="quote-company" className="mb-2 block">Company name (optional)</Label>
+                      <Label htmlFor="quote-company" className="mb-2 block">Company name</Label>
                       <Input
                         id="quote-company"
                         name="company"
@@ -204,16 +237,29 @@ export default function AiEmployees() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="quote-about" className="mb-2 block">What job would you hand over first? (optional)</Label>
+                      <Label htmlFor="quote-role" className="mb-2 block">AI Employee role</Label>
+                      <Input
+                        id="quote-role"
+                        name="role"
+                        type="text"
+                        className="text-base h-12"
+                        placeholder="Answering enquiries, booking jobs, chasing invoices..."
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                        data-testid="input-role"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="quote-details" className="mb-2 block">Role details</Label>
                       <textarea
-                        id="quote-about"
-                        name="about"
+                        id="quote-details"
+                        name="details"
                         rows={3}
                         className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                        placeholder="A line or two about the business and the job that eats the most time. It makes the quote a lot more useful."
-                        value={about}
-                        onChange={(e) => setAbout(e.target.value)}
-                        data-testid="input-about"
+                        placeholder="What the role would handle day to day, and a line about how you work now. It makes the quote a lot more useful."
+                        value={details}
+                        onChange={(e) => setDetails(e.target.value)}
+                        data-testid="input-details"
                       />
                     </div>
                     {/* Honeypot, hidden from real visitors */}
