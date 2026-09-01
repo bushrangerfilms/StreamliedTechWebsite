@@ -46,7 +46,7 @@ const REGIONS: Record<string, RegionConfig> = {
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
     fortnightlyLine: "That is about €580 a fortnight.",
-    exposureLine: "At €15K a year, the most you can be out is under €1,900, not €15,000.",
+    exposureLine: "At €15K a year, a fair one-month test costs under €1,900.",
     source: "ai-employees-ie",
   },
   // AU, UK and US anchors are €15K converted at rounded market rates. A
@@ -61,7 +61,7 @@ const REGIONS: Record<string, RegionConfig> = {
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
     fortnightlyLine: "That is about AU$960 a fortnight.",
-    exposureLine: "At AU$25K a year, the most you can be out is under AU$3,100, not AU$25,000.",
+    exposureLine: "At AU$25K a year, a fair one-month test costs under AU$3,100.",
     heroNote: "Calls booked to suit Australian hours.",
     source: "ai-employees-au",
   },
@@ -73,7 +73,7 @@ const REGIONS: Record<string, RegionConfig> = {
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
     fortnightlyLine: "That is £500 a fortnight.",
-    exposureLine: "At £13K a year, the most you can be out is under £1,600, not £13,000.",
+    exposureLine: "At £13K a year, a fair one-month test costs under £1,600.",
     source: "ai-employees-uk",
   },
   us: {
@@ -84,7 +84,7 @@ const REGIONS: Record<string, RegionConfig> = {
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
     fortnightlyLine: "That is about $650 a fortnight.",
-    exposureLine: "At $17K a year, the most you can be out is under $2,150, not $17,000.",
+    exposureLine: "At $17K a year, a fair one-month test costs under $2,150.",
     source: "ai-employees-us",
   },
 };
@@ -275,7 +275,7 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
             </div>
             <div>
               <h3 className="font-display font-bold mb-1">No lock-in contract.</h3>
-              <p className="text-sm text-muted-foreground">After the first month you can stop with two weeks' notice, and the AI employee stops with it. {region.exposureLine}</p>
+              <p className="text-sm text-muted-foreground">After the first month you can stop with two weeks' notice. {region.exposureLine}</p>
             </div>
           </div>
         </div>

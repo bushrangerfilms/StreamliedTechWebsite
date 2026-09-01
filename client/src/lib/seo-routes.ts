@@ -119,7 +119,7 @@ function aiEmployeesRoute(r: {
         <p class="mb-6">${r.priceBody} ${r.fortnightlyLine}</p>
         <p class="mb-2"><strong>Minimum one month.</strong> Long enough to prove it, short enough to be a fair test.</p>
         <p class="mb-2"><strong>Paid fortnightly.</strong> Like the rest of the payroll. No big figure up front.</p>
-        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice, and the AI employee stops with it. ${r.exposureLine}</p>
+        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice. ${r.exposureLine}</p>
         <p class="mb-6">There is also a smaller one-off build, from €3,900, where you get a tool and your team runs it. An AI employee is the other way round: the system does the job itself, and we look after it for the year.</p>
         <p class="mb-6">Your data stays yours: encrypted storage, strict access controls, isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
         <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech was founded by Pete Harris in Galway, Ireland, and builds and runs AutoListing.io and Rangplan.ie.</p>
@@ -194,7 +194,7 @@ export const ROUTE_SEO = {
   aiEmployeesIe: aiEmployeesRoute({
     regionPath: "ie",
     fortnightlyLine: "That is about €580 a fortnight.",
-    exposureLine: "At €15K a year, the most you can be out is under €1,900, not €15,000.",
+    exposureLine: "At €15K a year, a fair one-month test costs under €1,900.",
     title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
       "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
@@ -217,7 +217,7 @@ export const ROUTE_SEO = {
   aiEmployeesAu: aiEmployeesRoute({
     regionPath: "au",
     fortnightlyLine: "That is about AU$960 a fortnight.",
-    exposureLine: "At AU$25K a year, the most you can be out is under AU$3,100, not AU$25,000.",
+    exposureLine: "At AU$25K a year, a fair one-month test costs under AU$3,100.",
     title: "AI Employees from AU$25K/year, Australia | Streamlined Tech",
     description:
       "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
@@ -236,7 +236,7 @@ export const ROUTE_SEO = {
   aiEmployeesUk: aiEmployeesRoute({
     regionPath: "uk",
     fortnightlyLine: "That is £500 a fortnight.",
-    exposureLine: "At £13K a year, the most you can be out is under £1,600, not £13,000.",
+    exposureLine: "At £13K a year, a fair one-month test costs under £1,600.",
     title: "AI Employees from £13K/year, UK | Streamlined Tech",
     description:
       "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
@@ -255,7 +255,7 @@ export const ROUTE_SEO = {
   aiEmployeesUs: aiEmployeesRoute({
     regionPath: "us",
     fortnightlyLine: "That is about $650 a fortnight.",
-    exposureLine: "At $17K a year, the most you can be out is under $2,150, not $17,000.",
+    exposureLine: "At $17K a year, a fair one-month test costs under $2,150.",
     title: "AI Employees from $17K/year, United States | Streamlined Tech",
     description:
       "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
