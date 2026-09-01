@@ -394,6 +394,10 @@ export default function Business() {
                 <Link href="/how-it-works" className="text-primary underline hover:no-underline" data-testid="link-how-it-works">
                   the how it works page
                 </Link>
+                . New to AI altogether? Start with{" "}
+                <Link href="/guide/set-up-ai-for-business-ireland" className="text-primary underline hover:no-underline" data-testid="link-guide-set-up-ai">
+                  the plain-English guide to setting up AI
+                </Link>
                 .
               </p>
             </div>

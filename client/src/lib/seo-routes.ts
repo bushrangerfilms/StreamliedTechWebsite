@@ -49,6 +49,13 @@ export const ROUTE_SEO = {
       "Custom apps for construction and heavy industry contractors in Ireland. Jobs, dockets, timesheets and walkaround checks off paper. Built in Galway.",
     canonical: "/contractors",
   },
+  guideSetUpAi: {
+    path: "/guide/set-up-ai-for-business-ireland",
+    title: "Set Up AI for Your Business in Ireland | Streamlined Tech",
+    description:
+      "Plain-English steps to set up AI for an Irish SMB. Pick one job, build one app, working inside two weeks.",
+    canonical: "/guide/set-up-ai-for-business-ireland",
+  },
   howItWorks: {
     path: "/how-it-works",
     title: "Custom Internal App Cost and Timeline | Streamlined Tech",
@@ -123,6 +130,7 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.home,
   ROUTE_SEO.business,
   ROUTE_SEO.contractors,
+  ROUTE_SEO.guideSetUpAi,
   ROUTE_SEO.howItWorks,
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,

@@ -15,6 +15,7 @@
     { "source": "/business", "destination": "/business.html" },
     { "source": "/galway", "destination": "/business.html" },
     { "source": "/contractors", "destination": "/contractors.html" },
+    { "source": "/guide/set-up-ai-for-business-ireland", "destination": "/guide/set-up-ai-for-business-ireland.html" },
     { "source": "/how-it-works", "destination": "/how-it-works.html" },
     { "source": "/installers", "destination": "/installers.html" },
     { "source": "/australia", "destination": "/australia.html" },
