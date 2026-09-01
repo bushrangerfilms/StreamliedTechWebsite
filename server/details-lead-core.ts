@@ -13,6 +13,12 @@ export const detailsLeadSchema = z.object({
   // The AI Employee role asked for on the quote form; details go in about.
   role: z.string().trim().max(200).nullish(),
   about: z.string().trim().max(2000).nullish(),
+  // Click-attribution identifier from the ChatGPT ad landing URL (?oppref=),
+  // passed through unmodified per OpenAI's Conversions API docs.
+  oppref: z.string().trim().max(300).nullish(),
+  // The landing page URL, used as the conversion's source_url after an
+  // own-origin check.
+  page_url: z.string().trim().max(500).nullish(),
   // "quote" (the /ai-employees form) skips the Handy rundown confirmation
   // email, which is written for the mining video audience. The lead is still
   // saved and Pete is still notified; the reply to a quote is personal.
@@ -29,7 +35,7 @@ export async function processDetailsLead(
   if (!parsed.success) {
     return { status: 400, body: { error: "Invalid submission" } };
   }
-  const { name, email, company, source, role, about, website } = parsed.data;
+  const { name, email, company, source, role, about, website, oppref, page_url } = parsed.data;
   const isQuote = parsed.data.variant === "quote";
 
   // Honeypot filled means a bot: pretend success, store nothing.
@@ -153,6 +159,49 @@ ${role ? `<tr><td style="color:#666;">AI Employee role</td><td><strong>${esc(rol
       }
     } catch (notifyError) {
       console.error("details-lead: notify error", notifyError);
+    }
+  }
+
+  // Report quote submissions to the OpenAI Ads Conversions API (server-side,
+  // no pixel, no cookies; oppref alone does click matching). Failure is
+  // logged and never fails the lead. The lead id doubles as the event id so
+  // retries and duplicates collapse server-side at OpenAI.
+  const adsPixelId = process.env.OPENAI_ADS_PIXEL_ID;
+  const adsKey = process.env.OPENAI_ADS_CONVERSION_KEY;
+  if (isQuote && adsPixelId && adsKey && lead?.id) {
+    try {
+      const sourceUrl =
+        page_url && page_url.startsWith("https://streamlinedai.tech")
+          ? page_url
+          : "https://streamlinedai.tech/ai-employees/ie";
+      const convRes = await fetch(
+        `https://bzr.openai.com/v1/events?pid=${encodeURIComponent(adsPixelId)}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${adsKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            events: [
+              {
+                id: lead.id,
+                type: "lead_created",
+                timestamp_ms: Date.now(),
+                ...(oppref ? { oppref } : {}),
+                source_url: sourceUrl,
+                action_source: "web",
+                data: { type: "customer_action" },
+              },
+            ],
+          }),
+        },
+      );
+      if (!convRes.ok) {
+        console.error("details-lead: conversion event failed", convRes.status, await convRes.text());
+      }
+    } catch (convError) {
+      console.error("details-lead: conversion event error", convError);
     }
   }
 
