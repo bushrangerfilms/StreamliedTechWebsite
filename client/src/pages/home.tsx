@@ -161,7 +161,7 @@ export default function Home() {
                 which now lives on /australia. */}
             <p className="text-sm text-slate-400 mt-3" data-testid="text-bridge-ai-employees">
               If you got here from the AI Employees ad: that is our yearly agreement, full custom set-up for your business with human support.{" "}
-              <Link href="/ai-employees" className="underline hover:no-underline text-slate-200">
+              <Link href="/ai-employees/ie" className="underline hover:no-underline text-slate-200">
                 Here is the full page.
               </Link>
             </p>

@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -32,8 +32,9 @@ function Router() {
       <Route path="/installers" component={Installers} />
       <Route path="/australia" component={Australia} />
       <Route path="/products" component={Products} />
-      {/* Campaign landing page for the AI Employees ad, noindex. */}
-      <Route path="/ai-employees" component={AiEmployees} />
+      {/* Campaign landing pages for the AI Employees ads, one per region, noindex. */}
+      <Route path="/ai-employees/:region" component={AiEmployees} />
+      <Route path="/ai-employees">{() => <Redirect to="/ai-employees/ie" />}</Route>
       <Route path="/details" component={Details} />
       <Route path="/details/thanks" component={DetailsThanks} />
       <Route path="/privacy" component={Privacy} />

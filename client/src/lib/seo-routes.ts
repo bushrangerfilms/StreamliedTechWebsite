@@ -113,17 +113,18 @@ export const ROUTE_SEO = {
       "AutoListing.io and Rangplan.ie, the software products Streamlined Tech builds and runs, and the proof behind the client work.",
     canonical: "/products",
   },
-  aiEmployees: {
-    // Campaign landing page for the AI Employees ad. Noindex: it exists to
-    // match the ad's message, not to rank, and the trend term stays
-    // quarantined here.
-    path: "/ai-employees",
-    title: "AI Employees from €15K/year | Streamlined Tech",
+  aiEmployeesIe: {
+    // Ireland campaign landing page for the AI Employees ad (one URL per
+    // region and currency; /ai-employees redirects here). Noindex: it
+    // exists to match the ad's message, not to rank, and the trend term
+    // stays quarantined here.
+    path: "/ai-employees/ie",
+    title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
-      "AI employees set up around how your business already runs, from €15K a year with human support. Full custom set-up for your business. Works 24/7.",
-    canonical: "/ai-employees",
+      "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+    canonical: "/ai-employees/ie",
     noindex: true,
-    image: "/images/og-card-ai-employees.png",
+    image: "/images/og-card-ai-employees-ie.png",
     // Machine-readable offer, so ad platforms and AI crawlers pointed at
     // this landing page pick up the actual offer rather than guessing from
     // the site at large.
@@ -132,9 +133,9 @@ export const ROUTE_SEO = {
       "@type": "Service",
       name: "AI Employees",
       serviceType: "AI employee set-up and support",
-      url: "https://streamlinedai.tech/ai-employees",
+      url: "https://streamlinedai.tech/ai-employees/ie",
       description:
-        "An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock.",
+        "An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock. Offered to businesses in Ireland.",
       provider: {
         "@type": "ProfessionalService",
         name: "Streamlined Tech",
@@ -152,6 +153,7 @@ export const ROUTE_SEO = {
     // Mirror of the rendered page copy for crawlers that do not run JS.
     staticHtml: `
       <main class="container mx-auto px-6 py-16" style="max-width:48rem">
+        <p class="text-sm font-semibold mb-2">For businesses in Ireland</p>
         <h1 class="text-4xl font-display font-bold mb-6">AI Employees from €15K a year</h1>
         <p class="mb-6">An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.</p>
         <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
@@ -159,7 +161,7 @@ export const ROUTE_SEO = {
         <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
         <p class="mb-6">A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
         <h2 class="text-xl font-display font-bold mb-2">From €15K a year</h2>
-        <p class="mb-6">That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. The exact figure is agreed in writing before anything starts.</p>
+        <p class="mb-6">That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.</p>
         <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech is Pete Harris, based in Galway, Ireland, and also builds and runs AutoListing.io and Rangplan.ie.</p>
       </main>`,
   },
@@ -220,7 +222,7 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,
   ROUTE_SEO.products,
-  ROUTE_SEO.aiEmployees,
+  ROUTE_SEO.aiEmployeesIe,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
   ROUTE_SEO.details,
