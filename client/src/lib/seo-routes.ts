@@ -36,9 +36,9 @@ export interface RouteSeo {
 export const ROUTE_SEO = {
   home: {
     path: "/",
-    title: "Custom Internal Apps and Automation | Streamlined Tech",
+    title: "Set Your Business Up with AI | Streamlined Tech",
     description:
-      "We set up custom internal apps and automation around how your business already runs. Built in Galway, working with Irish businesses and Australian operations.",
+      "We set businesses up with AI. Custom internal apps and automation around how you already run, from Galway for Irish businesses and Australian operations.",
     canonical: "/",
     image: "/images/og-card-home.png",
     preloads: [{ href: "/images/hero-operations.webp" }],

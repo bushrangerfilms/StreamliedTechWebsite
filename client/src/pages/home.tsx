@@ -126,10 +126,10 @@ export default function Home() {
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight"
               data-testid="text-hero-headline"
             >
-              We set up custom internal apps around how your business already runs.
+              We set your business up with AI.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
-              Enquiries answered, bookings written into the diary, jobs tracked and reports done without anyone chasing. Based in Galway, working with Irish businesses and with Australian operations.
+              Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Based in Galway, working with Irish businesses and with Australian operations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
