@@ -226,7 +226,7 @@ export default function Details() {
             loading="lazy"
           />
           <p className="text-muted-foreground leading-relaxed">
-            I'm Pete Harris. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. Streamlined Tech is me, not an agency, so you'd be dealing with the person who actually builds it.
+            I'm Pete Harris, the founder. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. Rundown requests from this page come straight to me.
           </p>
         </div>
       </section>

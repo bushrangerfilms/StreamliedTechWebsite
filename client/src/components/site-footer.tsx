@@ -72,6 +72,9 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
+        <p className="text-xs text-muted-foreground mt-10">
+          Streamlined Digital Tech Limited, registered in Ireland, company number 805162. Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.
+        </p>
       </div>
     </footer>
   );

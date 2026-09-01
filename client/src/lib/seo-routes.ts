@@ -68,6 +68,8 @@ function aiEmployeesRoute(r: {
   priceBody: string;
   country: string;
   offerAudience: string;
+  fortnightlyLine: string;
+  exposureLine: string;
   lowPrice: string;
   priceCurrency: string;
   offerPriceText: string;
@@ -112,13 +114,15 @@ function aiEmployeesRoute(r: {
         <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
         <p class="mb-6">The system does not clock off. An enquiry that arrives at ten on a Sunday night is answered at ten on a Sunday night, and it is logged where you'll see it Monday morning.</p>
         <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
-        <p class="mb-6">A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
+        <p class="mb-6">Real people built it and real people look after it. When something needs changing, you tell us and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
         <h2 class="text-xl font-display font-bold mb-2">${r.priceHeading}</h2>
-        <p class="mb-6">${r.priceBody}</p>
+        <p class="mb-6">${r.priceBody} ${r.fortnightlyLine}</p>
         <p class="mb-2"><strong>Minimum one month.</strong> Long enough to prove it, short enough to be a fair test.</p>
         <p class="mb-2"><strong>Paid fortnightly.</strong> Like the rest of the payroll. No big figure up front.</p>
-        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice, and the AI employee stops with it.</p>
-        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech is Pete Harris, based in Galway, Ireland, and also builds and runs AutoListing.io and Rangplan.ie.</p>
+        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice, and the AI employee stops with it. ${r.exposureLine}</p>
+        <p class="mb-6">There is also a smaller one-off build, from €3,900, where you get a tool and your team runs it. An AI employee is the other way round: the system does the job itself, and we look after it for the year.</p>
+        <p class="mb-6">Your data stays yours: encrypted storage, strict access controls, isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
+        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech was founded by Pete Harris in Galway, Ireland, and builds and runs AutoListing.io and Rangplan.ie.</p>
       </main>`,
   };
 }
@@ -189,6 +193,8 @@ export const ROUTE_SEO = {
   },
   aiEmployeesIe: aiEmployeesRoute({
     regionPath: "ie",
+    fortnightlyLine: "That is about €580 a fortnight.",
+    exposureLine: "At €15K a year, the most you can be out is under €1,900, not €15,000.",
     title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
       "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
@@ -210,6 +216,8 @@ export const ROUTE_SEO = {
   // og card and square ad image.
   aiEmployeesAu: aiEmployeesRoute({
     regionPath: "au",
+    fortnightlyLine: "That is about AU$960 a fortnight.",
+    exposureLine: "At AU$25K a year, the most you can be out is under AU$3,100, not AU$25,000.",
     title: "AI Employees from AU$25K/year, Australia | Streamlined Tech",
     description:
       "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
@@ -227,6 +235,8 @@ export const ROUTE_SEO = {
   }),
   aiEmployeesUk: aiEmployeesRoute({
     regionPath: "uk",
+    fortnightlyLine: "That is £500 a fortnight.",
+    exposureLine: "At £13K a year, the most you can be out is under £1,600, not £13,000.",
     title: "AI Employees from £13K/year, UK | Streamlined Tech",
     description:
       "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
@@ -244,6 +254,8 @@ export const ROUTE_SEO = {
   }),
   aiEmployeesUs: aiEmployeesRoute({
     regionPath: "us",
+    fortnightlyLine: "That is about $650 a fortnight.",
+    exposureLine: "At $17K a year, the most you can be out is under $2,150, not $17,000.",
     title: "AI Employees from $17K/year, United States | Streamlined Tech",
     description:
       "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",

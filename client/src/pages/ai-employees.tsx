@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,12 +18,19 @@ import NotFound from "@/pages/not-found";
 // stays quarantined here. Adding a region: add a REGIONS entry, a ROUTE_SEO
 // entry, a vercel.json rewrite, a checks.json noindex/page_sources entry,
 // and a region og-card image.
+//
+// Voice rule (Pete, 1 Sep): never present Streamlined Tech as one person.
+// Company copy says "we"; the founder appears as the founder.
 interface RegionConfig {
   seo: RouteSeo;
   eyebrow: string;
   heroHeadline: string;
   priceHeading: string;
   priceBody: string;
+  /** Arithmetic on the published price, e.g. "That is about €580 a fortnight." */
+  fortnightlyLine: string;
+  /** The worst-case exit cost, derived from the published price. */
+  exposureLine: string;
   /** Optional extra line under the hero CTAs (e.g. call-hours note). */
   heroNote?: string;
   /** Default lead source tag when no ?src= arrives with the click. */
@@ -38,11 +45,14 @@ const REGIONS: Record<string, RegionConfig> = {
     priceHeading: "From €15K a year",
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
+    fortnightlyLine: "That is about €580 a fortnight.",
+    exposureLine: "At €15K a year, the most you can be out is under €1,900, not €15,000.",
     source: "ai-employees-ie",
   },
   // AU, UK and US anchors are €15K converted at rounded market rates. A
   // price change here must also change the matching ROUTE_SEO entry in
-  // seo-routes.ts and that region's og card and square ad image.
+  // seo-routes.ts, the fortnightly and exposure arithmetic, and that
+  // region's og card and square ad image.
   au: {
     seo: ROUTE_SEO.aiEmployeesAu,
     eyebrow: "For businesses in Australia",
@@ -50,6 +60,8 @@ const REGIONS: Record<string, RegionConfig> = {
     priceHeading: "From AU$25K a year",
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
+    fortnightlyLine: "That is about AU$960 a fortnight.",
+    exposureLine: "At AU$25K a year, the most you can be out is under AU$3,100, not AU$25,000.",
     heroNote: "Calls booked to suit Australian hours.",
     source: "ai-employees-au",
   },
@@ -60,6 +72,8 @@ const REGIONS: Record<string, RegionConfig> = {
     priceHeading: "From £13K a year",
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
+    fortnightlyLine: "That is £500 a fortnight.",
+    exposureLine: "At £13K a year, the most you can be out is under £1,600, not £13,000.",
     source: "ai-employees-uk",
   },
   us: {
@@ -69,6 +83,8 @@ const REGIONS: Record<string, RegionConfig> = {
     priceHeading: "From $17K a year",
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
+    fortnightlyLine: "That is about $650 a fortnight.",
+    exposureLine: "At $17K a year, the most you can be out is under $2,150, not $17,000.",
     source: "ai-employees-us",
   },
 };
@@ -90,6 +106,9 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string }>({});
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const thanksRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     // Persist the ?src= campaign tag before anything else can navigate.
@@ -107,6 +126,15 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
     }
   }, []);
 
+  // A submitted form swaps for a much shorter thanks block, so without this
+  // the viewport can end up past the confirmation entirely.
+  useEffect(() => {
+    if (submitted && thanksRef.current) {
+      thanksRef.current.scrollIntoView({ block: "center" });
+      thanksRef.current.focus();
+    }
+  }, [submitted]);
+
   if (!region) {
     return <NotFound />;
   }
@@ -114,12 +142,21 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
   const validate = () => {
     const errors: { name?: string; email?: string } = {};
     if (name.trim().length < 2) {
-      errors.name = "Your name helps me address you properly.";
+      errors.name = "Your name helps us address you properly.";
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       errors.email = "That email doesn't look right.";
     }
     setFieldErrors(errors);
+    // Surface the failure: without this, errors can render far above the
+    // viewport and the button appears to do nothing.
+    if (errors.name && nameRef.current) {
+      nameRef.current.focus();
+      nameRef.current.scrollIntoView({ block: "center" });
+    } else if (errors.email && emailRef.current) {
+      emailRef.current.focus();
+      emailRef.current.scrollIntoView({ block: "center" });
+    }
     return Object.keys(errors).length === 0;
   };
 
@@ -151,14 +188,14 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
       }
       setSubmitted(true);
     } catch {
-      setError("Something went wrong sending that. Give it another try, or email me directly at");
+      setError("Something went wrong sending that. Give it another try, or email us directly at");
       setSubmitting(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
+      <SiteHeader minimal />
 
       {/* Hero, message-matched to the ad */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -174,14 +211,15 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
               An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
-              <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
+              <Button asChild size="lg" className="w-full sm:w-auto text-base px-8 py-6" data-testid="button-cta-hero">
                 <a href="#quote">Get a quote</a>
               </Button>
               <div className="text-sm text-slate-300 sm:self-center">
                 Prefer to talk?{" "}
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline text-slate-200">
                   Book a free call.
-                </a>
+                </a>{" "}
+                Fifteen minutes, no hard sell.
               </div>
             </div>
             {region.heroNote && (
@@ -204,22 +242,26 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
             <div className="bg-white p-7 rounded-lg border border-border">
               <h2 className="text-xl font-display font-bold mb-3">Full human support</h2>
               <p className="text-muted-foreground leading-relaxed">
-                A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.
+                Real people built it and real people look after it. When something needs changing, you tell us and it gets changed. Support hours and response times are agreed in writing as part of the set-up.
               </p>
             </div>
             <div className="bg-white p-7 rounded-lg border border-border">
               <h2 className="text-xl font-display font-bold mb-3">{region.priceHeading}</h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed mb-3">
                 {region.priceBody}
+              </p>
+              <p className="text-foreground font-medium">
+                {region.fortnightlyLine}
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Commercial terms, identical across regions. Pete's call 1 Sep:
-          one month minimum, two weeks' notice. Mirrored in seo-routes
-          staticHtml and the offer JSON-LD; keep the three in sync. */}
+      {/* Commercial terms. Pete's call 1 Sep: one month minimum, two weeks'
+          notice. Exposure line is arithmetic on the published price per
+          region. Mirrored in seo-routes staticHtml and the offer JSON-LD;
+          keep the three in sync. */}
       <section className="pb-16" data-testid="section-terms">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 border border-border rounded-lg bg-white p-7">
@@ -233,26 +275,40 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
             </div>
             <div>
               <h3 className="font-display font-bold mb-1">No lock-in contract.</h3>
-              <p className="text-sm text-muted-foreground">After the first month you can stop with two weeks' notice, and the AI employee stops with it.</p>
+              <p className="text-sm text-muted-foreground">After the first month you can stop with two weeks' notice, and the AI employee stops with it. {region.exposureLine}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Quote form */}
-      <section id="quote" className="py-16 bg-slate-50" data-testid="section-quote">
+      <section id="quote" className="py-16 bg-slate-50 scroll-mt-28" data-testid="section-quote">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">Get a quote</h2>
-            <p className="text-muted-foreground text-center mb-8">
-              Tell me the role you'd hand over first and I'll come back with a figure and how it would work in your business.
+            <p className="text-muted-foreground text-center mb-6">
+              Tell us the job you'd hand over first, and the quote comes back with a figure and how it would work in your business.
             </p>
+            <div className="max-w-xl mx-auto flex items-center gap-4 mb-6" data-testid="block-form-trust">
+              <img
+                src="/images/pete-harris.jpg"
+                alt="Pete Harris, founder of Streamlined Tech"
+                className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+              <p className="text-sm text-muted-foreground">
+                Based in Galway, Ireland. Every quote request from this page is read by the founder. Or email{" "}
+                <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline">peter@streamlinedai.tech</a>.
+              </p>
+            </div>
             <div className="bg-white rounded-xl border border-border shadow-md p-6 md:p-8">
               {submitted ? (
                 <div className="text-center py-8" data-testid="text-quote-thanks">
-                  <h3 className="text-2xl font-display font-bold mb-3">Got it.</h3>
+                  <h3 ref={thanksRef} tabIndex={-1} className="text-2xl font-display font-bold mb-3 outline-none">Got it.</h3>
                   <p className="text-muted-foreground">
-                    Your details are in and I'll come back to you with a quote. If you'd rather not wait,{" "}
+                    Your details are in and your quote comes back by email. If you'd rather not wait,{" "}
                     <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline hover:no-underline">
                       book a call
                     </a>{" "}
@@ -271,10 +327,15 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                         autoComplete="name"
                         className="text-base h-12"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        aria-invalid={!!fieldErrors.name}
+                        ref={nameRef}
+                        onChange={(e) => {
+                          setName(e.target.value);
+                          if (fieldErrors.name) setFieldErrors((prev) => ({ ...prev, name: undefined }));
+                        }}
                         data-testid="input-name"
                       />
-                      {fieldErrors.name && <p className="text-sm text-destructive mt-1">{fieldErrors.name}</p>}
+                      {fieldErrors.name && <p role="alert" className="text-sm text-destructive mt-1">{fieldErrors.name}</p>}
                     </div>
                     <div>
                       <Label htmlFor="quote-email" className="mb-2 block">Email</Label>
@@ -286,13 +347,20 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                         autoComplete="email"
                         className="text-base h-12"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        aria-invalid={!!fieldErrors.email}
+                        ref={emailRef}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          if (fieldErrors.email) setFieldErrors((prev) => ({ ...prev, email: undefined }));
+                        }}
                         data-testid="input-email"
                       />
-                      {fieldErrors.email && <p className="text-sm text-destructive mt-1">{fieldErrors.email}</p>}
+                      {fieldErrors.email && <p role="alert" className="text-sm text-destructive mt-1">{fieldErrors.email}</p>}
                     </div>
                     <div>
-                      <Label htmlFor="quote-company" className="mb-2 block">Company name</Label>
+                      <Label htmlFor="quote-company" className="mb-2 block">
+                        Company name <span className="text-muted-foreground font-normal">(optional)</span>
+                      </Label>
                       <Input
                         id="quote-company"
                         name="company"
@@ -305,26 +373,32 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                       />
                     </div>
                     <div>
-                      <Label htmlFor="quote-role" className="mb-2 block">AI Employee role</Label>
+                      <Label htmlFor="quote-role" className="mb-2 block">
+                        What job would you hand over first? <span className="text-muted-foreground font-normal">(optional)</span>
+                      </Label>
                       <Input
                         id="quote-role"
                         name="role"
                         type="text"
                         className="text-base h-12"
-                        placeholder="Answering enquiries, booking jobs, chasing invoices..."
+                        placeholder="Answering enquiries, booking jobs..."
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         data-testid="input-role"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="quote-details" className="mb-2 block">Role details</Label>
+                      <Label htmlFor="quote-details" className="mb-2 block">
+                        Role details <span className="text-muted-foreground font-normal">(optional)</span>
+                      </Label>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        What it would handle day to day, and a line about how you work now. It makes the quote a lot more useful.
+                      </p>
                       <textarea
                         id="quote-details"
                         name="details"
                         rows={3}
                         className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                        placeholder="What the role would handle day to day, and a line about how you work now. It makes the quote a lot more useful."
                         value={details}
                         onChange={(e) => setDetails(e.target.value)}
                         data-testid="input-details"
@@ -343,6 +417,11 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                         onChange={(e) => setWebsite(e.target.value)}
                       />
                     </div>
+                    {(fieldErrors.name || fieldErrors.email) && (
+                      <p role="alert" className="text-sm text-destructive" data-testid="text-validation-summary">
+                        Check the fields above and try again.
+                      </p>
+                    )}
                     {error && (
                       <p className="text-sm text-destructive" data-testid="text-submit-error">
                         {error}{" "}
@@ -359,11 +438,11 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                       {submitting ? (
                         <span className="inline-flex items-center gap-2"><Spinner className="size-4" /> Sending...</span>
                       ) : (
-                        "Get a quote"
+                        "Get my quote"
                       )}
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
-                      One reply, no spam.{" "}
+                      One reply, from the founder. No spam.{" "}
                       <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
                         Privacy Policy
                       </a>
@@ -381,28 +460,28 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-display font-bold mb-8 text-center">
-              Built by someone who builds for a living
+              We build for a living
             </h2>
             <div className="grid md:grid-cols-3 gap-6 mb-10">
               {[
                 {
+                  src: "/images/app-training-dashboard.webp",
+                  alt: "Staff training and certification tracking dashboard",
+                  caption: "Staff certs and training tracked before the audit asks.",
+                  width: 1200,
+                  height: 742,
+                },
+                {
                   src: "/images/app-scheduling.webp",
-                  alt: "Scheduling and calendar management",
-                  caption: "Bookings and jobs that write themselves into the diary.",
+                  alt: "Scheduling screen from AutoListing, our own product",
+                  caption: "Our own product, scheduling and publishing its own posts, unattended.",
                   width: 1200,
                   height: 779,
                 },
                 {
-                  src: "/images/app-analytics.webp",
-                  alt: "Analytics and reporting dashboard",
-                  caption: "The week's numbers on one screen, updated automatically.",
-                  width: 1200,
-                  height: 723,
-                },
-                {
                   src: "/images/app-intake.webp",
-                  alt: "Order and client intake without rekeying",
-                  caption: "Orders and new client details captured once, typed never.",
+                  alt: "Intake screen from a livestock mart system",
+                  caption: "An intake screen from a system built for an Irish livestock mart.",
                   width: 1200,
                   height: 928,
                 },
@@ -423,15 +502,58 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                 loading="lazy"
               />
               <p className="text-muted-foreground leading-relaxed">
-                I'm Pete Harris. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. We also build and run our own products, AutoListing.io and Rangplan.ie, with customers, billing and uptime to keep. Streamlined Tech is me, not an agency, so you'd be dealing with the person who actually builds it.
+                I'm Pete Harris, the founder. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. We build and run our own products, AutoListing.io and Rangplan.ie, with customers, billing and uptime to keep. And every quote request from this page is read by me.
               </p>
             </div>
             <p className="text-center text-muted-foreground mt-10">
-              The full cost and timeline picture, including the smaller one-off builds, is on{" "}
+              There is also a smaller one-off build, from €3,900, where you get a tool and your team runs it. An AI employee is the other way round: the system does the job itself, and we look after it for the year. The full cost and timeline picture is on{" "}
               <Link href="/how-it-works" className="text-primary underline hover:no-underline" data-testid="link-how-it-works">
                 the how it works page
               </Link>
               .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Security, same copy as the rest of the site */}
+      <section className="py-16 bg-slate-50" data-testid="section-security">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
+              Your data stays yours
+            </h2>
+            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+              <p>
+                Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.
+              </p>
+              <p>
+                Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="py-16" data-testid="section-final-cta">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">
+              Ready for a figure?
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Tell us the job and the quote comes back by email.
+            </p>
+            <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-closing">
+              <a href="#quote">Get my quote</a>
+            </Button>
+            <p className="text-sm text-muted-foreground mt-4">
+              Prefer to talk?{" "}
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
+                Book a free call.
+              </a>{" "}
+              Fifteen minutes, no hard sell.
             </p>
           </div>
         </div>
