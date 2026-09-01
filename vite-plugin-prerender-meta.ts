@@ -103,6 +103,16 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
+  // Route-specific JSON-LD, alongside the shell's organisation node. The
+  // < escape keeps any '<' in values from terminating the script tag.
+  if (route.jsonLd) {
+    const json = JSON.stringify(route.jsonLd).replace(/</g, "\\u003c");
+    html = html.replace(
+      /<\/head>/i,
+      `  <script type="application/ld+json">${json}</script>\n  </head>`,
+    );
+  }
+
   // The shell carries the home route's LCP image preloads. Strip them and
   // inject this route's own, so a gradient-hero page preloads nothing and
   // /australia preloads its mining pair without every other route paying

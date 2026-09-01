@@ -22,6 +22,13 @@ export interface RouteSeo {
    * without every other route paying for it.
    */
   preloads?: { href: string; media?: string }[];
+  /**
+   * Route-specific JSON-LD, injected into the prerendered head alongside
+   * the shell's organisation node. Baked at build time on purpose: AI and
+   * search crawlers that read raw HTML without running JavaScript still
+   * see it.
+   */
+  jsonLd?: Record<string, unknown>;
 }
 
 /**
@@ -102,12 +109,37 @@ export const ROUTE_SEO = {
     // match the ad's message, not to rank, and the trend term stays
     // quarantined here.
     path: "/ai-employees",
-    title: "AI Employees | Streamlined Tech",
+    title: "AI Employees from €15K/year | Streamlined Tech",
     description:
-      "AI employees set up around how your business already runs, from EUR15K a year with human support. Full custom set-up for your business.",
+      "AI employees set up around how your business already runs, from €15K a year with human support. Full custom set-up for your business. Works 24/7.",
     canonical: "/ai-employees",
     noindex: true,
-    image: "/images/og-card-home.png",
+    image: "/images/og-card-ai-employees.png",
+    // Machine-readable offer, so ad platforms and AI crawlers pointed at
+    // this landing page pick up the actual offer rather than guessing from
+    // the site at large.
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "AI Employees",
+      serviceType: "AI employee set-up and support",
+      url: "https://streamlinedai.tech/ai-employees",
+      description:
+        "An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock.",
+      provider: {
+        "@type": "ProfessionalService",
+        name: "Streamlined Tech",
+        url: "https://streamlinedai.tech/",
+      },
+      areaServed: { "@type": "Country", name: "Ireland" },
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "15000",
+        priceCurrency: "EUR",
+        description:
+          "From EUR 15,000 a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts.",
+      },
+    },
   },
   privacy: {
     path: "/privacy",
