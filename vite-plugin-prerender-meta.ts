@@ -103,6 +103,15 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
+  // Static crawlable body for no-JS crawlers (OpenAI's bots among them).
+  // createRoot replaces it the moment React mounts.
+  if (route.staticHtml) {
+    html = html.replace(
+      /<div id="root"><\/div>/i,
+      `<div id="root">${route.staticHtml}</div>`,
+    );
+  }
+
   // Route-specific JSON-LD, alongside the shell's organisation node. The
   // < escape keeps any '<' in values from terminating the script tag.
   if (route.jsonLd) {
