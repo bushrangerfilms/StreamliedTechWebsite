@@ -11,6 +11,10 @@ export const detailsLeadSchema = z.object({
   company: z.string().trim().max(200).nullish(),
   source: z.string().trim().max(60).nullish(),
   about: z.string().trim().max(2000).nullish(),
+  // "quote" (the /ai-employees form) skips the Handy rundown confirmation
+  // email, which is written for the mining video audience. The lead is still
+  // saved and Pete is still notified; the reply to a quote is personal.
+  variant: z.enum(["rundown", "quote"]).nullish(),
   // Honeypot field: real visitors submit it empty.
   website: z.string().max(200).optional().default(""),
 });
@@ -24,6 +28,7 @@ export async function processDetailsLead(
     return { status: 400, body: { error: "Invalid submission" } };
   }
   const { name, email, company, source, about, website } = parsed.data;
+  const isQuote = parsed.data.variant === "quote";
 
   // Honeypot filled means a bot: pretend success, store nothing.
   if (website) {
@@ -47,7 +52,7 @@ export async function processDetailsLead(
       Prefer: "return=representation",
     },
     body: JSON.stringify({
-      form: "details",
+      form: isQuote ? "ai-employees-quote" : "details",
       name,
       email,
       company: company || null,
@@ -66,7 +71,7 @@ export async function processDetailsLead(
   // and email_sent=false marks rows needing a manual send. The flag is also
   // returned so the thanks page can stop promising a mail that did not go.
   let emailSent = false;
-  if (resendKey) {
+  if (resendKey && !isQuote) {
     try {
       const { subject, html, text } = buildDetailsEmail(name);
       const sendRes = await fetch("https://api.resend.com/emails", {
@@ -103,7 +108,7 @@ export async function processDetailsLead(
     } catch (emailError) {
       console.error("details-lead: email error", emailError);
     }
-  } else {
+  } else if (!resendKey) {
     console.error("details-lead: RESEND_API not set, lead saved without email");
   }
 
@@ -123,20 +128,20 @@ export async function processDetailsLead(
           from: "Streamlined Tech site <pete@updates.streamlinedai.tech>",
           reply_to: email,
           to: ["streamlinedtechai@gmail.com"],
-          subject: `New rundown request: ${name}${company ? ` (${company})` : ""}`,
+          subject: `${isQuote ? "New AI employee quote request" : "New rundown request"}: ${name}${company ? ` (${company})` : ""}`,
           html: `<div style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.6; color: #1a1a1a;">
-<p>New rundown request from streamlinedai.tech/details.</p>
+<p>${isQuote ? "New quote request from streamlinedai.tech/ai-employees." : "New rundown request from streamlinedai.tech/details."}</p>
 <table cellpadding="4" style="border-collapse: collapse;">
 <tr><td style="color:#666;">Name</td><td><strong>${esc(name)}</strong></td></tr>
 <tr><td style="color:#666;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
 <tr><td style="color:#666;">Company</td><td>${esc(company) || "not given"}</td></tr>
 <tr><td style="color:#666;">Source</td><td>${esc(source) || "direct"}</td></tr>
 <tr><td style="color:#666;">Business</td><td>${esc(about) || "not given"}</td></tr>
-<tr><td style="color:#666;">Confirmation email</td><td>${emailSent ? "sent" : "NOT sent, send manually"}</td></tr>
+<tr><td style="color:#666;">Confirmation email</td><td>${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}</td></tr>
 </table>
 <p>Reply to this email to reply to them directly.</p>
 </div>`,
-          text: `New rundown request.\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nBusiness: ${about || "not given"}\nConfirmation email: ${emailSent ? "sent" : "NOT sent, send manually"}`,
+          text: `${isQuote ? "New AI employee quote request." : "New rundown request."}\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\nBusiness: ${about || "not given"}\nConfirmation email: ${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}`,
         }),
       });
       if (!notifyRes.ok) {

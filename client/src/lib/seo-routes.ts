@@ -15,6 +15,13 @@ export interface RouteSeo {
    * the client, so there is no runtime counterpart.
    */
   image?: string;
+  /**
+   * LCP image preloads for this route. The prerender plugin strips the
+   * shell's image preloads and injects these instead, so a page with a
+   * gradient hero preloads nothing and /australia preloads its mining pair
+   * without every other route paying for it.
+   */
+  preloads?: { href: string; media?: string }[];
 }
 
 /**
@@ -29,11 +36,12 @@ export interface RouteSeo {
 export const ROUTE_SEO = {
   home: {
     path: "/",
-    title: "Custom Apps for Mining and Construction | Streamlined Tech",
+    title: "Custom Internal Apps and Automation | Streamlined Tech",
     description:
-      "Custom internal apps for mining and construction crews. Jobs, dockets, timesheets and reporting off paper, set up around how your site already runs.",
+      "We set up custom internal apps and automation around how your business already runs. Built in Galway, working with Irish businesses and Australian operations.",
     canonical: "/",
-    image: "/images/og-card-mining.png",
+    image: "/images/og-card-home.png",
+    preloads: [{ href: "/images/hero-operations.webp" }],
   },
   business: {
     path: "/business",
@@ -77,6 +85,29 @@ export const ROUTE_SEO = {
       "We build apps that get prestarts, dockets and job packs off paper for mining and construction contractor crews in Australia.",
     canonical: "/australia",
     image: "/images/og-card-mining.png",
+    preloads: [
+      { href: "/images/hero-mining-portrait.webp", media: "(max-width: 767px)" },
+      { href: "/images/hero-mining.webp", media: "(min-width: 768px)" },
+    ],
+  },
+  products: {
+    path: "/products",
+    title: "Software Products We Build and Run | Streamlined Tech",
+    description:
+      "AutoListing.io and Rangplan.ie, the software products Streamlined Tech builds and runs, and the proof behind the client work.",
+    canonical: "/products",
+  },
+  aiEmployees: {
+    // Campaign landing page for the AI Employees ad. Noindex: it exists to
+    // match the ad's message, not to rank, and the trend term stays
+    // quarantined here.
+    path: "/ai-employees",
+    title: "AI Employees | Streamlined Tech",
+    description:
+      "AI employees set up around how your business already runs, from EUR15K a year with human support. Full custom set-up for your business.",
+    canonical: "/ai-employees",
+    noindex: true,
+    image: "/images/og-card-home.png",
   },
   privacy: {
     path: "/privacy",
@@ -134,6 +165,8 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.howItWorks,
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,
+  ROUTE_SEO.products,
+  ROUTE_SEO.aiEmployees,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
   ROUTE_SEO.details,

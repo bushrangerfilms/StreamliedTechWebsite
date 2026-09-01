@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 // Australian market landing page. Deliberately leads on internal apps and
 // ongoing workflow systems rather than AI assistants: the assistant is the
@@ -80,25 +81,7 @@ export default function Australia() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-white sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/images/logo.webp"
-              alt="Streamlined Tech - Intelligent AI Automations"
-              className="h-[72px] w-auto"
-              width="389"
-              height="144"
-            />
-          </Link>
-          <Button asChild size="lg" data-testid="button-cta-header">
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-              Book a free call
-            </a>
-          </Button>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -136,10 +119,25 @@ export default function Australia() {
                   Book a free call
                 </a>
               </Button>
-              <div className="text-sm text-slate-300 sm:self-center">
-                Calls booked to suit Australian hours.
-              </div>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="text-base px-8 py-6 bg-transparent text-white border-white/40 hover:bg-white/10 hover:text-white"
+                data-testid="button-cta-rundown"
+              >
+                <Link href="/details">Get the full rundown</Link>
+              </Button>
             </div>
+            <p className="text-sm text-slate-300 mt-5">
+              Calls booked to suit Australian hours.
+            </p>
+            {/* Bridge for traffic arriving from the Handy video: keeps the
+                assistant honest without letting it lead the page. Moved here
+                from the old root when the mining positioning moved home. */}
+            <p className="text-sm text-slate-400 mt-3" data-testid="text-bridge-handy">
+              If you got here from the Handy video: yes, we build assistants like Handy too, ones that answer off your own run sheets and manuals. They work best on top of the kind of systems below.
+            </p>
           </div>
         </div>
       </section>
@@ -453,42 +451,7 @@ export default function Australia() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-border py-12">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            <div className="flex items-center">
-              <img
-                src="/images/logo.webp"
-                alt="Streamlined Tech - Intelligent AI Automations"
-                className="h-14 w-auto"
-                loading="lazy"
-              />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
-              <div className="flex gap-6 text-sm">
-                <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-                <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
-                <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms and Conditions</Link>
-              </div>
-              <div className="flex gap-4">
-                <a href="https://www.facebook.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-facebook">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="https://www.instagram.com/streamlinedtechai/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-instagram">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="https://www.youtube.com/@StreamlinedTechAI" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-youtube">
-                  <Youtube className="w-5 h-5" />
-                </a>
-                <a href="https://www.linkedin.com/in/peter-harris-62b05a57/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-linkedin">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

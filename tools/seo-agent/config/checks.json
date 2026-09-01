@@ -12,6 +12,9 @@
       "/contractors",
       "/installers",
       "/australia",
+      "/products",
+      "/how-it-works",
+      "/guide/set-up-ai-for-business-ireland",
       "/privacy",
       "/terms"
     ],
@@ -25,6 +28,7 @@
     "noindex_routes": [
       "/details",
       "/details/thanks",
+      "/ai-employees",
       "/dev"
     ],
     "aliases": {
@@ -41,6 +45,10 @@
       "/contractors": "client/src/pages/contractors.tsx",
       "/installers": "client/src/pages/installers.tsx",
       "/australia": "client/src/pages/australia.tsx",
+      "/products": "client/src/pages/products.tsx",
+      "/how-it-works": "client/src/pages/how-it-works.tsx",
+      "/guide/set-up-ai-for-business-ireland": "client/src/pages/guide-set-up-ai.tsx",
+      "/ai-employees": "client/src/pages/ai-employees.tsx",
       "/details": "client/src/pages/details.tsx",
       "/privacy": "client/src/pages/privacy.tsx",
       "/terms": "client/src/pages/terms.tsx"

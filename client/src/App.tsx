@@ -4,9 +4,11 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
+import AiEmployees from "@/pages/ai-employees";
 import Business from "@/pages/business";
 import Contractors from "@/pages/contractors";
 import GuideSetUpAi from "@/pages/guide-set-up-ai";
+import Products from "@/pages/products";
 import HowItWorks from "@/pages/how-it-works";
 import Installers from "@/pages/installers";
 import Australia from "@/pages/australia";
@@ -29,6 +31,9 @@ function Router() {
       <Route path="/how-it-works" component={HowItWorks} />
       <Route path="/installers" component={Installers} />
       <Route path="/australia" component={Australia} />
+      <Route path="/products" component={Products} />
+      {/* Campaign landing page for the AI Employees ad, noindex. */}
+      <Route path="/ai-employees" component={AiEmployees} />
       <Route path="/details" component={Details} />
       <Route path="/details/thanks" component={DetailsThanks} />
       <Route path="/privacy" component={Privacy} />

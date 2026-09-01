@@ -9,7 +9,9 @@
   "redirects": [
     { "source": "/privacy-policy", "destination": "/privacy", "statusCode": 301 },
     { "source": "/terms--conditions", "destination": "/terms", "statusCode": 301 },
-    { "source": "/home-8692-4637", "destination": "/", "statusCode": 301 }
+    { "source": "/home-8692-4637", "destination": "/", "statusCode": 301 },
+    { "source": "/mining", "destination": "/australia", "statusCode": 302 },
+    { "source": "/au", "destination": "/australia", "statusCode": 302 }
   ],
   "rewrites": [
     { "source": "/business", "destination": "/business.html" },
@@ -19,6 +21,8 @@
     { "source": "/how-it-works", "destination": "/how-it-works.html" },
     { "source": "/installers", "destination": "/installers.html" },
     { "source": "/australia", "destination": "/australia.html" },
+    { "source": "/products", "destination": "/products.html" },
+    { "source": "/ai-employees", "destination": "/ai-employees.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/details", "destination": "/details.html" },
