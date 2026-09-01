@@ -49,6 +49,77 @@ export interface RouteSeo {
  * (Facebook and LinkedIn among them). Keeping one table means the two cannot
  * drift, which is the failure this whole thing exists to prevent.
  */
+/**
+ * The AI Employees campaign landers share one template with per-region
+ * currency and wording. One URL per region (/ai-employees/<region>);
+ * /ai-employees redirects to the Irish default. All noindex: they exist to
+ * match each ad's message, not to rank, and the trend term stays
+ * quarantined on them. The client-side twin of this config is REGIONS in
+ * client/src/pages/ai-employees.tsx; keep the copy identical there.
+ */
+function aiEmployeesRoute(r: {
+  regionPath: string;
+  title: string;
+  description: string;
+  image: string;
+  eyebrow: string;
+  headline: string;
+  priceHeading: string;
+  priceBody: string;
+  country: string;
+  offerAudience: string;
+  lowPrice: string;
+  priceCurrency: string;
+  offerPriceText: string;
+}): RouteSeo {
+  const path = `/ai-employees/${r.regionPath}`;
+  return {
+    path,
+    title: r.title,
+    description: r.description,
+    canonical: path,
+    noindex: true,
+    image: r.image,
+    // Machine-readable offer, so ad platforms and AI crawlers pointed at
+    // this landing page pick up the actual offer rather than guessing from
+    // the site at large.
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "AI Employees",
+      serviceType: "AI employee set-up and support",
+      url: `https://streamlinedai.tech${path}`,
+      description: `An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock. ${r.offerAudience}`,
+      provider: {
+        "@type": "ProfessionalService",
+        name: "Streamlined Tech",
+        url: "https://streamlinedai.tech/",
+      },
+      areaServed: { "@type": "Country", name: r.country },
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: r.lowPrice,
+        priceCurrency: r.priceCurrency,
+        description: `${r.offerPriceText} a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts.`,
+      },
+    },
+    // Mirror of the rendered page copy for crawlers that do not run JS.
+    staticHtml: `
+      <main class="container mx-auto px-6 py-16" style="max-width:48rem">
+        <p class="text-sm font-semibold mb-2">${r.eyebrow}</p>
+        <h1 class="text-4xl font-display font-bold mb-6">${r.headline}</h1>
+        <p class="mb-6">An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.</p>
+        <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
+        <p class="mb-6">The system does not clock off. An enquiry that arrives at ten on a Sunday night is answered at ten on a Sunday night, and it is logged where you'll see it Monday morning.</p>
+        <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
+        <p class="mb-6">A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
+        <h2 class="text-xl font-display font-bold mb-2">${r.priceHeading}</h2>
+        <p class="mb-6">${r.priceBody}</p>
+        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech is Pete Harris, based in Galway, Ireland, and also builds and runs AutoListing.io and Rangplan.ie.</p>
+      </main>`,
+  };
+}
+
 export const ROUTE_SEO = {
   home: {
     path: "/",
@@ -113,58 +184,78 @@ export const ROUTE_SEO = {
       "AutoListing.io and Rangplan.ie, the software products Streamlined Tech builds and runs, and the proof behind the client work.",
     canonical: "/products",
   },
-  aiEmployeesIe: {
-    // Ireland campaign landing page for the AI Employees ad (one URL per
-    // region and currency; /ai-employees redirects here). Noindex: it
-    // exists to match the ad's message, not to rank, and the trend term
-    // stays quarantined here.
-    path: "/ai-employees/ie",
+  aiEmployeesIe: aiEmployeesRoute({
+    regionPath: "ie",
     title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
       "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. Works 24/7.",
-    canonical: "/ai-employees/ie",
-    noindex: true,
     image: "/images/og-card-ai-employees-ie.png",
-    // Machine-readable offer, so ad platforms and AI crawlers pointed at
-    // this landing page pick up the actual offer rather than guessing from
-    // the site at large.
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "AI Employees",
-      serviceType: "AI employee set-up and support",
-      url: "https://streamlinedai.tech/ai-employees/ie",
-      description:
-        "An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock. Offered to businesses in Ireland.",
-      provider: {
-        "@type": "ProfessionalService",
-        name: "Streamlined Tech",
-        url: "https://streamlinedai.tech/",
-      },
-      areaServed: { "@type": "Country", name: "Ireland" },
-      offers: {
-        "@type": "AggregateOffer",
-        lowPrice: "15000",
-        priceCurrency: "EUR",
-        description:
-          "From EUR 15,000 a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts.",
-      },
-    },
-    // Mirror of the rendered page copy for crawlers that do not run JS.
-    staticHtml: `
-      <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-        <p class="text-sm font-semibold mb-2">For businesses in Ireland</p>
-        <h1 class="text-4xl font-display font-bold mb-6">AI Employees from €15K a year</h1>
-        <p class="mb-6">An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.</p>
-        <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
-        <p class="mb-6">The system does not clock off. An enquiry that arrives at ten on a Sunday night is answered at ten on a Sunday night, and it is logged where you'll see it Monday morning.</p>
-        <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
-        <p class="mb-6">A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
-        <h2 class="text-xl font-display font-bold mb-2">From €15K a year</h2>
-        <p class="mb-6">That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.</p>
-        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech is Pete Harris, based in Galway, Ireland, and also builds and runs AutoListing.io and Rangplan.ie.</p>
-      </main>`,
-  },
+    eyebrow: "For businesses in Ireland",
+    headline: "AI Employees from €15K a year",
+    priceHeading: "From €15K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
+    country: "Ireland",
+    offerAudience: "Offered to businesses in Ireland.",
+    lowPrice: "15000",
+    priceCurrency: "EUR",
+    offerPriceText: "From EUR 15,000",
+  }),
+  // AU, UK and US anchors are €15K converted at rounded market rates and
+  // rounded to clean figures. Changing a region's price means editing it
+  // here, in REGIONS in ai-employees.tsx, and regenerating that region's
+  // og card and square ad image.
+  aiEmployeesAu: aiEmployeesRoute({
+    regionPath: "au",
+    title: "AI Employees from AU$25K/year, Australia | Streamlined Tech",
+    description:
+      "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+    image: "/images/og-card-ai-employees-au.png",
+    eyebrow: "For businesses in Australia",
+    headline: "AI Employees from AU$25K a year",
+    priceHeading: "From AU$25K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
+    country: "Australia",
+    offerAudience: "Offered to businesses in Australia.",
+    lowPrice: "25000",
+    priceCurrency: "AUD",
+    offerPriceText: "From AUD 25,000",
+  }),
+  aiEmployeesUk: aiEmployeesRoute({
+    regionPath: "uk",
+    title: "AI Employees from £13K/year, UK | Streamlined Tech",
+    description:
+      "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+    image: "/images/og-card-ai-employees-uk.png",
+    eyebrow: "For businesses in the UK",
+    headline: "AI Employees from £13K a year",
+    priceHeading: "From £13K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
+    country: "United Kingdom",
+    offerAudience: "Offered to businesses in the UK.",
+    lowPrice: "13000",
+    priceCurrency: "GBP",
+    offerPriceText: "From GBP 13,000",
+  }),
+  aiEmployeesUs: aiEmployeesRoute({
+    regionPath: "us",
+    title: "AI Employees from $17K/year, United States | Streamlined Tech",
+    description:
+      "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. Works 24/7.",
+    image: "/images/og-card-ai-employees-us.png",
+    eyebrow: "For businesses in the United States",
+    headline: "AI Employees from $17K a year",
+    priceHeading: "From $17K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
+    country: "United States",
+    offerAudience: "Offered to businesses in the United States.",
+    lowPrice: "17000",
+    priceCurrency: "USD",
+    offerPriceText: "From USD 17,000",
+  }),
   privacy: {
     path: "/privacy",
     title: "Privacy Policy | Streamlined Tech",
@@ -223,6 +314,9 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.australia,
   ROUTE_SEO.products,
   ROUTE_SEO.aiEmployeesIe,
+  ROUTE_SEO.aiEmployeesAu,
+  ROUTE_SEO.aiEmployeesUk,
+  ROUTE_SEO.aiEmployeesUs,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
   ROUTE_SEO.details,

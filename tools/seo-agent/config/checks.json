@@ -29,6 +29,9 @@
       "/details",
       "/details/thanks",
       "/ai-employees/ie",
+      "/ai-employees/au",
+      "/ai-employees/uk",
+      "/ai-employees/us",
       "/dev"
     ],
     "aliases": {
@@ -49,6 +52,9 @@
       "/how-it-works": "client/src/pages/how-it-works.tsx",
       "/guide/set-up-ai-for-business-ireland": "client/src/pages/guide-set-up-ai.tsx",
       "/ai-employees/ie": "client/src/pages/ai-employees.tsx",
+      "/ai-employees/au": "client/src/pages/ai-employees.tsx",
+      "/ai-employees/uk": "client/src/pages/ai-employees.tsx",
+      "/ai-employees/us": "client/src/pages/ai-employees.tsx",
       "/details": "client/src/pages/details.tsx",
       "/privacy": "client/src/pages/privacy.tsx",
       "/terms": "client/src/pages/terms.tsx"
