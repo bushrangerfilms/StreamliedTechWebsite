@@ -93,9 +93,17 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
 
   useEffect(() => {
     // Persist the ?src= campaign tag before anything else can navigate.
-    const src = new URLSearchParams(window.location.search).get("src");
+    const params = new URLSearchParams(window.location.search);
+    const src = params.get("src");
     if (src) {
       sessionStorage.setItem("ai-employees-src", src.slice(0, 60));
+    }
+    // Click-attribution identifier appended to the landing URL by the
+    // ChatGPT ad ({oppref} template value). Sent server-side with the quote
+    // conversion event; no cookies involved.
+    const oppref = params.get("oppref");
+    if (oppref) {
+      sessionStorage.setItem("ai-employees-oppref", oppref.slice(0, 300));
     }
   }, []);
 
@@ -132,6 +140,8 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
           role: role.trim() || null,
           about: details.trim() || null,
           source: sessionStorage.getItem("ai-employees-src") || region.source,
+          oppref: sessionStorage.getItem("ai-employees-oppref") || null,
+          page_url: window.location.origin + window.location.pathname,
           variant: "quote",
           website,
         }),
