@@ -24,6 +24,8 @@ interface RegionConfig {
   heroHeadline: string;
   priceHeading: string;
   priceBody: string;
+  /** Optional extra line under the hero CTAs (e.g. call-hours note). */
+  heroNote?: string;
   /** Default lead source tag when no ?src= arrives with the click. */
   source: string;
 }
@@ -37,6 +39,37 @@ const REGIONS: Record<string, RegionConfig> = {
     priceBody:
       "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
     source: "ai-employees-ie",
+  },
+  // AU, UK and US anchors are €15K converted at rounded market rates. A
+  // price change here must also change the matching ROUTE_SEO entry in
+  // seo-routes.ts and that region's og card and square ad image.
+  au: {
+    seo: ROUTE_SEO.aiEmployeesAu,
+    eyebrow: "For businesses in Australia",
+    heroHeadline: "AI Employees from AU$25K a year",
+    priceHeading: "From AU$25K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
+    heroNote: "Calls booked to suit Australian hours.",
+    source: "ai-employees-au",
+  },
+  uk: {
+    seo: ROUTE_SEO.aiEmployeesUk,
+    eyebrow: "For businesses in the UK",
+    heroHeadline: "AI Employees from £13K a year",
+    priceHeading: "From £13K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
+    source: "ai-employees-uk",
+  },
+  us: {
+    seo: ROUTE_SEO.aiEmployeesUs,
+    eyebrow: "For businesses in the United States",
+    heroHeadline: "AI Employees from $17K a year",
+    priceHeading: "From $17K a year",
+    priceBody:
+      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
+    source: "ai-employees-us",
   },
 };
 
@@ -141,6 +174,9 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                 </a>
               </div>
             </div>
+            {region.heroNote && (
+              <p className="text-sm text-slate-400 mt-5">{region.heroNote}</p>
+            )}
           </div>
         </div>
       </section>
