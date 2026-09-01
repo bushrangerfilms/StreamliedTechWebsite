@@ -22,6 +22,22 @@ export interface RouteSeo {
    * without every other route paying for it.
    */
   preloads?: { href: string; media?: string }[];
+  /**
+   * Route-specific JSON-LD, injected into the prerendered head alongside
+   * the shell's organisation node. Baked at build time on purpose: AI and
+   * search crawlers that read raw HTML without running JavaScript still
+   * see it.
+   */
+  jsonLd?: Record<string, unknown>;
+  /**
+   * Static body content baked inside <div id="root"> in the prerendered
+   * file. OpenAI's crawlers (OAI-AdsBot included) read raw HTML and never
+   * run JavaScript, so an SPA page is an empty body to them; this gives a
+   * route real crawlable content. Keep it a faithful mirror of the page's
+   * rendered copy, never different text. main.tsx uses createRoot, which
+   * replaces this content when React mounts.
+   */
+  staticHtml?: string;
 }
 
 /**
@@ -102,12 +118,50 @@ export const ROUTE_SEO = {
     // match the ad's message, not to rank, and the trend term stays
     // quarantined here.
     path: "/ai-employees",
-    title: "AI Employees | Streamlined Tech",
+    title: "AI Employees from €15K/year | Streamlined Tech",
     description:
-      "AI employees set up around how your business already runs, from EUR15K a year with human support. Full custom set-up for your business.",
+      "AI employees set up around how your business already runs, from €15K a year with human support. Full custom set-up for your business. Works 24/7.",
     canonical: "/ai-employees",
     noindex: true,
-    image: "/images/og-card-home.png",
+    image: "/images/og-card-ai-employees.png",
+    // Machine-readable offer, so ad platforms and AI crawlers pointed at
+    // this landing page pick up the actual offer rather than guessing from
+    // the site at large.
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "AI Employees",
+      serviceType: "AI employee set-up and support",
+      url: "https://streamlinedai.tech/ai-employees",
+      description:
+        "An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock.",
+      provider: {
+        "@type": "ProfessionalService",
+        name: "Streamlined Tech",
+        url: "https://streamlinedai.tech/",
+      },
+      areaServed: { "@type": "Country", name: "Ireland" },
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "15000",
+        priceCurrency: "EUR",
+        description:
+          "From EUR 15,000 a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts.",
+      },
+    },
+    // Mirror of the rendered page copy for crawlers that do not run JS.
+    staticHtml: `
+      <main class="container mx-auto px-6 py-16" style="max-width:48rem">
+        <h1 class="text-4xl font-display font-bold mb-6">AI Employees from €15K a year</h1>
+        <p class="mb-6">An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.</p>
+        <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
+        <p class="mb-6">The system does not clock off. An enquiry that arrives at ten on a Sunday night is answered at ten on a Sunday night, and it is logged where you'll see it Monday morning.</p>
+        <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
+        <p class="mb-6">A real person built it and a real person looks after it. When something needs changing, you contact me and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
+        <h2 class="text-xl font-display font-bold mb-2">From €15K a year</h2>
+        <p class="mb-6">That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. The exact figure is agreed in writing before anything starts.</p>
+        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech is Pete Harris, based in Galway, Ireland, and also builds and runs AutoListing.io and Rangplan.ie.</p>
+      </main>`,
   },
   privacy: {
     path: "/privacy",
