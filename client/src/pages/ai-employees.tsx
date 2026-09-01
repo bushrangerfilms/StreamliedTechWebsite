@@ -88,6 +88,9 @@ export default function AiEmployees() {
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="relative z-10 container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-wide text-amber-400 mb-4 uppercase">
+              For businesses in Ireland
+            </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
               AI Employees from €15K a year
             </h1>
@@ -128,7 +131,7 @@ export default function AiEmployees() {
             <div className="bg-white p-7 rounded-lg border border-border">
               <h2 className="text-xl font-display font-bold mb-3">From €15K a year</h2>
               <p className="text-muted-foreground leading-relaxed">
-                That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. The exact figure is agreed in writing before anything starts.
+                That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.
               </p>
             </div>
           </div>
