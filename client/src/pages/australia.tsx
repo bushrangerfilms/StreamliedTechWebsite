@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
-import { SiteHeader } from "@/components/site-header";
+import { SiteHeader, BOOKING_URL } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 // Australian market landing page. Deliberately leads on internal apps and
@@ -11,7 +11,6 @@ import { SiteFooter } from "@/components/site-footer";
 // thing every AI agency demos, and it is not what this business specialises in.
 export default function Australia() {
   usePageTracking();
-  const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   useSeo(ROUTE_SEO.australia);
 
@@ -115,7 +114,7 @@ export default function Australia() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                   Book a free call
                 </a>
               </Button>
@@ -437,7 +436,7 @@ export default function Australia() {
               One workflow or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 Book a free call
               </a>
             </Button>

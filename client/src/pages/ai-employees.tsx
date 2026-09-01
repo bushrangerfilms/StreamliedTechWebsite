@@ -272,20 +272,26 @@ export default function AiEmployees() {
                   src: "/images/app-scheduling.webp",
                   alt: "Scheduling and calendar management",
                   caption: "Bookings and jobs that write themselves into the diary.",
+                  width: 1200,
+                  height: 779,
                 },
                 {
                   src: "/images/app-analytics.webp",
                   alt: "Analytics and reporting dashboard",
                   caption: "The week's numbers on one screen, updated automatically.",
+                  width: 1200,
+                  height: 723,
                 },
                 {
                   src: "/images/app-intake.webp",
                   alt: "Order and client intake without rekeying",
                   caption: "Orders and new client details captured once, typed never.",
+                  width: 1200,
+                  height: 928,
                 },
               ].map((shot) => (
                 <div key={shot.src} className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
-                  <img src={shot.src} alt={shot.alt} className="w-full h-auto" loading="lazy" />
+                  <img src={shot.src} alt={shot.alt} className="w-full h-auto" width={shot.width} height={shot.height} loading="lazy" />
                   <p className="text-sm text-muted-foreground p-4">{shot.caption}</p>
                 </div>
               ))}

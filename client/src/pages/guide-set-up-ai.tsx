@@ -4,12 +4,11 @@ import { Link } from "wouter";
 import { usePageTracking } from "@/hooks/use-page-tracking";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
-import { SiteHeader } from "@/components/site-header";
+import { SiteHeader, BOOKING_URL } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function GuideSetUpAi() {
   usePageTracking();
-  const bookingUrl = "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
 
   useSeo(ROUTE_SEO.guideSetUpAi);
 
@@ -35,7 +34,7 @@ export default function GuideSetUpAi() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                   Book A Free Call
                 </a>
               </Button>
@@ -236,7 +235,7 @@ export default function GuideSetUpAi() {
               Tell me how a normal week runs and I will tell you where I would start. Fifteen minutes on the phone, and if AI is not worth your money yet, I will say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
-              <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 Book A Free Call
               </a>
             </Button>

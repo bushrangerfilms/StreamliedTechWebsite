@@ -22,6 +22,9 @@
     <meta name="twitter:image" content="https://streamlinedai.tech/images/og-card-home.png" />
 
     <link rel="icon" type="image/png" href="/favicon-48.png" />
+    <!-- Dev-only default. In the build, vite-plugin-prerender-meta strips
+         image preloads and injects each route's own from RouteSeo.preloads
+         in seo-routes.ts; keep this in sync with ROUTE_SEO.home.preloads. -->
     <link rel="preload" as="image" href="/images/hero-operations.webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
