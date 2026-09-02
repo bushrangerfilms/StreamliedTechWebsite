@@ -2,6 +2,7 @@ import type { Plugin } from "vite";
 import fs from "fs";
 import path from "path";
 import { PRERENDER_ROUTES, SITE_ORIGIN, type RouteSeo } from "./client/src/lib/seo-routes";
+import { STATIC_HTML } from "./client/src/lib/seo-static-html";
 
 /**
  * Writes one static HTML file per route with that route's meta baked in.
@@ -11,9 +12,12 @@ import { PRERENDER_ROUTES, SITE_ORIGIN, type RouteSeo } from "./client/src/lib/s
  * Facebook and LinkedIn scrapers do not, so every shared link was pulling the
  * homepage's card no matter which page was shared.
  *
- * These files carry identical body content to the SPA shell and differ only in
- * the head, so this is not cloaking: every visitor and crawler gets the same
- * page, and the client hydrates over it as normal.
+ * Marketing routes also get a static text mirror of the page's rendered copy
+ * baked inside <div id="root"> (from seo-static-html.ts), because OpenAI's
+ * crawlers and most AI answer engines read raw HTML without executing
+ * JavaScript. The mirror is the same copy every visitor sees once React
+ * mounts, never different text, so this is not cloaking: crawlers get the
+ * words, visitors get the same words rendered by the client.
  */
 export function prerenderMetaPlugin(): Plugin {
   let outDir = "";
@@ -104,12 +108,21 @@ function applyMeta(shell: string, route: RouteSeo): string {
   }
 
   // Static crawlable body for no-JS crawlers (OpenAI's bots among them).
-  // createRoot replaces it the moment React mounts.
-  if (route.staticHtml) {
-    html = html.replace(
+  // createRoot replaces it the moment React mounts. A mirror that cannot be
+  // injected is a route that silently ships an empty body to AI crawlers,
+  // so fail the build rather than warn.
+  const staticHtml = STATIC_HTML[route.path];
+  if (staticHtml) {
+    const withBody = html.replace(
       /<div id="root"><\/div>/i,
-      `<div id="root">${route.staticHtml}</div>`,
+      `<div id="root">${staticHtml}</div>`,
     );
+    if (withBody === html) {
+      throw new Error(
+        `[prerender-meta] ${route.path}: shell has no empty <div id="root"></div> to inject the static body mirror into`,
+      );
+    }
+    html = withBody;
   }
 
   // Route-specific JSON-LD, alongside the shell's organisation node. The
