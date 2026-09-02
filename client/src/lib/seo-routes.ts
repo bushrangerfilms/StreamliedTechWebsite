@@ -30,14 +30,13 @@ export interface RouteSeo {
    */
   jsonLd?: Record<string, unknown>;
   /**
-   * Static body content baked inside <div id="root"> in the prerendered
-   * file. OpenAI's crawlers (OAI-AdsBot included) read raw HTML and never
-   * run JavaScript, so an SPA page is an empty body to them; this gives a
-   * route real crawlable content. Keep it a faithful mirror of the page's
-   * rendered copy, never different text. main.tsx uses createRoot, which
-   * replaces this content when React mounts.
+   * Static crawlable body mirrors used to be a `staticHtml` field here.
+   * They now live in seo-static-html.ts, keyed by path, so they stay out
+   * of the client bundle (every page imports this file at runtime; the
+   * mirrors are build-time-only bytes). The prerender plugin reads them
+   * from there. Keep each mirror a faithful copy of its page's rendered
+   * text - script/check-prerender-mirrors.ts enforces it at build time.
    */
-  staticHtml?: string;
 }
 
 /**
@@ -54,22 +53,18 @@ export interface RouteSeo {
  * currency and wording. One URL per region (/ai-employees/<region>);
  * /ai-employees redirects to the Irish default. All noindex: they exist to
  * match each ad's message, not to rank, and the trend term stays
- * quarantined on them. The client-side twin of this config is REGIONS in
- * client/src/pages/ai-employees.tsx; keep the copy identical there.
+ * quarantined on them. This entry carries the head (meta and offer JSON-LD)
+ * only. The rendered copy lives in REGIONS in client/src/pages/ai-employees.tsx,
+ * and its crawlable body mirror in AI_EMPLOYEES_MIRRORS in seo-static-html.ts;
+ * keep the copy identical in both.
  */
 function aiEmployeesRoute(r: {
   regionPath: string;
   title: string;
   description: string;
   image: string;
-  eyebrow: string;
-  headline: string;
-  priceHeading: string;
-  priceBody: string;
   country: string;
   offerAudience: string;
-  fortnightlyLine: string;
-  exposureLine: string;
   lowPrice: string;
   priceCurrency: string;
   offerPriceText: string;
@@ -105,25 +100,6 @@ function aiEmployeesRoute(r: {
         description: `${r.offerPriceText} a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts. Minimum one month, paid fortnightly, no lock-in contract; after the first month it can be stopped with two weeks' notice.`,
       },
     },
-    // Mirror of the rendered page copy for crawlers that do not run JS.
-    staticHtml: `
-      <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-        <p class="text-sm font-semibold mb-2">${r.eyebrow}</p>
-        <h1 class="text-4xl font-display font-bold mb-6">${r.headline}</h1>
-        <p class="mb-6">An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.</p>
-        <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
-        <p class="mb-6">The system does not clock off. An enquiry that arrives at ten on a Sunday night is answered at ten on a Sunday night, and it is logged where you'll see it Monday morning.</p>
-        <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
-        <p class="mb-6">Real people built it and real people look after it. When something needs changing, you tell us and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
-        <h2 class="text-xl font-display font-bold mb-2">${r.priceHeading}</h2>
-        <p class="mb-6">${r.priceBody} ${r.fortnightlyLine}</p>
-        <p class="mb-2"><strong>Minimum one month.</strong> Long enough to prove it, short enough to be a fair test.</p>
-        <p class="mb-2"><strong>Paid fortnightly.</strong> Like the rest of the payroll. No big figure up front.</p>
-        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice. ${r.exposureLine}</p>
-        <p class="mb-6">There is also a smaller one-off build, from €3,900, where you get a tool and your team runs it. An AI employee is the other way round: the system does the job itself, and we look after it for the year.</p>
-        <p class="mb-6">Your data stays yours: encrypted storage, strict access controls, isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech was founded by Pete Harris in Galway, Ireland, and builds and runs AutoListing.io and Rangplan.ie.</p>
-      </main>`,
   };
 }
 
@@ -193,17 +169,10 @@ export const ROUTE_SEO = {
   },
   aiEmployeesIe: aiEmployeesRoute({
     regionPath: "ie",
-    fortnightlyLine: "That is about €580 a fortnight.",
-    exposureLine: "At €15K a year, a fair one-month test costs under €1,900.",
     title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
     description:
       "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-ie.png",
-    eyebrow: "For businesses in Ireland",
-    headline: "AI Employees from €15K a year",
-    priceHeading: "From €15K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
     country: "Ireland",
     offerAudience: "Offered to businesses in Ireland.",
     lowPrice: "15000",
@@ -212,21 +181,15 @@ export const ROUTE_SEO = {
   }),
   // AU, UK and US anchors are €15K converted at rounded market rates and
   // rounded to clean figures. Changing a region's price means editing it
-  // here, in REGIONS in ai-employees.tsx, and regenerating that region's
-  // og card and square ad image.
+  // here, in REGIONS in ai-employees.tsx, in AI_EMPLOYEES_MIRRORS in
+  // seo-static-html.ts, and regenerating that region's og card and square
+  // ad image.
   aiEmployeesAu: aiEmployeesRoute({
     regionPath: "au",
-    fortnightlyLine: "That is about AU$960 a fortnight.",
-    exposureLine: "At AU$25K a year, a fair one-month test costs under AU$3,100.",
     title: "AI Employees from AU$25K/year, Australia | Streamlined Tech",
     description:
       "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-au.png",
-    eyebrow: "For businesses in Australia",
-    headline: "AI Employees from AU$25K a year",
-    priceHeading: "From AU$25K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
     country: "Australia",
     offerAudience: "Offered to businesses in Australia.",
     lowPrice: "25000",
@@ -235,17 +198,10 @@ export const ROUTE_SEO = {
   }),
   aiEmployeesUk: aiEmployeesRoute({
     regionPath: "uk",
-    fortnightlyLine: "That is £500 a fortnight.",
-    exposureLine: "At £13K a year, a fair one-month test costs under £1,600.",
     title: "AI Employees from £13K/year, UK | Streamlined Tech",
     description:
       "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-uk.png",
-    eyebrow: "For businesses in the UK",
-    headline: "AI Employees from £13K a year",
-    priceHeading: "From £13K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
     country: "United Kingdom",
     offerAudience: "Offered to businesses in the UK.",
     lowPrice: "13000",
@@ -254,17 +210,10 @@ export const ROUTE_SEO = {
   }),
   aiEmployeesUs: aiEmployeesRoute({
     regionPath: "us",
-    fortnightlyLine: "That is about $650 a fortnight.",
-    exposureLine: "At $17K a year, a fair one-month test costs under $2,150.",
     title: "AI Employees from $17K/year, United States | Streamlined Tech",
     description:
       "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
     image: "/images/og-card-ai-employees-us.png",
-    eyebrow: "For businesses in the United States",
-    headline: "AI Employees from $17K a year",
-    priceHeading: "From $17K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
     country: "United States",
     offerAudience: "Offered to businesses in the United States.",
     lowPrice: "17000",
