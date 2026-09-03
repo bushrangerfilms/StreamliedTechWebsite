@@ -14,6 +14,8 @@ export const detailsLeadSchema = z.object({
   // The AI Employee role asked for on the quote form; details go in about.
   role: z.string().trim().max(200).nullish(),
   about: z.string().trim().max(2000).nullish(),
+  // Optional phone number from the quote form, so a call can replace the email.
+  phone: z.string().trim().max(40).nullish(),
   // Click-attribution identifier from the ChatGPT ad landing URL (?oppref=),
   // passed through unmodified per OpenAI's Conversions API docs.
   oppref: z.string().trim().max(300).nullish(),
@@ -50,7 +52,7 @@ export async function processDetailsLead(
   if (!parsed.success) {
     return { status: 400, body: { error: "Invalid submission" } };
   }
-  const { name, email, company, source, role, about, website, oppref, page_url } = parsed.data;
+  const { name, email, company, source, role, about, website, oppref, page_url, phone } = parsed.data;
   const isQuote = parsed.data.variant === "quote";
 
   // Own-origin check on the landing URL, shared by the OpenAI Ads conversion
@@ -102,6 +104,7 @@ export async function processDetailsLead(
       name,
       email,
       company: company || null,
+      phone: phone || null,
       source: source || null,
       role: role || null,
       business_about: about || null,
@@ -206,6 +209,7 @@ export async function processDetailsLead(
 <table cellpadding="4" style="border-collapse: collapse;">
 <tr><td style="color:#666;">Name</td><td><strong>${esc(name)}</strong></td></tr>
 <tr><td style="color:#666;">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
+<tr><td style="color:#666;">Phone</td><td>${esc(phone) || "not given"}</td></tr>
 <tr><td style="color:#666;">Company</td><td>${esc(company) || "not given"}</td></tr>
 <tr><td style="color:#666;">Source</td><td>${esc(source) || "direct"}</td></tr>
 ${role ? `<tr><td style="color:#666;">AI Employee role</td><td><strong>${esc(role)}</strong></td></tr>` : ""}
@@ -215,7 +219,7 @@ ${isQuote ? `<tr><td style="color:#666;">Ad consent</td><td>${adConsent ? `yes (
 </table>
 <p>Reply to this email to reply to them directly.</p>
 </div>`,
-          text: `${isQuote ? "New AI employee quote request." : "New rundown request."}\nName: ${name}\nEmail: ${email}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\n${role ? `AI Employee role: ${role}\n` : ""}${isQuote ? "Role details" : "Business"}: ${about || "not given"}\nConfirmation email: ${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}${isQuote ? `\nAd consent: ${adConsent ? `yes (${adConsentAt || "time not given"})` : "no"}` : ""}`,
+          text: `${isQuote ? "New AI employee quote request." : "New rundown request."}\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "not given"}\nCompany: ${company || "not given"}\nSource: ${source || "direct"}\n${role ? `AI Employee role: ${role}\n` : ""}${isQuote ? "Role details" : "Business"}: ${about || "not given"}\nConfirmation email: ${isQuote ? "none (quote request, reply personally)" : emailSent ? "sent" : "NOT sent, send manually"}${isQuote ? `\nAd consent: ${adConsent ? `yes (${adConsentAt || "time not given"})` : "no"}` : ""}`,
         }),
       });
       if (!notifyRes.ok) {
