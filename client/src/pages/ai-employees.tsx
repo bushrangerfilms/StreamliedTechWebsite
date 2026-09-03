@@ -10,6 +10,15 @@ import { ROUTE_SEO, type RouteSeo } from "@/lib/seo-routes";
 import { SiteHeader, BOOKING_URL } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import NotFound from "@/pages/not-found";
+import AdConsentBanner from "@/components/ad-consent-banner";
+import {
+  countEvent,
+  getAdConsent,
+  getAdConsentRecord,
+  readAdAttribution,
+  trackAdContact,
+  trackAdLead,
+} from "@/lib/ad-consent";
 
 // Campaign landing pages for the "AI Employees" ads, one URL per region so
 // each ad geo gets its own currency and wording (/ai-employees/ie today,
@@ -109,6 +118,15 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const thanksRef = useRef<HTMLHeadingElement>(null);
+  // Advertising measurement (consent-gated in @/lib/ad-consent). The lead id
+  // is kept so a visitor who submits first and presses Accept afterwards
+  // still produces the browser Lead event, once.
+  const leadIdRef = useRef<string | null>(null);
+  const leadFiredRef = useRef(false);
+  const contactFiredRef = useRef(false);
+  // A form focus or booking click before the cookie choice cannot fire; it is
+  // remembered here and sent once if the visitor then presses Accept.
+  const contactPendingRef = useRef(false);
 
   useEffect(() => {
     // Persist the ?src= campaign tag before anything else can navigate.
@@ -160,6 +178,19 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
     return Object.keys(errors).length === 0;
   };
 
+  // Mid-funnel signal for the ad platforms: the first time the quote form
+  // gets focus, or a booking link is clicked, once per page. Browser only,
+  // no personal data, no-op without consent.
+  const noteContact = () => {
+    if (contactFiredRef.current) return;
+    if (trackAdContact(params.region)) {
+      contactFiredRef.current = true;
+      contactPendingRef.current = false;
+    } else {
+      contactPendingRef.current = true;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
@@ -167,6 +198,10 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
     setSubmitting(true);
     setError(null);
     try {
+      // Attribution ids are only read (and only sent) when advertising
+      // consent is granted; readAdAttribution() returns null otherwise.
+      const consentGranted = getAdConsent() === "granted";
+      const attribution = readAdAttribution();
       const res = await fetch("/api/details-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -181,11 +216,28 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
           page_url: window.location.origin + window.location.pathname,
           variant: "quote",
           website,
+          region: params.region,
+          ad_consent: consentGranted,
+          ad_consent_at: consentGranted ? (getAdConsentRecord()?.at ?? null) : null,
+          fbp: attribution?.fbp ?? null,
+          fbc: attribution?.fbc ?? null,
+          fbclid: attribution?.fbclid ?? null,
+          ttp: attribution?.ttp ?? null,
+          ttclid: attribution?.ttclid ?? null,
+          referrer: document.referrer.slice(0, 500) || null,
         }),
       });
       if (!res.ok) {
         throw new Error("Request failed");
       }
+      const data = (await res.json().catch(() => ({}))) as { leadId?: string | null };
+      if (data.leadId) {
+        leadIdRef.current = data.leadId;
+        // Browser half of the Lead event, same event_id as the server half.
+        // No-op unless consent is granted and a pixel is loaded.
+        if (trackAdLead(data.leadId, params.region)) leadFiredRef.current = true;
+      }
+      countEvent("quote_submitted", { ad_consent: getAdConsent() });
       setSubmitted(true);
     } catch {
       setError("Something went wrong sending that. Give it another try, or email us directly at");
@@ -216,7 +268,7 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
               </Button>
               <div className="text-sm text-slate-300 sm:self-center">
                 Prefer to talk?{" "}
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline text-slate-200">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline text-slate-200" onClick={noteContact}>
                   Book a free call.
                 </a>{" "}
                 Fifteen minutes, no hard sell.
@@ -309,14 +361,14 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                   <h3 ref={thanksRef} tabIndex={-1} className="text-2xl font-display font-bold mb-3 outline-none">Got it.</h3>
                   <p className="text-muted-foreground">
                     Your details are in and your quote comes back by email. If you'd rather not wait,{" "}
-                    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline hover:no-underline">
+                    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline hover:no-underline" onClick={noteContact}>
                       book a call
                     </a>{" "}
                     and we'll talk it through.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate data-testid="form-quote">
+                <form onSubmit={handleSubmit} onFocus={noteContact} noValidate data-testid="form-quote">
                   <div className="space-y-5">
                     <div>
                       <Label htmlFor="quote-name" className="mb-2 block">Your name</Label>
@@ -550,7 +602,7 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
               Prefer to talk?{" "}
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline hover:no-underline" onClick={noteContact}>
                 Book a free call.
               </a>{" "}
               Fifteen minutes, no hard sell.
@@ -559,6 +611,21 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
         </div>
       </section>
 
+      <AdConsentBanner
+        onGranted={() => {
+          // Accept after a submit on this page: fire the browser Lead the
+          // submit could not, once.
+          if (leadIdRef.current && !leadFiredRef.current && trackAdLead(leadIdRef.current, params.region)) {
+            leadFiredRef.current = true;
+          }
+          // Accept after touching the form or a booking link: fire the
+          // Contact the earlier attempt could not, once.
+          if (contactPendingRef.current && !contactFiredRef.current && trackAdContact(params.region)) {
+            contactFiredRef.current = true;
+            contactPendingRef.current = false;
+          }
+        }}
+      />
       <SiteFooter />
     </div>
   );
