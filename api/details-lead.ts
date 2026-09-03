@@ -16,6 +16,14 @@ export default async function handler(
   }
   const userAgentHeader = req.headers["user-agent"];
   const userAgent = Array.isArray(userAgentHeader) ? userAgentHeader[0] : userAgentHeader || null;
-  const result = await processDetailsLead(req.body, userAgent);
+  // Visitor IP for the Meta / TikTok server events. Vercel sets both headers
+  // itself and overwrites any client-supplied x-forwarded-for, so the first
+  // entry is the real client. Never stored; only forwarded with consent.
+  const fwdHeader = req.headers["x-forwarded-for"];
+  const fwd = Array.isArray(fwdHeader) ? fwdHeader[0] : fwdHeader;
+  const realIpHeader = req.headers["x-real-ip"];
+  const realIp = Array.isArray(realIpHeader) ? realIpHeader[0] : realIpHeader;
+  const clientIp = fwd?.split(",")[0]?.trim() || realIp?.trim() || null;
+  const result = await processDetailsLead(req.body, userAgent, clientIp);
   res.status(result.status).json(result.body);
 }
