@@ -107,6 +107,7 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
   const [details, setDetails] = useState("");
   // Honeypot: real visitors never see or fill this field.
@@ -208,6 +209,7 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
+          phone: phone.trim() || null,
           company: company.trim() || null,
           role: role.trim() || null,
           about: details.trim() || null,
@@ -408,6 +410,25 @@ export default function AiEmployees({ params }: { params: { region: string } }) 
                         data-testid="input-email"
                       />
                       {fieldErrors.email && <p role="alert" className="text-sm text-destructive mt-1">{fieldErrors.email}</p>}
+                    </div>
+                    <div>
+                      <Label htmlFor="quote-phone" className="mb-2 block">
+                        Phone number <span className="text-muted-foreground font-normal">(optional)</span>
+                      </Label>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        Add one if you'd rather we called than emailed.
+                      </p>
+                      <Input
+                        id="quote-phone"
+                        name="phone"
+                        type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        className="text-base h-12"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        data-testid="input-phone"
+                      />
                     </div>
                     <div>
                       <Label htmlFor="quote-company" className="mb-2 block">
