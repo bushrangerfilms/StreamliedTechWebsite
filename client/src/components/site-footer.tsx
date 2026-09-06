@@ -2,10 +2,10 @@ import { Link } from "wouter";
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const LANE_LINKS = [
-  { href: "/business", label: "Irish businesses" },
+  { href: "/business", label: "Trades and services" },
   { href: "/contractors", label: "Contractors" },
   { href: "/installers", label: "Installers" },
-  { href: "/australia", label: "Australia" },
+  { href: "/australia", label: "Mining" },
 ];
 
 const COMPANY_LINKS = [

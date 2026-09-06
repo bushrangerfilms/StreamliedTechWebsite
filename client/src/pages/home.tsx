@@ -16,15 +16,15 @@ export default function Home() {
 
   const audienceDoors = [
     {
-      title: "Running a business in Ireland",
+      title: "Trades and local services",
       body: "Vehicle testing, alarms and fire, tree care, windows, cleaning, trades and services. The admin jobs that go with them, handled by a system instead of your evenings.",
       href: "/business",
-      cta: "See the Irish services page",
+      cta: "See the services page",
       testId: "card-door-business",
     },
     {
       title: "Construction and heavy industry",
-      body: "Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews in Ireland.",
+      body: "Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews.",
       href: "/contractors",
       cta: "See the contractors page",
       testId: "card-door-contractors",
@@ -37,11 +37,41 @@ export default function Home() {
       testId: "card-door-installers",
     },
     {
-      title: "Mining and construction in Australia",
-      body: "Progress tracking, defects and close-out for site crews. Built by an Australian who has stood on those sites.",
+      title: "Mining and large site operations",
+      body: "Progress tracking, defects and close-out for site crews. Built by someone who has stood on those sites.",
       href: "/australia",
-      cta: "See the Australia page",
+      cta: "See the mining page",
       testId: "card-door-australia",
+    },
+  ];
+
+  // The service list. Three lines of work, one front door: the build is the
+  // usual entry point, consulting for people who want the where-and-whether
+  // answered first, training for teams that want to do more themselves.
+  const services = [
+    {
+      title: "Custom internal apps",
+      body: "Your own app with an AI employee inside it, built around how your operation runs. It answers, books, chases, files and reports, so the office side runs without living on your evenings.",
+      href: "/how-it-works",
+      external: false,
+      cta: "See how a build works",
+      testId: "link-service-apps",
+    },
+    {
+      title: "AI consulting",
+      body: "Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.",
+      href: BOOKING_URL,
+      external: true,
+      cta: "Book a free call",
+      testId: "link-service-consulting",
+    },
+    {
+      title: "AI training",
+      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.",
+      href: BOOKING_URL,
+      external: true,
+      cta: "Book a free call",
+      testId: "link-service-training",
     },
   ];
 
@@ -129,7 +159,7 @@ export default function Home() {
               We set your business up with AI.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
-              Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Based in Galway, working with Irish businesses and with Australian operations.
+              Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Built for owner-run businesses where the office work still lands on you after the real work is done.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -151,7 +181,7 @@ export default function Home() {
               The price is agreed in writing before anything starts.
             </p>
             <p className="text-sm text-slate-400 mt-3" data-testid="text-bridge-australia">
-              In Australian mining or construction?{" "}
+              In mining or large-scale construction?{" "}
               <Link href="/australia" className="underline hover:no-underline text-slate-200">
                 Your page is here.
               </Link>
@@ -188,6 +218,43 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground mb-4">{door.body}</p>
                   <span className="text-sm text-primary font-semibold mt-auto">{door.cta}</span>
                 </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Three ways we work with you */}
+      <section className="py-20 border-b border-border" data-testid="section-services">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
+              Three ways we work with you
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
+              Most people start with a build. Some want advice first, and some want their own team trained up. All three start with the same call.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {services.map((service) => (
+                <div key={service.title} className="bg-white p-7 rounded-xl border border-border flex flex-col">
+                  <h3 className="font-display font-bold text-xl mb-3">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-5">{service.body}</p>
+                  {service.external ? (
+                    <a
+                      href={service.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary font-semibold mt-auto"
+                      data-testid={service.testId}
+                    >
+                      {service.cta}
+                    </a>
+                  ) : (
+                    <Link href={service.href} className="text-sm text-primary font-semibold mt-auto" data-testid={service.testId}>
+                      {service.cta}
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -361,13 +428,6 @@ export default function Home() {
               </p>
               <p>
                 I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. That is why the work holds up: I can read an operation, not just write code for one.
-              </p>
-              <p className="text-base">
-                Australian, now based in Galway.{" "}
-                <Link href="/australia" className="underline hover:no-underline text-foreground">
-                  How that works for Australian sites
-                </Link>
-                .
               </p>
             </div>
           </div>
