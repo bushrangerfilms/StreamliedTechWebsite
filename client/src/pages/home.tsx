@@ -45,6 +45,36 @@ export default function Home() {
     },
   ];
 
+  // The service list. Three lines of work, one front door: the build is the
+  // usual entry point, consulting for people who want the where-and-whether
+  // answered first, training for teams that want to do more themselves.
+  const services = [
+    {
+      title: "Custom internal apps",
+      body: "Your own app with an AI employee inside it, built around how your operation runs. It answers, books, chases, files and reports, so the office side runs without living on your evenings.",
+      href: "/how-it-works",
+      external: false,
+      cta: "See how a build works",
+      testId: "link-service-apps",
+    },
+    {
+      title: "AI consulting",
+      body: "Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.",
+      href: BOOKING_URL,
+      external: true,
+      cta: "Book a free call",
+      testId: "link-service-consulting",
+    },
+    {
+      title: "AI training",
+      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.",
+      href: BOOKING_URL,
+      external: true,
+      cta: "Book a free call",
+      testId: "link-service-training",
+    },
+  ];
+
   const jobs = [
     {
       title: "Chasing quotes and invoices",
@@ -188,6 +218,43 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground mb-4">{door.body}</p>
                   <span className="text-sm text-primary font-semibold mt-auto">{door.cta}</span>
                 </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Three ways we work with you */}
+      <section className="py-20 border-b border-border" data-testid="section-services">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
+              Three ways we work with you
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
+              Most people start with a build. Some want advice first, and some want their own team trained up. All three start with the same call.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {services.map((service) => (
+                <div key={service.title} className="bg-white p-7 rounded-xl border border-border flex flex-col">
+                  <h3 className="font-display font-bold text-xl mb-3">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-5">{service.body}</p>
+                  {service.external ? (
+                    <a
+                      href={service.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary font-semibold mt-auto"
+                      data-testid={service.testId}
+                    >
+                      {service.cta}
+                    </a>
+                  ) : (
+                    <Link href={service.href} className="text-sm text-primary font-semibold mt-auto" data-testid={service.testId}>
+                      {service.cta}
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
           </div>

@@ -136,6 +136,16 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="mb-2">Progress tracking, defects and close-out for site crews. Built by an Australian who has stood on those sites.</p>
       <p class="mb-4"><a href="/australia" class="underline">See the Australia page</a></p>
 
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Three ways we work with you</h2>
+      <p class="mb-4">Most people start with a build. Some want advice first, and some want their own team trained up. All three start with the same call.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Custom internal apps</h3>
+      <p class="mb-2">Your own app with an AI employee inside it, built around how your operation runs. It answers, books, chases, files and reports, so the office side runs without living on your evenings.</p>
+      <p class="mb-4"><a href="/how-it-works" class="underline">See how a build works</a></p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI consulting</h3>
+      <p class="mb-4">Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI training</h3>
+      <p class="mb-4">Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.</p>
+
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">The jobs we take off your plate</h2>
       <p class="mb-4">These are the usual suspects. Every build is designed around your specific operation, so treat them as examples rather than a menu.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Chasing quotes and invoices</h3>
