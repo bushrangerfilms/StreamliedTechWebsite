@@ -117,24 +117,24 @@ export const STATIC_HTML: Record<string, string> = {
   "/": `
     <main class="container mx-auto px-6 py-16" style="max-width:48rem">
       <h1 class="text-4xl font-display font-bold mb-6">We set your business up with AI.</h1>
-      <p class="mb-4">Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Based in Galway, working with Irish businesses and with Australian operations.</p>
+      <p class="mb-4">Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Built for owner-run businesses where the office work still lands on you after the real work is done.</p>
       <p class="mb-4">The price is agreed in writing before anything starts.</p>
-      <p class="mb-4">In Australian mining or construction? <a href="/australia" class="underline">Your page is here.</a></p>
+      <p class="mb-4">In mining or large-scale construction? <a href="/australia" class="underline">Your page is here.</a></p>
       <p class="mb-4">If you got here from the AI Employees ad: that is our yearly agreement, full custom set-up for your business with human support. <a href="/ai-employees/ie" class="underline">Here is the full page.</a></p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Find the page for your line of work</h2>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Running a business in Ireland</h3>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Trades and local services</h3>
       <p class="mb-2">Vehicle testing, alarms and fire, tree care, windows, cleaning, trades and services. The admin jobs that go with them, handled by a system instead of your evenings.</p>
-      <p class="mb-4"><a href="/business" class="underline">See the Irish services page</a></p>
+      <p class="mb-4"><a href="/business" class="underline">See the services page</a></p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Construction and heavy industry</h3>
-      <p class="mb-2">Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews in Ireland.</p>
+      <p class="mb-2">Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews.</p>
       <p class="mb-4"><a href="/contractors" class="underline">See the contractors page</a></p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Solar, heat pump and retrofit installers</h3>
       <p class="mb-2">Grant packs, forms and job packs handled, so the paperwork keeps up with the installs.</p>
       <p class="mb-4"><a href="/installers" class="underline">See the installers page</a></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Mining and construction in Australia</h3>
-      <p class="mb-2">Progress tracking, defects and close-out for site crews. Built by an Australian who has stood on those sites.</p>
-      <p class="mb-4"><a href="/australia" class="underline">See the Australia page</a></p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Mining and large site operations</h3>
+      <p class="mb-2">Progress tracking, defects and close-out for site crews. Built by someone who has stood on those sites.</p>
+      <p class="mb-4"><a href="/australia" class="underline">See the mining page</a></p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Three ways we work with you</h2>
       <p class="mb-4">Most people start with a build. Some want advice first, and some want their own team trained up. All three start with the same call.</p>
@@ -189,7 +189,6 @@ export const STATIC_HTML: Record<string, string> = {
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">You deal with me, not an agency</h2>
       <p class="mb-4">I'm Pete Harris, the founder and the builder. No account managers, no offshore team, no layers.</p>
       <p class="mb-4">I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. That is why the work holds up: I can read an operation, not just write code for one.</p>
-      <p class="mb-4">Australian, now based in Galway. <a href="/australia" class="underline">How that works for Australian sites</a>.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Your data stays yours</h2>
       <p class="mb-4">Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.</p>

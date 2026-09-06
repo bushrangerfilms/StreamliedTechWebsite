@@ -16,15 +16,15 @@ export default function Home() {
 
   const audienceDoors = [
     {
-      title: "Running a business in Ireland",
+      title: "Trades and local services",
       body: "Vehicle testing, alarms and fire, tree care, windows, cleaning, trades and services. The admin jobs that go with them, handled by a system instead of your evenings.",
       href: "/business",
-      cta: "See the Irish services page",
+      cta: "See the services page",
       testId: "card-door-business",
     },
     {
       title: "Construction and heavy industry",
-      body: "Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews in Ireland.",
+      body: "Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews.",
       href: "/contractors",
       cta: "See the contractors page",
       testId: "card-door-contractors",
@@ -37,10 +37,10 @@ export default function Home() {
       testId: "card-door-installers",
     },
     {
-      title: "Mining and construction in Australia",
-      body: "Progress tracking, defects and close-out for site crews. Built by an Australian who has stood on those sites.",
+      title: "Mining and large site operations",
+      body: "Progress tracking, defects and close-out for site crews. Built by someone who has stood on those sites.",
       href: "/australia",
-      cta: "See the Australia page",
+      cta: "See the mining page",
       testId: "card-door-australia",
     },
   ];
@@ -159,7 +159,7 @@ export default function Home() {
               We set your business up with AI.
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
-              Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Based in Galway, working with Irish businesses and with Australian operations.
+              Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Built for owner-run businesses where the office work still lands on you after the real work is done.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -181,7 +181,7 @@ export default function Home() {
               The price is agreed in writing before anything starts.
             </p>
             <p className="text-sm text-slate-400 mt-3" data-testid="text-bridge-australia">
-              In Australian mining or construction?{" "}
+              In mining or large-scale construction?{" "}
               <Link href="/australia" className="underline hover:no-underline text-slate-200">
                 Your page is here.
               </Link>
@@ -428,13 +428,6 @@ export default function Home() {
               </p>
               <p>
                 I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. That is why the work holds up: I can read an operation, not just write code for one.
-              </p>
-              <p className="text-base">
-                Australian, now based in Galway.{" "}
-                <Link href="/australia" className="underline hover:no-underline text-foreground">
-                  How that works for Australian sites
-                </Link>
-                .
               </p>
             </div>
           </div>
