@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { href: "/business", label: "What we build" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/products", label: "Products" },
-  { href: "/australia", label: "Australia" },
+  { href: "/australia", label: "Mining" },
 ];
 
 /**
