@@ -39,10 +39,12 @@ function linksFromSource(route, baseUrl) {
 
 function extractLinks(html, baseUrl) {
   const links = new Set();
-  const re = /<a[^>]*href=["']([^"']+)["']/gi;
+  // href is matched up to the quote that opened it, so an apostrophe inside
+  // a double-quoted value does not cut the match short.
+  const re = /<a[^>]*href=(?:"([^"]+)"|'([^']+)')/gi;
   let m;
   while ((m = re.exec(html)) !== null) {
-    const href = m[1].trim();
+    const href = (m[1] ?? m[2]).trim();
     if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) continue;
     try { links.add(new URL(href, baseUrl).toString()); }
     catch { /* skip malformed */ }

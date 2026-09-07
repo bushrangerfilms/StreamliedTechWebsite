@@ -72,8 +72,11 @@ for (const route of ROUTES) {
     const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(15_000) });
     const html = await res.text();
     const title = html.match(/<title[^>]*>([^<]*)<\/title>/i)?.[1]?.trim() ?? '';
-    const description = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i)?.[1]?.trim() ?? '';
-    const ogTitle = html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']*)["']/i)?.[1]?.trim() ?? '';
+    // Match the value up to the SAME quote that opened it, so an apostrophe
+    // inside a double-quoted value (Tech's) does not cut the match short.
+    const attr = (re) => { const m = html.match(re); const v = m ? m.slice(1).find(g => g !== undefined) : undefined; return v?.trim() ?? ''; };
+    const description = attr(/<meta[^>]*name=["']description["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const ogTitle = attr(/<meta[^>]*property=["']og:title["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
     entry.live = { title, description, og_title: ogTitle };
     scanText(title, 'title', route, entry.findings, { isHead: true });
     scanText(description, 'description', route, entry.findings, { isHead: true });
