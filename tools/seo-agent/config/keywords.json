@@ -346,7 +346,7 @@
     },
     {
       "query": "ai for heavy industry",
-      "trap": "serps/google-ie/19: Siemens, McKinsey, IBM, MIT, zero SMB intent. 'Heavy industry' is Pete's identity phrase on-page (the 20+ years claim, 'We set up heavy industry with AI'), not a search target.",
+      "trap": "serps/google-ie/19: Siemens, McKinsey, IBM, MIT, zero SMB intent. 'Heavy industry' is Pete's identity phrase on-page (the founder block on / still carries the canonical '20+ years in heavy industries' claim, and /contractors leads with construction and heavy industry), not a search target. The homepage H1 has read 'We set your business up with AI.' since 1 Sep 2026 and no longer names heavy industry.",
       "use_instead": "quarry management software, plant hire software ireland, haulage software ireland"
     },
     {
@@ -685,26 +685,34 @@
     },
     {
       "route": "/",
-      "journey": "australia_mining_construction, smb_set_up_ai_ie",
-      "stage": "conversion (existing page, title and description change plus founder H2 fix)",
-      "title": "Custom Apps for Heavy Industry & Construction | Streamlined Tech",
-      "description": "We build the internal app your crew is missing. Jobs, dockets, timesheets and reporting, set up around your business. Based in Galway, Ireland.",
-      "h1": "We build the software your crew is missing",
+      "journey": "smb_set_up_ai_ie",
+      "status": "built",
+      "stage": "built (front door since 1 Sep 2026, PR #38; service list and location-free copy since 6 Sep 2026, PR #52). Nothing proposed. The title, description, h1 and h2_outline below are the LIVE page, recorded so the agent never reports the 6 Sep copy as drift and never proposes a sector, mining or location angle for this route.",
+      "title": "Set Your Business Up with AI | Streamlined Tech",
+      "description": "We set businesses up with AI. Custom internal apps with an AI employee inside, AI consulting and AI training, for owner-run businesses that want the office work off their plate.",
+      "h1": "We set your business up with AI.",
       "h2_outline": [
-        "Built for your jobs, not a generic system",
-        "20+ years in heavy industries and construction, from on the tools to training package production and now building the software",
-        "What a first build looks like",
-        "Where this fits, from quarries and civils to installers and Australian mining contractors",
-        "Talk to us about your crew's paperwork"
+        "Find the page for your line of work",
+        "Three ways we work with you",
+        "The jobs we take off your plate",
+        "Real systems, already built",
+        "Software we build and run ourselves",
+        "How you start",
+        "You deal with me, not an agency",
+        "Your data stays yours",
+        "Tell me where the hours are going"
       ],
       "internal_links": [
         "/business",
         "/contractors",
         "/installers",
         "/australia",
-        "/how-it-works"
+        "/how-it-works",
+        "/products",
+        "/ai-employees/ie"
       ],
-      "priority": "medium"
+      "priority": "none",
+      "notes": "Location free on purpose: the front door speaks to the owner-run customer, never to a geography (Pete, 6 Sep 2026); region belongs on /business, /australia and the ads. Every sector journey lands here too and is routed onward by the audience router, whose four doors are titled by line of work: Trades and local services (/business), Construction and heavy industry (/contractors), Solar, heat pump and retrofit installers (/installers), Mining and large site operations (/australia). Hero sentence: 'Built for owner-run businesses where the office work still lands on you after the real work is done.' The service list names Custom internal apps (/how-it-works), AI consulting and AI training. The founder block still carries the canonical '20+ years in heavy industries' claim. The 6 Sep description is 177 characters, over the 165 threshold; a metadata-scope trim is allowed only if it keeps 'AI consulting', 'AI training' and 'owner-run businesses'. The root title must not cannibalise /business."
     },
     {
       "route": "/contractors/civils",

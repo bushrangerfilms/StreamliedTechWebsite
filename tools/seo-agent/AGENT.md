@@ -12,15 +12,38 @@ same shape, different site. Do not touch that repo.
 
 - A Vite SPA on Vercel. Per-route meta is **prerendered**: `client/src/lib/seo-routes.ts` is the single
   source of truth, `vite-plugin-prerender-meta.ts` writes one HTML file per route at build time, and
-  `vercel.json` rewrites each route to its file (catch-all last). `client/public/sitemap.xml` and
-  `robots.txt` are static files. Adding a route means touching seo-routes.ts, vercel.json, App.tsx and
-  the sitemap. `checks/route-wiring.mjs` catches a missed one.
-- Indexable routes: `/` (heavy industry and construction, mining-facing hero), `/business` (Irish SMB
-  AI adoption, price ladder from EUR3,900), `/contractors` (construction and heavy industry
-  contractors in Ireland), `/installers` (solar, heat pump and retrofit installers in Ireland),
-  `/australia` (Australian mining and construction contractors), plus `/privacy` and `/terms`.
-  `/details`, `/details/thanks` and `/dev` are `noindex, follow` on purpose. `/galway` is an alias of
-  `/business` (in sent emails; keep it working, never index it).
+  `vercel.json` rewrites each route to its file (catch-all last). Since PR #48 each marketing route's
+  file also carries a static body mirror from `client/src/lib/seo-static-html.ts`, gated at build
+  against the page's H1, so those routes are no longer head-only. `client/public/sitemap.xml` and
+  `robots.txt` are static files. Adding a route means touching seo-routes.ts, vercel.json, App.tsx,
+  the sitemap, a mirror in seo-static-html.ts and `config/checks.json` (marketing_routes or
+  noindex_routes, plus page_sources). `checks/route-wiring.mjs` catches a missed one.
+- Indexable routes: `/` (the company front door, sector neutral and location free on purpose, see the
+  next bullet), `/business` (Irish SMB AI adoption, price ladder from EUR3,900), `/contractors`
+  (construction and heavy industry contractors in Ireland), `/installers` (solar, heat pump and
+  retrofit installers in Ireland), `/australia` (Australian mining and construction contractors; all
+  mining positioning lives here and nowhere else), `/products` (AutoListing.io and Rangplan.ie as
+  proof), `/how-it-works` (cost and timeline), `/guide/set-up-ai-for-business-ireland` (the
+  plain-English guide), plus `/privacy` and `/terms`. `/details`, `/details/thanks`, `/dev` and the
+  four AI Employees campaign landers `/ai-employees/ie`, `/au`, `/uk` and `/us` are `noindex, follow`
+  on purpose (bare `/ai-employees` 302s to `/ie`). `/galway` is an alias of `/business` (in sent
+  emails; keep it working, never index it). `/mining` and `/au` 302 to `/australia`.
+- What `/` says, live since 6 Sep 2026 (PR #38 on 1 Sep made it the front door, PR #52 on 6 Sep added
+  the service list and removed every location line): title "Set Your Business Up with AI |
+  Streamlined Tech", H1 "We set your business up with AI.", a hero sentence for owner-run businesses
+  where the office work still lands on the owner after the real work is done, a one-line bridge "In
+  mining or large-scale construction?" to `/australia`, a one-line bridge for the AI Employees ad to
+  `/ai-employees/ie`, the audience router "Find the page for your line of work" with four doors
+  titled by line of work (Trades and local services to `/business`, Construction and heavy industry
+  to `/contractors`, Solar, heat pump and retrofit installers to `/installers`, Mining and large
+  site operations to `/australia`), the "Three ways we work with you" service list (Custom internal
+  apps to `/how-it-works`, AI consulting, AI training), the jobs grid, products as proof, the
+  founder block carrying the canonical "20+ years in heavy industries" claim, security and the CTA.
+  The header's lane link to `/australia` is labelled "Mining"; the footer labels `/business` "Trades
+  and services" and `/australia` "Mining". None of this is drift. The front door speaks to the
+  customer, never to a geography (Pete, 6 Sep 2026); region belongs on the sector pages and in the
+  ads. Do not propose a sector, mining or location title, H1 or hero for `/`, and do not report the
+  missing Galway or Australia lines as a regression. The root title must not cannibalise `/business`.
 - The JSON-LD (`ProfessionalService`) lives once in `client/index.html` and is shared by every route.
   Per-route JSON-LD would need a prerender plugin change, which is outside every PR scope: raise it in
   the issue if it matters.
@@ -106,8 +129,12 @@ bundled, never merged by you.
   `client/src/lib/seo-routes.ts` only, and only the changes listed in `metadata_pr_allowed_changes`:
   trim an over-long description without losing a fact, replace an em or en dash in a title or
   description (reword, do not just swap in a colon), add a missing optional field, fix a canonical
-  that points nowhere. Never change what a title or description says. **Today the homepage title
-  contains an en dash ("Streamlined Tech – Custom internal apps...")**; that is a metadata fix.
+  that points nowhere. Never change what a title or description says. Example of this scope: the
+  homepage title once carried an en dash and four routes ran over length; PR #32 (21 Aug 2026) fixed
+  both, and copy-rules has returned zero findings since. The one open candidate is the root
+  description shipped by PR #52, 177 characters against the 165 limit (see the September section
+  below): a trim is allowed, but it must keep "AI consulting", "AI training" and "owner-run
+  businesses", the facts Pete added on 6 Sep.
 - **Perf** (`chore(seo): perf hints YYYY-MM-DD`, branch `seo/perf-YYYY-MM-DD`): `client/index.html`
   and `client/src/pages/*.tsx`, attributes only (`loading="lazy"`, `decoding="async"`, width/height,
   preload, fetchpriority). Never the hero. Never a layout or copy change.
@@ -187,6 +214,8 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   the taglines are Pete's; propose, do not change.
 - **Never bundle scopes** into one PR.
 - **Never inject meta or JSON-LD into the noindex routes** (`/details`, `/details/thanks`, `/dev`).
+  The four `/ai-employees/*` landers are noindex too and carry their own title, description and Offer
+  JSON-LD from the `aiEmployeesRoute` factory in seo-routes.ts by design; never touch them either.
 - **Never add `Disallow` lines to robots.txt to hide a page.** The house rule is `noindex`; a Disallow
   stops Google reading the tag, and `/details` is linked publicly from campaign comments.
 - **Never remove the `google-site-verification` meta tag** from `client/index.html`.
@@ -201,7 +230,44 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
 - If credentials fail (GSC `invalid_grant`, GitHub 401), say so in the final message and, if you can
   push, in RUN_LOG.md. The Google OAuth app is published "In production", so a dead token is news.
 
+## What changed between 1 and 7 Sep 2026 (read before the block below)
+
+- **The root is the front door, not a mining page.** PR #38 (1 Sep) moved every piece of mining
+  positioning to `/australia` and made `/` a sector-neutral router. PR #52 (6 Sep) added the "Three
+  ways we work with you" service list (custom internal apps, AI consulting, AI training), retitled
+  the four doors by line of work, removed the "Based in Galway" hero line and the founder's
+  "Australian, now based in Galway" paragraph, and broadened the meta description. All of it is
+  deliberate. `_proposed_pages` in keywords.json now records `/` as built, with the live title, H1
+  and H2s; the old "Custom Apps for Heavy Industry & Construction" proposal for `/` is withdrawn.
+  The identity cluster (`set up ai for business` and its variants) still maps to `/` in `_page_map`
+  and fits the new title better than it fit the old one.
+- **New routes since the toolkit was built:** `/how-it-works` (PR #37), `/products` and
+  `/guide/set-up-ai-for-business-ireland` (PR #38). All three are in seo-routes.ts, the sitemap,
+  `marketing_routes` and `page_sources`. The `_proposed_pages` entries for `/how-it-works` and the
+  guide were built as written (title, description and H1 match live).
+- **AI Employees landers** `/ai-employees/ie`, `/au`, `/uk`, `/us` (PRs #41, #42): noindex, with
+  per-region title, description and Offer JSON-LD from the `aiEmployeesRoute` factory, rendered
+  through the `/ai-employees/:region` route in App.tsx. `checks/route-wiring.mjs` does not
+  understand the parameterised route yet, so it reports `app_route_without_seo` for
+  `/ai-employees/:region` and `/ai-employees`. Known and tracked outside this agent: mention it once
+  as known, do not open a PR for it and do not propose ROUTE_SEO entries for it.
+- **Static body mirrors** (PR #48): the marketing routes now serve a crawlable body, so page-meta
+  H1s and link-check links come from the live HTML for those routes; the page-source fallback still
+  applies to `/privacy` and `/terms`. Any body copy change must update its mirror in the same
+  commit or the build fails, one more reason body copy stays outside every PR scope.
+- **Local check run on 7 Sep 2026 against the new copy** (no GSC credentials on the Mac, so
+  gsc-snapshot, indexing-status and cwv were not run): copy-rules 0 findings on all 10 routes, the
+  founder claim on `/` still reads "20+ years in heavy industries and construction"; sitemap-audit
+  clean; link-check 0 broken (the facebook.com bot block on `/privacy` as usual); page-meta and
+  route-wiring both flag `/` `description_too_long` (177 characters), and route-wiring adds the two
+  `/ai-employees` warnings above. The `/terms` `description_too_short` finding from page-meta is a
+  false positive: the live description is 64 characters, but the check's attribute regex stops at
+  the apostrophe in "Tech's". Do not trim `/terms`.
+
 ## Known state at build time (21 Aug 2026), so you do not re-discover it
+
+Historical. Where it differs from the September section above, the September section wins, and
+`RUN_LOG.md` carries the per-run numbers since.
 
 - GSC: 4 queries, 33 impressions in 28 days; `/` position ~30, `/business` ~86. Sitemap: 7 submitted,
   0 counted as indexed by the sitemap report, though URL Inspection says `/`, `/business`,
