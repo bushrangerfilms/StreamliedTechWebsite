@@ -23,9 +23,14 @@ function h1sFromSource(route) {
   return { file: rel, h1s };
 }
 
+// Attribute values are captured as (?:"([^"]*)"|'([^']*)'): the value runs up
+// to the SAME quote that opened it, so an apostrophe inside a double-quoted
+// value (Tech's) no longer cuts the match short. Return whichever group hit.
 function extractTag(html, regex) {
   const m = html.match(regex);
-  return m ? m[1].trim() : null;
+  if (!m) return null;
+  const v = m.slice(1).find(g => g !== undefined);
+  return v === undefined ? null : v.trim();
 }
 
 function extractAllJsonLd(html) {
@@ -47,14 +52,14 @@ for (const route of ROUTES) {
     const html = await res.text();
 
     const title = extractTag(html, /<title[^>]*>([^<]*)<\/title>/i);
-    const description = extractTag(html, /<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i);
-    const ogTitle = extractTag(html, /<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']*)["']/i);
-    const ogDescription = extractTag(html, /<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']*)["']/i);
-    const ogImage = extractTag(html, /<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']*)["']/i);
-    const ogUrl = extractTag(html, /<meta[^>]*property=["']og:url["'][^>]*content=["']([^"']*)["']/i);
-    const twitterCard = extractTag(html, /<meta[^>]*name=["']twitter:card["'][^>]*content=["']([^"']*)["']/i);
-    const canonical = extractTag(html, /<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["']/i);
-    const robots = extractTag(html, /<meta[^>]*name=["']robots["'][^>]*content=["']([^"']*)["']/i);
+    const description = extractTag(html, /<meta[^>]*name=["']description["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const ogTitle = extractTag(html, /<meta[^>]*property=["']og:title["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const ogDescription = extractTag(html, /<meta[^>]*property=["']og:description["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const ogImage = extractTag(html, /<meta[^>]*property=["']og:image["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const ogUrl = extractTag(html, /<meta[^>]*property=["']og:url["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const twitterCard = extractTag(html, /<meta[^>]*name=["']twitter:card["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
+    const canonical = extractTag(html, /<link[^>]*rel=["']canonical["'][^>]*href=(?:"([^"]*)"|'([^']*)')/i);
+    const robots = extractTag(html, /<meta[^>]*name=["']robots["'][^>]*content=(?:"([^"]*)"|'([^']*)')/i);
     let h1Count = (html.match(/<h1[\s>]/gi) || []).length;
     let h1First = extractTag(html, /<h1[^>]*>([^<]*)<\/h1>/i);
     let h1Source = 'live_html';

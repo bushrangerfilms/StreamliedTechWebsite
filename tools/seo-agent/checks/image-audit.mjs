@@ -71,18 +71,20 @@ for (const route of ROUTES) {
   try {
     const res = await fetch(`https://${DOMAIN}${route}`, { redirect: 'follow' });
     const html = await res.text();
-    const re = /<img[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi;
+    // src and alt are matched up to the quote that opened them, so an
+    // apostrophe inside a double-quoted value does not cut the match short.
+    const re = /<img[^>]*\bsrc=(?:"([^"]+)"|'([^']+)')[^>]*>/gi;
     let m;
     while ((m = re.exec(html)) !== null) {
       const tag = m[0];
-      const src = m[1];
+      const src = m[1] ?? m[2];
       const hasLazy = /loading=["']lazy["']/i.test(tag);
       const hasFetchPriority = /fetchpriority=["']high["']/i.test(tag);
       const hasWidth = /\bwidth=/i.test(tag);
       const hasHeight = /\bheight=/i.test(tag);
       const hasAlt = /\balt=/i.test(tag);
-      const altMatch = tag.match(/\balt=["']([^"']*)["']/i);
-      const alt = altMatch ? altMatch[1] : null;
+      const altMatch = tag.match(/\balt=(?:"([^"]*)"|'([^']*)')/i);
+      const alt = altMatch ? (altMatch[1] ?? altMatch[2]) : null;
       let key = src;
       if (!liveImageRefs.has(key)) liveImageRefs.set(key, { src, refs: [] });
       liveImageRefs.get(key).refs.push({

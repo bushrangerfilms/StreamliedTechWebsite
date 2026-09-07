@@ -15,7 +15,7 @@ tools/seo-agent/
 │   ├── keywords.json      # target keyword clusters + _journeys, _intent_traps, _page_map, _proposed_pages
 │   └── checks.json        # routes, file paths, PR scopes, copy rules, thresholds, IndexNow key
 ├── lib/
-│   ├── env.mjs            # loads ~/Documents/Claude/.env.seo-agent locally; passthrough remotely
+│   ├── env.mjs            # SEO_AGENT_ENV_FILE, then ~/.seo-agent.env (the routine writes it), then Pete's local file
 │   ├── gsc-client.mjs     # Search Console API (env vars first, local creds file second)
 │   └── indexnow.mjs       # IndexNow submit + key-file verification
 ├── checks/                # each prints JSON to stdout

@@ -346,7 +346,7 @@
     },
     {
       "query": "ai for heavy industry",
-      "trap": "serps/google-ie/19: Siemens, McKinsey, IBM, MIT, zero SMB intent. 'Heavy industry' is Pete's identity phrase on-page (the founder block on / still carries the canonical '20+ years in heavy industries' claim, and /contractors leads with construction and heavy industry), not a search target. The homepage H1 has read 'We set your business up with AI.' since 1 Sep 2026 and no longer names heavy industry.",
+      "trap": "serps/google-ie/19: Siemens, McKinsey, IBM, MIT, zero SMB intent. 'Heavy industry' is Pete's identity phrase on-page (the founder block on / still carries the canonical '20+ years in heavy industries' claim, and /contractors leads with construction and heavy industry), not a search target. The homepage H1 has read 'We set your business up with AI.' since 1 Sep 2026 and no longer names heavy industry, so _page_map sends this phrase to /contractors (moved from / on 7 Sep 2026).",
       "use_instead": "quarry management software, plant hire software ireland, haulage software ireland"
     },
     {
@@ -471,9 +471,7 @@
       "set-up ai for business",
       "setup ai for business",
       "ai setup for business",
-      "set up ai systems",
-      "ai for heavy industry",
-      "bespoke ai development ireland"
+      "set up ai systems"
     ],
     "/business": [
       "ai for small business ireland",
@@ -487,7 +485,8 @@
       "software company galway",
       "custom software development ireland",
       "custom internal apps for business",
-      "custom app development for small business"
+      "custom app development for small business",
+      "bespoke ai development ireland"
     ],
     "/contractors": [
       "ai apps for contractors ireland",
@@ -501,7 +500,8 @@
       "walkaround check app ireland",
       "quarry management software",
       "plant hire software ireland",
-      "small plant hire software ireland"
+      "small plant hire software ireland",
+      "ai for heavy industry"
     ],
     "/installers": [
       "solar installer software ireland",
@@ -689,7 +689,7 @@
       "status": "built",
       "stage": "built (front door since 1 Sep 2026, PR #38; service list and location-free copy since 6 Sep 2026, PR #52). Nothing proposed. The title, description, h1 and h2_outline below are the LIVE page, recorded so the agent never reports the 6 Sep copy as drift and never proposes a sector, mining or location angle for this route.",
       "title": "Set Your Business Up with AI | Streamlined Tech",
-      "description": "We set businesses up with AI. Custom internal apps with an AI employee inside, AI consulting and AI training, for owner-run businesses that want the office work off their plate.",
+      "description": "We set businesses up with AI. Custom internal apps with an AI employee inside, AI consulting and AI training, for owner-run businesses buried in office work.",
       "h1": "We set your business up with AI.",
       "h2_outline": [
         "Find the page for your line of work",
@@ -712,7 +712,7 @@
         "/ai-employees/ie"
       ],
       "priority": "none",
-      "notes": "Location free on purpose: the front door speaks to the owner-run customer, never to a geography (Pete, 6 Sep 2026); region belongs on /business, /australia and the ads. Every sector journey lands here too and is routed onward by the audience router, whose four doors are titled by line of work: Trades and local services (/business), Construction and heavy industry (/contractors), Solar, heat pump and retrofit installers (/installers), Mining and large site operations (/australia). Hero sentence: 'Built for owner-run businesses where the office work still lands on you after the real work is done.' The service list names Custom internal apps (/how-it-works), AI consulting and AI training. The founder block still carries the canonical '20+ years in heavy industries' claim. The 6 Sep description is 177 characters, over the 165 threshold; a metadata-scope trim is allowed only if it keeps 'AI consulting', 'AI training' and 'owner-run businesses'. The root title must not cannibalise /business."
+      "notes": "Location free on purpose: the front door speaks to the owner-run customer, never to a geography (Pete, 6 Sep 2026); region belongs on /business, /australia and the ads. Every sector journey lands here too and is routed onward by the audience router, whose four doors are titled by line of work: Trades and local services (/business), Construction and heavy industry (/contractors), Solar, heat pump and retrofit installers (/installers), Mining and large site operations (/australia). Hero sentence: 'Built for owner-run businesses where the office work still lands on you after the real work is done.' The service list names Custom internal apps (/how-it-works), AI consulting and AI training. The founder block still carries the canonical '20+ years in heavy industries' claim. The 6 Sep description ran to 177 characters; PR #54 (7 Sep 2026) trimmed it to 157 keeping every fact. If the live description is still the 177-character version, that PR is not merged yet, so do not open a second trim. The root title must not cannibalise /business."
     },
     {
       "route": "/contractors/civils",

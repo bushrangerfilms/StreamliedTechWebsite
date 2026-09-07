@@ -131,10 +131,10 @@ bundled, never merged by you.
   description (reword, do not just swap in a colon), add a missing optional field, fix a canonical
   that points nowhere. Never change what a title or description says. Example of this scope: the
   homepage title once carried an en dash and four routes ran over length; PR #32 (21 Aug 2026) fixed
-  both, and copy-rules has returned zero findings since. The one open candidate is the root
-  description shipped by PR #52, 177 characters against the 165 limit (see the September section
-  below): a trim is allowed, but it must keep "AI consulting", "AI training" and "owner-run
-  businesses", the facts Pete added on 6 Sep.
+  both, and copy-rules has returned zero findings since. The root description shipped by PR #52 ran
+  to 177 characters; PR #54 (7 Sep 2026) trimmed it to 157 keeping "AI consulting", "AI training"
+  and "owner-run businesses". If the live description is still the 177-character one, that PR is not
+  merged yet: say so in the issue and do not open a second trim.
 - **Perf** (`chore(seo): perf hints YYYY-MM-DD`, branch `seo/perf-YYYY-MM-DD`): `client/index.html`
   and `client/src/pages/*.tsx`, attributes only (`loading="lazy"`, `decoding="async"`, width/height,
   preload, fetchpriority). Never the hero. Never a layout or copy change.
@@ -240,7 +240,10 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   deliberate. `_proposed_pages` in keywords.json now records `/` as built, with the live title, H1
   and H2s; the old "Custom Apps for Heavy Industry & Construction" proposal for `/` is withdrawn.
   The identity cluster (`set up ai for business` and its variants) still maps to `/` in `_page_map`
-  and fits the new title better than it fit the old one.
+  and fits the new title better than it fit the old one. On 7 Sep two keywords moved out of the `/`
+  entry: "bespoke ai development ireland" to `/business` and "ai for heavy industry" to
+  `/contractors`, because a location-free, sector-neutral root is no longer the page that should
+  catch an Ireland or heavy-industry query.
 - **New routes since the toolkit was built:** `/how-it-works` (PR #37), `/products` and
   `/guide/set-up-ai-for-business-ireland` (PR #38). All three are in seo-routes.ts, the sitemap,
   `marketing_routes` and `page_sources`. The `_proposed_pages` entries for `/how-it-works` and the
@@ -259,10 +262,12 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   gsc-snapshot, indexing-status and cwv were not run): copy-rules 0 findings on all 10 routes, the
   founder claim on `/` still reads "20+ years in heavy industries and construction"; sitemap-audit
   clean; link-check 0 broken (the facebook.com bot block on `/privacy` as usual); page-meta and
-  route-wiring both flag `/` `description_too_long` (177 characters), and route-wiring adds the two
-  `/ai-employees` warnings above. The `/terms` `description_too_short` finding from page-meta is a
-  false positive: the live description is 64 characters, but the check's attribute regex stops at
-  the apostrophe in "Tech's". Do not trim `/terms`.
+  route-wiring both flagged `/` `description_too_long` (177 characters, trimmed by PR #54), and
+  route-wiring adds the two `/ai-employees` warnings above. page-meta also reported `/terms`
+  `description_too_short` (40 characters) when the live description is 64: the head-tag regexes in
+  page-meta, copy-rules, link-check and image-audit stopped at an apostrophe inside a double-quoted
+  value ("Tech's"). Fixed the same day (values are now matched up to the quote that opened them);
+  after the fix `/terms` reads 64 and every other route's lengths are unchanged.
 
 ## Known state at build time (21 Aug 2026), so you do not re-discover it
 
