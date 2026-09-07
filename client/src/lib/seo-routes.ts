@@ -108,7 +108,7 @@ export const ROUTE_SEO = {
     path: "/",
     title: "Set Your Business Up with AI | Streamlined Tech",
     description:
-      "We set businesses up with AI. Custom internal apps with an AI employee inside, AI consulting and AI training, for owner-run businesses that want the office work off their plate.",
+      "We set businesses up with AI. Custom internal apps with an AI employee inside, AI consulting and AI training, for owner-run businesses buried in office work.",
     canonical: "/",
     image: "/images/og-card-home.png",
     preloads: [{ href: "/images/hero-operations.webp" }],
