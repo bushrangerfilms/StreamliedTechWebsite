@@ -3,6 +3,15 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-09-15 10:03 UTC
+- Checks: 9 ok / 0 failed
+- GSC: 5 queries, 161 page-level impressions, 18 page-level clicks in the last 28 days across all 10 tracked routes; target keywords seen: 0 of 87 (down from 1 of 87; "bespoke ai development ireland" fell out of the named-query list this period)
+- Findings: mechanical PR 0 (no drift) · metadata PR 0 (copy rules clean, all lengths inside threshold, root description confirmed at 157 chars per PR #54) · perf PR 1 · content PR 0 (no striking distance) · issue 1 · digest (clean checks, CWV, image audit findings, IndexNow n/a)
+- PRs: https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/56 (new); nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/33 (25 days old, now conflicting with main after the site restructuring, recommended closing in favour of #56)
+- Issue: https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/57 (comment added to previous report https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/39)
+- IndexNow: skipped, no PR added a sitemap URL this run
+- Notes: `/privacy` regressed from "Submitted and indexed" (1 Sep report) to "Crawled - currently not indexed"; no on-page cause visible (title/description/canonical all clean), likely a Google low-value judgement on a thin privacy-policy page rather than a technical fault. The `config/checks.json` gap that left `/how-it-works` uncovered by several checks (flagged in the 1 Sep report) is resolved; all 10 marketing routes now covered by page-meta, copy-rules, cwv, link-check and image-audit. `/contractors`, `/installers` and `/australia` all showed real page-level GSC gains this period; `/business` impressions dropped from 13 to 2 but average position improved from 75.0 to 13.5 (noisy at this volume). Two new off-journey queries this period both name "chatbot", which the site does not offer; flagged in the issue, not actioned. PR #56 redoes the `loading="lazy"`/width/height perf fix that PR #33 (open since 21 Aug) was attempting, since #33 no longer applies cleanly to `business.tsx`, `contractors.tsx` and `installers.tsx` after the restructuring rewrote them. Google OAuth token authenticated normally end to end on Search Analytics, Sitemaps and URL Inspection.
+
 ## 2026-09-01 10:02 UTC
 - Checks: 9 ok / 0 failed
 - GSC: 6 queries, 94 page-level impressions, 12 page-level clicks in the last 28 days; target keywords seen: 1 of 87 ("bespoke ai development ireland", 2 impressions, position 93.5, unchanged from last run)
