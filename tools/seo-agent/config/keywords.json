@@ -22,7 +22,8 @@
     "how can i use ai in my small business",
     "best ai for small business ireland",
     "automate my business with ai",
-    "automate my business"
+    "automate my business",
+    "train staff to use ai"
   ],
   "ai_automation_agency_ie": [
     "ai automation ireland",
@@ -32,6 +33,7 @@
     "ai automation agencies",
     "ai automation agencies near me",
     "ai consultancy ireland",
+    "ai consulting ireland",
     "how much do ai automation agencies charge"
   ],
   "galway_local": [
@@ -345,6 +347,21 @@
       "use_instead": "ai consultancy ireland (exact), ai consultant galway"
     },
     {
+      "query": "ai coaching",
+      "trap": "Checked 17 Sep 2026 (WebSearch, US-weighted, not Irish Google) after Pete asked where the site ranks for it. Answer: nowhere, and it is a trap on meaning, not just on competition. In this phrase 'ai' modifies 'coach', so the searcher wants software that coaches THEM: Gartner Peer Insights formalises 'AI Coaching Applications' as a software market and the SERP is platform product pages (CoachHub, Rocky.ai, Culture Amp AI Coach, BetterUp, Coachvox) plus tool listicles. Streamlined Tech sells a human who teaches AI, which is the reverse. A second slice is content FOR coaches adding AI to their own practice (ICF standards, Korn Ferry, IMI 'AI in Coaching Mastery'). On Irish Google 'coach' also collides with sports coaching hard enough that Wikipedia rugby and football pages rank. Both refuters agreed: do not track, and keep coach/coaching out of every title, H1 and description. Body copy may still name the '/ai-training' one-to-one coaching package, which is Pete's own product name.",
+      "use_instead": "train staff to use ai (as on-page vocabulary, not a head term)"
+    },
+    {
+      "query": "ai workshops",
+      "trap": "Checked 17 Sep 2026 (WebSearch, US-weighted, not Irish Google) after Pete asked where the site ranks for it. The Irish supply is free and state funded, so the query cannot be bought or out-written: Local Enterprise Office AI workshops across Meath, Laois, Monaghan, South Dublin, DLR and Tipperary, 'AI Works for Ireland' from the LEO network with Google and Enterprise Ireland including a free Galway edition at the Radisson RED in Pete's own city, and ISME Skillnet 'AI Tools for Business' as a half-day hands-on workshop for Irish SMEs. The construction variant is held by the Construction Industry Federation, the buyer's own trade body and the CPD-recognised provider. Corporate L and D procurement in Irish construction asks for CIF Assured or CIRI CPD status before it looks at a vendor site, which a one-person unaccredited firm does not have. Ban 'workshop' and 'workshops' from every title, H1 and description on the same footing as 'ai for business'. Note the site currently uses 'group sessions' instead, which is the right call and should stay.",
+      "use_instead": "none as a search target; answer 'do you run one off AI workshops' as an FAQ on /ai-training if it comes up in sales calls"
+    },
+    {
+      "query": "ai training ireland",
+      "trap": "Checked 17 Sep 2026 (WebSearch, US-weighted, not Irish Google). The Ireland-qualified training head term is the 'ai for business' trap repeating: Skillnet Ireland AI programmes with University of Limerick, University of Galway, NCI and Krisolis (12-week certificates up to two-year masters), Technology Ireland ICT Skillnet subsidised upskilling, the Government's free AIReady.ie national AI skills platform, UCC AI Academy and itag Skillnet. Worse than ordinary course pollution: the Skillnet Upskill SME Training Grant reclaims the salary cost of staff AI training, so the state part-funds the competing service for the same buyer. The refuter's verdict was weak, not trap, because the underlying service is real and the buyer exists; the term is simply not the way to reach them. Do not build an Ireland-qualified or Galway-qualified AI training page.",
+      "use_instead": "train staff to use ai; and answer the funding question ('can Skillnet or Enterprise Ireland funding cover this') directly on /ai-training"
+    },
+    {
       "query": "ai for heavy industry",
       "trap": "serps/google-ie/19: Siemens, McKinsey, IBM, MIT, zero SMB intent. 'Heavy industry' is Pete's identity phrase on-page (the founder block on / still carries the canonical '20+ years in heavy industries' claim, and /contractors leads with construction and heavy industry), not a search target. The homepage H1 has read 'We set your business up with AI.' since 1 Sep 2026 and no longer names heavy industry, so _page_map sends this phrase to /contractors (moved from / on 7 Sep 2026).",
       "use_instead": "quarry management software, plant hire software ireland, haulage software ireland"
@@ -502,6 +519,9 @@
       "plant hire software ireland",
       "small plant hire software ireland",
       "ai for heavy industry"
+    ],
+    "/ai-training": [
+      "train staff to use ai"
     ],
     "/installers": [
       "solar installer software ireland",
@@ -713,6 +733,32 @@
       ],
       "priority": "none",
       "notes": "Location free on purpose: the front door speaks to the owner-run customer, never to a geography (Pete, 6 Sep 2026); region belongs on /business, /australia and the ads. Every sector journey lands here too and is routed onward by the audience router, whose four doors are titled by line of work: Trades and local services (/business), Construction and heavy industry (/contractors), Solar, heat pump and retrofit installers (/installers), Mining and large site operations (/australia). Hero sentence: 'Built for owner-run businesses where the office work still lands on you after the real work is done.' The service list names Custom internal apps (/how-it-works), AI consulting and AI training. The founder block still carries the canonical '20+ years in heavy industries' claim. The 6 Sep description ran to 177 characters; PR #54 (7 Sep 2026) trimmed it to 157 keeping every fact. If the live description is still the 177-character version, that PR is not merged yet, so do not open a second trim. The root title must not cannibalise /business."
+    },
+    {
+      "route": "/ai-training",
+      "journey": "smb_set_up_ai_ie",
+      "status": "built",
+      "stage": "built (shipped 16 Sep 2026, PR #58, by Pete rather than proposed by this agent). Nothing proposed. The title, description, h1 and h2_outline below are the LIVE page, recorded so the agent never reports this copy as drift. See the retitle recommendation in notes: it is a content-scope change with no GSC evidence yet, so it is Pete's call, not an agent PR.",
+      "title": "AI Training and Coaching in Ireland | Streamlined Tech",
+      "description": "Get more done with the team you already have. AI training and coaching for Irish businesses, from EUR400 for an introductory session.",
+      "h1": "Get more done with the team you already have",
+      "h2_outline": [
+        "What your team could hand to AI",
+        "As AI advances, so will your team",
+        "Training and coaching options",
+        "How you start",
+        "Which AI tools?",
+        "When a job needs more than a chat tool",
+        "Built on daily use",
+        "Tell us where the hours are going"
+      ],
+      "internal_links": [
+        "/",
+        "/how-it-works",
+        "/business"
+      ],
+      "priority": "none",
+      "notes": "Third of the three services the root page sells, alongside custom internal apps (/how-it-works) and AI consulting (which has no page and links to the booking URL instead). Page is technically clean as of 17 Sep 2026: title 54 chars, description 133, H1 served in the static body mirror, its own Service plus Offer JSON-LD, wired into App.tsx, sitemap.xml, vercel.json and checks.json. EUR400 for an introductory session is a Pete-sanctioned price as of 17 Sep 2026 (sourced in a code comment in seo-routes.ts), sitting alongside the from EUR3,900 build price; it is not a copy-rule violation. GSC on 17 Sep 2026: URL is unknown to Google, never crawled, because Google last fetched the sitemap on 15 Sep at 22:30 UTC, before this route existed, and still reports 10 submitted URLs rather than 11. This agent submitted the URL to IndexNow on 17 Sep (202 accepted), which reaches Bing, Yandex and Naver but not Google; requesting indexing in the Search Console UI is Pete's action. RETITLE RECOMMENDATION, researched 17 Sep 2026 and not applied: the live title contests the two least winnable terms in the set, an Ireland-qualified AI training head term owned by Skillnet, the LEOs, AIReady.ie and the universities (with the Skillnet Upskill SME grant part-funding the competing service), and Coaching, which Gartner treats as a software market and which collides with sports coaching on Irish Google. Suggested replacement, which passes every copy rule: title 'Train Your Staff to Use AI | Streamlined Tech' (45 chars), description 'I teach your staff to use AI on your own jobs and paperwork, so the gains stay with your team. Galway based, working across Ireland.' (132 chars). Two H2s worth adding whatever Pete decides on the title: one answering whether Skillnet or Enterprise Ireland funding can cover this, and one answering whether he runs one off AI workshops, since both are live objections the SERP research surfaced. Do not add an Ireland-qualified or Galway-qualified training page; see the ai training ireland and ai workshops traps."
     },
     {
       "route": "/contractors/civils",
