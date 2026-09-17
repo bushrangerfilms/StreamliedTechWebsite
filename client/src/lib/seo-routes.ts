@@ -164,7 +164,7 @@ export const ROUTE_SEO = {
     path: "/ai-training",
     title: "AI Training for Staff in Ireland | Streamlined Tech",
     description:
-      "Hands-on AI training for Irish business teams, built around your own quotes, emails and paperwork, and kept current as the tools change.",
+      "Get more done with the team you already have. Hands-on AI training for Irish business teams, on your own work and kept current as the tools change.",
     canonical: "/ai-training",
     // No offers node on purpose: format and price were not decided when
     // the page shipped (17 Sep 2026). Add one only once a figure is real.
@@ -175,7 +175,7 @@ export const ROUTE_SEO = {
       serviceType: "AI training",
       url: "https://streamlinedai.tech/ai-training",
       description:
-        "Hands-on AI training for owner-run businesses, built around the team's own work and kept current as the tools change. Plan and price agreed in writing first.",
+        "Hands-on AI training for owner-run businesses, built around the team's own work and kept current as the tools change. Price agreed in writing before it starts.",
       provider: {
         "@type": "ProfessionalService",
         name: "Streamlined Tech",

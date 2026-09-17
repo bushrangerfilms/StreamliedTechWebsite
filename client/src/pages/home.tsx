@@ -67,7 +67,7 @@ export default function Home() {
     },
     {
       title: "AI training",
-      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.",
+      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, kept current as the tools change so the gains keep compounding.",
       href: "/ai-training",
       external: false,
       cta: "See how the training works",

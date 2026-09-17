@@ -10,13 +10,19 @@ import { SiteFooter } from "@/components/site-footer";
 /**
  * AI training for business teams (added 17 Sep 2026).
  *
- * Words only on purpose: format, length, group size and price were not yet
- * decided when this page shipped, so nothing here commits to them. The
- * ongoing angle comes from Pete's own 8 Sep 2026 reply to a prospect who had
- * "already done AI training": a training day dates fast, so the offer is
- * training on the team's own work, kept current. Any copy change here must
- * update the "/ai-training" mirror in seo-static-html.ts in the same commit.
+ * Words only on purpose: format (in person or remote), length, group size,
+ * price and the shape of the ongoing part were not decided when this page
+ * shipped, so nothing here commits to them. The ongoing angle comes from
+ * Pete's own 8 Sep 2026 reply to a prospect who had already done AI
+ * training: a training day dates fast, so the offer is training on the
+ * team's own work, kept current. Any copy change here must update the
+ * "/ai-training" mirror in seo-static-html.ts in the same commit.
  */
+
+// Tagged so a training booking can be told apart from an app enquiry in
+// Calendly (it stores utm_* on the invitee). The header button stays untagged.
+const TRAINING_BOOKING_URL = `${BOOKING_URL}?utm_source=streamlinedai.tech&utm_medium=site&utm_campaign=ai-training`;
+
 export default function AiTraining() {
   usePageTracking();
 
@@ -38,16 +44,16 @@ export default function AiTraining() {
               Get more done with the team you already have
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              Hands-on AI training for you and your team, built around the work they already do. Practical sessions on your own quotes, emails, reports and paperwork, not a slideshow, and kept current as the tools change.
+              Hands-on AI training for you and your team, built around your day-to-day work. The sessions use your own quotes, emails, reports and paperwork, and the training keeps up as the tools change.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                  Book A Free Call
+                <a href={TRAINING_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                  Book a free call
                 </a>
               </Button>
               <div className="text-sm text-slate-300">
-                <p>A short call first. No hard sell.</p>
+                <p>A free call first. No hard sell.</p>
                 <p>And if you're nearby, we're happy to call in instead.</p>
               </div>
             </div>
@@ -55,27 +61,7 @@ export default function AiTraining() {
         </div>
       </section>
 
-      {/* Why one training day is not enough */}
-      <section className="py-20" data-testid="section-why">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Why one training day is rarely enough
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Plenty of businesses have already sent someone on an AI course or bought a subscription. That is a good first step, and more than most have done.
-            </p>
-            <p className="text-lg text-muted-foreground mb-6">
-              The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole office.
-            </p>
-            <p className="text-lg text-foreground">
-              That is why we are not a one-off training shop. We train your team on their own work, then keep it current, so what you have invested in gets used across the business.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Examples */}
+      {/* Examples first: the payoff before the argument */}
       <section className="py-20 bg-slate-50" data-testid="section-examples">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
@@ -89,7 +75,7 @@ export default function AiTraining() {
               {[
                 {
                   title: "Quotes and tenders",
-                  body: "First drafts of quotes, tender answers and method statements from your own notes, ready for a person to check before they go out.",
+                  body: "First drafts of quotes and tender answers from your own notes, ready for a person to check before they go out.",
                 },
                 {
                   title: "Emails and replies",
@@ -97,19 +83,19 @@ export default function AiTraining() {
                 },
                 {
                   title: "Reports and write-ups",
-                  body: "Rough notes from a site visit or a meeting turned into a report you would be happy to send.",
+                  body: "Rough notes from a site visit or a meeting turned into a report you'd be happy to send.",
                 },
                 {
-                  title: "Procedures and forms",
-                  body: "Checklists, procedures and standard letters drafted and kept up to date, with a person signing them off.",
+                  title: "Procedures and letters",
+                  body: "Procedures and standard letters drafted or brought up to date, with a person signing them off.",
                 },
                 {
                   title: "Numbers and spreadsheets",
-                  body: "Plain answers out of the spreadsheets you already keep, without anyone needing to learn formulas.",
+                  body: "Questions about the spreadsheets you already keep, asked in plain English, with the answer checked before anyone relies on it.",
                 },
                 {
                   title: "Rules and research",
-                  body: "Grant conditions, regulations and supplier terms summarised in plain English before you read the detail.",
+                  body: "Regulations and grant conditions summarised in plain words before you read the detail.",
                 },
               ].map((card) => (
                 <div key={card.title} className="bg-white p-6 rounded-lg border border-border">
@@ -122,34 +108,54 @@ export default function AiTraining() {
         </div>
       </section>
 
+      {/* Why ongoing */}
+      <section className="py-20" data-testid="section-why">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              As AI advances, so will your team
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Plenty of businesses have already sent someone on an AI course or bought a subscription. That's a good first step.
+            </p>
+            <p className="text-lg text-muted-foreground mb-6">
+              The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole team.
+            </p>
+            <p className="text-lg text-foreground">
+              That's why we're not a one-off training shop. We train your team on their own work, then keep their setup current, so what you've put into AI gets used across the business.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
-      <section className="py-20" data-testid="section-process">
+      <section className="py-20 bg-slate-50" data-testid="section-process">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-10">
-              How it works
+              How you start
             </h2>
             <div className="space-y-6">
               {[
                 {
                   step: "1",
                   title: "A call",
-                  body: "You tell us who does what in the office and where the hours go. If training will not pay for itself, we will say so on the call.",
+                  body: "You tell us where the hours go and what AI training anyone has done already. If training won't pay for itself, we'll say so on the call.",
                 },
                 {
                   step: "2",
-                  title: "A plan and a price in writing",
-                  body: "What the sessions will cover, who will be in them and what it costs, agreed before anything starts.",
+                  title: "A price in writing",
+                  body: "What the sessions will cover and what they cost, agreed in writing before anything starts.",
                 },
                 {
                   step: "3",
                   title: "Hands-on sessions on real work",
-                  body: "Your team uses the tools on their own jobs, in your office, rather than on practice examples.",
+                  body: "Your team works on their own jobs with the tools, so what they practise is the work they actually do.",
                 },
                 {
                   step: "4",
                   title: "Kept current",
-                  body: "The tools change every few months, so we keep your setup current and point out where a newer tool would take more work off the team. The aim is AI used across the whole office, not sitting with one person.",
+                  body: "The tools change every few months, so we can keep your setup current and point out where a newer tool would take more work off the team. That way the whole team keeps using it, in the office and out on jobs.",
                 },
               ].map((item) => (
                 <div key={item.step} className="bg-white rounded-xl border border-border p-6 flex gap-5">
@@ -168,40 +174,36 @@ export default function AiTraining() {
       </section>
 
       {/* Tools and the honest caution */}
-      <section className="py-20 bg-slate-50" data-testid="section-tools">
+      <section className="py-20" data-testid="section-tools">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Which AI tools?
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Whichever ones suit the work. For most offices that means assistants like Microsoft Copilot, ChatGPT, Google Gemini or Claude, and sometimes one you already have. We are not tied to any of them, and we will tell you when a free version is enough.
+              Whichever ones suit the work. For most offices that means assistants like Microsoft Copilot, ChatGPT, Google Gemini or Claude, and sometimes one that comes with the Microsoft 365 or Google Workspace you may already pay for. We'll tell you when a free version is enough.
             </p>
             <p className="text-lg text-muted-foreground">
-              One honest caution. AI gets things wrong, and it does it confidently. So part of every session is knowing what to check before anything goes out with your name on it, and what should never be pasted into an AI tool in the first place.
+              One honest caution. AI gets things wrong, and it does it confidently. So the training covers what to check before anything goes out with your name on it, and what should never be pasted into an AI tool in the first place.
             </p>
           </div>
         </div>
       </section>
 
       {/* When a job needs an app */}
-      <section className="py-20" data-testid="section-apps">
+      <section className="py-20 bg-slate-50" data-testid="section-apps">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               When a job needs more than a chat tool
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Some work comes round every week in exactly the same shape, and typing it into a chat tool each time is still work. If we spot a job like that in the sessions, we will tell you, because a small custom app can take it off the team's plate.
+              Some work comes round every week in exactly the same shape, and typing it into a chat tool each time is still work. If we spot a job like that in the sessions, we'll tell you, because that's the kind of work a custom internal app takes off the team's plate. Those apps are the main thing we build.
             </p>
             <p className="text-lg text-muted-foreground">
               What a build costs and how long it takes is on{" "}
               <Link href="/how-it-works" className="text-primary underline hover:no-underline" data-testid="link-how-it-works">
                 the cost and timeline page
-              </Link>
-              . New to AI altogether? Start with{" "}
-              <Link href="/guide/set-up-ai-for-business-ireland" className="text-primary underline hover:no-underline" data-testid="link-guide">
-                the plain-English guide to setting up AI
               </Link>
               .
             </p>
@@ -209,8 +211,9 @@ export default function AiTraining() {
         </div>
       </section>
 
-      {/* Founder */}
-      <section className="py-20 bg-primary text-primary-foreground" data-testid="section-founder">
+      {/* Founder. Darker than the sitewide bg-primary band on purpose: white
+          body text on --primary is 3.6:1, under WCAG AA for text this size. */}
+      <section className="py-20 bg-[hsl(217_91%_45%)] text-white" data-testid="section-founder">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <img
@@ -219,14 +222,14 @@ export default function AiTraining() {
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Built on daily use, not a slide deck
+              Built on daily use
             </h2>
             <div className="space-y-4 text-lg">
               <p>
                 I'm Pete Harris, the founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software.
               </p>
               <p>
-                We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. What we teach is what we use.
+                We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. The training comes out of that daily use.
               </p>
             </div>
           </div>
@@ -238,21 +241,26 @@ export default function AiTraining() {
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
-              Find out what your team could hand to AI
+              Tell us where the hours are going
             </h2>
             <p className="text-lg text-slate-200 mb-8">
-              A short call will tell us both whether training is worth it for your business. If it is not, we will say so.
+              A free call is the quickest way for us both to see whether training is worth it for your business. If it isn't, we'll say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                Book A Free Call
+              <a href={TRAINING_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                Book a free call
               </a>
             </Button>
             <p className="text-sm text-slate-300 mt-6">
-              Or email{" "}
+              Not ready for a call? Email{" "}
               <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline" data-testid="link-email">
                 peter@streamlinedai.tech
               </a>
+              , or start with{" "}
+              <Link href="/guide/set-up-ai-for-business-ireland" className="underline hover:no-underline" data-testid="link-guide">
+                the plain-English guide to setting up AI
+              </Link>
+              .
             </p>
           </div>
         </div>
