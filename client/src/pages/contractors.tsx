@@ -140,6 +140,9 @@ export default function Contractors() {
                   src="/images/app-scheduling.webp"
                   alt="Job and crew scheduling"
                   className="w-full h-auto"
+                  width="1200"
+                  height="779"
+                  loading="lazy"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Crews and jobs that write themselves into the schedule.
@@ -150,6 +153,9 @@ export default function Contractors() {
                   src="/images/app-training-dashboard.webp"
                   alt="Crew training and certification tracking dashboard"
                   className="w-full h-auto"
+                  width="1200"
+                  height="742"
+                  loading="lazy"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Crew tickets and training tracked before the audit asks.
@@ -160,6 +166,9 @@ export default function Contractors() {
                   src="/images/app-analytics.webp"
                   alt="Analytics and reporting dashboard"
                   className="w-full h-auto"
+                  width="1200"
+                  height="723"
+                  loading="lazy"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   The week's numbers on one screen, updated automatically.
@@ -170,6 +179,9 @@ export default function Contractors() {
                   src="/images/app-intake.webp"
                   alt="Order and job request intake without rekeying"
                   className="w-full h-auto"
+                  width="1200"
+                  height="928"
+                  loading="lazy"
                 />
                 <p className="text-sm text-muted-foreground p-4">
                   Orders and job requests captured once, typed never.
@@ -181,11 +193,17 @@ export default function Contractors() {
                     src="/images/app-renewals-mobile.webp"
                     alt="Mobile renewals and expiry tracking"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    width="640"
+                    height="1386"
+                    loading="lazy"
                   />
                   <img
                     src="/images/app-video-mobile.webp"
                     alt="Mobile app views"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    width="640"
+                    height="1387"
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
@@ -198,11 +216,17 @@ export default function Contractors() {
                     src="/images/app-settings-mobile.webp"
                     alt="Mobile settings"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    width="640"
+                    height="1383"
+                    loading="lazy"
                   />
                   <img
                     src="/images/app-scanning-mobile.webp"
                     alt="Mobile docket scanning"
                     className="h-64 w-auto rounded-lg shadow-sm"
+                    width="640"
+                    height="1383"
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground px-4 pb-4">
@@ -322,6 +346,9 @@ export default function Contractors() {
               src="/images/pete-harris.jpg"
               alt="Pete Harris, founder of Streamlined Tech"
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
+              width="144"
+              height="144"
+              loading="lazy"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               You deal with me, not an agency
@@ -397,6 +424,9 @@ export default function Contractors() {
             src="/images/security-bg.jpg"
             alt="Security infrastructure"
             className="w-full h-full object-cover"
+            width="1280"
+            height="448"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-slate-900/85" />
         </div>
@@ -424,6 +454,9 @@ export default function Contractors() {
             src="/images/professional-work.jpg"
             alt="Professional working"
             className="w-full h-full object-cover"
+            width="1280"
+            height="853"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-slate-900/85"></div>
         </div>
