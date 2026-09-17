@@ -66,11 +66,11 @@ export default function Home() {
       testId: "link-service-consulting",
     },
     {
-      title: "AI training",
-      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.",
-      href: BOOKING_URL,
-      external: true,
-      cta: "Book a free call",
+      title: "AI training and coaching",
+      body: "Hands-on training for you and your team on the AI tools worth using day to day. Group sessions or one-to-one coaching, built around your work and kept current as the tools change.",
+      href: "/ai-training",
+      external: false,
+      cta: "See the training and coaching options",
       testId: "link-service-training",
     },
   ];

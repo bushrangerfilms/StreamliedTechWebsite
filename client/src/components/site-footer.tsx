@@ -10,6 +10,7 @@ const LANE_LINKS = [
 
 const COMPANY_LINKS = [
   { href: "/how-it-works", label: "How it works" },
+  { href: "/ai-training", label: "AI training and coaching" },
   { href: "/products", label: "Products" },
   { href: "/guide/set-up-ai-for-business-ireland", label: "Set up AI guide" },
   { href: "/privacy", label: "Privacy Policy" },

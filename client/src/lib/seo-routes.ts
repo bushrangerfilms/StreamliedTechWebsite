@@ -160,6 +160,42 @@ export const ROUTE_SEO = {
       { href: "/images/hero-mining.webp", media: "(min-width: 768px)" },
     ],
   },
+  aiTraining: {
+    path: "/ai-training",
+    title: "AI Training and Coaching in Ireland | Streamlined Tech",
+    description:
+      "Get more done with the team you already have. AI training and coaching for Irish businesses, from EUR400 for an introductory session.",
+    canonical: "/ai-training",
+    // Offer facts from Pete, 17 Sep 2026: packages are custom per business,
+    // an introductory session starts from EUR 400. Keep every description
+    // string here under 165 characters: the SEO agent's route-wiring parser
+    // reads nested description fields as the route description.
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "AI training and coaching",
+      serviceType: "AI training and coaching",
+      url: "https://streamlinedai.tech/ai-training",
+      provider: {
+        "@type": "ProfessionalService",
+        name: "Streamlined Tech",
+        url: "https://streamlinedai.tech/",
+      },
+      areaServed: { "@type": "Country", name: "Ireland" },
+      // EUR 400 is the introductory session only, not the whole service.
+      offers: {
+        "@type": "Offer",
+        name: "Introductory session",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: "400",
+          priceCurrency: "EUR",
+        },
+        description:
+          "A single introductory session from EUR 400. Other packages are custom, with the price agreed in writing before they start.",
+      },
+    },
+  },
   products: {
     path: "/products",
     title: "Software Products We Build and Run | Streamlined Tech",
@@ -274,6 +310,7 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.contractors,
   ROUTE_SEO.guideSetUpAi,
   ROUTE_SEO.howItWorks,
+  ROUTE_SEO.aiTraining,
   ROUTE_SEO.installers,
   ROUTE_SEO.australia,
   ROUTE_SEO.products,

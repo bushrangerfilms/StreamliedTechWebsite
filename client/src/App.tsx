@@ -10,6 +10,7 @@ import Contractors from "@/pages/contractors";
 import GuideSetUpAi from "@/pages/guide-set-up-ai";
 import Products from "@/pages/products";
 import HowItWorks from "@/pages/how-it-works";
+import AiTraining from "@/pages/ai-training";
 import Installers from "@/pages/installers";
 import Australia from "@/pages/australia";
 import Details from "@/pages/details";
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/contractors" component={Contractors} />
       <Route path="/guide/set-up-ai-for-business-ireland" component={GuideSetUpAi} />
       <Route path="/how-it-works" component={HowItWorks} />
+      <Route path="/ai-training" component={AiTraining} />
       <Route path="/installers" component={Installers} />
       <Route path="/australia" component={Australia} />
       <Route path="/products" component={Products} />

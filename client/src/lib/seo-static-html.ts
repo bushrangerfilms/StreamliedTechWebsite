@@ -143,8 +143,9 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="mb-4"><a href="/how-it-works" class="underline">See how a build works</a></p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI consulting</h3>
       <p class="mb-4">Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI training</h3>
-      <p class="mb-4">Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI training and coaching</h3>
+      <p class="mb-2">Hands-on training for you and your team on the AI tools worth using day to day. Group sessions or one-to-one coaching, built around your work and kept current as the tools change.</p>
+      <p class="mb-4"><a href="/ai-training" class="underline">See the training and coaching options</a></p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">The jobs we take off your plate</h2>
       <p class="mb-4">These are the usual suspects. Every build is designed around your specific operation, so treat them as examples rather than a menu.</p>
@@ -697,6 +698,72 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="mb-4">Or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
     </main>`,
 
+  "/ai-training": `
+    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
+      <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
+      <h1 class="text-4xl font-display font-bold mb-6">Get more done with the team you already have</h1>
+      <p class="mb-4">Hands-on AI training and coaching for you and your team, built around your day-to-day work. Group sessions for the whole team or one-to-one coaching on your own workflow, packaged to suit your business. An introductory session starts from €400.</p>
+      <p class="mb-4">No hard sell.</p>
+      <p class="mb-4">And if you're nearby, we're happy to drop into your office instead.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">What your team could hand to AI</h2>
+      <p class="mb-4">Every business is different, so treat these as examples rather than a menu. The sessions are built around the jobs that eat the most time in yours.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Quotes and tenders</h3>
+      <p class="mb-4">First drafts of quotes and tender answers from your own notes, ready for a person to check before they go out.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Emails and replies</h3>
+      <p class="mb-4">Replies to customers and suppliers drafted in your own tone, so the inbox is less of an evening job.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Reports and write-ups</h3>
+      <p class="mb-4">Rough notes from a site visit or a meeting turned into a first draft of the report, for you to read over before it goes out.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Procedures and letters</h3>
+      <p class="mb-4">Procedures and standard letters drafted or brought up to date, with a person signing them off.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Numbers and spreadsheets</h3>
+      <p class="mb-4">Questions about the spreadsheets you already keep, asked in plain English, with the answer checked before anyone relies on it.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Rules and research</h3>
+      <p class="mb-4">Regulations and grant conditions summarised in plain words before you read the detail.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">As AI advances, so will your team</h2>
+      <p class="mb-4">Plenty of businesses have already sent someone on an AI course or bought a subscription. That's a good first step.</p>
+      <p class="mb-4">The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole team.</p>
+      <p class="mb-4">That's why we're not a one-off training shop. We train your team on their own work, then help them keep up with the latest, so what you've put into AI gets used across the business.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Training and coaching options</h2>
+      <p class="mb-4">Every package is put together for your team, with the price agreed in writing up front.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">An introductory session</h3>
+      <p class="mb-2">A single session to make a start, shaped around your business. From there, it can grow into a package with regular calls.</p>
+      <p class="mb-4"><strong>From €400</strong></p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Group sessions</h3>
+      <p class="mb-4">A general overview of the AI tools for your team, geared to the kind of work you do.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">One-to-one workflow coaching</h3>
+      <p class="mb-4">Time with one person on their own workflow, working out what to hand to AI and how.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Ongoing calls</h3>
+      <p class="mb-4">Weekly, fortnightly or monthly calls to keep up with the latest. Book a set number, or take them as a subscription.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How you start</h2>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A call</h3>
+      <p class="mb-4">You tell us where the hours go and what AI training anyone has done already, so the sessions start from there. If it won't pay for itself, we'll say so on the call.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A package and a price in writing</h3>
+      <p class="mb-4">We put a package together from what you told us on the call. What it covers and what it costs are agreed before anything starts.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Sessions that fit your work</h3>
+      <p class="mb-4">Group sessions or one-to-one coaching, whichever suits, pitched at the jobs your team does each week.</p>
+      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Kept current</h3>
+      <p class="mb-4">The tools change every few months. Regular calls help your team keep up with the latest and spot where a newer tool would take more work off their plate. The aim is AI the whole team keeps using, in the office and out on jobs.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Which AI tools?</h2>
+      <p class="mb-4">Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">When a job needs more than a chat tool</h2>
+      <p class="mb-4">Some jobs come round every week in exactly the same shape, and typing them into a chat tool each time is still work. If we spot one like that in the sessions, we'll tell you, because that's the kind of job a custom internal app takes off the team's plate. Those apps are the main thing we build.</p>
+      <p class="mb-4">What a build costs and how long it takes is on <a href="/how-it-works" class="underline">the cost and timeline page</a>.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Built on daily use</h2>
+      <p class="mb-4">I'm Pete Harris, the founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software.</p>
+      <p class="mb-4">We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. The training and coaching come out of that daily use.</p>
+
+      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell us where the hours are going</h2>
+      <p class="mb-4">A free call lets us both see whether training or coaching is worth it for your business. If it isn't, we'll say so.</p>
+      <p class="mb-4">Not ready for a call? Email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a>, or start with <a href="/guide/set-up-ai-for-business-ireland" class="underline">the plain-English guide to setting up AI</a>.</p>
+    </main>
+  `,
   "/guide/set-up-ai-for-business-ireland": `
     <main class="container mx-auto px-6 py-16" style="max-width:48rem">
       <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
@@ -717,7 +784,7 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="mb-4">You can get some of the way with off-the-shelf tools, and for a simple job that can be enough. Where a custom app earns its keep is when your own way of doing things needs to be baked in, or when the job has to keep running without anyone in the office minding it.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">How much does AI cost for a small business in Ireland?</h2>
-      <p class="mb-4">The teaching side can cost very little. Most of the AI tools your staff would use day to day are cheap or free, and the skill is in knowing what to hand them, which is something we build into the work rather than sell as a separate course.</p>
+      <p class="mb-4">On the teaching side, most of the AI tools your staff would use day to day are cheap or free. The skill is in knowing what to hand them, and that is what we teach in <a href="/ai-training" class="underline">our AI training and coaching</a>. It is built on your team's own work and kept current as the tools change. An introductory session starts from €400, and anything beyond that is priced for your business and agreed in writing first.</p>
       <p class="mb-4">The software side has a public price list. A first custom build is a fixed price from €3,900, agreed in writing before anything starts, and it is usually working end to end inside two weeks. A bigger piece across a few connected jobs runs €6,500 to €9,500. A full review of the whole operation is priced after the review.</p>
       <p class="mb-4">The longer answer on pricing and timelines, including how the fixed price works, is on <a href="/how-it-works" class="underline">the cost and timeline page</a>.</p>
 

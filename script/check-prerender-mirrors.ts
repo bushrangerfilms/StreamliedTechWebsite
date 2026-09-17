@@ -32,6 +32,7 @@ const PAGE_COMPONENTS: Record<string, string> = {
   "/australia": "client/src/pages/australia.tsx",
   "/products": "client/src/pages/products.tsx",
   "/how-it-works": "client/src/pages/how-it-works.tsx",
+  "/ai-training": "client/src/pages/ai-training.tsx",
   "/guide/set-up-ai-for-business-ireland": "client/src/pages/guide-set-up-ai.tsx",
   "/ai-employees/ie": "client/src/pages/ai-employees.tsx",
   "/ai-employees/au": "client/src/pages/ai-employees.tsx",
