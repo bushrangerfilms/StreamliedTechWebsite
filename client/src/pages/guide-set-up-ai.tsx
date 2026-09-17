@@ -97,11 +97,11 @@ export default function GuideSetUpAi() {
               How much does AI cost for a small business in Ireland?
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              On the teaching side, most of the AI tools your staff would use day to day are cheap or free. The skill is in knowing what to hand them, and that is what{" "}
+              On the teaching side, most of the AI tools your staff would use day to day are cheap or free. The skill is in knowing what to hand them, and that is what we teach in{" "}
               <Link href="/ai-training" className="text-primary underline hover:no-underline" data-testid="link-ai-training-cost">
                 our AI training and coaching
-              </Link>{" "}
-              cover. Both are built on your team's own work and kept current as the tools change, and an introductory session starts from €400.
+              </Link>
+              . It is built on your team's own work and kept current as the tools change. An introductory session starts from €400, and anything beyond that is priced for your business and agreed in writing first.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
               The software side has a public price list. A first custom build is a fixed price from €3,900, agreed in writing before anything starts, and it is usually working end to end inside two weeks. A bigger piece across a few connected jobs runs €6,500 to €9,500. A full review of the whole operation is priced after the review.

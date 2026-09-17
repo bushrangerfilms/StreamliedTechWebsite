@@ -182,12 +182,17 @@ export const ROUTE_SEO = {
         url: "https://streamlinedai.tech/",
       },
       areaServed: { "@type": "Country", name: "Ireland" },
+      // EUR 400 is the introductory session only, not the whole service.
       offers: {
-        "@type": "AggregateOffer",
-        lowPrice: "400",
-        priceCurrency: "EUR",
+        "@type": "Offer",
+        name: "Introductory session",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: "400",
+          priceCurrency: "EUR",
+        },
         description:
-          "Custom packages of group sessions or one-to-one workflow coaching, with ongoing calls. An introductory session starts from EUR 400.",
+          "A single introductory session from EUR 400. Other packages are custom, with the price agreed in writing before they start.",
       },
     },
   },

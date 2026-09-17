@@ -108,26 +108,46 @@ export default function AiTraining() {
         </div>
       </section>
 
+      {/* Why ongoing */}
+      <section className="py-20" data-testid="section-why">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              As AI advances, so will your team
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Plenty of businesses have already sent someone on an AI course or bought a subscription. That's a good first step.
+            </p>
+            <p className="text-lg text-muted-foreground mb-6">
+              The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole team.
+            </p>
+            <p className="text-lg text-foreground">
+              That's why we're not a one-off training shop. We train your team on their own work, then help them keep up with the latest, so what you've put into AI gets used across the business.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Packages and price */}
-      <section className="py-20" data-testid="section-packages">
+      <section className="py-20 bg-slate-50" data-testid="section-packages">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              Ways to work with us
+              Training and coaching options
             </h2>
             <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Every package is put together for your business, and the price is agreed in writing before anything starts.
+              Every package is put together for your team, with the price agreed in writing up front.
             </p>
             <div className="grid sm:grid-cols-2 gap-6">
               {[
                 {
                   title: "An introductory session",
-                  body: "One session on your own work, to see where AI fits before you commit to anything more.",
+                  body: "A single session to make a start, shaped around your business. From there, it can grow into a package with regular calls.",
                   price: "From €400",
                 },
                 {
                   title: "Group sessions",
-                  body: "A general overview for the whole team, built around the jobs your business actually does.",
+                  body: "A general overview of the AI tools for your team, geared to the kind of work you do.",
                 },
                 {
                   title: "One-to-one workflow coaching",
@@ -153,26 +173,6 @@ export default function AiTraining() {
         </div>
       </section>
 
-      {/* Why ongoing */}
-      <section className="py-20 bg-slate-50" data-testid="section-why">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              As AI advances, so will your team
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Plenty of businesses have already sent someone on an AI course or bought a subscription. That's a good first step.
-            </p>
-            <p className="text-lg text-muted-foreground mb-6">
-              The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole team.
-            </p>
-            <p className="text-lg text-foreground">
-              That's why we're not a one-off training shop. We train your team on their own work, then keep them up with the latest, so what you've put into AI gets used across the business.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Process */}
       <section className="py-20" data-testid="section-process">
         <div className="container mx-auto px-6">
@@ -185,22 +185,22 @@ export default function AiTraining() {
                 {
                   step: "1",
                   title: "A call",
-                  body: "You tell us where the hours go and what AI training anyone has done already, so the sessions start from there. If training won't pay for itself, we'll say so on the call.",
+                  body: "You tell us where the hours go and what AI training anyone has done already, so the sessions start from there. If it won't pay for itself, we'll say so on the call.",
                 },
                 {
                   step: "2",
                   title: "A package and a price in writing",
-                  body: "We put a package together for your business. What it covers and what it costs are agreed before anything starts.",
+                  body: "We put a package together from what you told us on the call. What it covers and what it costs are agreed before anything starts.",
                 },
                 {
                   step: "3",
-                  title: "Hands-on sessions on real work",
-                  body: "Group sessions or one-to-one coaching, whichever suits, on jobs from your team's own week.",
+                  title: "Sessions that fit your work",
+                  body: "Group sessions or one-to-one coaching, whichever suits, pitched at the jobs your team does each week.",
                 },
                 {
                   step: "4",
                   title: "Kept current",
-                  body: "The tools change every few months. Regular calls keep your team up with the latest and point out where a newer tool would take more work off their plate. The aim is AI the whole team keeps using, in the office and out on jobs.",
+                  body: "The tools change every few months. Regular calls help your team keep up with the latest and spot where a newer tool would take more work off their plate. The aim is AI the whole team keeps using, in the office and out on jobs.",
                 },
               ].map((item) => (
                 <div key={item.step} className="bg-white rounded-xl border border-border p-6 flex gap-5">
