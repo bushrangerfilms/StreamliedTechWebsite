@@ -144,8 +144,8 @@ export const STATIC_HTML: Record<string, string> = {
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI consulting</h3>
       <p class="mb-4">Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI training</h3>
-      <p class="mb-2">Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, kept current as the tools change so the gains keep compounding.</p>
-      <p class="mb-4"><a href="/ai-training" class="underline">See how the training works</a></p>
+      <p class="mb-2">Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work and kept current as the tools change, so the gains keep compounding.</p>
+      <p class="mb-4"><a href="/ai-training" class="underline">See what the training covers</a></p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">The jobs we take off your plate</h2>
       <p class="mb-4">These are the usual suspects. Every build is designed around your specific operation, so treat them as examples rather than a menu.</p>
@@ -703,8 +703,8 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
       <h1 class="text-4xl font-display font-bold mb-6">Get more done with the team you already have</h1>
       <p class="mb-4">Hands-on AI training for you and your team, built around your day-to-day work. The sessions use your own quotes, emails, reports and paperwork, and the training keeps up as the tools change.</p>
-      <p class="mb-4">A free call first. No hard sell.</p>
-      <p class="mb-4">And if you're nearby, we're happy to call in instead.</p>
+      <p class="mb-4">No hard sell.</p>
+      <p class="mb-4">And if you're nearby, we're happy to drop into your office instead.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">What your team could hand to AI</h2>
       <p class="mb-4">Every business is different, so treat these as examples rather than a menu. The sessions are built around the jobs that eat the most time in yours.</p>
@@ -713,7 +713,7 @@ export const STATIC_HTML: Record<string, string> = {
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Emails and replies</h3>
       <p class="mb-4">Replies to customers and suppliers drafted in your own tone, so the inbox is less of an evening job.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Reports and write-ups</h3>
-      <p class="mb-4">Rough notes from a site visit or a meeting turned into a report you'd be happy to send.</p>
+      <p class="mb-4">Rough notes from a site visit or a meeting turned into a first draft of the report, for you to read over before it goes out.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Procedures and letters</h3>
       <p class="mb-4">Procedures and standard letters drafted or brought up to date, with a person signing them off.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Numbers and spreadsheets</h3>
@@ -728,20 +728,20 @@ export const STATIC_HTML: Record<string, string> = {
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">How you start</h2>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">A call</h3>
-      <p class="mb-4">You tell us where the hours go and what AI training anyone has done already. If training won't pay for itself, we'll say so on the call.</p>
+      <p class="mb-4">You tell us where the hours go and what AI training anyone has done already, so the sessions start from there. If training won't pay for itself, we'll say so on the call.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">A price in writing</h3>
-      <p class="mb-4">What the sessions will cover and what they cost, agreed in writing before anything starts.</p>
+      <p class="mb-4">What the sessions will cover and what they cost, agreed before anything starts.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Hands-on sessions on real work</h3>
-      <p class="mb-4">Your team works on their own jobs with the tools, so what they practise is the work they actually do.</p>
+      <p class="mb-4">Your team practises with the tools on jobs from their own week.</p>
       <h3 class="text-lg font-display font-semibold mt-6 mb-2">Kept current</h3>
-      <p class="mb-4">The tools change every few months, so we can keep your setup current and point out where a newer tool would take more work off the team. That way the whole team keeps using it, in the office and out on jobs.</p>
+      <p class="mb-4">The tools change every few months. We keep your setup current as they do, and point out where a newer tool would take more work off the team. The aim is AI the whole team keeps using, in the office and out on jobs.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Which AI tools?</h2>
-      <p class="mb-4">Whichever ones suit the work. For most offices that means assistants like Microsoft Copilot, ChatGPT, Google Gemini or Claude, and sometimes one that comes with the Microsoft 365 or Google Workspace you may already pay for. We'll tell you when a free version is enough.</p>
+      <p class="mb-4">Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.</p>
       <p class="mb-4">One honest caution. AI gets things wrong, and it does it confidently. So the training covers what to check before anything goes out with your name on it, and what should never be pasted into an AI tool in the first place.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">When a job needs more than a chat tool</h2>
-      <p class="mb-4">Some work comes round every week in exactly the same shape, and typing it into a chat tool each time is still work. If we spot a job like that in the sessions, we'll tell you, because that's the kind of work a custom internal app takes off the team's plate. Those apps are the main thing we build.</p>
+      <p class="mb-4">Some jobs come round every week in exactly the same shape, and typing them into a chat tool each time is still work. If we spot one like that in the sessions, we'll tell you, because that's the kind of job a custom internal app takes off the team's plate. Those apps are the main thing we build.</p>
       <p class="mb-4">What a build costs and how long it takes is on <a href="/how-it-works" class="underline">the cost and timeline page</a>.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Built on daily use</h2>
@@ -749,7 +749,7 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="mb-4">We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. The training comes out of that daily use.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell us where the hours are going</h2>
-      <p class="mb-4">A free call is the quickest way for us both to see whether training is worth it for your business. If it isn't, we'll say so.</p>
+      <p class="mb-4">A free call lets us both see whether training is worth it for your business. If it isn't, we'll say so.</p>
       <p class="mb-4">Not ready for a call? Email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a>, or start with <a href="/guide/set-up-ai-for-business-ireland" class="underline">the plain-English guide to setting up AI</a>.</p>
     </main>
   `,
@@ -773,7 +773,7 @@ export const STATIC_HTML: Record<string, string> = {
       <p class="mb-4">You can get some of the way with off-the-shelf tools, and for a simple job that can be enough. Where a custom app earns its keep is when your own way of doing things needs to be baked in, or when the job has to keep running without anyone in the office minding it.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">How much does AI cost for a small business in Ireland?</h2>
-      <p class="mb-4">On the teaching side, the tools themselves can cost very little. Most of the ones your staff would use day to day are cheap or free, and the skill is in knowing what to hand them. That's what <a href="/ai-training" class="underline">our AI training</a> covers. It's built on your team's own work and kept current as the tools change.</p>
+      <p class="mb-4">On the teaching side, most of the AI tools your staff would use day to day are cheap or free. The skill is in knowing what to hand them, and that is what <a href="/ai-training" class="underline">our AI training</a> covers. It is built on your team's own work and kept current as the tools change, and the price is agreed in writing before anything starts.</p>
       <p class="mb-4">The software side has a public price list. A first custom build is a fixed price from €3,900, agreed in writing before anything starts, and it is usually working end to end inside two weeks. A bigger piece across a few connected jobs runs €6,500 to €9,500. A full review of the whole operation is priced after the review.</p>
       <p class="mb-4">The longer answer on pricing and timelines, including how the fixed price works, is on <a href="/how-it-works" class="underline">the cost and timeline page</a>.</p>
 

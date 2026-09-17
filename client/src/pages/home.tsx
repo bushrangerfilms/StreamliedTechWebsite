@@ -67,10 +67,10 @@ export default function Home() {
     },
     {
       title: "AI training",
-      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, kept current as the tools change so the gains keep compounding.",
+      body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work and kept current as the tools change, so the gains keep compounding.",
       href: "/ai-training",
       external: false,
-      cta: "See how the training works",
+      cta: "See what the training covers",
       testId: "link-service-training",
     },
   ];

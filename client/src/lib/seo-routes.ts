@@ -164,7 +164,7 @@ export const ROUTE_SEO = {
     path: "/ai-training",
     title: "AI Training for Staff in Ireland | Streamlined Tech",
     description:
-      "Get more done with the team you already have. Hands-on AI training for Irish business teams, on your own work and kept current as the tools change.",
+      "Get more done with the team you already have. Hands-on AI training for Irish businesses, built on your own work and kept current as the tools change.",
     canonical: "/ai-training",
     // No offers node on purpose: format and price were not decided when
     // the page shipped (17 Sep 2026). Add one only once a figure is real.

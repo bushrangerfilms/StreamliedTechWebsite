@@ -53,8 +53,8 @@ export default function AiTraining() {
                 </a>
               </Button>
               <div className="text-sm text-slate-300">
-                <p>A free call first. No hard sell.</p>
-                <p>And if you're nearby, we're happy to call in instead.</p>
+                <p>No hard sell.</p>
+                <p>And if you're nearby, we're happy to drop into your office instead.</p>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function AiTraining() {
                 },
                 {
                   title: "Reports and write-ups",
-                  body: "Rough notes from a site visit or a meeting turned into a report you'd be happy to send.",
+                  body: "Rough notes from a site visit or a meeting turned into a first draft of the report, for you to read over before it goes out.",
                 },
                 {
                   title: "Procedures and letters",
@@ -140,22 +140,22 @@ export default function AiTraining() {
                 {
                   step: "1",
                   title: "A call",
-                  body: "You tell us where the hours go and what AI training anyone has done already. If training won't pay for itself, we'll say so on the call.",
+                  body: "You tell us where the hours go and what AI training anyone has done already, so the sessions start from there. If training won't pay for itself, we'll say so on the call.",
                 },
                 {
                   step: "2",
                   title: "A price in writing",
-                  body: "What the sessions will cover and what they cost, agreed in writing before anything starts.",
+                  body: "What the sessions will cover and what they cost, agreed before anything starts.",
                 },
                 {
                   step: "3",
                   title: "Hands-on sessions on real work",
-                  body: "Your team works on their own jobs with the tools, so what they practise is the work they actually do.",
+                  body: "Your team practises with the tools on jobs from their own week.",
                 },
                 {
                   step: "4",
                   title: "Kept current",
-                  body: "The tools change every few months, so we can keep your setup current and point out where a newer tool would take more work off the team. That way the whole team keeps using it, in the office and out on jobs.",
+                  body: "The tools change every few months. We keep your setup current as they do, and point out where a newer tool would take more work off the team. The aim is AI the whole team keeps using, in the office and out on jobs.",
                 },
               ].map((item) => (
                 <div key={item.step} className="bg-white rounded-xl border border-border p-6 flex gap-5">
@@ -181,7 +181,7 @@ export default function AiTraining() {
               Which AI tools?
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Whichever ones suit the work. For most offices that means assistants like Microsoft Copilot, ChatGPT, Google Gemini or Claude, and sometimes one that comes with the Microsoft 365 or Google Workspace you may already pay for. We'll tell you when a free version is enough.
+              Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.
             </p>
             <p className="text-lg text-muted-foreground">
               One honest caution. AI gets things wrong, and it does it confidently. So the training covers what to check before anything goes out with your name on it, and what should never be pasted into an AI tool in the first place.
@@ -198,7 +198,7 @@ export default function AiTraining() {
               When a job needs more than a chat tool
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Some work comes round every week in exactly the same shape, and typing it into a chat tool each time is still work. If we spot a job like that in the sessions, we'll tell you, because that's the kind of work a custom internal app takes off the team's plate. Those apps are the main thing we build.
+              Some jobs come round every week in exactly the same shape, and typing them into a chat tool each time is still work. If we spot one like that in the sessions, we'll tell you, because that's the kind of job a custom internal app takes off the team's plate. Those apps are the main thing we build.
             </p>
             <p className="text-lg text-muted-foreground">
               What a build costs and how long it takes is on{" "}
@@ -244,7 +244,7 @@ export default function AiTraining() {
               Tell us where the hours are going
             </h2>
             <p className="text-lg text-slate-200 mb-8">
-              A free call is the quickest way for us both to see whether training is worth it for your business. If it isn't, we'll say so.
+              A free call lets us both see whether training is worth it for your business. If it isn't, we'll say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
               <a href={TRAINING_BOOKING_URL} target="_blank" rel="noopener noreferrer">
