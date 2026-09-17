@@ -3,6 +3,54 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-09-17 12:30 UTC (ad hoc, not the fortnightly routine)
+
+- **Merge policy changed.** Pete, 17 Sep 2026: "I don't check code, just merge as part of your
+  workflow." The old "never merge, Pete reviews and merges" rule is gone, replaced by merge
+  authority over PRs this agent opened itself, gated on passing smoke checks (PR #59). Merged PR #56
+  (the 15 Sep perf hints) and #60 under it. Guardrails kept: never merge someone else's PR, never
+  merge red or conflicted, never merge a diff outside the active scope's allowlist, and merge
+  authority widens nothing else. **Still outstanding: the stored scheduled-task prompt in the
+  scheduler also carries "NEVER merge a PR", and this agent cannot edit that. Until Pete updates it,
+  a future run will read the old rule in its task instructions and may follow it over AGENT.md.**
+- Trigger: Pete asked where the site ranks for AI coaching, AI workshops, staff training with AI and
+  AI consulting. Answer: zero on all four, measured over the property's full lifetime (1 Aug to
+  17 Sep), 0 of 24 exact-phrase probes seen and zero rows on broad contains probes for coach,
+  workshop, training, consult, course and upskill.
+- Researched with 4 WebSearch research agents (one per keyword family) plus an independent
+  adversarial refuter each, defaulting to refuted. The refuter downgraded 3 of 4: ai coaching trap,
+  ai workshops weak to **trap**, staff training weak, ai consulting moderate to **weak**. All three
+  traps are now recorded in `_intent_traps` so a future run does not rediscover them.
+- **`/ai-training` shipped in PR #58 on 16 Sep, after the 15 Sep run, and keywords.json did not know
+  it existed** (no `_page_map`, no `_proposed_pages`). Same class of blind spot as the
+  `/how-it-works` config gap in the 1 Sep report. Fixed in #60, which also records the live copy as
+  built so no future run reports it as drift.
+- Headline finding for Pete: the page's live title "AI Training and Coaching in Ireland" contests the
+  two least winnable terms in the set. Ireland-qualified AI training is owned by Skillnet, the LEOs,
+  AIReady.ie and the universities, and the Skillnet Upskill SME grant reclaims the salary cost of
+  staff AI training, so the state part-funds the competing service. "Coaching" is a Gartner software
+  market and collides with sports coaching on Irish Google. Retitle recommended
+  (`Train Your Staff to Use AI | Streamlined Tech`, 45 chars) but **not applied**: content scope,
+  changes what a title says, and no GSC striking-distance evidence exists. Pete's call, recorded in
+  `_proposed_pages`.
+- Indexing: `/ai-training` is "URL is unknown to Google, never crawled". Google last fetched the
+  sitemap 15 Sep 22:30 UTC, before the route existed, and still reports 10 submitted URLs not 11.
+  Submitted to IndexNow (202 accepted, reaches Bing/Yandex/Naver only). Requesting indexing in the
+  Search Console UI remains Pete's action.
+- Also corrected AGENT.md: per-route JSON-LD is supported as of PR #58 (a `jsonLd` field on a
+  ROUTE_SEO entry prerenders a second block), where the file claimed it needed a plugin change.
+- Checks run: route-wiring, sitemap-audit, copy-rules, page-meta. All clean on the new route;
+  copy-rules now covers 11 routes at 0 warnings and 0 info. Only the two known `/ai-employees`
+  route-wiring warnings and the `/dev` short-description info persist.
+- PRs: https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/59 (merged),
+  https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/56 (merged),
+  https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/60 (merged)
+- Issue: commented on https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/57 rather than
+  opening a new one, per the one-issue-per-run rule.
+- Tracked keywords 87 to 89: added `ai consulting ireland` and `train staff to use ai` (watch only,
+  expected to sit at zero for a long time). Deliberately added NO training, coaching, workshop or
+  upskilling cluster; their absence is the research working, not an oversight.
+
 ## 2026-09-15 10:03 UTC
 - Checks: 9 ok / 0 failed
 - GSC: 5 queries, 161 page-level impressions, 18 page-level clicks in the last 28 days across all 10 tracked routes; target keywords seen: 0 of 87 (down from 1 of 87; "bespoke ai development ireland" fell out of the named-query list this period)
