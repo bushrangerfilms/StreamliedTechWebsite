@@ -738,7 +738,6 @@ export const STATIC_HTML: Record<string, string> = {
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">Which AI tools?</h2>
       <p class="mb-4">Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.</p>
-      <p class="mb-4">One honest caution. AI gets things wrong, and it does it confidently. So the training covers what to check before anything goes out with your name on it, and what should never be pasted into an AI tool in the first place.</p>
 
       <h2 class="text-2xl font-display font-bold mt-10 mb-3">When a job needs more than a chat tool</h2>
       <p class="mb-4">Some jobs come round every week in exactly the same shape, and typing them into a chat tool each time is still work. If we spot one like that in the sessions, we'll tell you, because that's the kind of job a custom internal app takes off the team's plate. Those apps are the main thing we build.</p>

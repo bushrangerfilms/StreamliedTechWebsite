@@ -173,18 +173,15 @@ export default function AiTraining() {
         </div>
       </section>
 
-      {/* Tools and the honest caution */}
+      {/* Tools */}
       <section className="py-20" data-testid="section-tools">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Which AI tools?
             </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.
-            </p>
             <p className="text-lg text-muted-foreground">
-              One honest caution. AI gets things wrong, and it does it confidently. So the training covers what to check before anything goes out with your name on it, and what should never be pasted into an AI tool in the first place.
+              Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.
             </p>
           </div>
         </div>
