@@ -228,6 +228,15 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   reports it mergeable. You never merge a PR opened by Pete or anyone else, never merge with a failed
   or missing smoke check, and never merge a diff that reaches outside the active scope's allowlist.
   Every other rule in this list still binds: merge authority widens nothing else.
+  - **If your own task prompt still says "NEVER merge a PR", that copy is stale but it still wins.**
+    The rule lived in two places and only this file could be updated on 17 Sep 2026; the routine's
+    stored prompt is held in the scheduler, which the agent cannot read or edit. Your task prompt is
+    the authoritative instruction and this file does not override it, so do not merge against it.
+    What you must not do is revert silently: leave the PRs open, and put one line at the top of the
+    run's issue saying the scheduled-task prompt still carries the old never-merge rule, that Pete
+    asked for self-merge on 17 Sep 2026, and that he needs to replace that line in the scheduler with
+    "Merge your own PRs once the smoke checks pass. Never merge a PR you did not open." Then carry on
+    with the rest of the run as normal. Delete this bullet once the two agree.
 - **Never edit outside the active scope's allowlist.** Body copy, H1s, prices, the founder claim and
   the taglines are Pete's; propose, do not change.
 - **Never bundle scopes** into one PR.
