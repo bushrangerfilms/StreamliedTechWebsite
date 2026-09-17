@@ -68,9 +68,9 @@ export default function Home() {
     {
       title: "AI training",
       body: "Hands-on training for you and your team on the AI tools worth using day to day. Practical sessions built around your work, not a slideshow, so the gains keep compounding after we leave.",
-      href: BOOKING_URL,
-      external: true,
-      cta: "Book a free call",
+      href: "/ai-training",
+      external: false,
+      cta: "See how the training works",
       testId: "link-service-training",
     },
   ];
