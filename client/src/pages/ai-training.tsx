@@ -8,14 +8,14 @@ import { SiteHeader, BOOKING_URL } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 /**
- * AI training for business teams (added 17 Sep 2026).
+ * AI training and coaching for business teams (added 17 Sep 2026).
  *
- * Words only on purpose: format (in person or remote), length, group size,
- * price and the shape of the ongoing part were not decided when this page
- * shipped, so nothing here commits to them. The ongoing angle comes from
- * Pete's own 8 Sep 2026 reply to a prospect who had already done AI
- * training: a training day dates fast, so the offer is training on the
- * team's own work, kept current. Any copy change here must update the
+ * Offer facts, Pete 17 Sep 2026: every package is custom per organisation;
+ * general overview group sessions and one-to-one workflow coaching; a single
+ * introductory session from €400; ongoing calls weekly, fortnightly or
+ * monthly to keep up with the latest, as a set number or a subscription.
+ * Format (in person or video), length and group size are set per package,
+ * so the page does not state them. Any copy change here must update the
  * "/ai-training" mirror in seo-static-html.ts in the same commit.
  */
 
@@ -44,7 +44,7 @@ export default function AiTraining() {
               Get more done with the team you already have
             </h1>
             <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              Hands-on AI training for you and your team, built around your day-to-day work. The sessions use your own quotes, emails, reports and paperwork, and the training keeps up as the tools change.
+              Hands-on AI training and coaching for you and your team, built around your day-to-day work. Group sessions for the whole team or one-to-one coaching on your own workflow, packaged to suit your business. An introductory session starts from €400.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-start">
               <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
@@ -108,8 +108,53 @@ export default function AiTraining() {
         </div>
       </section>
 
+      {/* Packages and price */}
+      <section className="py-20" data-testid="section-packages">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
+              Ways to work with us
+            </h2>
+            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
+              Every package is put together for your business, and the price is agreed in writing before anything starts.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "An introductory session",
+                  body: "One session on your own work, to see where AI fits before you commit to anything more.",
+                  price: "From €400",
+                },
+                {
+                  title: "Group sessions",
+                  body: "A general overview for the whole team, built around the jobs your business actually does.",
+                },
+                {
+                  title: "One-to-one workflow coaching",
+                  body: "Time with one person on their own workflow, working out what to hand to AI and how.",
+                },
+                {
+                  title: "Ongoing calls",
+                  body: "Weekly, fortnightly or monthly calls to keep up with the latest. Book a set number, or take them as a subscription.",
+                },
+              ].map((pkg) => (
+                <div key={pkg.title} className="bg-white p-6 rounded-xl border border-border flex flex-col">
+                  <h3 className="font-display font-semibold text-lg mb-2">{pkg.title}</h3>
+                  <p className="text-muted-foreground">{pkg.body}</p>
+                  {pkg.price ? (
+                    <p className="font-display font-semibold text-primary mt-4" data-testid="text-intro-price">
+                      {pkg.price}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why ongoing */}
-      <section className="py-20" data-testid="section-why">
+      <section className="py-20 bg-slate-50" data-testid="section-why">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
@@ -122,14 +167,14 @@ export default function AiTraining() {
               The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole team.
             </p>
             <p className="text-lg text-foreground">
-              That's why we're not a one-off training shop. We train your team on their own work, then keep their setup current, so what you've put into AI gets used across the business.
+              That's why we're not a one-off training shop. We train your team on their own work, then keep them up with the latest, so what you've put into AI gets used across the business.
             </p>
           </div>
         </div>
       </section>
 
       {/* Process */}
-      <section className="py-20 bg-slate-50" data-testid="section-process">
+      <section className="py-20" data-testid="section-process">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-10">
@@ -144,18 +189,18 @@ export default function AiTraining() {
                 },
                 {
                   step: "2",
-                  title: "A price in writing",
-                  body: "What the sessions will cover and what they cost, agreed before anything starts.",
+                  title: "A package and a price in writing",
+                  body: "We put a package together for your business. What it covers and what it costs are agreed before anything starts.",
                 },
                 {
                   step: "3",
                   title: "Hands-on sessions on real work",
-                  body: "Your team practises with the tools on jobs from their own week.",
+                  body: "Group sessions or one-to-one coaching, whichever suits, on jobs from your team's own week.",
                 },
                 {
                   step: "4",
                   title: "Kept current",
-                  body: "The tools change every few months. We keep your setup current as they do, and point out where a newer tool would take more work off the team. The aim is AI the whole team keeps using, in the office and out on jobs.",
+                  body: "The tools change every few months. Regular calls keep your team up with the latest and point out where a newer tool would take more work off their plate. The aim is AI the whole team keeps using, in the office and out on jobs.",
                 },
               ].map((item) => (
                 <div key={item.step} className="bg-white rounded-xl border border-border p-6 flex gap-5">
@@ -174,7 +219,7 @@ export default function AiTraining() {
       </section>
 
       {/* Tools */}
-      <section className="py-20" data-testid="section-tools">
+      <section className="py-20 bg-slate-50" data-testid="section-tools">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
@@ -188,7 +233,7 @@ export default function AiTraining() {
       </section>
 
       {/* When a job needs an app */}
-      <section className="py-20 bg-slate-50" data-testid="section-apps">
+      <section className="py-20" data-testid="section-apps">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
@@ -226,7 +271,7 @@ export default function AiTraining() {
                 I'm Pete Harris, the founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software.
               </p>
               <p>
-                We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. The training comes out of that daily use.
+                We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. The training and coaching come out of that daily use.
               </p>
             </div>
           </div>
@@ -241,7 +286,7 @@ export default function AiTraining() {
               Tell us where the hours are going
             </h2>
             <p className="text-lg text-slate-200 mb-8">
-              A free call lets us both see whether training is worth it for your business. If it isn't, we'll say so.
+              A free call lets us both see whether training or coaching is worth it for your business. If it isn't, we'll say so.
             </p>
             <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
               <a href={TRAINING_BOOKING_URL} target="_blank" rel="noopener noreferrer">

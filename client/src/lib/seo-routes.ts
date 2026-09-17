@@ -162,26 +162,33 @@ export const ROUTE_SEO = {
   },
   aiTraining: {
     path: "/ai-training",
-    title: "AI Training for Staff in Ireland | Streamlined Tech",
+    title: "AI Training and Coaching in Ireland | Streamlined Tech",
     description:
-      "Get more done with the team you already have. Hands-on AI training for Irish businesses, built on your own work and kept current as the tools change.",
+      "Get more done with the team you already have. AI training and coaching for Irish businesses, from EUR400 for an introductory session.",
     canonical: "/ai-training",
-    // No offers node on purpose: format and price were not decided when
-    // the page shipped (17 Sep 2026). Add one only once a figure is real.
+    // Offer facts from Pete, 17 Sep 2026: packages are custom per business,
+    // an introductory session starts from EUR 400. Keep every description
+    // string here under 165 characters: the SEO agent's route-wiring parser
+    // reads nested description fields as the route description.
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "AI training for business teams",
-      serviceType: "AI training",
+      name: "AI training and coaching",
+      serviceType: "AI training and coaching",
       url: "https://streamlinedai.tech/ai-training",
-      description:
-        "Hands-on AI training for owner-run businesses, built around the team's own work and kept current as the tools change. Price agreed in writing before it starts.",
       provider: {
         "@type": "ProfessionalService",
         name: "Streamlined Tech",
         url: "https://streamlinedai.tech/",
       },
       areaServed: { "@type": "Country", name: "Ireland" },
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "400",
+        priceCurrency: "EUR",
+        description:
+          "Custom packages of group sessions or one-to-one workflow coaching, with ongoing calls. An introductory session starts from EUR 400.",
+      },
     },
   },
   products: {
