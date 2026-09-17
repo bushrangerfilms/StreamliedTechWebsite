@@ -25,7 +25,9 @@ same shape, different site. Do not touch that repo.
   retrofit installers in Ireland), `/australia` (Australian mining and construction contractors; all
   mining positioning lives here and nowhere else), `/products` (AutoListing.io and Rangplan.ie as
   proof), `/how-it-works` (cost and timeline), `/guide/set-up-ai-for-business-ireland` (the
-  plain-English guide), plus `/privacy` and `/terms`. `/details`, `/details/thanks`, `/dev` and the
+  plain-English guide), `/ai-training` (AI training and coaching, shipped 16 Sep 2026 by PR #58;
+  an introductory session from EUR400 is a sanctioned price alongside the from EUR3,900 build),
+  plus `/privacy` and `/terms`. `/details`, `/details/thanks`, `/dev` and the
   four AI Employees campaign landers `/ai-employees/ie`, `/au`, `/uk` and `/us` are `noindex, follow`
   on purpose (bare `/ai-employees` 302s to `/ie`). `/galway` is an alias of `/business` (in sent
   emails; keep it working, never index it). `/mining` and `/au` 302 to `/australia`.
@@ -45,9 +47,11 @@ same shape, different site. Do not touch that repo.
   customer, never to a geography (Pete, 6 Sep 2026); region belongs on the sector pages and in the
   ads. Do not propose a sector, mining or location title, H1 or hero for `/`, and do not report the
   missing Galway or Australia lines as a regression. The root title must not cannibalise `/business`.
-- The JSON-LD (`ProfessionalService`) lives once in `client/index.html` and is shared by every route.
-  Per-route JSON-LD would need a prerender plugin change, which is outside every PR scope: raise it in
-  the issue if it matters.
+- The shared JSON-LD (`ProfessionalService`) lives once in `client/index.html` and is inherited by
+  every route. Per-route JSON-LD is supported as of PR #58 (16 Sep 2026): a `jsonLd` field on a
+  ROUTE_SEO entry is prerendered as a second block alongside the shared one, which is how
+  `/ai-training` ships its own `Service` and `Offer`. Adding one is still outside every PR scope
+  (it changes what a page claims, and an Offer states a price), so propose it in the issue.
 - GSC property is the URL-prefix `https://streamlinedai.tech/` (owner streamlinedtechai@gmail.com,
   verified by the meta tag in `client/index.html`; removing that tag un-verifies the property). The
   property was created on 8 Aug 2026, so data is thin for months. Zero impressions for a target
