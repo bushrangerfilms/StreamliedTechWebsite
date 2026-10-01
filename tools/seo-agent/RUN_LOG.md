@@ -3,6 +3,15 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-10-01 10:03 UTC
+- Checks: 9 ok / 0 failed
+- GSC: 11 queries, about 354 page-level impressions, 32 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 0 of 89 (was 0 of 87; two keywords added to the tracked set, `ai consulting ireland` and `train staff to use ai`, both watch-only)
+- Findings: mechanical PR 0 (no drift) · metadata PR 0 (copy rules clean, all lengths inside threshold) · perf PR 1 · content PR 0 (no striking distance) · issue 1 · digest (clean checks, CWV, image audit, IndexNow n/a)
+- PRs: https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/62 (new, draft, left open); nudged again https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/33 (41 days old, still not mergeable, everything in its diff already covered by merged #56)
+- Issue: https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/63 (comment added to previous report https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/57)
+- IndexNow: skipped, no PR added a sitemap URL this run
+- Notes: **PR #62 was left open, not merged**, even though AGENT.md has granted this agent merge authority over its own PRs since 17 Sep. The scheduled-task prompt that starts this routine still carries the old "NEVER merge a PR" line (the scheduler has not been updated since the 17 Sep flag), and per AGENT.md's own instruction for that conflict, the task prompt wins. Flagged at the top of issue #63 again. `/privacy`'s indexing regression (flagged in issue #57) recovered on its own, back to "Submitted and indexed"; all 11 tracked routes now pass. Named GSC queries more than doubled (5 to 11), all still off journey (brand terms and a recurring chatbot theme); the closest to on-journey are two 1-impression generic consulting queries, well short of striking-distance evidence. Image audit and copy-rules totals are byte-for-byte unchanged from the 15 Sep report, nothing in the image set or route copy moved. Google OAuth token authenticated normally end to end on Search Analytics, Sitemaps and URL Inspection.
+
 ## 2026-09-17 12:30 UTC (ad hoc, not the fortnightly routine)
 
 - **Merge policy changed.** Pete, 17 Sep 2026: "I don't check code, just merge as part of your
