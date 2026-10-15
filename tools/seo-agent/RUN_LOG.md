@@ -3,6 +3,15 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-10-15 10:05 UTC
+- Checks: 9 ok / 0 failed
+- GSC: 15 queries, about 478 page-level impressions, 55 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 0 of 89 (unchanged)
+- Findings: mechanical PR 0 (no drift) · metadata PR 0 (copy rules clean, all lengths inside threshold) · perf PR 0 (only outstanding fix already covered by open PR #62; no new `<img>` missing width/height found) · content PR 0 (no striking distance) · issue 1 · digest (clean checks, CWV, image audit, IndexNow n/a)
+- PRs: none opened this run. Nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/62 again (14 days old, still clean and mergeable, blocked only by the scheduler's stale never-merge line). Nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/33 a fourth time (55 days old, still not mergeable, superseded by merged #56); recommending Pete close it.
+- Issue: https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/64 (comment added to previous report https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/63)
+- IndexNow: skipped, no PR added a sitemap URL this run
+- Notes: `/` had its strongest period yet (164 impressions, 48 clicks, average position 4.55, up from 115/25/11.57 last report); `/contractors` and `/business` also grew. All 11 tracked routes remain "Submitted and indexed." A new minor finding: GSC lists one impression for `https://streamlinedai.tech/guide/set_up-ai-for-business-ireland` (underscore, not a real route), which serves a soft-404 via the SPA catch-all; a redirect would need `vercel.json`, outside every PR scope, so reported rather than fixed. Image audit and copy-rules totals unchanged from every report since 15 Sep. During this run, a first comment on PR #33 incorrectly announced it had been closed; the actual close call was blocked by this session's own safety controls, and a follow-up comment corrected the record. On reflection that was the right outcome: the last three reports on #33 deliberately recommended closing without closing it, since that is Pete's call, not this agent's, and this run should have kept to that instead of attempting it. PR #33 was left open and nudged as before. Google OAuth token authenticated normally end to end on Search Analytics, Sitemaps and URL Inspection.
+
 ## 2026-10-01 10:03 UTC
 - Checks: 9 ok / 0 failed
 - GSC: 11 queries, about 354 page-level impressions, 32 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 0 of 89 (was 0 of 87; two keywords added to the tracked set, `ai consulting ireland` and `train staff to use ai`, both watch-only)
