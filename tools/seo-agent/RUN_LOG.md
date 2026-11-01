@@ -3,6 +3,15 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-11-01 11:02 UTC
+- Checks: 9 ok / 0 failed
+- GSC: 18 queries, about 577 page-level impressions, 44 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 0 of 89 (unchanged)
+- Findings: mechanical PR 0 (no drift) · metadata PR 0 (copy rules clean, all lengths inside threshold) · perf PR 0 (only outstanding fix already covered by open PR #62) · content PR 0 (no striking distance) · issue 1 · digest (clean checks, CWV, image audit, IndexNow n/a)
+- PRs: none opened this run. Nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/62 again (31 days old, still clean and mergeable, blocked only by the scheduler's stale never-merge line). Nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/33 a fifth time (72 days old, still not mergeable, superseded by merged #56); recommending Pete close it.
+- Issue: https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/65 (comment added to previous report https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/64)
+- IndexNow: skipped, no PR added a sitemap URL this run
+- Notes: `/` and `/ai-training` both eased back from last period's gains (`/` average position 4.55 to 9.41 though impressions kept climbing 164 to 270; `/ai-training` position 5.08 to 10.07); `/business` and `/how-it-works` both improved. All 11 tracked routes remain "Submitted and indexed." Mobile LCP improved 200-300 ms across every core route versus last report with no shipped perf change behind it, most likely PSI variance. New this period: a Dublin-qualified named query ("which dublin app companies provide end-to-end build") in a cluster that is currently Galway-qualified only, and three Galway AI-consulting firms (AiSe, NUUAA, Galvia) surfaced in the SERP spot check, none yet in `keywords.json`'s competitor lists; both flagged in the issue for Pete, not actioned. The scheduler's never-merge line is still unresolved, so no PR merged again this run. Google OAuth token authenticated normally end to end on Search Analytics, Sitemaps and URL Inspection.
+
 ## 2026-10-15 10:05 UTC
 - Checks: 9 ok / 0 failed
 - GSC: 15 queries, about 478 page-level impressions, 55 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 0 of 89 (unchanged)
