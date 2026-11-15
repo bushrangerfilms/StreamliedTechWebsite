@@ -3,6 +3,15 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-11-15 11:07 UTC
+- Checks: 9 ok / 0 failed
+- GSC: 23 queries, about 798 page-level impressions, 39 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 1 of 89 ("ai for small business ireland", 1 impression, position 32, first named match since mid-September)
+- Findings: mechanical PR 0 (no drift) · metadata PR 0 (copy rules clean, all lengths inside threshold) · perf PR 0 (only outstanding fix already covered by open PR #62) · content PR 0 (no striking distance) · issue 1 · digest (clean checks, CWV, image audit, IndexNow n/a)
+- PRs: none opened this run. Nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/62 again (45 days old, still clean and mergeable, blocked only by the scheduler's stale never-merge line). Nudged https://github.com/bushrangerfilms/StreamliedTechWebsite/pull/33 a sixth time (86 days old, still not mergeable, superseded by merged #56); recommending Pete close it.
+- Issue: https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/66 (comment added to previous report https://github.com/bushrangerfilms/StreamliedTechWebsite/issues/65)
+- IndexNow: skipped, no PR added a sitemap URL this run
+- Notes: GSC impressions grew sharply on almost every tracked route (`/ai-training` 15 to 46, `/business` 44 to 88, `/products` 55 to 90, `/` 270 to 345), though average position worsened on `/business` and `/ai-training` as the extra volume came from broader queries rather than ranking gains on target terms. All 11 tracked routes remain "Submitted and indexed." Copy rules, sitemap-audit, route-wiring (same two known `/ai-employees` warnings), page-meta lengths, image audit (35 images, 2662 KB, 8 oversized) and link-check (17 checked, 0 broken) are all byte-for-byte unchanged from the 1 Nov report. Mobile LCP essentially flat (within about 100 ms). SERP spot check (5 of 8 allowed, rotated entry queries) found streamlinedai.tech absent from all five, as expected for US-weighted WebSearch. New this period: "custom ai software ireland" and "irish installer" (both off-journey, theme-adjacent, new named queries); the Dublin-qualified query persisted for a second report. The scheduler never-merge line is still unresolved, so no PR merged again this run. Google OAuth token authenticated normally end to end on Search Analytics, Sitemaps and URL Inspection.
+
 ## 2026-11-01 11:02 UTC
 - Checks: 9 ok / 0 failed
 - GSC: 18 queries, about 577 page-level impressions, 44 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 0 of 89 (unchanged)
