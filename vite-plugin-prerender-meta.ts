@@ -13,7 +13,7 @@ import { STATIC_HTML } from "./client/src/lib/seo-static-html";
  * homepage's card no matter which page was shared.
  *
  * Marketing routes also get a static text mirror of the page's rendered copy
- * baked inside <div id="root"> (from seo-static-html.ts), because OpenAI's
+ * baked inside <div id="root"> (from seo-static-html.ts), because many
  * crawlers and most AI answer engines read raw HTML without executing
  * JavaScript. The mirror is the same copy every visitor sees once React
  * mounts, never different text, so this is not cloaking: crawlers get the
@@ -107,7 +107,7 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
-  // Static crawlable body for no-JS crawlers (OpenAI's bots among them).
+  // Static crawlable body for crawlers that do not run JavaScript.
   // createRoot replaces it the moment React mounts. A mirror that cannot be
   // injected is a route that silently ships an empty body to AI crawlers,
   // so fail the build rather than warn.
@@ -135,10 +135,8 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
-  // The shell carries the home route's LCP image preloads. Strip them and
-  // inject this route's own, so a gradient-hero page preloads nothing and
-  // /australia preloads its mining pair without every other route paying
-  // for it.
+  // Strip any image preloads the shell carries and inject this route's
+  // own, so a route preloads only what it needs.
   html = html.replace(/[ \t]*<link\s+rel="preload"\s+as="image"[^>]*\/>\r?\n?/gi, "");
   if (route.preloads?.length) {
     const tags = route.preloads

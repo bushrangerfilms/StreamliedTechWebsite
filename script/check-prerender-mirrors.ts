@@ -1,7 +1,7 @@
 // Post-build gate for the static crawlable body mirrors in
 // client/src/lib/seo-static-html.ts.
 //
-// The mirrors exist so no-JS crawlers (OpenAI's bots among them) see each
+// The mirrors exist so crawlers that do not run JavaScript see each
 // marketing page's real copy, and the one rule is that a mirror carries the
 // SAME text as the rendered page - different text for crawlers is cloaking.
 // Nothing at runtime compares the two, so this script does, from bytes the
@@ -22,29 +22,24 @@ import { PRERENDER_ROUTES } from "../client/src/lib/seo-routes";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-// Which page component renders each mirrored route. A new mirror without an
-// entry here fails the check rather than going unverified.
-const PAGE_COMPONENTS: Record<string, string> = {
-  "/": "client/src/pages/home.tsx",
-  "/business": "client/src/pages/business.tsx",
-  "/contractors": "client/src/pages/contractors.tsx",
-  "/installers": "client/src/pages/installers.tsx",
-  "/australia": "client/src/pages/australia.tsx",
-  "/products": "client/src/pages/products.tsx",
-  "/how-it-works": "client/src/pages/how-it-works.tsx",
-  "/ai-training": "client/src/pages/ai-training.tsx",
-  "/guide/set-up-ai-for-business-ireland": "client/src/pages/guide-set-up-ai.tsx",
-  "/ai-employees/ie": "client/src/pages/ai-employees.tsx",
-  "/ai-employees/au": "client/src/pages/ai-employees.tsx",
-  "/ai-employees/uk": "client/src/pages/ai-employees.tsx",
-  "/ai-employees/us": "client/src/pages/ai-employees.tsx",
+// Which source files carry each mirrored route's copy: the page component
+// first (its <h1> is the one checked), then any shared component whose text
+// the page renders. A new mirror without an entry here fails the check rather
+// than going unverified.
+const SHARED = {
+  header: "client/src/components/site-header.tsx",
+  pricing: "client/src/components/pricing-block.tsx",
+  closing: "client/src/components/closing-call.tsx",
+  quotes: "client/src/components/testimonial.tsx",
+  form: "client/src/components/ask-for-call-form.tsx",
 };
-
-// The AI Employees mirror template predates the verbatim rule: it condenses
-// the page around its quote form instead of mirroring paragraph for
-// paragraph, and Pete approved that copy. The per-region H1 check still
-// applies to every region.
-const VERBATIM_EXEMPT = new Set(["/ai-employees/ie", "/ai-employees/au", "/ai-employees/uk", "/ai-employees/us"]);
+const PAGE_COMPONENTS: Record<string, string[]> = {
+  "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.pricing, SHARED.quotes, SHARED.closing],
+  "/how-it-works": ["client/src/pages/how-it-works.tsx", SHARED.header, SHARED.pricing, SHARED.quotes, SHARED.closing],
+  "/our-work": ["client/src/pages/our-work.tsx", SHARED.header, SHARED.closing],
+  "/about": ["client/src/pages/about.tsx", SHARED.header, SHARED.closing],
+  "/contact": ["client/src/pages/contact.tsx", SHARED.header, SHARED.form],
+};
 
 const collapse = (s: string) => s.replace(/\s+/g, " ").trim();
 
@@ -53,32 +48,11 @@ function normalisedComponentSource(rel: string): string {
   return collapse(readFileSync(path.join(REPO_ROOT, rel), "utf-8").replace(/\{"\s*"\}/g, " "));
 }
 
-/**
- * Candidate H1 texts from the component's <h1>...</h1>. Usually one literal
- * string. When the H1 is a JSX expression like {region.heroHeadline}, the
- * candidates are the `heroHeadline: "..."` strings in the file, one per
- * region config entry. If a config entry's key matches the route's last
- * path segment (`/ai-employees/au` -> the `au: { ... }` entry), only that
- * region's headline counts, so the au file cannot pass on the ie headline.
- */
-function componentH1s(source: string, routePath: string): string[] {
+/** The H1 text from the component's <h1>...</h1>, tags stripped. */
+function componentH1s(source: string): string[] {
   const m = source.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
   if (!m) return [];
-  const inner = collapse(m[1].replace(/\{"\s*"\}/g, " "));
-  const expr = inner.match(/^\{\s*[\w$]+(?:\.[\w$]+)*\.([\w$]+)\s*\}$/);
-  if (expr) {
-    const prop = expr[1];
-    const literal = `"((?:[^"\\\\]|\\\\.)*)"`;
-    const region = routePath.split("/").filter(Boolean).pop() ?? "";
-    // `au: { ... heroHeadline: "..." ... }` - region config entries hold no
-    // nested braces, so the first `}` closes the entry.
-    const scoped = source.match(new RegExp(`\\b${region}:\\s*\\{[^}]*?${prop}:\\s*${literal}`));
-    if (scoped) return [collapse(JSON.parse(`"${scoped[1]}"`))];
-    return [...source.matchAll(new RegExp(`${prop}:\\s*${literal}`, "g"))].map((v) =>
-      collapse(JSON.parse(`"${v[1]}"`)),
-    );
-  }
-  const text = collapse(inner.replace(/<[^>]+>/g, " "));
+  const text = collapse(m[1].replace(/\{"\s*"\}/g, " ").replace(/<[^>]+>/g, " "));
   return text ? [text] : [];
 }
 
@@ -99,14 +73,16 @@ export function checkPrerenderMirrors(distDir = "dist/public"): void {
       errors.push(`${routePath}: has a mirror but is not in PRERENDER_ROUTES, so it is never written`);
       continue;
     }
-    const componentRel = PAGE_COMPONENTS[routePath];
-    if (!componentRel) {
+    const componentRels = PAGE_COMPONENTS[routePath];
+    const componentRel = componentRels?.[0];
+    if (!componentRels || !componentRel) {
       errors.push(`${routePath}: has a mirror but no PAGE_COMPONENTS entry in script/check-prerender-mirrors.ts, so it cannot be verified`);
       continue;
     }
 
-    const source = normalisedComponentSource(componentRel);
-    const h1s = componentH1s(source, routePath);
+    const pageSource = normalisedComponentSource(componentRel);
+    const source = componentRels.map(normalisedComponentSource).join(" ");
+    const h1s = componentH1s(pageSource);
     if (!h1s.length) {
       errors.push(`${routePath}: no <h1> text found in ${componentRel}`);
       continue;
@@ -127,12 +103,10 @@ export function checkPrerenderMirrors(distDir = "dist/public"): void {
       }
     }
 
-    // 2. Every mirror text chunk must exist verbatim in the page component.
-    if (!VERBATIM_EXEMPT.has(routePath)) {
-      for (const chunk of mirrorChunks(mirror)) {
-        if (!source.includes(chunk)) {
-          errors.push(`${routePath}: mirror text not found in ${componentRel}: "${chunk}"`);
-        }
+    // 2. Every mirror text chunk must exist verbatim in the page's sources.
+    for (const chunk of mirrorChunks(mirror)) {
+      if (!source.includes(chunk)) {
+        errors.push(`${routePath}: mirror text not found in ${componentRels.join(", ")}: "${chunk}"`);
       }
     }
   }

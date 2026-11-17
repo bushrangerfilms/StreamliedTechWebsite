@@ -1,56 +1,41 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-
-export const BOOKING_URL =
-  "https://calendly.com/streamlinedaitech/discover-how-we-can-automate-simplify-your-workflows";
+import { Link, useLocation } from "wouter";
 
 const NAV_LINKS = [
-  { href: "/business", label: "What we build" },
   { href: "/how-it-works", label: "How it works" },
-  { href: "/products", label: "Products" },
-  { href: "/australia", label: "Mining" },
+  { href: "/our-work", label: "Our work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 /**
- * Shared header for every marketing page. Before this existed each page
- * carried its own inline header with a divergent link set; the campaign
- * pages (/details, /ai-employees form section) are the only deliberate
- * exceptions to using it.
+ * Shared header for every page. It scrolls away with the page on purpose:
+ * no sticky bar. It carries one of the site's three call buttons (the
+ * others are the block at the end of a page and the form on /contact).
  */
-/**
- * minimal hides the nav links (logo + CTA only) for campaign landers,
- * where every nav item is an exit from a paid click.
- */
-export function SiteHeader({ minimal = false }: { minimal?: boolean } = {}) {
+export function SiteHeader() {
+  const [location] = useLocation();
   return (
-    <header className="border-b border-border bg-white sticky top-0 z-50">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center shrink-0" data-testid="link-header-home">
-          <img
-            src="/images/logo.webp"
-            alt="Streamlined Tech - Intelligent AI Automations"
-            className="h-14 md:h-[72px] w-auto"
-            width="389"
-            height="144"
-          />
+    <header className="st-header">
+      <div className="st-wrap st-header__row">
+        <Link href="/" className="st-brand" data-testid="link-header-home">
+          <img src="/images/logo-mark.png" alt="" width="40" height="40" />
+          <span>Streamlined Tech</span>
         </Link>
-        <nav className={minimal ? "hidden" : "hidden md:flex items-center gap-6"} aria-label="Main">
+        <nav className="st-nav" aria-label="Main">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              aria-current={location === link.href ? "page" : undefined}
               data-testid={`link-nav-${link.href.replace(/\//g, "")}`}
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <Button asChild size="lg" className="min-h-11" data-testid="button-cta-header">
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-            Book a free call
-          </a>
-        </Button>
+        <Link href="/contact" className="st-btn st-btn--quiet" data-testid="button-call-header">
+          Ask for a call
+        </Link>
       </div>
     </header>
   );
