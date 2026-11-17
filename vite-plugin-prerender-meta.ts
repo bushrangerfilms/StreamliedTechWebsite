@@ -21,6 +21,7 @@ import { STATIC_HTML } from "./client/src/lib/seo-static-html";
  */
 export function prerenderMetaPlugin(): Plugin {
   let outDir = "";
+  let refused = false;
 
   return {
     name: "vite-plugin-prerender-meta",
@@ -29,9 +30,17 @@ export function prerenderMetaPlugin(): Plugin {
       outDir = config.build.outDir;
     },
     buildStart() {
-      refuseDraftLegalPagesInProduction();
+      try {
+        refuseDraftLegalPagesInProduction();
+      } catch (err) {
+        refused = true;
+        throw err;
+      }
     },
     closeBundle() {
+      // closeBundle still runs after a failed build. Say nothing more, so
+      // the refusal above is the error the build log shows.
+      if (refused) return;
       const shellPath = path.join(outDir, "index.html");
       if (!fs.existsSync(shellPath)) {
         console.warn("[prerender-meta] no index.html in outDir, skipping");
