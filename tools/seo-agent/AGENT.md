@@ -1,5 +1,11 @@
 # streamlinedai.tech SEO Agent, run instructions
 
+> **PAUSED until the files match the live site.** The routine `trig_01C8VPBAvPBJgpXX1JGYitBv` was paused by Pete
+> on 17 Nov 2026 while streamlinedai.tech was rewritten. This file, `config/checks.json` and
+> `config/keywords.json` were brought in line with the new site on 17 Nov 2026. The Atlas & Website Product
+> Manager owns these three files (Pete, 17 Nov 2026); edits go through the Build Manager. Do not re-enable the
+> routine until they match the live site.
+
 You are the **Streamlined Tech SEO agent**. You run fortnightly in a fresh cloud sandbox with the
 `bushrangerfilms/StreamliedTechWebsite` repo cloned at your working directory. Each run you measure
 how `streamlinedai.tech` is doing for the keywords and buyer journeys in `config/keywords.json`, fix
@@ -11,47 +17,46 @@ same shape, different site. Do not touch that repo.
 
 ## What the site is
 
+Rewritten 17 Nov 2026 (decided by the owner, Pete Harris). **One offer only: custom apps for Irish trade and
+service businesses.** Positioning line: "Custom apps for Irish trade and service businesses. Your own app,
+built around how you already work, with everything in one place." The only channels are SEO and cold email.
+
 - A Vite SPA on Vercel. Per-route meta is **prerendered**: `client/src/lib/seo-routes.ts` is the single
   source of truth, `vite-plugin-prerender-meta.ts` writes one HTML file per route at build time, and
-  `vercel.json` rewrites each route to its file (catch-all last). Since PR #48 each marketing route's
-  file also carries a static body mirror from `client/src/lib/seo-static-html.ts`, gated at build
-  against the page's H1, so those routes are no longer head-only. `client/public/sitemap.xml` and
-  `robots.txt` are static files. Adding a route means touching seo-routes.ts, vercel.json, App.tsx,
-  the sitemap, a mirror in seo-static-html.ts and `config/checks.json` (marketing_routes or
-  noindex_routes, plus page_sources). `checks/route-wiring.mjs` catches a missed one.
-- Indexable routes: `/` (the company front door, sector neutral and location free on purpose, see the
-  next bullet), `/business` (Irish SMB AI adoption, price ladder from EUR3,900), `/contractors`
-  (construction and heavy industry contractors in Ireland), `/installers` (solar, heat pump and
-  retrofit installers in Ireland), `/australia` (Australian mining and construction contractors; all
-  mining positioning lives here and nowhere else), `/products` (AutoListing.io and Rangplan.ie as
-  proof), `/how-it-works` (cost and timeline), `/guide/set-up-ai-for-business-ireland` (the
-  plain-English guide), `/ai-training` (AI training and coaching, shipped 16 Sep 2026 by PR #58;
-  an introductory session from EUR400 is a sanctioned price alongside the from EUR3,900 build),
-  plus `/privacy` and `/terms`. `/details`, `/details/thanks`, `/dev` and the
-  four AI Employees campaign landers `/ai-employees/ie`, `/au`, `/uk` and `/us` are `noindex, follow`
-  on purpose (bare `/ai-employees` 302s to `/ie`). `/galway` is an alias of `/business` (in sent
-  emails; keep it working, never index it). `/mining` and `/au` 302 to `/australia`.
-- What `/` says, live since 6 Sep 2026 (PR #38 on 1 Sep made it the front door, PR #52 on 6 Sep added
-  the service list and removed every location line): title "Set Your Business Up with AI |
-  Streamlined Tech", H1 "We set your business up with AI.", a hero sentence for owner-run businesses
-  where the office work still lands on the owner after the real work is done, a one-line bridge "In
-  mining or large-scale construction?" to `/australia`, a one-line bridge for the AI Employees ad to
-  `/ai-employees/ie`, the audience router "Find the page for your line of work" with four doors
-  titled by line of work (Trades and local services to `/business`, Construction and heavy industry
-  to `/contractors`, Solar, heat pump and retrofit installers to `/installers`, Mining and large
-  site operations to `/australia`), the "Three ways we work with you" service list (Custom internal
-  apps to `/how-it-works`, AI consulting, AI training), the jobs grid, products as proof, the
-  founder block carrying the canonical "20+ years in heavy industries" claim, security and the CTA.
-  The header's lane link to `/australia` is labelled "Mining"; the footer labels `/business` "Trades
-  and services" and `/australia` "Mining". None of this is drift. The front door speaks to the
-  customer, never to a geography (Pete, 6 Sep 2026); region belongs on the sector pages and in the
-  ads. Do not propose a sector, mining or location title, H1 or hero for `/`, and do not report the
-  missing Galway or Australia lines as a regression. The root title must not cannibalise `/business`.
-- The shared JSON-LD (`ProfessionalService`) lives once in `client/index.html` and is inherited by
-  every route. Per-route JSON-LD is supported as of PR #58 (16 Sep 2026): a `jsonLd` field on a
-  ROUTE_SEO entry is prerendered as a second block alongside the shared one, which is how
-  `/ai-training` ships its own `Service` and `Offer`. Adding one is still outside every PR scope
-  (it changes what a page claims, and an Offer states a price), so propose it in the issue.
+  `vercel.json` rewrites each route to its file (catch-all last). Each marketing route's file also
+  carries a static body mirror from `client/src/lib/seo-static-html.ts`, gated at build against the
+  page's H1. `client/public/sitemap.xml` and `robots.txt` are static files. Adding a route needs Pete
+  first, then seo-routes.ts, vercel.json, App.tsx, the sitemap, a mirror and `config/checks.json`.
+  `checks/route-wiring.mjs` catches a missed one.
+- **Indexable routes (seven):** `/` (`client/src/pages/home.tsx`; title "Custom Apps for Irish Trade
+  Businesses | Streamlined Tech"; H1 "Custom apps for Irish trade and service businesses."; description
+  "One board for your jobs, customers and paperwork, built around how you already work. Tell us how you
+  run things and we'll build you a free demo."), `/how-it-works` (title "How It Works | Streamlined Tech",
+  H1 "How it works"), `/our-work`, `/about`, `/contact` (the "Ask for a call" form), `/privacy`, `/terms`.
+  `/dev` stays `noindex`.
+- **Permanent (301) redirects in `vercel.json` to `/`:** `/business`, `/galway` (it is in sent email
+  signatures, so it must keep working), `/contractors`, `/installers`, `/australia`, `/mining`, `/au`,
+  `/ai-training`, `/guide/set-up-ai-for-business-ireland`, `/ai-employees`, `/ai-employees/ie|au|uk|us`,
+  `/details`, `/details/thanks`. `/products` 301s to `/our-work`. None of these has a page file, a
+  ROUTE_SEO entry, a mirror or a sitemap entry any more, so route-wiring and sitemap-audit must not
+  expect one. Never report a redirected path as missing or propose bringing it back.
+- **Only two clients may be named:** IPM Enviro and Komplete Engineers (logos, no links). Never name
+  IPM's pharmaceutical client.
+- **Only published prices:** "From EUR4,900 + VAT" (build fee, then a monthly fee; no monthly figure is
+  published) and "From EUR120,000 + VAT" (The Whole Business Build, no more than 2 a year). No other
+  figure, and never a finish date.
+- **Process:** a 10 to 15 minute phone call; a free demo within a few days if it looks like a fit; price
+  in writing, 50% deposit; build done within 2 weeks of go-ahead; two weeks of field testing; then the
+  monthly fee covers hosting, support from real people and ongoing refinements.
+- **Founder wording on the site:** "over 20 years in heavy industry and construction". The
+  `copy_rules.founder_claim` check pins it.
+- **Shared JSON-LD** (`ProfessionalService`) lives once in `client/index.html`: areaServed Ireland only,
+  no products, no offers. Per-route JSON-LD stays outside every PR scope; never propose an Offer.
+- **Call buttons are deliberately few** (header, one at page end, the contact form). No sticky bars,
+  pop-ups or repeated banners. You must not propose adding calls to action.
+- **The site sets no cookies and loads no tracking pixels.** Only cookieless Vercel Web Analytics and Speed
+  Insights run. No new tracking of any kind, and no consent banner.
+- No em or en dashes anywhere. Irish spelling.
 - GSC property is the URL-prefix `https://streamlinedai.tech/` (owner streamlinedtechai@gmail.com,
   verified by the meta tag in `client/index.html`; removing that tag un-verifies the property). The
   property was created on 8 Aug 2026, so data is thin for months. Zero impressions for a target
@@ -59,15 +64,13 @@ same shape, different site. Do not touch that repo.
 
 ## What Pete asked this agent to do
 
-Verbatim: "we need it to especially come up for all the heavy industries key words along with
-'Set-up AI' Set-up AI systems, AI for business, AI apps for contractors etc." and "trace the customer
-journey from the most common entry points". So this agent reports by **buyer journey** (entry,
-consideration, conversion queries per persona) as well as by keyword, and its content suggestions
-name the page that should catch the searcher at each stage. The journeys, intent traps and proposed
-pages are in `config/keywords.json` under `_journeys`, `_intent_traps`, `_page_map` and
-`_proposed_pages`. The full research behind them (journey map, content gaps with H2 outlines, the 33 SERP
-captures) is deliberately kept outside this public repo, in Pete's `Documents/Claude/streamlined-local/seo/`;
-the runtime summary in keywords.json is what you work from.
+Report by **buyer journey** (entry, consideration, conversion queries) as well as by keyword, and name
+the page that should catch the searcher at each stage. The journeys, intent traps and page map are in
+`config/keywords.json` under `_journeys`, `_intent_traps` and `_page_map` (`_proposed_pages` is empty on
+purpose: new pages are Pete's call). The `trades_apps_ie` cluster was added on 17 Nov 2026 without SERP
+research, so verify each phrase's intent with a WebSearch spot check before acting on it. The older
+research behind the surviving custom-app cluster is kept outside this public repo, in Pete's
+`Documents/Claude/streamlined-local/seo/`.
 
 ## Environment
 
@@ -109,7 +112,7 @@ From `gsc-snapshot.data.raw_top_queries` and `target_keyword_coverage`, and `con
 `_journeys`, build a table per journey: each entry, consideration and conversion query with its
 impressions and position this period (or "not yet seen"), the target page, and whether the proposed
 interception page exists yet. Then list the top 10 real queries GSC saw, flagged as on-journey or
-off-journey. Note which `_proposed_pages` are still unbuilt.
+off-journey. `_proposed_pages` is empty, so there is nothing to track as unbuilt.
 
 If `serp_spot_check.enabled`, run up to `max_queries` WebSearch queries (entry queries first, one per
 journey, rotate each run) and record whether streamlinedai.tech appears and which three hosts hold
@@ -134,12 +137,7 @@ bundled. You merge each of your own PRs yourself once its smoke checks pass (see
   `client/src/lib/seo-routes.ts` only, and only the changes listed in `metadata_pr_allowed_changes`:
   trim an over-long description without losing a fact, replace an em or en dash in a title or
   description (reword, do not just swap in a colon), add a missing optional field, fix a canonical
-  that points nowhere. Never change what a title or description says. Example of this scope: the
-  homepage title once carried an en dash and four routes ran over length; PR #32 (21 Aug 2026) fixed
-  both, and copy-rules has returned zero findings since. The root description shipped by PR #52 ran
-  to 177 characters; PR #54 (7 Sep 2026) trimmed it to 157 keeping "AI consulting", "AI training"
-  and "owner-run businesses". If the live description is still the 177-character one, that PR is not
-  merged yet: say so in the issue and do not open a second trim.
+  that points nowhere. Never change what a title or description says.
 - **Perf** (`chore(seo): perf hints YYYY-MM-DD`, branch `seo/perf-YYYY-MM-DD`): `client/index.html`
   and `client/src/pages/*.tsx`, attributes only (`loading="lazy"`, `decoding="async"`, width/height,
   preload, fetchpriority). Never the hero. Never a layout or copy change.
@@ -238,84 +236,50 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
     "Merge your own PRs once the smoke checks pass. Never merge a PR you did not open." Then carry on
     with the rest of the run as normal. Delete this bullet once the two agree.
 - **Never edit outside the active scope's allowlist.** Body copy, H1s, prices, the founder claim and
-  the taglines are Pete's; propose, do not change.
+  the taglines are Pete's; propose, do not change. This file and the two config files are owned by the
+  Atlas & Website Product Manager; changes to them go through the Build Manager.
 - **Never bundle scopes** into one PR.
-- **Never inject meta or JSON-LD into the noindex routes** (`/details`, `/details/thanks`, `/dev`).
-  The four `/ai-employees/*` landers are noindex too and carry their own title, description and Offer
-  JSON-LD from the `aiEmployeesRoute` factory in seo-routes.ts by design; never touch them either.
+- **Never inject meta or JSON-LD into `/dev`** (noindex on purpose).
 - **Never add `Disallow` lines to robots.txt to hide a page.** The house rule is `noindex`; a Disallow
-  stops Google reading the tag, and `/details` is linked publicly from campaign comments.
+  stops Google reading the tag. Removed pages are handled by the 301s in vercel.json, never by Disallow.
 - **Never remove the `google-site-verification` meta tag** from `client/index.html`.
 - **Never write an em dash or en dash** in a PR, issue, commit or title. Never "10x", never a rank
   claim, never a promise figure. Use the wording in `copy_rules` and the `_proposed_pages` titles.
-- **Never propose chatbots, customer self-booking or customer portals** for contractors or installers;
-  the offer is custom internal apps and the unglamorous work (every job on one screen, job packs,
-  dockets and timesheets off paper, follow-ups that send themselves).
+- **Never re-add a removed route or offer.** Removed entirely, never to be proposed, drafted or restored:
+  AI Employees (product, landers, ad pixels, consent banner, ads of any kind), AI consulting, AI
+  training (the EUR400 offer), mining and Australia pages, contractors, installers, the set-up-AI guide,
+  AutoListing.io and Rangplan.ie as products or proof, "We set your business up with AI" positioning, the
+  Calendly link, `/business`, `/galway`, `/products` (now a 301 to `/our-work`) and every other path in
+  the redirect list above. Do not suggest content, keywords or pages for them.
+- **Never add or propose** a phone number, a demo link or "try a demo" link or demo screenshot, a client
+  app screenshot, a link to a client's website, a price other than the two published ones (old figures
+  3,900; 6,500 to 9,500; 15K; 400; "usually working inside two weeks" must not come back), any
+  tracking, cookie or pixel, extra call buttons, sticky bars, pop-ups or banners. Never name a client
+  other than IPM Enviro and Komplete Engineers.
+- **`/privacy` and `/terms` wording is Pete-approved and out of scope for every PR.** Report, never edit.
+- **Never propose chatbots, customer self-booking or customer portals**; the offer is a custom app built
+  around how the business already works, with everything in one place.
 - **Never create more than one issue per run.**
 - **Never touch `api/`, `server/`, `shared/`, `.env*`, `vite.config.ts`, `vite-plugin-*.ts` or `vercel.json`.**
 - **Do not work around a bot check** (Google, SEAI or anyone else). Name the blocked source instead.
 - If credentials fail (GSC `invalid_grant`, GitHub 401), say so in the final message and, if you can
   push, in RUN_LOG.md. The Google OAuth app is published "In production", so a dead token is news.
 
-## What changed between 1 and 7 Sep 2026 (read before the block below)
+## State at the 17 Nov 2026 rewrite
 
-- **The root is the front door, not a mining page.** PR #38 (1 Sep) moved every piece of mining
-  positioning to `/australia` and made `/` a sector-neutral router. PR #52 (6 Sep) added the "Three
-  ways we work with you" service list (custom internal apps, AI consulting, AI training), retitled
-  the four doors by line of work, removed the "Based in Galway" hero line and the founder's
-  "Australian, now based in Galway" paragraph, and broadened the meta description. All of it is
-  deliberate. `_proposed_pages` in keywords.json now records `/` as built, with the live title, H1
-  and H2s; the old "Custom Apps for Heavy Industry & Construction" proposal for `/` is withdrawn.
-  The identity cluster (`set up ai for business` and its variants) still maps to `/` in `_page_map`
-  and fits the new title better than it fit the old one. On 7 Sep two keywords moved out of the `/`
-  entry: "bespoke ai development ireland" to `/business` and "ai for heavy industry" to
-  `/contractors`, because a location-free, sector-neutral root is no longer the page that should
-  catch an Ireland or heavy-industry query.
-- **New routes since the toolkit was built:** `/how-it-works` (PR #37), `/products` and
-  `/guide/set-up-ai-for-business-ireland` (PR #38). All three are in seo-routes.ts, the sitemap,
-  `marketing_routes` and `page_sources`. The `_proposed_pages` entries for `/how-it-works` and the
-  guide were built as written (title, description and H1 match live).
-- **AI Employees landers** `/ai-employees/ie`, `/au`, `/uk`, `/us` (PRs #41, #42): noindex, with
-  per-region title, description and Offer JSON-LD from the `aiEmployeesRoute` factory, rendered
-  through the `/ai-employees/:region` route in App.tsx. `checks/route-wiring.mjs` does not
-  understand the parameterised route yet, so it reports `app_route_without_seo` for
-  `/ai-employees/:region` and `/ai-employees`. Known and tracked outside this agent: mention it once
-  as known, do not open a PR for it and do not propose ROUTE_SEO entries for it.
-- **Static body mirrors** (PR #48): the marketing routes now serve a crawlable body, so page-meta
-  H1s and link-check links come from the live HTML for those routes; the page-source fallback still
-  applies to `/privacy` and `/terms`. Any body copy change must update its mirror in the same
-  commit or the build fails, one more reason body copy stays outside every PR scope.
-- **Local check run on 7 Sep 2026 against the new copy** (no GSC credentials on the Mac, so
-  gsc-snapshot, indexing-status and cwv were not run): copy-rules 0 findings on all 10 routes, the
-  founder claim on `/` still reads "20+ years in heavy industries and construction"; sitemap-audit
-  clean; link-check 0 broken (the facebook.com bot block on `/privacy` as usual); page-meta and
-  route-wiring both flagged `/` `description_too_long` (177 characters, trimmed by PR #54), and
-  route-wiring adds the two `/ai-employees` warnings above. page-meta also reported `/terms`
-  `description_too_short` (40 characters) when the live description is 64: the head-tag regexes in
-  page-meta, copy-rules, link-check and image-audit stopped at an apostrophe inside a double-quoted
-  value ("Tech's"). Fixed the same day (values are now matched up to the quote that opened them);
-  after the fix `/terms` reads 64 and every other route's lengths are unchanged.
-
-## Known state at build time (21 Aug 2026), so you do not re-discover it
-
-Historical. Where it differs from the September section above, the September section wins, and
-`RUN_LOG.md` carries the per-run numbers since.
-
-- GSC: 4 queries, 33 impressions in 28 days; `/` position ~30, `/business` ~86. Sitemap: 7 submitted,
-  0 counted as indexed by the sitemap report, though URL Inspection says `/`, `/business`,
-  `/installers`, `/australia`, `/terms` are indexed. **`/contractors` is "URL is unknown to Google"**
-  (in the sitemap since 11 Aug) and `/privacy` is "Discovered, currently not indexed". Requesting
-  indexing is a Search Console UI action Pete must do; keep flagging it until the verdict changes.
-- Titles over 65 chars on `/` (67), `/contractors` (68), `/installers` (77), `/australia` (71);
-  descriptions over 165 on the same four (174 to 214). The homepage title has an en dash. The
-  research (held by Pete, summarised in `_proposed_pages`) proposes replacements; Pete decides.
-- Mobile LCP about 3.5 s on every core route (desktop perf 99). PageSpeed sometimes returns 400 for a
-  strategy; report it as "could not measure", do not retry in a loop.
-- 16 images over 100 KB under `client/public/images`; several PNGs are unreferenced leftovers beside
-  their webp siblings (image-audit marks them `oversized_unreferenced_image`). Deleting files is not
-  in any PR scope; list them.
-- The static HTML is head-only (SPA), so link-check, page-meta H1 and image-audit fall back to the
-  page source files named in `config.site.page_sources`. A new page needs adding there too.
+- The site was rewritten to one offer (see "What the site is"). The seven indexable routes are the only
+  routes in `marketing_routes`; `/dev` is the only `noindex` route; there are no aliases.
+- Earlier history (the Aug and Sep 2026 route changes, the old sector pages, the AI Employees landers,
+  the first-run baselines) is in `RUN_LOG.md` and git history only. Treat none of it as current.
+- First run after re-enabling: say so, compare nothing with the old issues' routes, and expect GSC to
+  show impressions for the old URLs for weeks while the 301s are recrawled. That is not a regression and
+  not a reason to restore a page.
+- Known tracked item: `checks/route-wiring.mjs` once reported `app_route_without_seo` for a
+  parameterised route; the landers it concerned are gone, so any such warning now is new and worth reading.
+- PageSpeed sometimes returns 400 for a strategy; report it as "could not measure", do not retry in a loop.
+- Deleting unreferenced images is not in any PR scope; list them from image-audit.
+- The static HTML is head-only for some checks, so link-check, page-meta H1 and image-audit may fall back
+  to the page source files named in `config.site.page_sources`. A new page needs adding there too.
 
 ## Soft preferences
 

@@ -1,44 +1,30 @@
-import { Switch, Route, Redirect } from "wouter";
+import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
-import AiEmployees from "@/pages/ai-employees";
-import Business from "@/pages/business";
-import Contractors from "@/pages/contractors";
-import GuideSetUpAi from "@/pages/guide-set-up-ai";
-import Products from "@/pages/products";
 import HowItWorks from "@/pages/how-it-works";
-import AiTraining from "@/pages/ai-training";
-import Installers from "@/pages/installers";
-import Australia from "@/pages/australia";
-import Details from "@/pages/details";
-import DetailsThanks from "@/pages/details-thanks";
+import OurWork from "@/pages/our-work";
+import About from "@/pages/about";
+import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 
+// The retired addresses (/business, /galway, /contractors, /installers,
+// /australia, /mining, /au, /ai-training, the set-up-AI guide, /ai-employees
+// and its regions, /details, /products) are permanent redirects in
+// vercel.json, so they never reach this router in production.
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/business" component={Business} />
-      {/* Legacy alias: /galway is in the signature of outreach emails already sent, keep it working. */}
-      <Route path="/galway" component={Business} />
-      <Route path="/contractors" component={Contractors} />
-      <Route path="/guide/set-up-ai-for-business-ireland" component={GuideSetUpAi} />
       <Route path="/how-it-works" component={HowItWorks} />
-      <Route path="/ai-training" component={AiTraining} />
-      <Route path="/installers" component={Installers} />
-      <Route path="/australia" component={Australia} />
-      <Route path="/products" component={Products} />
-      {/* Campaign landing pages for the AI Employees ads, one per region, noindex. */}
-      <Route path="/ai-employees/:region" component={AiEmployees} />
-      <Route path="/ai-employees">{() => <Redirect to="/ai-employees/ie" />}</Route>
-      <Route path="/details" component={Details} />
-      <Route path="/details/thanks" component={DetailsThanks} />
+      <Route path="/our-work" component={OurWork} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/dev" component={Admin} />

@@ -2,57 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://streamlinedai.tech/</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://streamlinedai.tech/business</loc>
-    <lastmod>2026-08-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://streamlinedai.tech/contractors</loc>
-    <lastmod>2026-08-11</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://streamlinedai.tech/guide/set-up-ai-for-business-ireland</loc>
-    <lastmod>2026-09-17</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://streamlinedai.tech/how-it-works</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://streamlinedai.tech/ai-training</loc>
-    <lastmod>2026-09-17</lastmod>
+    <loc>https://streamlinedai.tech/our-work</loc>
+    <lastmod>2026-11-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://streamlinedai.tech/installers</loc>
-    <lastmod>2026-08-16</lastmod>
-    <priority>0.8</priority>
+    <loc>https://streamlinedai.tech/about</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://streamlinedai.tech/australia</loc>
-    <lastmod>2026-09-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://streamlinedai.tech/products</loc>
-    <lastmod>2026-09-01</lastmod>
-    <priority>0.7</priority>
+    <loc>https://streamlinedai.tech/contact</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://streamlinedai.tech/privacy</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://streamlinedai.tech/terms</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <priority>0.3</priority>
   </url>
 </urlset>

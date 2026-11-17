@@ -1,5 +1,5 @@
 {
-  "_comment": "What the streamlinedai.tech SEO agent checks each run. Edit freely. The site is a Vite SPA on Vercel with PRERENDERED per-route meta: client/src/lib/seo-routes.ts is the single source of truth, vite-plugin-prerender-meta.ts writes one HTML file per route, vercel.json rewrites each route to its file, client/public/sitemap.xml lists the indexable ones. Adding a route means touching all three plus App.tsx; the route-wiring check exists to catch a missed one.",
+  "_comment": "What the streamlinedai.tech SEO agent checks each run. Rewritten 17 Nov 2026 for the one-offer site (custom apps for Irish trade and service businesses); owned by the Atlas & Website Product Manager, edits go through the Build Manager. The site is a Vite SPA on Vercel with PRERENDERED per-route meta: client/src/lib/seo-routes.ts is the single source of truth, vite-plugin-prerender-meta.ts writes one HTML file per route, vercel.json rewrites each route to its file, client/public/sitemap.xml lists the indexable ones. Removed routes (/business, /galway, /contractors, /installers, /australia, /mining, /au, /ai-training, the set-up-AI guide, /ai-employees/*, /details, /details/thanks) are 301s to / in vercel.json and have no page, ROUTE_SEO entry, mirror or sitemap entry; /products 301s to /our-work. Never re-add them. Adding a route needs Pete first, then seo-routes.ts, vercel.json, App.tsx, the sitemap and a mirror; the route-wiring check exists to catch a missed one.",
   "site": {
     "domain": "streamlinedai.tech",
     "origin": "https://streamlinedai.tech",
@@ -8,36 +8,22 @@
     "public_dir": "client/public",
     "marketing_routes": [
       "/",
-      "/business",
-      "/contractors",
-      "/installers",
-      "/australia",
-      "/products",
       "/how-it-works",
-      "/ai-training",
-      "/guide/set-up-ai-for-business-ireland",
+      "/our-work",
+      "/about",
+      "/contact",
       "/privacy",
       "/terms"
     ],
     "cwv_routes": [
       "/",
-      "/business",
-      "/contractors",
-      "/installers",
-      "/australia"
+      "/how-it-works",
+      "/our-work"
     ],
     "noindex_routes": [
-      "/details",
-      "/details/thanks",
-      "/ai-employees/ie",
-      "/ai-employees/au",
-      "/ai-employees/uk",
-      "/ai-employees/us",
       "/dev"
     ],
-    "aliases": {
-      "/galway": "/business"
-    },
+    "aliases": {},
     "seo_routes_file": "client/src/lib/seo-routes.ts",
     "vercel_json": "vercel.json",
     "sitemap_file": "client/public/sitemap.xml",
@@ -45,22 +31,14 @@
     "app_router_file": "client/src/App.tsx",
     "page_sources": {
       "/": "client/src/pages/home.tsx",
-      "/business": "client/src/pages/business.tsx",
-      "/contractors": "client/src/pages/contractors.tsx",
-      "/installers": "client/src/pages/installers.tsx",
-      "/australia": "client/src/pages/australia.tsx",
-      "/products": "client/src/pages/products.tsx",
       "/how-it-works": "client/src/pages/how-it-works.tsx",
-      "/ai-training": "client/src/pages/ai-training.tsx",
-      "/guide/set-up-ai-for-business-ireland": "client/src/pages/guide-set-up-ai.tsx",
-      "/ai-employees/ie": "client/src/pages/ai-employees.tsx",
-      "/ai-employees/au": "client/src/pages/ai-employees.tsx",
-      "/ai-employees/uk": "client/src/pages/ai-employees.tsx",
-      "/ai-employees/us": "client/src/pages/ai-employees.tsx",
-      "/details": "client/src/pages/details.tsx",
+      "/our-work": "client/src/pages/our-work.tsx",
+      "/about": "client/src/pages/about.tsx",
+      "/contact": "client/src/pages/contact.tsx",
       "/privacy": "client/src/pages/privacy.tsx",
       "/terms": "client/src/pages/terms.tsx"
-    }
+    },
+    "_aliases_note": "Empty on purpose. /galway is a 301 to / in vercel.json (kept because it is in sent email signatures), not an alias with its own HTML."
   },
   "lookback_days": 28,
   "_pr_scopes_comment": "Concentric PR scopes. Each scope = its own branch and PR, never bundled. Mechanical = blind autofix (sitemap, robots). Metadata = field-level edits in seo-routes.ts that do not change meaning. Perf = image/resource hints. Content = title/description rewrites backed by GSC evidence. Anything else goes in the issue.",
@@ -82,7 +60,7 @@
       "Change what a title or description says (that is content_pr scope and needs GSC evidence)",
       "Add or remove a route entry or touch PRERENDER_ROUTES (a new route needs vercel.json and App.tsx changes too; raise it in the issue)",
       "Touch vercel.json, client/index.html, vite-plugin-prerender-meta.ts, App.tsx, any page file, server/, api/, shared/, or any .env file",
-      "Alter the founder claim, prices, or any tagline"
+      "Alter the founder claim, prices (only From EUR4,900 + VAT and From EUR120,000 + VAT exist), or any tagline"
     ],
     "perf_pr_allowlist": [
       "client/index.html",
@@ -91,7 +69,7 @@
     "perf_pr_allowed_changes": [
       "Add loading=\"lazy\" and decoding=\"async\" to <img> elements that are below the fold (never the hero or the LCP candidate)",
       "Add explicit width and height attributes to <img> elements that lack them",
-      "Add a <link rel=\"preload\" as=\"image\"> for an LCP candidate that has none (home and /australia already preload their hero images)",
+      "Add a <link rel=\"preload\" as=\"image\"> for an LCP candidate that has none (check whether home already preloads its hero before adding one)",
       "Add fetchpriority=\"high\" to an LCP candidate <img>"
     ],
     "perf_pr_forbidden": [
@@ -111,11 +89,12 @@
     "content_pr_forbidden": [
       "Any rewrite without GSC striking-distance evidence (speculative rewrites go in the issue as suggestions)",
       "Touching H1s, hero copy, body copy, CTAs, navigation or footer",
-      "A title or description that breaks a copy rule"
+      "A title or description that breaks a copy rule",
+      "Adding a phone number, a demo link, a link to a client's website, a price other than the two published ones, or any call button"
     ]
   },
   "copy_rules": {
-    "_comment": "Pete's voice rules, enforced by checks/copy-rules.mjs on live titles/descriptions and on page source text. Violations are reported; the agent may only fix dashes in seo-routes.ts (metadata scope).",
+    "_comment": "Pete's voice rules, enforced by checks/copy-rules.mjs on live titles/descriptions and on page source text. Violations are reported; the agent may only fix dashes in seo-routes.ts (metadata scope). Pattern names starting removed_ or banned_ are hard bans from the 17 Nov 2026 rewrite: any hit is a warning to raise in the issue, never something to work around.",
     "banned_characters": {
       "em_dash": "—",
       "en_dash": "–"
@@ -162,14 +141,54 @@
         "flags": "i",
         "severity": "info",
         "why": "verb form is two words: set up"
+      },
+      {
+        "name": "phone_number",
+        "regex": "(\\+\\s?353[\\s\\-()0-9]{7,}|\\(?\\b0[1-9]\\d?\\)?[\\s\\-]?\\d{3}[\\s\\-]?\\d{3,4}\\b|tel:)",
+        "flags": "i",
+        "severity": "warning",
+        "why": "no phone number or tel: link anywhere on the site (17 Nov 2026 rewrite)"
+      },
+      {
+        "name": "demo_link",
+        "regex": "(demos\\.streamlinedai\\.tech|/demo/)",
+        "flags": "i",
+        "severity": "warning",
+        "why": "no public demo link, 'try a demo' link or demo screenshot on the site (17 Nov 2026 rewrite)"
+      },
+      {
+        "name": "ai_employees",
+        "regex": "\\bai[- ]employees?\\b",
+        "flags": "i",
+        "severity": "warning",
+        "why": "AI Employees was removed entirely (17 Nov 2026); never re-add it"
+      },
+      {
+        "name": "set_up_with_ai_positioning",
+        "regex": "\\bset (your|businesses|business) up with ai\\b",
+        "flags": "i",
+        "severity": "warning",
+        "why": "old 'We set your business up with AI' positioning was removed (17 Nov 2026)"
+      },
+      {
+        "name": "enterprise_grade",
+        "regex": "\\benterprise[- ]grade\\b",
+        "flags": "i",
+        "severity": "warning",
+        "why": "unsubstantiated claim, off-voice"
+      },
+      {
+        "name": "game_changer",
+        "regex": "\\bgame[- ]?changer\\b",
+        "flags": "i",
+        "severity": "warning",
+        "why": "cliche, off-voice"
       }
     ],
     "founder_claim": {
-      "trigger": "20+ years",
-      "required_prefix": "20+ years in heavy industries",
-      "exceptions": {
-        "/australia": "20+ years around mining and construction"
-      }
+      "trigger": "over 20 years",
+      "required_prefix": "over 20 years in heavy industry and construction",
+      "exceptions": {}
     },
     "title_must_contain": "Streamlined Tech",
     "description_colon_info_threshold": 2
