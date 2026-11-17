@@ -262,6 +262,9 @@ export default function AiTraining() {
               src="/images/pete-harris.jpg"
               alt="Pete Harris, founder of Streamlined Tech"
               className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white/30 shadow-lg mx-auto mb-8"
+              width="144"
+              height="144"
+              loading="lazy"
             />
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Built on daily use
