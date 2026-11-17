@@ -19,6 +19,7 @@
     { "source": "/au", "destination": "/", "statusCode": 301 },
     { "source": "/ai-training", "destination": "/", "statusCode": 301 },
     { "source": "/guide/set-up-ai-for-business-ireland", "destination": "/", "statusCode": 301 },
+    { "source": "/guide/:path*", "destination": "/", "statusCode": 301 },
     { "source": "/ai-employees", "destination": "/", "statusCode": 301 },
     { "source": "/ai-employees/:region", "destination": "/", "statusCode": 301 },
     { "source": "/details", "destination": "/", "statusCode": 301 },
