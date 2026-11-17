@@ -1,4 +1,6 @@
 import { Link } from "wouter";
+import { PhoneCall } from "lucide-react";
+import { IconTile } from "@/components/icon-tile";
 
 /**
  * The one call block at the end of a page. Pete, 17 Nov 2026: fewer call
@@ -8,18 +10,21 @@ import { Link } from "wouter";
 export function ClosingCall() {
   return (
     <section className="st-closing" data-testid="section-closing-call">
-      <div className="st-wrap">
-        <h2>Tell us how you run things.</h2>
-        <p>
-          Ask for a call and we'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.
-        </p>
-        <div className="st-closing__row">
-          <Link href="/contact" className="st-btn" data-testid="button-call-closing">
-            Ask for a call
-          </Link>
-          <span className="st-small">
-            Or email <a href="mailto:peter@streamlinedai.tech">peter@streamlinedai.tech</a>
-          </span>
+      <div className="st-wrap st-closing__grid">
+        <IconTile icon={PhoneCall} />
+        <div>
+          <h2>Tell us how you run things.</h2>
+          <p>
+            Ask for a call and we'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.
+          </p>
+          <div className="st-closing__row">
+            <Link href="/contact" className="st-btn" data-testid="button-call-closing">
+              Ask for a call
+            </Link>
+            <span className="st-small">
+              Or email <a href="mailto:peter@streamlinedai.tech">peter@streamlinedai.tech</a>
+            </span>
+          </div>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@
  *
  * THE ONE RULE: each mirror is a faithful copy of its page's rendered copy.
  * Same headings, same paragraphs, same list items, word for word. No forms,
- * no buttons, no images, and never text that the rendered page does not
+ * no buttons, no images, no diagrams, no image slots, and never text that the rendered page does not
  * carry - different text for crawlers is cloaking. The build enforces this:
  * script/check-prerender-mirrors.ts fails the build if a mirror's text is
  * not found in the page component or the shared components it renders, so
@@ -37,13 +37,35 @@ const PRICING = `
 <h3>A custom app for your business</h3>
 <p>From €4,900 + VAT</p>
 <p>then a monthly fee for hosting</p>
-<p>Your own app, built around how you already work. Free demo first if it looks like a fit. A build fee, then a monthly fee that covers hosting, support from real people and ongoing refinements. No charge per user.</p>
+<p>Your own app, built around how you already work.</p>
+<ul>
+<li>Free demo first if it looks like a fit.</li>
+<li>A build fee, then a monthly fee that covers hosting, support from real people and ongoing refinements.</li>
+<li>No charge per user.</li>
+</ul>
 <p>Done within 2 weeks of your go-ahead. Two weeks of testing on your own jobs.</p>
 <h3>The Whole Business Build</h3>
 <p>From €120,000 + VAT</p>
 <p>your whole business, built with you over a year</p>
-<p>Some businesses need more than one app. For twelve months I work alongside you and your team, on site and off. We go through how the work really moves, from the first call to the final invoice, and I build the systems to run it as one connected set. Each one is tested on your own jobs before we move to the next. You deal with me directly throughout. It takes a lot of my time, which is why it costs what it does.</p>
+<p>Some businesses need more than one app.</p>
+<ul>
+<li>For twelve months I work alongside you and your team, on site and off.</li>
+<li>We go through how the work really moves, from the first call to the final invoice, and I build the systems to run it as one connected set.</li>
+<li>Each one is tested on your own jobs before we move to the next.</li>
+<li>You deal with me directly throughout.</li>
+</ul>
+<p>It takes a lot of my time, which is why it costs what it does.</p>
 <p>I take on no more than 2 of these a year, because I do the work myself.</p>`;
+
+const PERSON = `
+<h2>Who you'll deal with</h2>
+<p>I'm Pete Harris. I build the apps.</p>
+<p>I spent over 20 years in heavy industry and construction before this, so I know what a job sheet in a van looks like.</p>
+<ol>
+<li>Until you go ahead, one of our team follows up for me by phone.</li>
+<li>Once you go ahead I build it and see it through.</li>
+<li>After that you have support from real people, and every app has a Feedback button: tell us what is not right and we change it.</li>
+</ol>`;
 
 const CLOSING = `
 <h2>Tell us how you run things.</h2>
@@ -66,7 +88,13 @@ ${NAV}
 <li>Job sheets and photos that never make it back to the office.</li>
 <li>Quotes and invoices waiting on someone to chase them.</li>
 </ul>
-<p>We work with vehicle and machinery workshops, home service firms with repeat visits, windows and doors firms, and other trades and service businesses.</p>
+<p>We work with</p>
+<ul>
+<li>Vehicle and machinery workshops</li>
+<li>Home service firms with repeat visits</li>
+<li>Windows and doors firms</li>
+<li>Other trades and service businesses</li>
+</ul>
 <h2>What goes on your board</h2>
 <ul>
 <li>Every job from enquiry to invoice</li>
@@ -90,17 +118,24 @@ ${NAV}
 <h2>Our work</h2>
 <h3>IPM Enviro</h3>
 <p>The technician scans each numbered unit on an iPad and logs what they found, and the visit report writes itself.</p>
-<blockquote>We were working with another company for 12 months and weren't even close to launch. Pete contacted us by email, we had a chat, and almost overnight we had a product sample to look at. Our client is a multinational pharmaceutical plant and they're very pleased with how professional it looks, but the most important thing is how user friendly it is. There's literally no training required for our techs or their people.</blockquote>
+<blockquote>
+<p>We were working with another company for 12 months and weren't even close to launch.</p>
+<p>Pete contacted us by email, we had a chat, and almost overnight we had a product sample to look at.</p>
+<p>Our client is a multinational pharmaceutical plant and they're very pleased with how professional it looks, but the most important thing is how user friendly it is.</p>
+<p>There's literally no training required for our techs or their people.</p>
+</blockquote>
 <p>Eamonn Kennedy, Director, IPM Enviro</p>
 <h3>Komplete Engineers</h3>
 <p>Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.</p>
-<blockquote>It's made our process much more efficient, in speed and in knowing when invoices are due. Overall it's greatly benefited the efficiency of the business. We're definitely managing the work better and getting things done quicker.</blockquote>
+<blockquote>
+<p>It's made our process much more efficient, in speed and in knowing when invoices are due.</p>
+<p>Overall it's greatly benefited the efficiency of the business.</p>
+<p>We're definitely managing the work better and getting things done quicker.</p>
+</blockquote>
 <p>Ian O'Mahony, Komplete Engineers</p>
 <h2>What it costs</h2>
 ${PRICING}
-<h2>Who you'll deal with</h2>
-<p>I'm Pete Harris. I build the apps. I spent over 20 years in heavy industry and construction before this, so I know what a job sheet in a van looks like.</p>
-<p>Until you go ahead, one of our team follows up for me by phone. Once you go ahead I build it and see it through. After that you have support from real people, and every app has a Feedback button: tell us what is not right and we change it.</p>
+${PERSON}
 ${CLOSING}
 </main>`,
 
@@ -111,15 +146,15 @@ ${CLOSING}
 ${NAV}
 <h2>The six steps</h2>
 <ol>
-<li><h3>A phone call</h3><p>About 10 to 15 minutes. You tell us how a job goes from the first enquiry to the invoice, and where it hurts. With your OK we record the call so Pete can build your demo from what you told us.</p></li>
-<li><h3>A free demo</h3><p>If it looks like a fit, we build a demo of your own app, usually within a few days. It uses made-up sample data, so click anything. It won't be perfect and it isn't meant to be: it gives you something to react to. Editing is easier than creating.</p>
+<li><h3>A phone call</h3><p>About 10 to 15 minutes. You tell us how a job goes from the first enquiry to the invoice, and where it hurts.</p><p>With your OK we record the call so Pete can build your demo from what you told us.</p></li>
+<li><h3>A free demo</h3><p>If it looks like a fit, we build a demo of your own app, usually within a few days. It uses made-up sample data, so click anything.</p><p>It won't be perfect and it isn't meant to be: it gives you something to react to. Editing is easier than creating.</p>
 <blockquote>Almost overnight, you brought it around to where it needed to be.</blockquote><p>Eamonn Kennedy, Director, IPM Enviro</p></li>
 <li><h3>A price in writing</h3><p>A build fee and a monthly fee, in writing, before anything is built. A 50% deposit starts the build.</p></li>
 <li><h3>The build</h3><p>Done within 2 weeks of your go-ahead. We don't give a finish date. We give the timeline.</p>
 <blockquote>The speed at which we could turn things around, I can't underestimate the value of that.</blockquote><p>Eamonn Kennedy, Director, IPM Enviro</p></li>
 <li><h3>Two weeks of field testing</h3><p>You use it on your own jobs while we refine it. You pay the second half once it is working for you.</p>
 <blockquote>We're definitely managing it better, probably getting things done quicker.</blockquote><p>Ian O'Mahony, Komplete Engineers</p></li>
-<li><h3>Looked after</h3><p>The monthly fee starts after field testing. It covers hosting, storage, support from real people and ongoing refinements to what we built. There is no charge per user. Every app has a Feedback button: tell us what isn't right and we change it and let you know.</p>
+<li><h3>Looked after</h3><p>The monthly fee starts after field testing. It covers hosting, storage, support from real people and ongoing refinements to what we built.</p><p>There is no charge per user.</p><p>Every app has a Feedback button: tell us what isn't right and we change it and let you know.</p>
 <blockquote>Always accessible and very quick to come back to us, whether it's a sample or fixing the system. It literally happens almost instantly.</blockquote><p>Eamonn Kennedy, Director, IPM Enviro</p></li>
 </ol>
 <h2>What it costs</h2>
@@ -144,9 +179,15 @@ ${PRICING}
 <p>The monthly fee covers hosting, storage, support from real people and ongoing refinements to the features in your build.</p>
 <p>A genuinely new feature is priced separately, at a fraction of the first build, and the monthly fee goes up a little with it.</p>
 <h2>Should you build it yourself or get it built for you?</h2>
-<p>Honest answer, sometimes you should build it yourself. If someone in the office has the time and the interest, a no-code tool can carry a simple job, a form that feeds a spreadsheet, a basic booking sheet.</p>
-<p>Where it usually falls down is afterwards. The person who built it becomes the person who maintains it, on top of the job they were already doing. And the data ends up scattered across subscriptions that do not talk to each other.</p>
-<p>What we offer is the custom route without those jobs landing back on you. The app is built around how you already work, we look after it, and your team just uses it.</p>
+<p>Honest answer, sometimes you should build it yourself.</p>
+<p>If someone in the office has the time and the interest, a no-code tool can carry a simple job, a form that feeds a spreadsheet, a basic booking sheet.</p>
+<p>Where it usually falls down is afterwards.</p>
+<ul>
+<li>The person who built it becomes the person who maintains it, on top of the job they were already doing.</li>
+<li>And the data ends up scattered across subscriptions that do not talk to each other.</li>
+</ul>
+<p>What we offer is the custom route without those jobs landing back on you.</p>
+<p>The app is built around how you already work, we look after it, and your team just uses it.</p>
 <h2>Questions people ask</h2>
 <h3>How long will it take?</h3>
 <p>The demo usually takes a few days. The build is done within 2 weeks of your go-ahead, and then there are two weeks of field testing on your own jobs.</p>
@@ -172,8 +213,18 @@ ${CLOSING}
 ${NAV}
 <h2>IPM Enviro</h2>
 <p>The technician scans each numbered unit on an iPad and logs what they found, and the visit report writes itself.</p>
+<ul>
+<li>Scans each numbered unit</li>
+<li>Logs what they found</li>
+<li>The visit report writes itself</li>
+</ul>
 <h2>Komplete Engineers</h2>
 <p>Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.</p>
+<ul>
+<li>Quotes that chase themselves</li>
+<li>A new project set up in one tap</li>
+<li>Every live project at a glance</li>
+</ul>
 <p>We only name clients who have said we can. Their apps are their own, so we don't show screenshots of them here.</p>
 ${CLOSING}
 </main>`,
@@ -183,13 +234,16 @@ ${CLOSING}
 <h1>About Streamlined Tech</h1>
 <p>We build custom apps for Irish trade and service businesses. Your own app, built around how you already work, with everything in one place.</p>
 ${NAV}
-<h2>Who you'll deal with</h2>
-<p>I'm Pete Harris. I build the apps. I spent over 20 years in heavy industry and construction before this, so I know what a job sheet in a van looks like.</p>
-<p>Until you go ahead, one of our team follows up for me by phone. Once you go ahead I build it and see it through. After that you have support from real people, and every app has a Feedback button: tell us what is not right and we change it.</p>
+${PERSON}
 <h2>Where we are</h2>
-<p>Based in Galway. Working with businesses across Ireland. Site visits by arrangement.</p>
+<ul>
+<li>Based in Galway.</li>
+<li>Working with businesses across Ireland.</li>
+<li>Site visits by arrangement.</li>
+</ul>
 <h2>The company</h2>
-<p>Streamlined Tech is a trading name of Streamlined Digital Tech Limited, registered in Ireland, company number 805162. Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.</p>
+<p>Streamlined Tech is a trading name of Streamlined Digital Tech Limited, registered in Ireland, company number 805162.</p>
+<p>Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.</p>
 ${CLOSING}
 </main>`,
 
@@ -201,6 +255,10 @@ ${NAV}
 <p>Your details go to Streamlined Tech. One of our team rings you, normally within 24 hours. To have them deleted, email peter@streamlinedai.tech.</p>
 <h2>Or email us</h2>
 <p>peter@streamlinedai.tech</p>
-<p>Based in Galway. Working with businesses across Ireland. Site visits by arrangement.</p>
+<ul>
+<li>Based in Galway.</li>
+<li>Working with businesses across Ireland.</li>
+<li>Site visits by arrangement.</li>
+</ul>
 </main>`,
 };

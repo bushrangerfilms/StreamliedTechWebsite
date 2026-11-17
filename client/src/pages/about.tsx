@@ -1,14 +1,24 @@
+import { Building2, Car, Map, MapPin } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ClosingCall } from "@/components/closing-call";
+import { IconTile } from "@/components/icon-tile";
+import { ImageSlot } from "@/components/image-slot";
+import { PersonBlock } from "@/components/person-block";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/about"). Change both together.
 // No consultant is named here and no Product Manager is mentioned (Pete,
 // 17 Nov 2026). The testimonial slot on this page stays empty until Pete
 // supplies one.
+
+const WHERE = [
+  { icon: MapPin, text: "Based in Galway." },
+  { icon: Map, text: "Working with businesses across Ireland." },
+  { icon: Car, text: "Site visits by arrangement." },
+];
 
 export default function About() {
   useSeo(ROUTE_SEO.about);
@@ -28,34 +38,42 @@ export default function About() {
 
         <section className="st-section" data-testid="section-pete">
           <div className="st-wrap">
-            <div className="st-person">
-              <img src="/images/pete-harris.jpg" alt="Pete Harris" width="640" height="640" />
-              <div className="st-narrow">
-                <h2>Who you'll deal with</h2>
-                <p>
-                  I'm Pete Harris. I build the apps. I spent over 20 years in heavy industry and construction before this, so I know what a job sheet in a van looks like.
-                </p>
-                <p>
-                  Until you go ahead, one of our team follows up for me by phone. Once you go ahead I build it and see it through. After that you have support from real people, and every app has a Feedback button: tell us what is not right and we change it.
-                </p>
-              </div>
+            <PersonBlock />
+            <div style={{ marginTop: "2.5rem" }}>
+              <ImageSlot id="about-pete-at-work" wanted="A real photo of Pete at work: on a client's site, or building at the desk." />
             </div>
           </div>
         </section>
 
-        <section className="st-section" data-testid="section-where">
-          <div className="st-wrap st-narrow">
+        <section className="st-section st-section--tint" data-testid="section-where">
+          <div className="st-wrap">
             <h2>Where we are</h2>
-            <p>Based in Galway. Working with businesses across Ireland. Site visits by arrangement.</p>
+            <ul className="st-cards st-cards--3">
+              {WHERE.map((item) => (
+                <li key={item.text} className="st-card st-card--row">
+                  <IconTile icon={item.icon} />
+                  <p>{item.text}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
         <section className="st-section" data-testid="section-company">
-          <div className="st-wrap st-narrow">
+          <div className="st-wrap">
             <h2>The company</h2>
-            <p>
-              Streamlined Tech is a trading name of Streamlined Digital Tech Limited, registered in Ireland, company number 805162. Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.
-            </p>
+            <div className="st-cards st-cards--2">
+              <div className="st-card st-card--row">
+                <IconTile icon={Building2} />
+                <p>
+                  Streamlined Tech is a trading name of Streamlined Digital Tech Limited, registered in Ireland, company number 805162.
+                </p>
+              </div>
+              <div className="st-card st-card--row">
+                <IconTile icon={MapPin} />
+                <p>Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.</p>
+              </div>
+            </div>
           </div>
         </section>
 

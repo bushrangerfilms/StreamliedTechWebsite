@@ -1,14 +1,22 @@
+import { Car, Mail, Map, MapPin } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AskForCallForm } from "@/components/ask-for-call-form";
+import { IconTile } from "@/components/icon-tile";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/contact"). Change both together.
 // The site's contact details are this form and the email address only: no
 // phone number and no booking link (Pete, 17 Nov 2026). This page has no
 // closing call block because the form is the call button here.
+
+const WHERE = [
+  { icon: MapPin, text: "Based in Galway." },
+  { icon: Map, text: "Working with businesses across Ireland." },
+  { icon: Car, text: "Site visits by arrangement." },
+];
 
 export default function Contact() {
   useSeo(ROUTE_SEO.contact);
@@ -27,20 +35,27 @@ export default function Contact() {
         </section>
 
         <section className="st-section" data-testid="section-form">
-          <div className="st-wrap">
+          <div className="st-wrap st-contact">
             <AskForCallForm />
-          </div>
-        </section>
-
-        <section className="st-section" data-testid="section-email">
-          <div className="st-wrap st-narrow">
-            <h2>Or email us</h2>
-            <p>
-              <a href="mailto:peter@streamlinedai.tech" data-testid="link-email">
-                peter@streamlinedai.tech
-              </a>
-            </p>
-            <p>Based in Galway. Working with businesses across Ireland. Site visits by arrangement.</p>
+            <aside className="st-contact__aside" data-testid="section-email">
+              <div className="st-card">
+                <IconTile icon={Mail} />
+                <h2>Or email us</h2>
+                <p>
+                  <a href="mailto:peter@streamlinedai.tech" data-testid="link-email">
+                    peter@streamlinedai.tech
+                  </a>
+                </p>
+              </div>
+              <ul className="st-where">
+                {WHERE.map((item) => (
+                  <li key={item.text}>
+                    <IconTile icon={item.icon} small />
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </aside>
           </div>
         </section>
       </main>

@@ -1,14 +1,35 @@
 import { Link } from "wouter";
+import { Activity, Building2, Copyright, ExternalLink, FileText, Gavel, Info, ListChecks, Mail, MonitorSmartphone, MousePointerClick, PhoneIncoming, RefreshCw, Scale } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { LegalContents } from "@/components/legal-contents";
 
 // The wording is the 17 Nov 2026 draft from streamlined-bot-files
 // atlas-website/drafts/terms.md. It is a DRAFT: the red box and every
 // highlighted [PETE TO CONFIRM] marker must be dealt with, and Pete must
 // approve the exact wording, before this page goes live. A production build
 // refuses to run while a marker is still here (vite-plugin-prerender-meta.ts).
+
+// The section list feeds the "On this page" icon links under the draft box.
+// The titles must match the <h2> headings below word for word.
+const SECTIONS = [
+  { n: 1, title: "Who we are", icon: Building2 },
+  { n: 2, title: "These are website terms, not your customer contract", icon: FileText },
+  { n: 3, title: "Using the site", icon: MousePointerClick },
+  { n: 4, title: "The Ask for a call form", icon: PhoneIncoming },
+  { n: 5, title: "No professional advice and no guarantees from site content", icon: Info },
+  { n: 6, title: "Intellectual property", icon: Copyright },
+  { n: 7, title: "Demos", icon: MonitorSmartphone },
+  { n: 8, title: "Links to other sites", icon: ExternalLink },
+  { n: 9, title: "Availability", icon: Activity },
+  { n: 10, title: "Our liability to you", icon: Scale },
+  { n: 11, title: "Changes to these terms", icon: RefreshCw },
+  { n: 12, title: "Governing law and courts", icon: Gavel },
+  { n: 13, title: "General", icon: ListChecks },
+  { n: 14, title: "Contact", icon: Mail },
+];
 
 export default function Terms() {
   useSeo(ROUTE_SEO.terms);
@@ -30,13 +51,17 @@ export default function Terms() {
             </ol>
             <p>Every item marked <mark className="st-confirm">[PETE TO CONFIRM]</mark> must be filled in or removed before publication. Remove this box once the check is done.</p>
           </div>
+          <LegalContents sections={SECTIONS} />
           <p>
             <strong>Last updated:</strong> <mark className="st-confirm">[PETE TO CONFIRM date of publication]</mark>
           </p>
           <p>
-            These terms cover your use of the Streamlined Tech website at streamlinedai.tech (the "site"), and any demo we send you. Please read them. By using the site or opening a demo, you agree to them. If you do not agree, please do not use the site or the demo.
+            These terms cover your use of the Streamlined Tech website at streamlinedai.tech (the "site"), and any demo we send you. Please read them. By using the site or opening a demo, you agree to them.
           </p>
-          <h2>1. Who we are</h2>
+          <p>
+            If you do not agree, please do not use the site or the demo.
+          </p>
+          <h2 id="section-1">1. Who we are</h2>
           <p>
             The site is run by Streamlined Digital Tech Limited, trading as Streamlined Tech ("we", "us", "our").
           </p>
@@ -49,17 +74,20 @@ export default function Terms() {
           <p>
             We build custom apps for Irish trade and service businesses.
           </p>
-          <h2>2. These are website terms, not your customer contract</h2>
+          <h2 id="section-2">2. These are website terms, not your customer contract</h2>
           <p>
             These terms cover the site and demos only. They are not an agreement to build anything for you.
           </p>
           <p>
-            Each build is agreed in a written quote and a written agreement between you and us. That quote and agreement set out the price, the work, the timings, who owns what and how your data is handled. If anything in these terms differs from your written quote and agreement, the quote and agreement prevail.
+            Each build is agreed in a written quote and a written agreement between you and us. That quote and agreement set out the price, the work, the timings, who owns what and how your data is handled.
+          </p>
+          <p>
+            If anything in these terms differs from your written quote and agreement, the quote and agreement prevail.
           </p>
           <p>
             Prices and timings shown on the site are a guide. They are not an offer that you can accept by using the site. The price for your build is the one in your written quote.
           </p>
-          <h2>3. Using the site</h2>
+          <h2 id="section-3">3. Using the site</h2>
           <p>
             You may use the site to read about what we do and to ask us for a call. The site is meant for businesses and the people who run or work in them.
           </p>
@@ -77,9 +105,12 @@ export default function Terms() {
           <p>
             We may block access for anyone who breaks these rules.
           </p>
-          <h2>4. The Ask for a call form</h2>
+          <h2 id="section-4">4. The Ask for a call form</h2>
           <p>
-            When you fill in the Ask for a call form, you give us your name, phone number, email address, business name and what your business does. We use these details to contact you about your enquiry, by phone or by email. We aim to ring you within 24 hours <mark className="st-confirm">[PETE TO CONFIRM this is to be stated here, and whether it means working days]</mark>.
+            When you fill in the Ask for a call form, you give us your name, phone number, email address, business name and what your business does. We use these details to contact you about your enquiry, by phone or by email.
+          </p>
+          <p>
+            We aim to ring you within 24 hours <mark className="st-confirm">[PETE TO CONFIRM this is to be stated here, and whether it means working days]</mark>.
           </p>
           <p>
             Asking for a call does not commit you or us to anything.
@@ -90,14 +121,17 @@ export default function Terms() {
           <p>
             Our <Link href="/privacy">Privacy Policy</Link> explains how we use and keep your personal data, and your rights.
           </p>
-          <h2>5. No professional advice and no guarantees from site content</h2>
+          <h2 id="section-5">5. No professional advice and no guarantees from site content</h2>
           <p>
             The content on the site is general information about our services. It is not legal, financial, tax, regulatory or other professional advice, and you should not rely on it as such.
           </p>
           <p>
-            We take care to keep the site accurate and up to date, but we do not promise that everything on it is complete, current or free from mistakes. Examples and descriptions of what an app can do are illustrations. They are not a promise of any result for your business. What we commit to deliver for you is set out in your written quote and agreement, and nowhere else.
+            We take care to keep the site accurate and up to date, but we do not promise that everything on it is complete, current or free from mistakes. Examples and descriptions of what an app can do are illustrations.
           </p>
-          <h2>6. Intellectual property</h2>
+          <p>
+            They are not a promise of any result for your business. What we commit to deliver for you is set out in your written quote and agreement, and nowhere else.
+          </p>
+          <h2 id="section-6">6. Intellectual property</h2>
           <p>
             The text, design, layout, graphics, logos and software on the site belong to Streamlined Digital Tech Limited or to those who license them to us. All rights are reserved.
           </p>
@@ -110,7 +144,7 @@ export default function Terms() {
           <p>
             If you are a customer, what you own in your app and your data is what your written agreement says. Nothing in these website terms takes away from that, and nothing in them gives you more.
           </p>
-          <h2>7. Demos</h2>
+          <h2 id="section-7">7. Demos</h2>
           <p>
             After a call, we may send you a link to a demo built around what you told us. These rules apply to every demo.
           </p>
@@ -128,23 +162,29 @@ export default function Terms() {
           <p>
             If you break these demo rules, we may switch the demo off straight away and may take any steps the law allows to protect our work.
           </p>
-          <h2>8. Links to other sites</h2>
+          <h2 id="section-8">8. Links to other sites</h2>
           <p>
-            The site may link to websites run by other people. We provide those links for convenience only. We do not control those websites and are not responsible for their content, their availability or how they handle your data. Read their own terms and privacy notices.
+            The site may link to websites run by other people. We provide those links for convenience only.
+          </p>
+          <p>
+            We do not control those websites and are not responsible for their content, their availability or how they handle your data. Read their own terms and privacy notices.
           </p>
           <p>
             You may link to our home page, as long as you do so fairly and do not suggest we endorse you where we do not. <mark className="st-confirm">[PETE TO CONFIRM whether to keep this]</mark>
           </p>
-          <h2>9. Availability</h2>
+          <h2 id="section-9">9. Availability</h2>
           <p>
-            We try to keep the site running, but we do not promise it will always be available, uninterrupted or free from errors. We may suspend, withdraw or change all or part of the site at any time without notice, for example for maintenance or updates.
+            We try to keep the site running, but we do not promise it will always be available, uninterrupted or free from errors.
+          </p>
+          <p>
+            We may suspend, withdraw or change all or part of the site at any time without notice, for example for maintenance or updates.
           </p>
           <p>
             We take reasonable steps to keep the site secure, but we cannot promise it will be free from viruses or other harmful code. You are responsible for protecting your own devices.
           </p>
-          <h2>10. Our liability to you</h2>
+          <h2 id="section-10">10. Our liability to you</h2>
           <p>
-            <strong>What we do not exclude.</strong> Nothing in these terms excludes or limits our liability for:
+            <strong className="st-lead">What we do not exclude.</strong> Nothing in these terms excludes or limits our liability for:
           </p>
           <ul>
             <li>death or personal injury caused by our negligence</li>
@@ -152,7 +192,7 @@ export default function Terms() {
             <li>anything else that Irish law does not allow us to exclude or limit</li>
           </ul>
           <p>
-            <strong>If you are a consumer.</strong> The site is aimed at businesses. If you use it as a consumer, you have rights under Irish consumer law that cannot be taken away by these terms, and nothing here affects them.
+            <strong className="st-lead">If you are a consumer.</strong> The site is aimed at businesses. If you use it as a consumer, you have rights under Irish consumer law that cannot be taken away by these terms, and nothing here affects them.
           </p>
           <p>
             <strong>Otherwise, as far as Irish law allows:</strong>
@@ -166,18 +206,24 @@ export default function Terms() {
           <p>
             This section is about the site and demos only. Our liability to a customer for a build, hosting or support is set out in that customer's written agreement.
           </p>
-          <h2>11. Changes to these terms</h2>
+          <h2 id="section-11">11. Changes to these terms</h2>
           <p>
-            We may update these terms from time to time, for example when the site or the law changes. The current version is always on this page, with the date it was last updated at the top. The version in force when you use the site or open a demo is the one that applies to that use.
+            We may update these terms from time to time, for example when the site or the law changes. The current version is always on this page, with the date it was last updated at the top.
           </p>
-          <h2>12. Governing law and courts</h2>
+          <p>
+            The version in force when you use the site or open a demo is the one that applies to that use.
+          </p>
+          <h2 id="section-12">12. Governing law and courts</h2>
           <p>
             These terms, and any dispute or claim arising from them, from the site or from a demo, are governed by the laws of Ireland.
           </p>
           <p>
-            The courts of Ireland have exclusive jurisdiction over any such dispute or claim. If you are a consumer living in another country of the European Union, you keep the protection of the mandatory laws of that country and may be entitled to bring a claim in its courts.
+            The courts of Ireland have exclusive jurisdiction over any such dispute or claim.
           </p>
-          <h2>13. General</h2>
+          <p>
+            If you are a consumer living in another country of the European Union, you keep the protection of the mandatory laws of that country and may be entitled to bring a claim in its courts.
+          </p>
+          <h2 id="section-13">13. General</h2>
           <p>
             If a court finds that any part of these terms cannot be enforced, the rest still applies.
           </p>
@@ -187,7 +233,7 @@ export default function Terms() {
           <p>
             These terms are between you and us. Nobody else has rights under them.
           </p>
-          <h2>14. Contact</h2>
+          <h2 id="section-14">14. Contact</h2>
           <p>
             If you have a question about these terms, email peter@streamlinedai.tech or write to:
           </p>
