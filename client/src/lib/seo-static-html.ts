@@ -59,13 +59,27 @@ const PRICING = `
 
 const PERSON = `
 <h2>Who you'll deal with</h2>
-<p>I'm Pete Harris. I build the apps.</p>
-<p>I spent over 20 years in heavy industry and construction before this, so I know what a job sheet in a van looks like.</p>
+<p>Pete Harris</p>
+<p>Founder, Streamlined Tech</p>
+<p>Pete Harris founded Streamlined Tech and builds the apps. He has run his own companies since 2007.</p>
+<p>His work has covered video production, workplace safety and training, property, farming, pest control and engineering.</p>
+<h3>How Streamlined Tech looks after you</h3>
 <ol>
-<li>Until you go ahead, one of our team follows up for me by phone.</li>
-<li>Once you go ahead I build it and see it through.</li>
-<li>After that you have support from real people, and every app has a Feedback button: tell us what is not right and we change it.</li>
+<li><h4>A discovery call and a free demo</h4><p>We ring you for 10 to 15 minutes. If it looks like a fit, we build a free demo of your own app.</p></li>
+<li><h4>The build and a two-week field test</h4><p>We build it, then you use it on your own jobs for two weeks while we refine it.</p></li>
+<li><h4>Looked after from then on</h4><p>A dedicated product manager, support from real people, a Feedback button in every app and ongoing refinements.</p></li>
 </ol>`;
+
+const AI_CHANGE = `
+<h2>What's changed with AI</h2>
+<blockquote>
+<p>What's changed now with AI is this.</p>
+<p>You used to need a quarter of a million to make software, so it had to cater for thousands of businesses.</p>
+<p>That's why you end up with menus within menus, and it gets so complicated that staff just avoid using it.</p>
+<p>Now you can have your own software that does exactly what you need, and it's so simple to use that it's easier than what your staff are doing now.</p>
+</blockquote>
+<p>Pete Harris, Founder, Streamlined Tech</p>
+<p>AI means we can build it far quicker and cheaper than it used to be, so having your own app now makes sense for a business your size.</p>`;
 
 const CLOSING = `
 <h2>Tell us how you run things.</h2>
@@ -80,6 +94,7 @@ export const STATIC_HTML: Record<string, string> = {
 <p>Tell us how your business runs on a 10 to 15 minute phone call. If it looks like a fit, we'll build you a free demo of your own app, usually within a few days.</p>
 <p>We're all about efficiency. That's why people come to us.</p>
 ${NAV}
+${AI_CHANGE}
 <h2>Who it's for</h2>
 <p>Trade and service businesses where the work has outgrown the paperwork:</p>
 <ul>

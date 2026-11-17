@@ -236,12 +236,21 @@ export default function HowItWorks() {
                 </div>
               ))}
             </div>
-            <div className="st-shots">
-              <ScreenShot screen="diary" />
-              <ScreenShot screen="services" />
-              <ScreenShot screen="tablet" />
-              <ScreenShot screen="jobCard" />
+            <div className="st-shots st-shots--3">
+              <ScreenShot screen="enquiries" small />
+              <ScreenShot screen="diary" small />
+              <ScreenShot screen="jobCard" small />
+              <ScreenShot screen="services" small />
+              <ScreenShot screen="invoices" small />
+              <ScreenShot screen="jobProfit" small />
             </div>
+            <div className="st-shots st-shots--devices">
+              <ScreenShot screen="tablet" small />
+              <ScreenShot screen="workshopIpad" small />
+              <ScreenShot screen="measuringPhone" phone small />
+              <ScreenShot screen="pickListPhone" phone small />
+            </div>
+            <p className="st-shots__note">Sample screens. The names, places and prices are made up.</p>
             <p className="st-grow">
               <span className="st-grow__one" aria-hidden="true" />
               <ArrowRight strokeWidth={1.5} aria-hidden="true" />

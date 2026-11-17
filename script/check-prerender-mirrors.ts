@@ -33,9 +33,10 @@ const SHARED = {
   quotes: "client/src/components/testimonial.tsx",
   form: "client/src/components/ask-for-call-form.tsx",
   person: "client/src/components/person-block.tsx",
+  ai: "client/src/components/ai-change.tsx",
 };
 const PAGE_COMPONENTS: Record<string, string[]> = {
-  "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.pricing, SHARED.quotes, SHARED.person, SHARED.closing],
+  "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.ai, SHARED.pricing, SHARED.quotes, SHARED.person, SHARED.closing],
   "/how-it-works": ["client/src/pages/how-it-works.tsx", SHARED.header, SHARED.pricing, SHARED.quotes, SHARED.closing],
   "/our-work": ["client/src/pages/our-work.tsx", SHARED.header, SHARED.closing],
   "/about": ["client/src/pages/about.tsx", SHARED.header, SHARED.person, SHARED.closing],

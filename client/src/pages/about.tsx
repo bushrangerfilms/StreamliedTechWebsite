@@ -10,9 +10,10 @@ import { ScreenShot } from "@/components/screen-shot";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/about"). Change both together.
-// No consultant is named here and no Product Manager is mentioned (Pete,
-// 17 Nov 2026). The testimonial slot on this page stays empty until Pete
-// supplies one.
+// No consultant is named here. A "dedicated product manager" is mentioned,
+// unnamed, in the looked-after step (Pete's round 2 brief, 17 Nov 2026, which
+// replaces the earlier "no Product Manager" rule). The testimonial slot on
+// this page stays empty until Pete supplies one.
 
 const WHERE = [
   { icon: MapPin, text: "Based in Galway." },
