@@ -6,11 +6,14 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LegalContents } from "@/components/legal-contents";
 
-// The wording is the 17 Nov 2026 draft from streamlined-bot-files
-// atlas-website/drafts/terms.md. It is a DRAFT: the red box and every
-// highlighted [PETE TO CONFIRM] marker must be dealt with, and Pete must
-// approve the exact wording, before this page goes live. A production build
-// refuses to run while a marker is still here (vite-plugin-prerender-meta.ts).
+// The wording began as the 17 Nov 2026 draft from streamlined-bot-files
+// atlas-website/drafts/terms.md. Pete, 17 Nov 2026: "Get claude to fill them
+// all", with the solicitor check waived. Company facts are from the CRO
+// register and Pete's own email; the liability cap, the date and the choices
+// on links and demos were made that day. The table of sources is in
+// ~/grokbot/website-legal-ship-20261117.txt. A production build refuses to
+// run if an unfilled "TO CONFIRM" marker or a draft box comes back
+// (vite-plugin-prerender-meta.ts).
 
 // The section list feeds the "On this page" icon links under the draft box.
 // The titles must match the <h2> headings below word for word.
@@ -41,19 +44,9 @@ export default function Terms() {
         <article className="st-legal" data-testid="article-legal">
           <div className="st-wrap st-narrow">
           <h1 data-testid="text-hero-headline">Website Terms of Use</h1>
-          <div className="st-draft" data-testid="box-draft">
-            <p><strong>DRAFT. NOT FOR PUBLICATION. This draft needs a check by an Irish solicitor before it goes live.</strong></p>
-            <p>The parts that matter most:</p>
-            <ol>
-              <li><strong>Liability (section 10).</strong> Check the exclusions and the cap are enforceable under Irish law, including the consumer rules if a consumer ever uses the site.</li>
-              <li><strong>Demos (section 7).</strong> Check the restrictions on copying, recording, sharing, scraping and reverse engineering can be enforced, and whether a demo link needs its own short notice or click-to-accept step to bind the recipient.</li>
-              <li><strong>Governing law and courts (section 12).</strong> Check the Irish law and Irish courts clause, including the carve-out for consumers.</li>
-            </ol>
-            <p>Every item marked <mark className="st-confirm">[PETE TO CONFIRM]</mark> must be filled in or removed before publication. Remove this box once the check is done.</p>
-          </div>
           <LegalContents sections={SECTIONS} />
           <p>
-            <strong>Last updated:</strong> <mark className="st-confirm">[PETE TO CONFIRM date of publication]</mark>
+            <strong>Last updated:</strong> 17 November 2026
           </p>
           <p>
             These terms cover your use of the Streamlined Tech website at streamlinedai.tech (the "site"), and any demo we send you. Please read them. By using the site or opening a demo, you agree to them.
@@ -67,8 +60,8 @@ export default function Terms() {
           </p>
           <ul>
             <li>Registered in Ireland, company number 805162</li>
-            <li>Address: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97 <mark className="st-confirm">[PETE TO CONFIRM this is the registered office]</mark></li>
-            <li>VAT number: <mark className="st-confirm">[PETE TO CONFIRM]</mark></li>
+            <li>Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97</li>
+            <li>VAT number: IE4549950FH</li>
             <li>Email: peter@streamlinedai.tech</li>
           </ul>
           <p>
@@ -110,7 +103,7 @@ export default function Terms() {
             When you fill in the Ask for a call form, you give us your name, phone number, email address, business name and what your business does. We use these details to contact you about your enquiry, by phone or by email.
           </p>
           <p>
-            We aim to ring you within 24 hours <mark className="st-confirm">[PETE TO CONFIRM this is to be stated here, and whether it means working days]</mark>.
+            We aim to ring you within 24 hours.
           </p>
           <p>
             Asking for a call does not commit you or us to anything.
@@ -139,7 +132,7 @@ export default function Terms() {
             You may view the site and print or save pages for your own business reference. You may not copy, republish, sell or reuse site content for any other purpose without our written permission.
           </p>
           <p>
-            "Streamlined Tech" and our logo may not be used without our written permission. <mark className="st-confirm">[PETE TO CONFIRM whether any trade mark is registered or applied for]</mark>
+            "Streamlined Tech" and our logo may not be used without our written permission.
           </p>
           <p>
             If you are a customer, what you own in your app and your data is what your written agreement says. Nothing in these website terms takes away from that, and nothing in them gives you more.
@@ -150,14 +143,14 @@ export default function Terms() {
           </p>
           <ul>
             <li><strong>Private.</strong> A demo is not public. It is sent to the person we name as the recipient, for that person's business only.</li>
-            <li><strong>For evaluation only.</strong> You may use the demo only to decide whether you want us to build an app for you. You may show it to colleagues inside your own business who are part of that decision. <mark className="st-confirm">[PETE TO CONFIRM that showing colleagues is allowed]</mark></li>
+            <li><strong>For evaluation only.</strong> You may use the demo only to decide whether you want us to build an app for you. You may show it to colleagues inside your own business who are part of that decision.</li>
             <li><strong>Made-up data.</strong> A demo contains sample data that we made up. Names, figures and records in it are not real. Please do not enter real personal data or confidential information into a demo.</li>
             <li><strong>No copying or sharing.</strong> You may not copy, record, screenshot for sharing, publish, forward or share a demo or its link with anyone outside your business. You may not scrape it, reverse engineer it, decompile it, or try to get at its code or design. You may not use it, or let anyone else use it, to build or brief a competing or similar product.</li>
             <li><strong>Ours.</strong> The demo, its design, its screens and its software belong to us. Sending you a demo gives you no ownership and no licence beyond the evaluation described here.</li>
             <li><strong>May be switched off.</strong> Demos expire. We may change, limit or switch off any demo at any time, without notice.</li>
             <li><strong>As it is.</strong> A demo is an unfinished starting point, provided free of charge and as it is. It is not a working system and must not be used to run your business.</li>
             <li><strong>No promise of a build.</strong> A demo is not an offer. We do not promise that any demo will become a build, or that a finished app will match the demo. What we build for you, if anything, is set out in your written quote and agreement.</li>
-            <li><strong>How a demo is used.</strong> <mark className="st-confirm">[PETE TO CONFIRM when live]</mark> We note when a demo is opened. A short notice on the demo says so, and our <Link href="/privacy">Privacy Policy</Link> gives the detail.</li>
+            <li><strong>How a demo is used.</strong> A demo may note when it is opened. Where it does, a short notice on the demo says so, and our <Link href="/privacy">Privacy Policy</Link> gives the detail.</li>
           </ul>
           <p>
             If you break these demo rules, we may switch the demo off straight away and may take any steps the law allows to protect our work.
@@ -170,7 +163,7 @@ export default function Terms() {
             We do not control those websites and are not responsible for their content, their availability or how they handle your data. Read their own terms and privacy notices.
           </p>
           <p>
-            You may link to our home page, as long as you do so fairly and do not suggest we endorse you where we do not. <mark className="st-confirm">[PETE TO CONFIRM whether to keep this]</mark>
+            You may link to our home page, as long as you do so fairly and do not suggest we endorse you where we do not.
           </p>
           <h2 id="section-9">9. Availability</h2>
           <p>
@@ -201,7 +194,7 @@ export default function Terms() {
             <li>The site and any demo are provided free of charge and as they are. We exclude all conditions, warranties and representations about the site and demos that are not written in these terms.</li>
             <li>We are not liable for loss of profit, loss of business, loss of revenue, loss of contracts, loss of goodwill, business interruption, loss of or damage to data, or any indirect or consequential loss, arising from your use of the site or a demo, or from not being able to use them.</li>
             <li>We are not liable for loss caused by relying on site content, by a website we link to, or by events outside our reasonable control.</li>
-            <li>Our total liability to you arising from the site and demos, whether in contract, tort (including negligence) or otherwise, is limited to EUR <mark className="st-confirm">[PETE TO CONFIRM amount, with solicitor]</mark>.</li>
+            <li>Our total liability to you arising from the site and demos, whether in contract, tort (including negligence) or otherwise, is limited to EUR 100.</li>
           </ul>
           <p>
             This section is about the site and demos only. Our liability to a customer for a build, hosting or support is set out in that customer's written agreement.

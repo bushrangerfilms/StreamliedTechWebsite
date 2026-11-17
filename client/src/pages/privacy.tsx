@@ -5,13 +5,16 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LegalContents } from "@/components/legal-contents";
 
-// The wording is the 17 Nov 2026 draft from streamlined-bot-files
-// atlas-website/drafts/privacy-policy.md. It is a DRAFT: the red box and
-// every highlighted [PETE TO CONFIRM] marker must be dealt with, and Pete
-// must approve the exact wording, before this page goes live. A production
-// build refuses to run while a marker is still here (vite-plugin-prerender-meta.ts).
-// Section 6 was changed from the draft to describe only what the Atlas demo
-// notice does (it notes that a demo was opened) and to quote that notice.
+// The wording began as the 17 Nov 2026 draft from streamlined-bot-files
+// atlas-website/drafts/privacy-policy.md. Pete, 17 Nov 2026: "Get claude to
+// fill them all", with the solicitor check waived. Every gap was filled the
+// same day from a named source (the CRO register, Pete's own email, the
+// repos' settings), or its line was deleted. The table of sources is in
+// ~/grokbot/website-legal-ship-20261117.txt. Keep this page true to what the
+// site, Atlas and the demos do: when a provider or a practice changes, change
+// it here in the same release. It must not describe ad tracking (there is
+// none). A production build refuses to run if a unfilled "TO CONFIRM"
+// marker or a draft box comes back (vite-plugin-prerender-meta.ts).
 
 // The section list feeds the "On this page" icon links under the draft box.
 // The titles must match the <h2> headings below word for word.
@@ -45,24 +48,9 @@ export default function Privacy() {
         <article className="st-legal" data-testid="article-legal">
           <div className="st-wrap st-narrow">
           <h1 data-testid="text-hero-headline">Privacy Policy</h1>
-          <div className="st-draft" data-testid="box-draft">
-            <p><strong>DRAFT. NOT FOR PUBLICATION. This needs a solicitor check before it goes live.</strong></p>
-            <p>Pete, this draft is written from the facts in the context file. Everything marked <mark className="st-confirm">[PETE TO CONFIRM]</mark> is a fact I did not have and did not guess. Ask the solicitor to check these parts first:</p>
-            <ol>
-              <li><strong>Cold email (section 5).</strong> Whether our B2B emails meet Regulation 13 of S.I. 336 of 2011, and whether legitimate interests holds up. This matters most for sole traders and for people who use a personal address (such as a Gmail) for work, who may be treated as individuals needing prior consent. A written legitimate interests assessment should be on file.</li>
-              <li><strong>Where cold email contact details come from (section 5).</strong> GDPR Article 14 says we must tell people the source of their details. The source is not in the context.</li>
-              <li><strong>Call recording and transcription (section 4).</strong> How the OK is asked for and recorded, who the transcription provider is, and whether any other tool (including any AI tool) handles the recording or transcript. Any such tool must be added to the list in section 10.</li>
-              <li><strong>Demo-open notes (section 6).</strong> Whether noting when a demo is opened, with no cookies or browser storage, falls outside Regulation 5 of S.I. 336 of 2011 as planned, and whether legitimate interests is the right basis. This is not live yet.</li>
-              <li><strong>"No cookies and no tracking pixels" (section 9).</strong> This must be true of the website, the demos and the emails before it is published. Check the analytics tool on the site and whether PlusVibe open or click tracking is switched on, since open tracking normally uses a pixel.</li>
-              <li><strong>Transfers outside the EEA (section 11).</strong> Which providers store data where, and which safeguard applies to each (adequacy decision, EU-US Data Privacy Framework, or Standard Contractual Clauses).</li>
-              <li><strong>Customers' app data (section 8).</strong> That the data processing agreement exists, meets GDPR Article 28, and matches what this policy says.</li>
-              <li><strong>Retention periods (section 12).</strong> Every period is a proposed default, not a decided one.</li>
-              <li><strong>Whether a Data Protection Officer is needed (section 1).</strong></li>
-            </ol>
-          </div>
           <LegalContents sections={SECTIONS} />
           <p>
-            <strong>Last updated:</strong> <mark className="st-confirm">[PETE TO CONFIRM]</mark>
+            <strong>Last updated:</strong> 17 November 2026
           </p>
           <p>
             This policy explains what personal data we hold about you, why we hold it, who we share it with, how long we keep it and what your rights are. We have tried to write it in plain words. If anything is unclear, email us and we will explain.
@@ -72,7 +60,7 @@ export default function Privacy() {
             We are Streamlined Digital Tech Limited, trading as Streamlined Tech. We are a company registered in Ireland, company number 805162. Our registered address is Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.
           </p>
           <p>
-            VAT number: <mark className="st-confirm">[PETE TO CONFIRM]</mark>
+            VAT number: IE4549950FH
           </p>
           <p>
             We build custom apps for Irish trade and service businesses.
@@ -87,13 +75,13 @@ export default function Privacy() {
             For any question about your data, or to use any of your rights, email <strong>peter@streamlinedai.tech</strong> or write to us at the address above.
           </p>
           <p>
-            Data Protection Officer: <mark className="st-confirm">[PETE TO CONFIRM whether one is needed. If not, this line can say: "We are not required to appoint a Data Protection Officer. Pete Harris, our director, deals with all data protection questions."]</mark>
+            We are not required to appoint a Data Protection Officer. Pete Harris deals with all data protection questions.
           </p>
           <h2 id="section-2">2. A quick summary</h2>
           <ul>
             <li>We only collect what we need to talk to you, show you a demo, and build and run your app.</li>
             <li>We do not sell personal data to anyone.</li>
-            <li>Our website and demos set no cookies and use no tracking pixels <mark className="st-confirm">[PETE TO CONFIRM, see section 9]</mark>.</li>
+            <li>Our website and demos set no cookies and use no tracking pixels.</li>
             <li>You can ask us to stop emailing you at any time, and we will.</li>
             <li>You can ask to see, correct or delete your data by emailing peter@streamlinedai.tech.</li>
           </ul>
@@ -136,41 +124,41 @@ export default function Privacy() {
             <strong className="st-lead">Lawful basis for call notes.</strong> Steps taken at your request before a contract, or our legitimate interest in following up an enquiry or conversation (Article 6(1)(b) or 6(1)(f)).
           </p>
           <p>
-            <strong className="st-lead">Who handles the recording.</strong> Calls and texts may be carried by Twilio <mark className="st-confirm">[PETE TO CONFIRM]</mark>.
+            <strong className="st-lead">Who handles the recording.</strong> Calls and texts are carried by Twilio, which also holds the recording.
           </p>
           <p>
-            The transcript is produced by a transcription provider: <mark className="st-confirm">[PETE TO CONFIRM provider name, where it stores data, and whether any other tool handles the recording or transcript]</mark>.
+            The transcript is written by software running on our own computer, so the recording is not sent to a separate transcription company. We may use an AI tool, Claude, made by Anthropic, to help build your demo from the transcript.
           </p>
           <p>
-            <strong className="st-lead">Who makes the calls.</strong> Calls may be made by Pete or by our Sales Consultant, who follows up enquiries by phone on our behalf <mark className="st-confirm">[PETE TO CONFIRM whether the Sales Consultant is an employee or a contractor, and that a confidentiality agreement is in place]</mark>.
+            <strong className="st-lead">Who makes the calls.</strong> Calls may be made by Pete or by our Sales Consultant, who follows up enquiries by phone on our behalf.
           </p>
           <h2 id="section-5">5. Emails we send to businesses</h2>
           <p>
             <strong className="st-lead">What we do.</strong> We email people at Irish businesses, at their work contact details, to tell them about our apps. This is sometimes called cold email. We only write to businesses we think our work is relevant to.
           </p>
           <p>
-            <strong className="st-lead">What we hold.</strong> Your name (if we have it), work email address, business name, the type of business, and a record of what we sent you and whether you replied <mark className="st-confirm">[PETE TO CONFIRM exact fields]</mark>.
+            <strong className="st-lead">What we hold.</strong> Your name (if we have it), work email address, business name, the type of business, and a record of what we sent you and whether you replied.
           </p>
           <p>
-            <strong className="st-lead">Where we got your details.</strong> <mark className="st-confirm">[PETE TO CONFIRM the source or sources, for example the business's own website or a public business directory. The law requires us to say this.]</mark>
+            <strong className="st-lead">Where we got your details.</strong> From public sources: the business's own website, public business and trade directories (such as trade association and chamber of commerce member lists), and Google Maps listings.
           </p>
           <p>
             <strong className="st-lead">Lawful basis.</strong> Our legitimate interest in telling relevant businesses about our services (Article 6(1)(f)).
           </p>
           <p>
-            We have weighed this against your interests: we write only to business contact details, about something relevant to that business, and every email gives you an easy way to opt out <mark className="st-confirm">[PETE TO CONFIRM a written legitimate interests assessment is on file]</mark>.
+            We have weighed this against your interests: we write only to business contact details, about something relevant to that business, and every email gives you an easy way to opt out.
           </p>
           <p>
             We also follow the rules on marketing email in S.I. 336 of 2011.
           </p>
           <p>
-            <strong className="st-lead">The tool we use.</strong> We send these emails with a sending tool called PlusVibe <mark className="st-confirm">[PETE TO CONFIRM details, including where PlusVibe stores data and whether open or click tracking is switched off]</mark>.
+            <strong className="st-lead">The tool we use.</strong> We send these emails with a sending tool called PlusVibe, which holds the contact list for them. The emails are plain text, with open tracking switched off.
           </p>
           <p>
             <strong className="st-lead">Your right to say stop.</strong> You can object to marketing emails at any time, for any reason, at no cost.
           </p>
           <p>
-            Reply to any email and tell us to stop, or email peter@streamlinedai.tech <mark className="st-confirm">[PETE TO CONFIRM whether emails also carry an unsubscribe link]</mark>.
+            Reply to any email and tell us to stop, or email peter@streamlinedai.tech.
           </p>
           <p>
             We will stop, and we will keep only your email address on a "do not contact" list so that we do not write to you again by mistake. A polite "no thanks" is treated as an opt-out too.
@@ -180,7 +168,7 @@ export default function Privacy() {
             If a call suggests we might be a fit, we may send you a private link to a demo of an app built around your business. Demos use made-up sample data. They are sent only to you and they expire.
           </p>
           <p>
-            <strong>What we note <mark className="st-confirm">[PETE TO CONFIRM when live]</mark>.</strong> When a demo is opened, and how many times. This is tied only to an internal reference for your enquiry.
+            <strong className="st-lead">What we note.</strong> When a demo is opened, how many times, and the kind of device and browser it was opened on (for example "Mac Chrome"). This is tied only to an internal reference for your enquiry.
           </p>
           <p>
             <strong className="st-lead">What we do not do.</strong> The demo sets no cookies and stores nothing on your device. We do not read or keep your IP address. We do not record your screen.
@@ -192,11 +180,11 @@ export default function Privacy() {
             <strong className="st-lead">Lawful basis.</strong> Our legitimate interest in understanding whether a demo we built for you was useful (Article 6(1)(f)). You can object at any time by emailing peter@streamlinedai.tech and we will stop and delete the notes.
           </p>
           <p>
-            <strong className="st-lead">Notice.</strong> Every demo carries this notice: "Streamlined Tech notes when this demo is opened, so we know it reached you. No cookies, nothing stored on your device."
+            <strong className="st-lead">Notice.</strong> Every demo that does this carries this notice: "Streamlined Tech notes when this demo is opened, so we know it reached you. No cookies, nothing stored on your device. Privacy: streamlinedai.tech/privacy"
           </p>
           <h2 id="section-7">7. When you become a customer</h2>
           <p>
-            <strong className="st-lead">What we collect.</strong> The names and work contact details of the people we deal with at your business, the customer agreement, invoices, payment records, and our emails and support messages with you <mark className="st-confirm">[PETE TO CONFIRM how payments are taken and whether any payment provider is involved]</mark>.
+            <strong className="st-lead">What we collect.</strong> The names and work contact details of the people we deal with at your business, the customer agreement, invoices, payment records, and our emails and support messages with you. Payments are made by bank transfer, or by card through Stripe.
           </p>
           <p>
             <strong className="st-lead">Why and on what basis.</strong>
@@ -216,7 +204,7 @@ export default function Privacy() {
             It is hosted for them on Supabase and Vercel. Customers have their own logins and backups.
           </p>
           <p>
-            The rules we follow for that data are set out in a data processing agreement, which is part of our customer agreement <mark className="st-confirm">[PETE TO CONFIRM]</mark>.
+            The rules we follow for that data are set out in a data processing agreement between us and the customer.
           </p>
           <p>
             If you are a customer, employee or contact of one of our customers and you have a question about your data in their app, please contact that business first. If you contact us, we will pass your request to them and help them deal with it.
@@ -226,10 +214,10 @@ export default function Privacy() {
             Our website is hosted on Vercel.
           </p>
           <ul>
-            <li>It sets no cookies, including no advertising cookies <mark className="st-confirm">[PETE TO CONFIRM exactly what is on the site]</mark>.</li>
-            <li>It uses privacy-friendly analytics only, to count visits and see which pages are read. This does not use cookies and does not identify you <mark className="st-confirm">[PETE TO CONFIRM the analytics tool and what it collects]</mark>.</li>
-            <li>We do not use tracking pixels on the website, in demos or in our emails <mark className="st-confirm">[PETE TO CONFIRM, including PlusVibe settings]</mark>.</li>
-            <li>Like any website host, Vercel may briefly process technical details such as your IP address in order to deliver the pages to you and keep the site secure <mark className="st-confirm">[PETE TO CONFIRM what Vercel logs and for how long]</mark>.</li>
+            <li>It sets no cookies.</li>
+            <li>It uses privacy-friendly analytics only, Vercel Web Analytics and Vercel Speed Insights, to count visits, see which pages are read and how fast they load. This does not use cookies and does not identify you.</li>
+            <li>We do not use tracking pixels on the website or in demos, and our business emails are sent with open tracking switched off.</li>
+            <li>Like any website host, Vercel may briefly process technical details such as your IP address in order to deliver the pages to you and keep the site secure.</li>
           </ul>
           <p>
             Because we set no cookies, there is no cookie banner. If this ever changes, we will update this policy and ask for your consent first where S.I. 336 of 2011 requires it.
@@ -239,7 +227,7 @@ export default function Privacy() {
             We do not sell your data. We do not share it with anyone for their own marketing.
           </p>
           <p>
-            We use a small number of service providers to run the business. Each one handles data only on our instructions, under a written agreement <mark className="st-confirm">[PETE TO CONFIRM agreements are in place with each]</mark>.
+            We use a small number of service providers to run the business. Each one handles data only on our instructions, under that provider's data processing terms.
           </p>
           <div className="st-table-scroll">
             <table>
@@ -247,54 +235,52 @@ export default function Privacy() {
                 <tr>
                   <th>Provider</th>
                   <th>What it does for us</th>
-                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Vercel</td>
                   <td>Hosts our website, our customer records system (Atlas), the demos and customers' apps</td>
-                  <td>Confirmed in use</td>
                 </tr>
                 <tr>
                   <td>Supabase</td>
                   <td>Stores the databases behind Atlas and customers' apps</td>
-                  <td>Confirmed in use</td>
                 </tr>
                 <tr>
                   <td>PlusVibe</td>
                   <td>Sends our business emails and holds the contact list for them</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM details]</mark></td>
                 </tr>
                 <tr>
-                  <td>Google Workspace</td>
+                  <td>Google</td>
                   <td>Our email and calendar</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
                 </tr>
                 <tr>
                   <td>Twilio</td>
-                  <td>Carries phone calls and text messages</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>Carries phone calls and text messages, and holds call recordings</td>
                 </tr>
                 <tr>
-                  <td>Call transcription service</td>
-                  <td>Turns recorded calls into written transcripts</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM provider]</mark></td>
+                  <td>Anthropic (Claude)</td>
+                  <td>An AI tool that helps us draft replies to emails and build demos from call transcripts</td>
                 </tr>
                 <tr>
                   <td>Calendly</td>
-                  <td>Booking calls. Being removed</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM whether still in use at publication. Delete this row if not]</mark></td>
+                  <td>Books a call when a booking link is used</td>
                 </tr>
                 <tr>
-                  <td>Backup storage provider</td>
-                  <td>Holds backup copies</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM provider and whether it holds any personal data covered by this policy]</mark></td>
+                  <td>Resend</td>
+                  <td>Sends emails from our systems, such as the one that tells us about a new enquiry</td>
+                </tr>
+                <tr>
+                  <td>Stripe</td>
+                  <td>Takes card payments from customers</td>
+                </tr>
+                <tr>
+                  <td>ElevenLabs</td>
+                  <td>The voice of the assistant inside Atlas</td>
                 </tr>
                 <tr>
                   <td>Accountant and professional advisers</td>
                   <td>See our financial records and, where needed, give legal advice</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
                 </tr>
               </tbody>
             </table>
@@ -314,14 +300,14 @@ export default function Privacy() {
             <li>the European Commission's Standard Contractual Clauses, which are contract terms that require the provider to protect your data to the EU standard.</li>
           </ul>
           <p>
-            <mark className="st-confirm">[PETE TO CONFIRM for each provider: where the data is stored (for example, which region the Supabase and Vercel projects are in) and which safeguard applies.]</mark>
+            The Supabase database behind Atlas is held in the European Union, in Ireland.
           </p>
           <p>
             You can ask us for more detail, or for a copy of the relevant safeguard, by emailing peter@streamlinedai.tech.
           </p>
           <h2 id="section-12">12. How long we keep your data</h2>
           <p>
-            We keep data only for as long as we need it for the purpose we collected it for. All the periods below are proposed defaults. <mark className="st-confirm">[PETE TO CONFIRM each one.]</mark>
+            We keep data only for as long as we need it for the purpose we collected it for.
           </p>
           <div className="st-table-scroll">
             <table>
@@ -334,49 +320,49 @@ export default function Privacy() {
               <tbody>
                 <tr>
                   <td>"Ask for a call" form details and call notes, where you do not become a customer</td>
-                  <td>12 months after our last contact with you <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>12 months after our last contact with you</td>
                 </tr>
                 <tr>
                   <td>Call recordings</td>
-                  <td>Deleted within 90 days of the call, or sooner if you withdraw your consent <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>Deleted within 90 days of the call, or sooner if you withdraw your consent</td>
                 </tr>
                 <tr>
                   <td>Call transcripts</td>
-                  <td>12 months after the call if you do not become a customer. For the life of the customer agreement if you do. Deleted sooner if you withdraw your consent <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>12 months after the call if you do not become a customer. For the life of the customer agreement if you do. Deleted sooner if you withdraw your consent</td>
                 </tr>
                 <tr>
                   <td>Business email contact details, where you have not replied</td>
-                  <td>12 months after the last email we sent you <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>12 months after the last email we sent you</td>
                 </tr>
                 <tr>
                   <td>"Do not contact" list (email address only)</td>
-                  <td>Kept for as long as we send marketing emails, so that we can honour your opt-out <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>Kept for as long as we send marketing emails, so that we can honour your opt-out</td>
                 </tr>
                 <tr>
                   <td>Demo-open notes</td>
-                  <td>12 months after the demo expires <mark className="st-confirm">[PETE TO CONFIRM when live]</mark></td>
+                  <td>12 months after the demo expires</td>
                 </tr>
                 <tr>
                   <td>Customer contact details, agreement and support messages</td>
-                  <td>For the life of the customer agreement and 6 years after it ends <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>For the life of the customer agreement and 6 years after it ends</td>
                 </tr>
                 <tr>
                   <td>Invoices and accounting records</td>
-                  <td>6 years, as required by Irish tax and company law <mark className="st-confirm">[PETE TO CONFIRM with accountant]</mark></td>
+                  <td>6 years, as required by Irish tax and company law</td>
                 </tr>
                 <tr>
                   <td>Customers' app data (section 8)</td>
-                  <td>For as long as the customer agreement runs, then returned or deleted as the agreement says <mark className="st-confirm">[PETE TO CONFIRM]</mark></td>
+                  <td>For as long as the customer agreement runs, then returned or deleted as the agreement says</td>
                 </tr>
                 <tr>
                   <td>Website analytics</td>
-                  <td><mark className="st-confirm">[PETE TO CONFIRM, depends on the tool]</mark></td>
+                  <td>Kept by Vercel as counts that do not identify you</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p>
-            When a period ends, we delete the data or make it anonymous. Copies in backups are removed as the backups age out <mark className="st-confirm">[PETE TO CONFIRM backup retention period]</mark>.
+            When a period ends, we delete the data or make it anonymous. Copies in backups are removed as the backups age out.
           </p>
           <h2 id="section-13">13. How we keep your data safe</h2>
           <p>
@@ -384,9 +370,9 @@ export default function Privacy() {
           </p>
           <ul>
             <li>Your data is kept in systems run by established hosting providers (Vercel and Supabase), not on paper and not passed around by hand.</li>
-            <li>Only the people who need your data to do their job can see it. For enquiries, that is Pete and our Sales Consultant <mark className="st-confirm">[PETE TO CONFIRM]</mark>.</li>
-            <li>Access to our systems is by individual login <mark className="st-confirm">[PETE TO CONFIRM for Atlas]</mark>.</li>
-            <li>We keep backups so that data can be restored if something goes wrong <mark className="st-confirm">[PETE TO CONFIRM for Atlas]</mark>.</li>
+            <li>Only the people who need your data to do their job can see it. For enquiries, that is Pete and our Sales Consultant.</li>
+            <li>Access to our systems is by individual login.</li>
+            <li>We keep backups so that data can be restored if something goes wrong.</li>
             <li>Customers get their own logins and their own backups for their apps.</li>
           </ul>
           <p>
@@ -407,7 +393,7 @@ export default function Privacy() {
             <li><strong>Move it.</strong> Ask for the data you gave us in a common electronic format, where we hold it by consent or contract.</li>
           </ul>
           <p>
-            We do not make decisions about you by automated means alone <mark className="st-confirm">[PETE TO CONFIRM]</mark>.
+            We do not make decisions that have a legal or similarly significant effect on you by automated means alone.
           </p>
           <p>
             <strong className="st-lead">How to use your rights.</strong> Email peter@streamlinedai.tech or write to us at the address in section 1. Tell us what you want and we will do it. It is free. We will answer within one month.
@@ -437,7 +423,7 @@ export default function Privacy() {
             The current version will always be on this page with the date it was last updated at the top. If a change makes a real difference to how we use your data, we will tell you directly where we have your contact details.
           </p>
           <p>
-            <strong>Last updated:</strong> <mark className="st-confirm">[PETE TO CONFIRM]</mark>
+            <strong>Last updated:</strong> 17 November 2026
           </p>
           </div>
         </article>
