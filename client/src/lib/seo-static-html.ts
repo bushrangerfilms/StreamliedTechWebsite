@@ -10,7 +10,7 @@
  *
  * THE ONE RULE: each mirror is a faithful copy of its page's rendered copy.
  * Same headings, same paragraphs, same list items, word for word. No forms,
- * no buttons, no images, no diagrams, no image slots, and never text that the rendered page does not
+ * no buttons, no images, no diagrams, and never text that the rendered page does not
  * carry - different text for crawlers is cloaking. The build enforces this:
  * script/check-prerender-mirrors.ts fails the build if a mirror's text is
  * not found in the page component or the shared components it renders, so

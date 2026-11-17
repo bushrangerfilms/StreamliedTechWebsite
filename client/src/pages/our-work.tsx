@@ -7,7 +7,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { ClosingCall } from "@/components/closing-call";
 import { ClientLogo } from "@/components/testimonial";
 import { IconTile } from "@/components/icon-tile";
-import { ImageSlot } from "@/components/image-slot";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/our-work"). Change both together.
@@ -19,7 +18,11 @@ import { ImageSlot } from "@/components/image-slot";
 // quote may be reused here.
 //
 // Each card's approved line is followed by the same three things as an icon
-// strip. The strip's short labels are cut from the line, nothing added.
+// panel: three tiles joined by a line. The panel's short labels are cut from
+// the line, nothing added. Pete, 17 Nov 2026: no client photos will be
+// supplied, so the panel is the card's picture. Never put a photo of a
+// client's people or premises here that the client did not give us, and never
+// a demo screen (it would read as the client's own app).
 
 const IPM_FLOW: { icon: LucideIcon; label: string }[] = [
   { icon: ScanLine, label: "Scans each numbered unit" },
@@ -70,7 +73,6 @@ export default function OurWork() {
                   The technician scans each numbered unit on an iPad and logs what they found, and the visit report writes itself.
                 </p>
                 <Flow items={IPM_FLOW} />
-                <ImageSlot id="our-work-ipm" wanted="A real photo from IPM Enviro, with their OK: a technician on a visit with the iPad. Not a screenshot of the app." />
               </div>
               <div className="st-client" data-testid="card-client-komplete">
                 <ClientLogo client="komplete" />
@@ -79,7 +81,6 @@ export default function OurWork() {
                   Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.
                 </p>
                 <Flow items={KOMPLETE_FLOW} />
-                <ImageSlot id="our-work-komplete" wanted="A real photo from Komplete Engineers, with their OK: the team or a job on site. Not a screenshot of the app." />
               </div>
             </div>
             <p className="st-note">

@@ -85,17 +85,10 @@ function refuseDraftLegalPagesInProduction(): void {
       open.push(`${page}: ${markers} [PETE TO CONFIRM] marker(s)${draftBox ? ", draft box still present" : ""}`);
     }
   }
-  // The same stop for image slots: a page that still shows an empty
-  // "Image slot" box is waiting on a real photo from Pete (or the slot's
-  // removal) and must not go live looking unfinished.
-  for (const page of fs.readdirSync(pagesDir).filter((f) => f.endsWith(".tsx"))) {
-    const slots = fs.readFileSync(path.join(pagesDir, page), "utf-8").split("<ImageSlot").length - 1;
-    if (slots > 0) open.push(`${page}: ${slots} empty image slot(s)`);
-  }
   if (open.length) {
     throw new Error(
-      `[prerender-meta] Production build refused: the legal pages are still drafts, or a page still has an empty image slot.\n  - ${open.join("\n  - ")}\n` +
-        "Pete fills each [PETE TO CONFIRM] fact and approves the wording, the draft box is removed, and each image slot gets a real photo or is taken out, before go-live.",
+      `[prerender-meta] Production build refused: the legal pages are still drafts.\n  - ${open.join("\n  - ")}\n` +
+        "Pete fills each [PETE TO CONFIRM] fact and approves the wording, and the draft box is removed, before go-live.",
     );
   }
 }

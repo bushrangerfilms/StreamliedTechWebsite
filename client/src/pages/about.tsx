@@ -5,7 +5,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ClosingCall } from "@/components/closing-call";
 import { IconTile } from "@/components/icon-tile";
-import { ImageSlot } from "@/components/image-slot";
 import { PersonBlock } from "@/components/person-block";
 import { ScreenShot } from "@/components/screen-shot";
 
@@ -43,9 +42,6 @@ export default function About() {
         <section className="st-section" data-testid="section-pete">
           <div className="st-wrap">
             <PersonBlock />
-            <div style={{ marginTop: "2.5rem" }}>
-              <ImageSlot id="about-pete-at-work" wanted="A real photo of Pete at work: on a client's site, or building at the desk." />
-            </div>
           </div>
         </section>
 
