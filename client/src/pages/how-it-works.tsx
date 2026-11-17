@@ -34,6 +34,7 @@ import { ClosingCall } from "@/components/closing-call";
 import { PricingBlock } from "@/components/pricing-block";
 import { Testimonial } from "@/components/testimonial";
 import { IconTile } from "@/components/icon-tile";
+import { ScreenShot } from "@/components/screen-shot";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/how-it-works"). Change both together:
@@ -234,6 +235,12 @@ export default function HowItWorks() {
                   <p>{item.body}</p>
                 </div>
               ))}
+            </div>
+            <div className="st-shots">
+              <ScreenShot screen="diary" />
+              <ScreenShot screen="services" />
+              <ScreenShot screen="tablet" />
+              <ScreenShot screen="jobCard" />
             </div>
             <p className="st-grow">
               <span className="st-grow__one" aria-hidden="true" />

@@ -154,7 +154,7 @@
         "regex": "(demos\\.streamlinedai\\.tech|/demo/)",
         "flags": "i",
         "severity": "warning",
-        "why": "no public demo link, 'try a demo' link or demo screenshot on the site (17 Nov 2026 rewrite)"
+        "why": "no public demo link or 'try a demo' link on the site (17 Nov 2026 rewrite). The only demo pictures allowed are the static sample screens in /images/screens, with every name replaced (Pete, 17 Nov 2026)"
       },
       {
         "name": "ai_employees",

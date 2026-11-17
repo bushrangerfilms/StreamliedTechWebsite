@@ -251,8 +251,10 @@ the site on Vercel, which is harmless for a file under `tools/`, but never push 
   AutoListing.io and Rangplan.ie as products or proof, "We set your business up with AI" positioning, the
   Calendly link, `/business`, `/galway`, `/products` (now a 301 to `/our-work`) and every other path in
   the redirect list above. Do not suggest content, keywords or pages for them.
-- **Never add or propose** a phone number, a demo link or "try a demo" link or demo screenshot, a client
-  app screenshot, a link to a client's website, a price other than the two published ones (old figures
+- **Never add or propose** a phone number, a demo link or "try a demo" link, a raw demo screenshot (the only
+  ones allowed are the static sample screens in `client/public/images/screens`, taken with every firm, person,
+  place, price, plate and job number replaced first: Pete, 17 Nov 2026; see `client/src/components/screen-shot.tsx`),
+  a client app screenshot, a link to a client's website, a price other than the two published ones (old figures
   3,900; 6,500 to 9,500; 15K; 400; "usually working inside two weeks" must not come back), any
   tracking, cookie or pixel, extra call buttons, sticky bars, pop-ups or banners. Never name a client
   other than IPM Enviro and Komplete Engineers.

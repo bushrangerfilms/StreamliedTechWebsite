@@ -310,6 +310,20 @@
 .st-note { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.75rem; align-items: start; margin-top: 2.5rem; font-size: 0.95rem; color: var(--st-ink-soft); max-width: var(--st-measure); }
 .st-note svg { width: 1.4rem; height: 1.4rem; color: var(--st-navy); margin-top: 0.1rem; }
 
+/* Sample screens: stills from our own sample-data demos, every name replaced. */
+.st-shot { margin: 2rem 0 0; }
+.st-shot img { display: block; width: 100%; height: auto; background: var(--st-white); border: 1px solid var(--st-rule); border-radius: 3px; }
+.st-shot figcaption { margin-top: 0.6rem; font-size: 0.95rem; line-height: 1.45; color: var(--st-ink); }
+.st-shot figcaption span { color: var(--st-ink-soft); }
+.st-shot--phone { margin: 0 auto; max-width: 16rem; }
+.st-shot--phone img { border: 6px solid var(--st-ink); border-radius: 22px; }
+.st-shots { display: grid; gap: 0 2.5rem; margin-top: 0.5rem; }
+@media (min-width: 760px) { .st-shots { grid-template-columns: 1fr 1fr; } }
+.st-with-phone { display: grid; gap: 2.5rem; align-items: start; }
+@media (min-width: 900px) { .st-with-phone { grid-template-columns: minmax(0, 1fr) 16rem; gap: 4rem; } }
+@media (min-width: 960px) { .st-hero__grid--shot { grid-template-columns: minmax(0, 1fr) minmax(0, 32rem); } }
+.st-hero__grid--shot .st-shot { margin-top: 0; }
+
 /* An empty place for a real photo. Shown on previews; a production build refuses it. */
 .st-slot { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; text-align: center; border: 2px dashed #b9b2a2; background: var(--st-white); color: var(--st-ink-soft); padding: 1.5rem; font-size: 0.95rem; line-height: 1.45; }
 .st-slot--wide { min-height: 13rem; }

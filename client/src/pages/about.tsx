@@ -7,6 +7,7 @@ import { ClosingCall } from "@/components/closing-call";
 import { IconTile } from "@/components/icon-tile";
 import { ImageSlot } from "@/components/image-slot";
 import { PersonBlock } from "@/components/person-block";
+import { ScreenShot } from "@/components/screen-shot";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/about"). Change both together.
@@ -28,11 +29,14 @@ export default function About() {
       <SiteHeader />
       <main>
         <section className="st-hero st-hero--page" data-testid="section-hero">
-          <div className="st-wrap">
-            <h1 data-testid="text-hero-headline">About Streamlined Tech</h1>
-            <p className="st-lede">
-              We build custom apps for Irish trade and service businesses. Your own app, built around how you already work, with everything in one place.
-            </p>
+          <div className="st-wrap st-hero__grid st-hero__grid--shot">
+            <div>
+              <h1 data-testid="text-hero-headline">About Streamlined Tech</h1>
+              <p className="st-lede">
+                We build custom apps for Irish trade and service businesses. Your own app, built around how you already work, with everything in one place.
+              </p>
+            </div>
+            <ScreenShot screen="today" eager />
           </div>
         </section>
 

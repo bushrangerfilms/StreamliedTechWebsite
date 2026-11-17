@@ -33,6 +33,7 @@ import { CLIENTS, ClientLogo, Testimonial } from "@/components/testimonial";
 import { IconTile } from "@/components/icon-tile";
 import { AppsDiagram } from "@/components/apps-diagram";
 import { PersonBlock } from "@/components/person-block";
+import { ScreenShot } from "@/components/screen-shot";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/"). Change both together: the build
@@ -124,6 +125,8 @@ export default function Home() {
         <section className="st-section" data-testid="section-who">
           <div className="st-wrap">
             <h2>Who it's for</h2>
+            <div className="st-with-phone">
+            <div>
             <p>Trade and service businesses where the work has outgrown the paperwork:</p>
             <ul className="st-cards st-cards--2">
               {PROBLEMS.map((item) => (
@@ -142,6 +145,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            </div>
+            <ScreenShot screen="phone" phone />
+            </div>
           </div>
         </section>
 
@@ -156,6 +162,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <ScreenShot screen="jobBoard" />
             <div className="st-reminder">
               <p className="st-example">
                 <MessageCircle strokeWidth={1.5} aria-hidden="true" />
