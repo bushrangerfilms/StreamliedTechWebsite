@@ -28,6 +28,9 @@ export function prerenderMetaPlugin(): Plugin {
     configResolved(config) {
       outDir = config.build.outDir;
     },
+    buildStart() {
+      refuseDraftLegalPagesInProduction();
+    },
     closeBundle() {
       const shellPath = path.join(outDir, "index.html");
       if (!fs.existsSync(shellPath)) {
@@ -52,6 +55,33 @@ export function prerenderMetaPlugin(): Plugin {
       }
     },
   };
+}
+
+/**
+ * The privacy and terms pages ship as drafts with [PETE TO CONFIRM] markers
+ * so Pete can read them on a preview. They must never reach the live site in
+ * that state, so a Vercel production build stops here while a marker or the
+ * draft box remains. It lives in this plugin because Vercel builds the site
+ * with `vite build`, not `npm run build`. Previews and local builds pass.
+ */
+function refuseDraftLegalPagesInProduction(): void {
+  if (process.env.VERCEL_ENV !== "production") return;
+  const pagesDir = path.join(import.meta.dirname, "client", "src", "pages");
+  const open: string[] = [];
+  for (const page of ["privacy.tsx", "terms.tsx"]) {
+    const text = fs.readFileSync(path.join(pagesDir, page), "utf-8");
+    const markers = text.split("PETE TO CONFIRM").length - 1;
+    const draftBox = text.includes("st-draft");
+    if (markers > 0 || draftBox) {
+      open.push(`${page}: ${markers} [PETE TO CONFIRM] marker(s)${draftBox ? ", draft box still present" : ""}`);
+    }
+  }
+  if (open.length) {
+    throw new Error(
+      `[prerender-meta] Production build refused: the legal pages are still drafts.\n  - ${open.join("\n  - ")}\n` +
+        "Pete fills each [PETE TO CONFIRM] fact and approves the wording, and the draft box is removed, before go-live.",
+    );
+  }
 }
 
 function escapeAttr(value: string): string {
