@@ -1,285 +1,332 @@
-import { Button } from "@/components/ui/button";
-import { MapPin } from "lucide-react";
-import { Link } from "wouter";
-import { usePageTracking } from "@/hooks/use-page-tracking";
+import {
+  ArrowRight,
+  BarChart3,
+  Bot,
+  CalendarClock,
+  CalendarDays,
+  Check,
+  ClipboardCheck,
+  Clock,
+  Euro,
+  FileText,
+  Hammer,
+  KanbanSquare,
+  LifeBuoy,
+  Link2,
+  MessageSquare,
+  MonitorSmartphone,
+  MousePointerClick,
+  Package,
+  Phone,
+  PlusCircle,
+  Receipt,
+  Server,
+  Smartphone,
+  Unplug,
+  UserCog,
+  Zap,
+} from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
-import { SiteHeader, BOOKING_URL } from "@/components/site-header";
+import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ClosingCall } from "@/components/closing-call";
+import { PricingBlock } from "@/components/pricing-block";
+import { Testimonial } from "@/components/testimonial";
+import { IconTile } from "@/components/icon-tile";
+import { ScreenShot } from "@/components/screen-shot";
+
+// Copy on this page is mirrored word for word in
+// client/src/lib/seo-static-html.ts ("/how-it-works"). Change both together:
+// the build fails if they drift.
+//
+// Pete, 17 Nov 2026: "Break up the longer text with images, icons etc. Never
+// have just long slabs of text." Longer paragraphs are split at sentence ends
+// and every section carries icons, a diagram or a client logo. The words are
+// unchanged.
+
+const STEP_STRIP = [
+  { icon: Phone, label: "A phone call", href: "#step-1" },
+  { icon: MonitorSmartphone, label: "A free demo", href: "#step-2" },
+  { icon: FileText, label: "A price in writing", href: "#step-3" },
+  { icon: Hammer, label: "The build", href: "#step-4" },
+  { icon: ClipboardCheck, label: "Two weeks of field testing", href: "#step-5" },
+  { icon: LifeBuoy, label: "Looked after", href: "#step-6" },
+];
+
+const ON_THE_BOARD = [
+  {
+    icon: KanbanSquare,
+    title: "Jobs and who is going where",
+    body: "Jobs, crews and bookings on one board.",
+  },
+  {
+    icon: Smartphone,
+    title: "Job sheets and photos",
+    body: "Filled in from the phone and filed where the office can see them, not living on paper in the van.",
+  },
+  {
+    icon: CalendarClock,
+    title: "Services due",
+    body: "Service dates, certs and renewals, with the reminder sent before they fall due.",
+  },
+  {
+    icon: CalendarDays,
+    title: "Fitting and visit days",
+    body: "Planned ahead, with the customer reminded before you arrive.",
+  },
+  {
+    icon: Receipt,
+    title: "Quotes and invoices",
+    body: "Quotes followed up after you send them, and a clear view of which invoices are due.",
+  },
+  {
+    icon: BarChart3,
+    title: "The week at a glance",
+    body: "The week's numbers on one screen. No Sunday night spreadsheet.",
+  },
+];
+
+const QUESTIONS = [
+  {
+    icon: Clock,
+    q: "How long will it take?",
+    a: "The demo usually takes a few days. The build is done within 2 weeks of your go-ahead, and then there are two weeks of field testing on your own jobs.",
+  },
+  {
+    icon: Euro,
+    q: "What does it cost?",
+    a: "From €4,900 + VAT for the build, then a monthly fee. You get the price in writing before anything is built.",
+  },
+  {
+    icon: Link2,
+    q: "Will it work with my accounts package?",
+    a: "Usually. We'd keep your accounts software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.",
+  },
+  {
+    icon: MousePointerClick,
+    q: "I'm not technical. Will I break it?",
+    a: "You can't break it. Few clicks, and nobody has needed training so far.",
+  },
+  {
+    icon: MessageSquare,
+    q: "What if something's wrong after it's built?",
+    a: "Every app has a Feedback button. Tell us what isn't right and we change it and let you know. It is included in the monthly fee.",
+  },
+  {
+    icon: Package,
+    q: "Why not an off-the-shelf app?",
+    a: "Off-the-shelf software works if someone sits at a desk feeding it. Ours does the chasing without them.",
+  },
+  {
+    icon: Bot,
+    q: "Can't I just use ChatGPT?",
+    a: "For one-off jobs, yes. But you have to do it every time, and it forgets your rules.",
+  },
+];
 
 export default function HowItWorks() {
-  usePageTracking();
-
   useSeo(ROUTE_SEO.howItWorks);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="st-page">
       <SiteHeader />
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div className="relative z-10 container mx-auto px-6 py-24 md:py-32">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-slate-200 rounded-full text-sm font-medium mb-6">
-              <MapPin className="w-4 h-4" />
-              Based in Galway. Working across Ireland.
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight" data-testid="text-hero-headline">
-              What a custom internal app costs, and how long it takes
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
-              The short answer. A first build is a fixed price, from €3,900, and it is usually working end to end inside two weeks. The price is agreed in writing before anything is built, and there is no bill for time on top.
-              <br /><br />
-              The rest of this page is the longer answer.
+      <main>
+        <section className="st-hero st-hero--page" data-testid="section-hero">
+          <div className="st-wrap">
+            <h1 data-testid="text-hero-headline">How it works</h1>
+            <p className="st-lede">
+              A phone call, a free demo if it fits, a price in writing, the build, two weeks of testing on your own jobs, then we look after it.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 items-start">
-              <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                  Book A Free Call
-                </a>
-              </Button>
-              <div className="text-sm text-slate-300">
-                15 minute chat. No hard sell.
+            <ol className="st-strip" data-testid="diagram-six-steps">
+              {STEP_STRIP.map((step, i) => (
+                <li key={step.href}>
+                  <a href={step.href}>
+                    <IconTile icon={step.icon} />
+                    <span className="st-strip__n">{i + 1}</span>
+                    <span>{step.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="st-section" data-testid="section-steps">
+          <div className="st-wrap">
+            <h2>The six steps</h2>
+            <ol className="st-steps st-steps--wide">
+              <li className="st-step" id="step-1">
+                <div>
+                  <IconTile icon={Phone} small />
+                  <h3>A phone call</h3>
+                  <p>About 10 to 15 minutes. You tell us how a job goes from the first enquiry to the invoice, and where it hurts.</p>
+                  <p>With your OK we record the call so Pete can build your demo from what you told us.</p>
+                </div>
+              </li>
+              <li className="st-step" id="step-2">
+                <div>
+                  <IconTile icon={MonitorSmartphone} small />
+                  <h3>A free demo</h3>
+                  <p>If it looks like a fit, we build a demo of your own app, usually within a few days. It uses made-up sample data, so click anything.</p>
+                  <p>It won't be perfect and it isn't meant to be: it gives you something to react to. Editing is easier than creating.</p>
+                </div>
+                <Testimonial quote="ipmDemo" short />
+              </li>
+              <li className="st-step" id="step-3">
+                <div>
+                  <IconTile icon={FileText} small />
+                  <h3>A price in writing</h3>
+                  <p>A build fee and a monthly fee, in writing, before anything is built. A 50% deposit starts the build.</p>
+                </div>
+              </li>
+              <li className="st-step" id="step-4">
+                <div>
+                  <IconTile icon={Hammer} small />
+                  <h3>The build</h3>
+                  <p>Done within 2 weeks of your go-ahead. We don't give a finish date. We give the timeline.</p>
+                </div>
+                <Testimonial quote="ipmSpeed" short />
+              </li>
+              <li className="st-step" id="step-5">
+                <div>
+                  <IconTile icon={ClipboardCheck} small />
+                  <h3>Two weeks of field testing</h3>
+                  <p>You use it on your own jobs while we refine it. You pay the second half once it is working for you.</p>
+                </div>
+                <Testimonial quote="kompleteShort" short />
+              </li>
+              <li className="st-step" id="step-6">
+                <div>
+                  <IconTile icon={LifeBuoy} small />
+                  <h3>Looked after</h3>
+                  <p>The monthly fee starts after field testing. It covers hosting, storage, support from real people and ongoing refinements to what we built.</p>
+                  <p>There is no charge per user.</p>
+                  <p>Every app has a Feedback button: tell us what isn't right and we change it and let you know.</p>
+                </div>
+                <Testimonial quote="ipmSupport" short />
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="st-section st-section--tint" data-testid="section-pricing">
+          <div className="st-wrap">
+            <h2>What it costs</h2>
+            <PricingBlock />
+            <p className="st-example">
+              <Zap strokeWidth={1.5} aria-hidden="true" />
+              AI means we can build it far quicker and cheaper than it used to be, so having your own app now makes sense for a business your size.
+            </p>
+          </div>
+        </section>
+
+        <section className="st-section" data-testid="section-board">
+          <div className="st-wrap">
+            <h2>What can go on the board</h2>
+            <p className="st-narrow">
+              Any screen your office or crew works from that used to be paper, a spreadsheet or someone's memory. The usual candidates:
+            </p>
+            <div className="st-cards st-cards--3" style={{ marginTop: "1.5rem" }}>
+              {ON_THE_BOARD.map((item) => (
+                <div key={item.title} className="st-card">
+                  <IconTile icon={item.icon} />
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              ))}
+            </div>
+            <div className="st-shots">
+              <ScreenShot screen="diary" />
+              <ScreenShot screen="services" />
+              <ScreenShot screen="tablet" />
+              <ScreenShot screen="jobCard" />
+            </div>
+            <p className="st-grow">
+              <span className="st-grow__one" aria-hidden="true" />
+              <ArrowRight strokeWidth={1.5} aria-hidden="true" />
+              <span className="st-grow__many" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+              </span>
+              It can start as one screen for one job and grow from there.
+            </p>
+          </div>
+        </section>
+
+        <section className="st-section st-section--tint" data-testid="section-after">
+          <div className="st-wrap">
+            <h2>What happens after the first build?</h2>
+            <div className="st-cards st-cards--2">
+              <div className="st-card st-card--row">
+                <IconTile icon={Server} />
+                <p>
+                  The monthly fee covers hosting, storage, support from real people and ongoing refinements to the features in your build.
+                </p>
+              </div>
+              <div className="st-card st-card--row">
+                <IconTile icon={PlusCircle} />
+                <p>
+                  A genuinely new feature is priced separately, at a fraction of the first build, and the monthly fee goes up a little with it.
+                </p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Cost */}
-      <section className="py-20" data-testid="section-cost">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              How much does it cost to get a custom app made in Ireland?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              A lot of custom software is priced by the developer and the month. The meter runs, and the real number only becomes clear near the end. I price the job instead. You tell me what the app has to do, I put a figure on it, and that figure is agreed in writing before anything is built.
-            </p>
-            {/* Same three tiers as /business, kept word for word so the two pages cannot drift. */}
-            <div className="bg-white rounded-xl border border-border p-8 mb-6">
-              <ul className="space-y-4">
-                {[
-                  {
-                    scope: "One workflow, built end to end",
-                    price: "from €3,900, usually working inside two weeks",
-                  },
-                  {
-                    scope: "A bigger piece across a few connected jobs",
-                    price: "€6,500 to €9,500",
-                  },
-                  {
-                    scope: "A full review of how work moves through the business, with the systems built around it",
-                    price: "priced after the review",
-                  },
-                ].map((tier) => (
-                  <li key={tier.scope} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <p className="text-foreground">
-                      <span className="font-medium">{tier.scope}:</span>{" "}
-                      <span className="text-muted-foreground">{tier.price}</span>
-                    </p>
+        <section className="st-section" data-testid="section-diy">
+          <div className="st-wrap">
+            <h2>Should you build it yourself or get it built for you?</h2>
+            <div className="st-compare">
+              <div className="st-compare__side">
+                <p className="st-compare__lead">Honest answer, sometimes you should build it yourself.</p>
+                <p>
+                  If someone in the office has the time and the interest, a no-code tool can carry a simple job, a form that feeds a spreadsheet, a basic booking sheet.
+                </p>
+                <p className="st-compare__lead">Where it usually falls down is afterwards.</p>
+                <ul className="st-ticks st-ticks--icons">
+                  <li>
+                    <UserCog strokeWidth={1.5} aria-hidden="true" />
+                    <span>The person who built it becomes the person who maintains it, on top of the job they were already doing.</span>
                   </li>
-                ))}
-              </ul>
+                  <li>
+                    <Unplug strokeWidth={1.5} aria-hidden="true" />
+                    <span>And the data ends up scattered across subscriptions that do not talk to each other.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="st-compare__side st-compare__side--ours">
+                <p className="st-compare__lead">What we offer is the custom route without those jobs landing back on you.</p>
+                <ul className="st-ticks">
+                  <li>
+                    <Check strokeWidth={2} aria-hidden="true" />
+                    <span>The app is built around how you already work, we look after it, and your team just uses it.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <p className="text-lg text-muted-foreground">
-              Why is that less than most custom software quotes? Because I build with AI, every day, and that has changed what one builder can produce. You get software designed around how your business already works, without the overhead that usually comes with the word custom.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Timeline / process */}
-      <section className="py-20 bg-slate-50" data-testid="section-process">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              How do I get an app made for my business?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-10">
-              Four steps, and the first one costs you fifteen minutes.
-            </p>
-            <div className="space-y-6">
-              {[
-                {
-                  step: "1",
-                  title: "A fifteen minute call",
-                  body: "You tell me where the hours are going. If an app will not pay for itself, I will say so on the call and we both save the bother.",
-                },
-                {
-                  step: "2",
-                  title: "A price in writing",
-                  body: "What the app will do and what it costs, agreed before anything is built. No surprises later.",
-                },
-                {
-                  step: "3",
-                  title: "The build",
-                  body: "You see working screens while the build is still in progress, not a big reveal at the end. Anything that looks wrong gets fixed while it is cheap to fix.",
-                },
-                {
-                  step: "4",
-                  title: "Working end to end, usually inside two weeks",
-                  body: "Your team runs it on real work and I shape it around what they find. A bigger build across connected jobs takes longer, and gets its own timeline agreed alongside the price.",
-                },
-              ].map((item) => (
-                <div key={item.step} className="bg-white rounded-xl border border-border p-6 flex gap-5">
-                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-display font-bold text-lg flex-shrink-0">
-                    {item.step}
-                  </div>
-                  <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.body}</p>
-                  </div>
+        <section className="st-section" data-testid="section-questions">
+          <div className="st-wrap">
+            <h2>Questions people ask</h2>
+            <dl className="st-faq">
+              {QUESTIONS.map((item) => (
+                <div key={item.q}>
+                  <IconTile icon={item.icon} small />
+                  <dt>{item.q}</dt>
+                  <dd>{item.a}</dd>
                 </div>
               ))}
-            </div>
-            <p className="text-muted-foreground mt-8">
-              A full review of the whole operation is a different animal, a programme of work measured in months rather than weeks. How that works is on{" "}
-              <Link href="/business" className="text-primary underline hover:no-underline" data-testid="link-business-process">
-                the services page
-              </Link>
-              .
-            </p>
+            </dl>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* DIY vs built for you */}
-      <section className="py-20" data-testid="section-diy">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Should you build it yourself or get it built for you?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Honest answer, sometimes you should build it yourself. If someone in the office has the time and the interest, a no-code tool can carry a simple job, a form that feeds a spreadsheet, a basic booking sheet. Plenty of businesses run that way and it is a fine place to start.
-            </p>
-            <p className="text-lg text-muted-foreground mb-6">
-              Where it usually falls down is afterwards. The person who built it becomes the person who maintains it, on top of the job they were already doing. Every new thing you want runs into the ceiling of the tool. And the data ends up scattered across subscriptions that do not talk to each other.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              What I offer is the custom route without those jobs landing back on you. The app is built around how you already work, I maintain it and extend it, and your team just uses it.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* What counts */}
-      <section className="py-20 bg-slate-50" data-testid="section-what-counts">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              What counts as a custom internal app?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Any screen your office or crew works from that used to be paper, a spreadsheet or someone's memory. The usual candidates:
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Jobs and scheduling",
-                  body: "Jobs, crews and bookings on one board, with reminders that go out on their own.",
-                },
-                {
-                  title: "Dockets and timesheets",
-                  body: "Filled in from the phone and filed where the office can see them, not living on paper in the van.",
-                },
-                {
-                  title: "Pre-starts and checks",
-                  body: "Walkaround checks and sign-offs done on site, stored where an audit can find them.",
-                },
-                {
-                  title: "Quotes and invoices",
-                  body: "Quotes followed up after you send them. Invoices chased politely until they are paid.",
-                },
-                {
-                  title: "Renewals and expiry dates",
-                  body: "NCT, CVRT, insurance, certs, service-due dates. Reminders on time, every time.",
-                },
-                {
-                  title: "Reporting",
-                  body: "The week's numbers on one screen, updated automatically. No Sunday night spreadsheet.",
-                },
-              ].map((card) => (
-                <div key={card.title} className="bg-white p-6 rounded-lg border border-border">
-                  <h3 className="font-display font-semibold text-lg mb-3">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground">{card.body}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-lg text-foreground mt-10 max-w-2xl mx-auto">
-              It can start as one screen for one job and grow from there. Your internal app can become the central hub of all operations.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Sector routing */}
-      <section className="py-5 bg-primary/5 border-y border-border" data-testid="section-sector-link">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-base text-foreground">
-            In construction or heavy industry?{" "}
-            <Link href="/contractors" className="text-primary font-semibold underline hover:no-underline" data-testid="link-contractors">
-              See what an internal app looks like on your jobs
-            </Link>
-            . Solar, heat pump or retrofit installer?{" "}
-            <Link href="/installers" className="text-primary font-semibold underline hover:no-underline" data-testid="link-installers">
-              There is a page for you too
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
-
-      {/* After the first build */}
-      <section className="py-20" data-testid="section-after">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              What happens after the first build?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              A custom app is not a handover and goodbye. The first build proves the idea. After that, most clients extend it one job at a time, once the last piece has paid for itself, and I keep building and maintaining it as the operation changes.
-            </p>
-            <p className="text-lg text-muted-foreground mb-6">
-              The AI underneath these systems gets better every few months, and because I build on it every day, your app keeps improving too. Along the way your staff learn to use AI themselves, so the gains keep compounding rather than depending on me.
-            </p>
-            {/* The ongoing tier stays words-only until a client has signed at
-                a figure. Pete's call 1 Sep 2026: sell the number on calls,
-                print it only once it is real. */}
-            <p className="text-lg text-muted-foreground" data-testid="text-yearly-agreement">
-              For a business that wants the ongoing side arranged properly, work after the first build can be set up as a yearly agreement. It covers support and changes once the system is running, and the figure is agreed in writing before it starts.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 bg-slate-900" data-testid="section-final-cta">
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
-              Get a figure on the job that eats the most time
-            </h2>
-            <p className="text-lg text-slate-200 mb-8">
-              Fifteen minutes on the phone will tell us both whether it is worth doing. If it is not, I will say so.
-            </p>
-            <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                Book A Free Call
-              </a>
-            </Button>
-            <p className="text-sm text-slate-300 mt-6">
-              Or email{" "}
-              <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline" data-testid="link-email">
-                peter@streamlinedai.tech
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
+        <ClosingCall />
+      </main>
       <SiteFooter />
     </div>
   );

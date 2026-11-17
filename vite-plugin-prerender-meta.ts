@@ -13,7 +13,7 @@ import { STATIC_HTML } from "./client/src/lib/seo-static-html";
  * homepage's card no matter which page was shared.
  *
  * Marketing routes also get a static text mirror of the page's rendered copy
- * baked inside <div id="root"> (from seo-static-html.ts), because OpenAI's
+ * baked inside <div id="root"> (from seo-static-html.ts), because many
  * crawlers and most AI answer engines read raw HTML without executing
  * JavaScript. The mirror is the same copy every visitor sees once React
  * mounts, never different text, so this is not cloaking: crawlers get the
@@ -21,6 +21,7 @@ import { STATIC_HTML } from "./client/src/lib/seo-static-html";
  */
 export function prerenderMetaPlugin(): Plugin {
   let outDir = "";
+  let refused = false;
 
   return {
     name: "vite-plugin-prerender-meta",
@@ -28,7 +29,18 @@ export function prerenderMetaPlugin(): Plugin {
     configResolved(config) {
       outDir = config.build.outDir;
     },
+    buildStart() {
+      try {
+        refuseDraftLegalPagesInProduction();
+      } catch (err) {
+        refused = true;
+        throw err;
+      }
+    },
     closeBundle() {
+      // closeBundle still runs after a failed build. Say nothing more, so
+      // the refusal above is the error the build log shows.
+      if (refused) return;
       const shellPath = path.join(outDir, "index.html");
       if (!fs.existsSync(shellPath)) {
         console.warn("[prerender-meta] no index.html in outDir, skipping");
@@ -52,6 +64,33 @@ export function prerenderMetaPlugin(): Plugin {
       }
     },
   };
+}
+
+/**
+ * The privacy and terms pages ship as drafts with [PETE TO CONFIRM] markers
+ * so Pete can read them on a preview. They must never reach the live site in
+ * that state, so a Vercel production build stops here while a marker or the
+ * draft box remains. It lives in this plugin because Vercel builds the site
+ * with `vite build`, not `npm run build`. Previews and local builds pass.
+ */
+function refuseDraftLegalPagesInProduction(): void {
+  if (process.env.VERCEL_ENV !== "production") return;
+  const pagesDir = path.join(import.meta.dirname, "client", "src", "pages");
+  const open: string[] = [];
+  for (const page of ["privacy.tsx", "terms.tsx"]) {
+    const text = fs.readFileSync(path.join(pagesDir, page), "utf-8");
+    const markers = text.split("PETE TO CONFIRM").length - 1;
+    const draftBox = text.includes("st-draft");
+    if (markers > 0 || draftBox) {
+      open.push(`${page}: ${markers} [PETE TO CONFIRM] marker(s)${draftBox ? ", draft box still present" : ""}`);
+    }
+  }
+  if (open.length) {
+    throw new Error(
+      `[prerender-meta] Production build refused: the legal pages are still drafts.\n  - ${open.join("\n  - ")}\n` +
+        "Pete fills each [PETE TO CONFIRM] fact and approves the wording, and the draft box is removed, before go-live.",
+    );
+  }
 }
 
 function escapeAttr(value: string): string {
@@ -107,7 +146,7 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
-  // Static crawlable body for no-JS crawlers (OpenAI's bots among them).
+  // Static crawlable body for crawlers that do not run JavaScript.
   // createRoot replaces it the moment React mounts. A mirror that cannot be
   // injected is a route that silently ships an empty body to AI crawlers,
   // so fail the build rather than warn.
@@ -135,10 +174,8 @@ function applyMeta(shell: string, route: RouteSeo): string {
     );
   }
 
-  // The shell carries the home route's LCP image preloads. Strip them and
-  // inject this route's own, so a gradient-hero page preloads nothing and
-  // /australia preloads its mining pair without every other route paying
-  // for it.
+  // Strip any image preloads the shell carries and inject this route's
+  // own, so a route preloads only what it needs.
   html = html.replace(/[ \t]*<link\s+rel="preload"\s+as="image"[^>]*\/>\r?\n?/gi, "");
   if (route.preloads?.length) {
     const tags = route.preloads

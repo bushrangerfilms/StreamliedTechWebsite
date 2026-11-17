@@ -1,517 +1,244 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { usePageTracking } from "@/hooks/use-page-tracking";
+import {
+  ArrowRight,
+  BarChart3,
+  BellOff,
+  BellRing,
+  CalendarClock,
+  Camera,
+  ClipboardCheck,
+  DoorOpen,
+  FileText,
+  Hammer,
+  HardHat,
+  House,
+  KanbanSquare,
+  LifeBuoy,
+  MessageCircle,
+  MonitorSmartphone,
+  NotebookPen,
+  Phone,
+  Receipt,
+  Route,
+  Smartphone,
+  Wrench,
+} from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { ROUTE_SEO } from "@/lib/seo-routes";
-import { SiteHeader, BOOKING_URL } from "@/components/site-header";
+import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ClosingCall } from "@/components/closing-call";
+import { PricingBlock } from "@/components/pricing-block";
+import { CLIENTS, ClientLogo, Testimonial } from "@/components/testimonial";
+import { IconTile } from "@/components/icon-tile";
+import { AppsDiagram } from "@/components/apps-diagram";
+import { PersonBlock } from "@/components/person-block";
+import { ScreenShot } from "@/components/screen-shot";
 
-// The company front door. Sector neutral on purpose: the sharp pitches live
-// one click away on /business, /contractors, /installers and /australia, and
-// this page's job is to get each visitor to the right one without bouncing
-// the rest. The mining positioning that used to live here moved to /australia.
+// Copy on this page is mirrored word for word in
+// client/src/lib/seo-static-html.ts ("/"). Change both together: the build
+// fails if they drift.
+//
+// Pete, 17 Nov 2026: "Break up the longer text with images, icons etc. Never
+// have just long slabs of text." Every section here carries icons, a diagram,
+// a logo or a photo, and no paragraph runs past about three lines.
+
+const PROBLEMS = [
+  { icon: NotebookPen, text: "Jobs tracked in a diary, a spreadsheet and a few apps that don't talk to each other." },
+  { icon: BellOff, text: "Services, certs and renewals that come due without anyone noticing." },
+  { icon: Camera, text: "Job sheets and photos that never make it back to the office." },
+  { icon: Receipt, text: "Quotes and invoices waiting on someone to chase them." },
+];
+
+const WHO = [
+  { icon: Wrench, text: "Vehicle and machinery workshops" },
+  { icon: House, text: "Home service firms with repeat visits" },
+  { icon: DoorOpen, text: "Windows and doors firms" },
+  { icon: HardHat, text: "Other trades and service businesses" },
+];
+
+const ON_THE_BOARD = [
+  { icon: KanbanSquare, text: "Every job from enquiry to invoice" },
+  { icon: Route, text: "Who is going where tomorrow" },
+  { icon: Smartphone, text: "Job sheets and photos on the phone" },
+  { icon: CalendarClock, text: "What is due and when: services, certs and renewals" },
+  { icon: BellRing, text: "Customers reminded before a visit" },
+  { icon: BarChart3, text: "The week at a glance" },
+];
+
+const STEPS = [
+  {
+    icon: Phone,
+    title: "A phone call.",
+    body: "10 to 15 minutes about how a job goes from enquiry to invoice.",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "A free demo, if it looks like a fit.",
+    body: "Usually within a few days, built from the call, with made-up sample data so you can click anything.",
+  },
+  {
+    icon: FileText,
+    title: "A price in writing.",
+    body: "A build fee plus a monthly fee. A 50% deposit starts the build.",
+  },
+  {
+    icon: Hammer,
+    title: "The build.",
+    body: "Done within 2 weeks of your go-ahead.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Two weeks of field testing.",
+    body: "You use it on your own jobs while we refine it. You pay the second half once it is working on your own jobs.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Looked after from then on.",
+    body: "The monthly fee covers hosting, support from real people and ongoing refinements to what we built.",
+  },
+];
+
 export default function Home() {
-  usePageTracking();
   useSeo(ROUTE_SEO.home);
 
-  const audienceDoors = [
-    {
-      title: "Trades and local services",
-      body: "Vehicle testing, alarms and fire, tree care, windows, cleaning, trades and services. The admin jobs that go with them, handled by a system instead of your evenings.",
-      href: "/business",
-      cta: "See the services page",
-      testId: "card-door-business",
-    },
-    {
-      title: "Construction and heavy industry",
-      body: "Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews.",
-      href: "/contractors",
-      cta: "See the contractors page",
-      testId: "card-door-contractors",
-    },
-    {
-      title: "Solar, heat pump and retrofit installers",
-      body: "Grant packs, forms and job packs handled, so the paperwork keeps up with the installs.",
-      href: "/installers",
-      cta: "See the installers page",
-      testId: "card-door-installers",
-    },
-    {
-      title: "Mining and large site operations",
-      body: "Progress tracking, defects and close-out for site crews. Built by someone who has stood on those sites.",
-      href: "/australia",
-      cta: "See the mining page",
-      testId: "card-door-australia",
-    },
-  ];
-
-  // The service list. Three lines of work, one front door: the build is the
-  // usual entry point, consulting for people who want the where-and-whether
-  // answered first, training for teams that want to do more themselves.
-  const services = [
-    {
-      title: "Custom internal apps",
-      body: "Your own app with an AI employee inside it, built around how your operation runs. It answers, books, chases, files and reports, so the office side runs without living on your evenings.",
-      href: "/how-it-works",
-      external: false,
-      cta: "See how a build works",
-      testId: "link-service-apps",
-    },
-    {
-      title: "AI consulting",
-      body: "Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.",
-      href: BOOKING_URL,
-      external: true,
-      cta: "Book a free call",
-      testId: "link-service-consulting",
-    },
-    {
-      title: "AI training and coaching",
-      body: "Hands-on training for you and your team on the AI tools worth using day to day. Group sessions or one-to-one coaching, built around your work and kept current as the tools change.",
-      href: "/ai-training",
-      external: false,
-      cta: "See the training and coaching options",
-      testId: "link-service-training",
-    },
-  ];
-
-  const jobs = [
-    {
-      title: "Chasing quotes and invoices",
-      body: "Quotes followed up after you send them. Invoices chased politely until they're paid.",
-    },
-    {
-      title: "Scheduling and reminders",
-      body: "Jobs, crews and bookings that write straight into the diary, with reminders that reduce no-shows.",
-    },
-    {
-      title: "Renewals and expiry dates",
-      body: "Insurance, certs, service-due dates and test dates. Reminders go out on time, every time.",
-    },
-    {
-      title: "Enquiries answered",
-      body: "Enquiries answered and logged without anyone sitting on the inbox, whatever hour they arrive.",
-    },
-    {
-      title: "Timesheets, dockets and sign-offs",
-      body: "Filled in from the phone and filed where the office can see them, not living on paper in the van.",
-    },
-    {
-      title: "Your week's numbers",
-      body: "One screen with the numbers that matter. No spreadsheet wrangling on a Sunday night.",
-    },
-  ];
-
-  const screenshots = [
-    {
-      src: "/images/app-training-dashboard.webp",
-      alt: "Staff training and certification tracking dashboard",
-      caption: "Staff certs and training tracked before the audit asks.",
-      width: 1200,
-      height: 742,
-    },
-    {
-      src: "/images/app-scheduling.webp",
-      alt: "Scheduling and calendar management",
-      caption: "Bookings and jobs that write themselves into the diary.",
-      width: 1200,
-      height: 779,
-    },
-    {
-      src: "/images/app-analytics.webp",
-      alt: "Analytics and reporting dashboard",
-      caption: "The week's numbers on one screen, updated automatically.",
-      width: 1200,
-      height: 723,
-    },
-    {
-      src: "/images/app-intake.webp",
-      alt: "Order and client intake without rekeying",
-      caption: "Orders and new client details captured once, typed never.",
-      width: 1200,
-      height: 928,
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="st-page">
       <SiteHeader />
-
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/hero-operations.webp"
-            alt="Site team reviewing plans together on a construction site"
-            className="w-full h-full object-cover object-center"
-            width="1280"
-            height="743"
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70"></div>
-        </div>
-        <div className="relative z-10 container mx-auto px-6 py-14 md:py-24">
-          <div className="max-w-3xl">
-            <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight"
-              data-testid="text-hero-headline"
-            >
-              We set your business up with AI.
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed">
-              Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Built for owner-run businesses where the office work still lands on you after the real work is done.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 items-start">
-              <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-hero">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                  Book a free call
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="text-base px-8 py-6 bg-transparent text-white border-white/40 hover:bg-white/10 hover:text-white"
-                data-testid="button-cta-costs"
-              >
-                <Link href="/how-it-works">See what it costs</Link>
-              </Button>
+      <main>
+        <section className="st-hero" data-testid="section-hero">
+          <div className="st-wrap st-hero__grid">
+            <div>
+              <h1 data-testid="text-hero-headline">Custom apps for Irish trade and service businesses.</h1>
+              <p className="st-lede">
+                Your own app, built around how you already work, with everything in one place. Not another subscription that can't talk to the rest.
+              </p>
+              <p>
+                Tell us how your business runs on a 10 to 15 minute phone call. If it looks like a fit, we'll build you a free demo of your own app, usually within a few days.
+              </p>
+              <p className="st-aside-line">We're all about efficiency. That's why people come to us.</p>
             </div>
-            <p className="text-sm text-slate-300 mt-5">
-              The price is agreed in writing before anything starts.
-            </p>
-            <p className="text-sm text-slate-400 mt-3" data-testid="text-bridge-australia">
-              In mining or large-scale construction?{" "}
-              <Link href="/australia" className="underline hover:no-underline text-slate-200">
-                Your page is here.
-              </Link>
-            </p>
-            {/* Bridge for paid traffic that types the domain instead of
-                clicking the ad. Same pattern as the old Handy video line,
-                which now lives on /australia. */}
-            <p className="text-sm text-slate-400 mt-3" data-testid="text-bridge-ai-employees">
-              If you got here from the AI Employees ad: that is our yearly agreement, full custom set-up for your business with human support.{" "}
-              <Link href="/ai-employees/ie" className="underline hover:no-underline text-slate-200">
-                Here is the full page.
-              </Link>
-            </p>
+            <AppsDiagram />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Audience router */}
-      <section className="py-14 md:py-16 bg-slate-50 border-b border-border" data-testid="section-router">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-display font-bold mb-8 text-center">
-              Find the page for your line of work
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {audienceDoors.map((door) => (
-                <Link
-                  key={door.href}
-                  href={door.href}
-                  className="bg-white p-6 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all flex flex-col"
-                  data-testid={door.testId}
-                >
-                  <h3 className="font-display font-semibold text-lg mb-3">{door.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{door.body}</p>
-                  <span className="text-sm text-primary font-semibold mt-auto">{door.cta}</span>
-                </Link>
+        <section className="st-section" data-testid="section-who">
+          <div className="st-wrap">
+            <h2>Who it's for</h2>
+            <div className="st-with-phone">
+            <div>
+            <p>Trade and service businesses where the work has outgrown the paperwork:</p>
+            <ul className="st-cards st-cards--2">
+              {PROBLEMS.map((item) => (
+                <li key={item.text} className="st-card">
+                  <IconTile icon={item.icon} />
+                  <p>{item.text}</p>
+                </li>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Three ways we work with you */}
-      <section className="py-20 border-b border-border" data-testid="section-services">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              Three ways we work with you
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              Most people start with a build. Some want advice first, and some want their own team trained up. All three start with the same call.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              {services.map((service) => (
-                <div key={service.title} className="bg-white p-7 rounded-xl border border-border flex flex-col">
-                  <h3 className="font-display font-bold text-xl mb-3">{service.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-5">{service.body}</p>
-                  {service.external ? (
-                    <a
-                      href={service.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary font-semibold mt-auto"
-                      data-testid={service.testId}
-                    >
-                      {service.cta}
-                    </a>
-                  ) : (
-                    <Link href={service.href} className="text-sm text-primary font-semibold mt-auto" data-testid={service.testId}>
-                      {service.cta}
-                    </Link>
-                  )}
-                </div>
+            </ul>
+            <p className="st-kicker">We work with</p>
+            <ul className="st-chips">
+              {WHO.map((item) => (
+                <li key={item.text}>
+                  <item.icon strokeWidth={1.5} aria-hidden="true" />
+                  {item.text}
+                </li>
               ))}
+            </ul>
+            </div>
+            <ScreenShot screen="phone" phone />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* The jobs we take off your plate */}
-      <section className="py-20" data-testid="section-jobs">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              The jobs we take off your plate
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-              These are the usual suspects. Every build is designed around your specific operation, so treat them as examples rather than a menu.
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {jobs.map((job) => (
-                <div key={job.title} className="bg-white p-6 rounded-lg border border-border">
-                  <h3 className="font-display font-semibold text-lg mb-3">{job.title}</h3>
-                  <p className="text-sm text-muted-foreground">{job.body}</p>
-                </div>
+        <section className="st-section st-section--tint" data-testid="section-board">
+          <div className="st-wrap">
+            <h2>What goes on your board</h2>
+            <ul className="st-cards st-cards--3">
+              {ON_THE_BOARD.map((item) => (
+                <li key={item.text} className="st-card st-card--row">
+                  <IconTile icon={item.icon} />
+                  <p>{item.text}</p>
+                </li>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Real systems, already built */}
-      <section className="py-20 bg-slate-50" data-testid="section-apps">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-12 text-center">
-              Real systems, already built
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {screenshots.map((shot) => (
-                <div key={shot.src} className="bg-white rounded-xl shadow-md overflow-hidden border border-border">
-                  <img
-                    src={shot.src}
-                    alt={shot.alt}
-                    className="w-full h-auto"
-                    width={shot.width}
-                    height={shot.height}
-                    loading="lazy"
-                  />
-                  <p className="text-sm text-muted-foreground p-4">{shot.caption}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Products as proof */}
-      <section className="py-20 bg-primary text-primary-foreground" data-testid="section-products">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-center">
-              Software we build and run ourselves
-            </h2>
-            <p className="text-lg text-center mb-10 max-w-2xl mx-auto">
-              You're not buying a slide deck. These are our own products, live with customers, billing and uptime to keep. The systems we'd build for you are the same kind we run for ourselves.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white/10 rounded-xl p-7">
-                <h3 className="font-display font-bold text-xl mb-3">AutoListing.io</h3>
-                <p className="text-primary-foreground/90 mb-4">
-                  Turns a property listing into ready-to-post social content for estate agents, scheduled out on autopilot. A paid subscription product in Ireland, the UK and the US.
-                </p>
-                <a
-                  href="https://autolisting.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:no-underline font-semibold"
-                  data-testid="link-autolisting"
-                >
-                  autolisting.io
-                </a>
-              </div>
-              <div className="bg-white/10 rounded-xl p-7">
-                <h3 className="font-display font-bold text-xl mb-3">Rangplan.ie</h3>
-                <p className="text-primary-foreground/90 mb-4">
-                  A planning app for Irish primary school teachers, built around how Irish schools actually plan. Live and in teachers' hands.
-                </p>
-                <a
-                  href="https://rangplan.ie"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:no-underline font-semibold"
-                  data-testid="link-rangplan"
-                >
-                  rangplan.ie
-                </a>
+            </ul>
+            <ScreenShot screen="jobBoard" />
+            <div className="st-reminder">
+              <p className="st-example">
+                <MessageCircle strokeWidth={1.5} aria-hidden="true" />
+                Four weeks before a service is due, the app sends your customer a WhatsApp: reply yes if you want us to come.
+              </p>
+              <div className="st-chat" aria-hidden="true">
+                <span className="st-chat__when">4 weeks before the service</span>
+                <span className="st-chat__out">Reply yes if you want us to come.</span>
+                <span className="st-chat__in">Yes</span>
               </div>
             </div>
-            <p className="text-center mt-8">
-              <Link href="/products" className="underline hover:no-underline font-semibold" data-testid="link-products-page">
-                More on both, on the products page
-              </Link>
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How you start */}
-      <section className="py-20" data-testid="section-engagement">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 text-center">
-              How you start
-            </h2>
-            <div className="space-y-6 mb-8">
-              {[
-                {
-                  step: "1",
-                  title: "A fifteen minute call",
-                  body: "You tell us where the hours are going. If a build will not pay for itself, you'll hear that on the call.",
-                },
-                {
-                  step: "2",
-                  title: "A price in writing",
-                  body: "What the system will do and what it costs, agreed before anything is built.",
-                },
-                {
-                  step: "3",
-                  title: "One workflow working end to end",
-                  body: "Your team runs it on real work, and you expand only when it has earned it.",
-                },
-              ].map((item) => (
-                <div key={item.step} className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg flex items-center justify-center flex-shrink-0">
-                    {item.step}
-                  </div>
+        <section className="st-section" data-testid="section-steps">
+          <div className="st-wrap">
+            <h2>How it works</h2>
+            <ol className="st-steps st-steps--grid">
+              {STEPS.map((step) => (
+                <li key={step.title} className="st-step">
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.body}</p>
+                    <IconTile icon={step.icon} small />
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
-            <p className="text-center text-muted-foreground">
-              The longer answer on cost and timeline is on{" "}
-              <Link href="/how-it-works" className="text-primary underline hover:no-underline" data-testid="link-how-it-works">
-                the how it works page
+            </ol>
+            <p style={{ marginTop: "1.5rem" }}>
+              <Link href="/how-it-works" className="st-more" data-testid="link-how-it-works">
+                How it works, step by step
+                <ArrowRight strokeWidth={1.5} aria-hidden="true" />
               </Link>
-              .
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Founder */}
-      <section className="py-20 bg-slate-50" data-testid="section-founder">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <img
-              src="/images/pete-harris.jpg"
-              alt="Pete Harris, founder of Streamlined Tech"
-              className="w-24 h-24 rounded-full object-cover mx-auto mb-6"
-              width="96"
-              height="96"
-              loading="lazy"
-            />
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              You deal with me, not an agency
-            </h2>
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>
-                I'm Pete Harris, the founder and the builder. No account managers, no offshore team, no layers.
-              </p>
-              <p>
-                I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. That is why the work holds up: I can read an operation, not just write code for one.
-              </p>
+        <section className="st-section st-section--tint" data-testid="section-our-work">
+          <div className="st-wrap">
+            <h2>Our work</h2>
+            <div className="st-clients st-clients--rows">
+              <div className="st-client" data-testid="card-client-ipm">
+                <div>
+                  <ClientLogo client="ipm" />
+                  <h3>{CLIENTS.ipm.name}</h3>
+                  <p>{CLIENTS.ipm.line}</p>
+                </div>
+                <Testimonial quote="ipmMain" />
+              </div>
+              <div className="st-client" data-testid="card-client-komplete">
+                <div>
+                  <ClientLogo client="komplete" />
+                  <h3>{CLIENTS.komplete.name}</h3>
+                  <p>{CLIENTS.komplete.line}</p>
+                </div>
+                <Testimonial quote="kompleteMain" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Security */}
-      <section className="py-20 relative overflow-hidden" data-testid="section-security">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/security-bg.webp"
-            alt="Security infrastructure"
-            className="w-full h-full object-cover"
-            width="1280"
-            height="448"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-slate-900/85" />
-        </div>
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
-              Your data stays yours
-            </h2>
-            <div className="space-y-6 text-slate-200 text-lg leading-relaxed">
-              <p>
-                Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.
-              </p>
-              <p>
-                Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.
-              </p>
-            </div>
+        <section className="st-section" data-testid="section-pricing">
+          <div className="st-wrap">
+            <h2>What it costs</h2>
+            <PricingBlock />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Tagline band */}
-      <section className="py-16 bg-slate-900" data-testid="section-tagline">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-3xl md:text-4xl font-display font-bold text-white mb-5">
-            As AI advances, so will you.
-          </p>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.
-          </p>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 relative overflow-hidden" data-testid="section-final-cta">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/professional-work.webp"
-            alt="Professional working"
-            className="w-full h-full object-cover"
-            width="1280"
-            height="853"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-slate-900/85"></div>
-        </div>
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-white">
-              Tell me where the hours are going
-            </h2>
-            <p className="text-lg text-slate-200 mb-8">
-              One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.
-            </p>
-            <Button asChild size="lg" className="text-base px-8 py-6" data-testid="button-cta-final">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                Book a free call
-              </a>
-            </Button>
-            <p className="text-sm text-slate-300 mt-6">
-              Or email{" "}
-              <a href="mailto:peter@streamlinedai.tech" className="underline hover:no-underline" data-testid="link-email">
-                peter@streamlinedai.tech
-              </a>
-            </p>
+        <section className="st-section" data-testid="section-who-you-deal-with">
+          <div className="st-wrap">
+            <PersonBlock lazy />
           </div>
-        </div>
-      </section>
+        </section>
 
+        <ClosingCall />
+      </main>
       <SiteFooter />
     </div>
   );

@@ -2,823 +2,263 @@
  * Static crawlable body mirrors, baked inside <div id="root"> by the
  * prerender plugin (vite-plugin-prerender-meta.ts), keyed by route path.
  *
- * OpenAI's crawlers (GPTBot, OAI-SearchBot, ChatGPT-User, OAI-AdsBot) and
- * most AI answer engines read raw HTML and never run JavaScript, so an SPA
- * page is an empty body to them; these mirrors give each route real
- * crawlable content. main.tsx uses createRoot, which replaces this content
- * the moment React mounts, so real visitors see the React page.
+ * Many crawlers and AI answer engines read raw HTML and never run
+ * JavaScript, so an SPA page is an empty body to them; these mirrors give
+ * each route real crawlable content. main.tsx uses createRoot, which
+ * replaces this content the moment React mounts, so real visitors see the
+ * React page.
  *
- * THE ONE RULE: each mirror is a faithful copy of its page component's
- * rendered copy. Same headings, same paragraphs, same list items, word for
- * word. No forms, no buttons, no images, and never text that the rendered
- * page does not carry - different text for crawlers is cloaking. The build
- * enforces this: script/check-prerender-mirrors.ts fails the build if a
- * mirror's text drifts from its page component, so when page copy changes,
- * change the mirror in the same commit.
+ * THE ONE RULE: each mirror is a faithful copy of its page's rendered copy.
+ * Same headings, same paragraphs, same list items, word for word. No forms,
+ * no buttons, no images, no diagrams, and never text that the rendered page does not
+ * carry - different text for crawlers is cloaking. The build enforces this:
+ * script/check-prerender-mirrors.ts fails the build if a mirror's text is
+ * not found in the page component or the shared components it renders, so
+ * when page copy changes, change the mirror in the same commit.
  *
  * This lives in its own module, NOT in seo-routes.ts, on purpose:
  * seo-routes.ts is bundled into the client (every page imports ROUTE_SEO),
  * and these mirrors are build-time-only bytes that would otherwise ship in
  * the client bundle on every visit. Only the prerender plugin and the
  * mirror check import this file.
- */
-/**
- * The AI Employees campaign landers (/ai-employees/<region>) share one
- * template with per-region currency and wording. This is the crawl-mirror
- * twin of REGIONS in client/src/pages/ai-employees.tsx: the head (meta and
- * offer JSON-LD) is generated in seo-routes.ts, the page copy lives in
- * REGIONS, and the mirror copy lives here. Change a region's price or
- * wording in both REGIONS and this table.
  *
- * The template was moved here unchanged from the aiEmployeesRoute factory
- * in seo-routes.ts. It condenses the page around the quote form rather than
- * mirroring paragraph for paragraph, so check-prerender-mirrors.ts exempts
- * these routes from the verbatim-chunk check; the per-region H1 check still
- * applies.
+ * /privacy and /terms have no mirror (head-only prerender).
  */
-interface AiEmployeesRegionCopy {
-  eyebrow: string;
-  headline: string;
-  priceHeading: string;
-  priceBody: string;
-  /** Arithmetic on the published price, e.g. "That is about €580 a fortnight." */
-  fortnightlyLine: string;
-  /** The worst-case exit cost, derived from the published price. */
-  exposureLine: string;
-}
 
-const AI_EMPLOYEES_MIRRORS: Record<string, AiEmployeesRegionCopy> = {
-  ie: {
-    eyebrow: "For businesses in Ireland",
-    headline: "AI Employees from €15K a year",
-    priceHeading: "From €15K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Ireland, and the exact figure is agreed in writing before anything starts.",
-    fortnightlyLine: "That is about €580 a fortnight.",
-    exposureLine: "At €15K a year, a fair one-month test costs under €1,900.",
-  },
-  au: {
-    eyebrow: "For businesses in Australia",
-    headline: "AI Employees from AU$25K a year",
-    priceHeading: "From AU$25K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in Australia, and the exact figure is agreed in writing before anything starts.",
-    fortnightlyLine: "That is about AU$960 a fortnight.",
-    exposureLine: "At AU$25K a year, a fair one-month test costs under AU$3,100.",
-  },
-  uk: {
-    eyebrow: "For businesses in the UK",
-    headline: "AI Employees from £13K a year",
-    priceHeading: "From £13K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the UK, and the exact figure is agreed in writing before anything starts.",
-    fortnightlyLine: "That is £500 a fortnight.",
-    exposureLine: "At £13K a year, a fair one-month test costs under £1,600.",
-  },
-  us: {
-    eyebrow: "For businesses in the United States",
-    headline: "AI Employees from $17K a year",
-    priceHeading: "From $17K a year",
-    priceBody:
-      "That covers the full custom set-up of one AI employee doing one defined job, and the support to keep it running for the year, paid fortnightly. Priced for businesses in the United States, and the exact figure is agreed in writing before anything starts.",
-    fortnightlyLine: "That is about $650 a fortnight.",
-    exposureLine: "At $17K a year, a fair one-month test costs under $2,150.",
-  },
-};
+const NAV = `
+<nav>
+<a href="/how-it-works">How it works</a>
+<a href="/our-work">Our work</a>
+<a href="/about">About</a>
+<a href="/contact">Contact</a>
+</nav>`;
 
-function aiEmployeesMirror(r: AiEmployeesRegionCopy): string {
-  return `
-      <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-        <p class="text-sm font-semibold mb-2">${r.eyebrow}</p>
-        <h1 class="text-4xl font-display font-bold mb-6">${r.headline}</h1>
-        <p class="mb-6">An AI employee here is a system we build that does one named job in your business and keeps doing it. Answering enquiries and writing bookings into the diary. Chasing quotes and invoices. Tracking jobs and writing up the reports. Full custom set-up for your business, by us, not from a template.</p>
-        <h2 class="text-xl font-display font-bold mb-2">Works 24/7</h2>
-        <p class="mb-6">The system does not clock off. An enquiry that arrives at ten on a Sunday night is answered at ten on a Sunday night, and it is logged where you'll see it Monday morning.</p>
-        <h2 class="text-xl font-display font-bold mb-2">Full human support</h2>
-        <p class="mb-6">Real people built it and real people look after it. When something needs changing, you tell us and it gets changed. Support hours and response times are agreed in writing as part of the set-up.</p>
-        <h2 class="text-xl font-display font-bold mb-2">${r.priceHeading}</h2>
-        <p class="mb-6">${r.priceBody} ${r.fortnightlyLine}</p>
-        <p class="mb-2"><strong>Minimum one month.</strong> Long enough to prove it, short enough to be a fair test.</p>
-        <p class="mb-2"><strong>Paid fortnightly.</strong> Like the rest of the payroll. No big figure up front.</p>
-        <p class="mb-6"><strong>No lock-in contract.</strong> After the first month you can stop with two weeks' notice. ${r.exposureLine}</p>
-        <p class="mb-6">There is also a smaller one-off build, from €3,900, where you get a tool and your team runs it. An AI employee is the other way round: the system does the job itself, and we look after it for the year.</p>
-        <p class="mb-6">Your data stays yours: encrypted storage, strict access controls, isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-        <p class="mb-6">Get a quote on this page, book a call, or email peter@streamlinedai.tech. Streamlined Tech was founded by Pete Harris in Galway, Ireland, and builds and runs AutoListing.io and Rangplan.ie.</p>
-      </main>`;
-}
+const PRICING = `
+<h3>A custom app for your business</h3>
+<p>From €4,900 + VAT</p>
+<p>then a monthly fee for hosting</p>
+<p>Your own app, built around how you already work.</p>
+<ul>
+<li>Free demo first if it looks like a fit.</li>
+<li>A build fee, then a monthly fee that covers hosting, support from real people and ongoing refinements.</li>
+<li>No charge per user.</li>
+</ul>
+<p>Done within 2 weeks of your go-ahead. Two weeks of testing on your own jobs.</p>
+<h3>The Whole Business Build</h3>
+<p>From €120,000 + VAT</p>
+<p>your whole business, built with you over a year</p>
+<p>Some businesses need more than one app.</p>
+<ul>
+<li>For twelve months I work alongside you and your team, on site and off.</li>
+<li>We go through how the work really moves, from the first call to the final invoice, and I build the systems to run it as one connected set.</li>
+<li>Each one is tested on your own jobs before we move to the next.</li>
+<li>You deal with me directly throughout.</li>
+</ul>
+<p>It takes a lot of my time, which is why it costs what it does.</p>
+<p>I take on no more than 2 of these a year, because I do the work myself.</p>`;
 
-function aiEmployeesMirrors(): Record<string, string> {
-  return Object.fromEntries(
-    Object.entries(AI_EMPLOYEES_MIRRORS).map(([region, copy]) => [`/ai-employees/${region}`, aiEmployeesMirror(copy)]),
-  );
-}
+const PERSON = `
+<h2>Who you'll deal with</h2>
+<p>I'm Pete Harris. I build the apps.</p>
+<p>I spent over 20 years in heavy industry and construction before this, so I know what a job sheet in a van looks like.</p>
+<ol>
+<li>Until you go ahead, one of our team follows up for me by phone.</li>
+<li>Once you go ahead I build it and see it through.</li>
+<li>After that you have support from real people, and every app has a Feedback button: tell us what is not right and we change it.</li>
+</ol>`;
+
+const CLOSING = `
+<h2>Tell us how you run things.</h2>
+<p>Ask for a call and we'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
+<p><a href="/contact">Ask for a call</a></p>`;
 
 export const STATIC_HTML: Record<string, string> = {
   "/": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <h1 class="text-4xl font-display font-bold mb-6">We set your business up with AI.</h1>
-      <p class="mb-4">Custom internal apps and automation that answer the enquiries, write bookings into the diary, track the jobs and do the reports without anyone chasing. Built for owner-run businesses where the office work still lands on you after the real work is done.</p>
-      <p class="mb-4">The price is agreed in writing before anything starts.</p>
-      <p class="mb-4">In mining or large-scale construction? <a href="/australia" class="underline">Your page is here.</a></p>
-      <p class="mb-4">If you got here from the AI Employees ad: that is our yearly agreement, full custom set-up for your business with human support. <a href="/ai-employees/ie" class="underline">Here is the full page.</a></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Find the page for your line of work</h2>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Trades and local services</h3>
-      <p class="mb-2">Vehicle testing, alarms and fire, tree care, windows, cleaning, trades and services. The admin jobs that go with them, handled by a system instead of your evenings.</p>
-      <p class="mb-4"><a href="/business" class="underline">See the services page</a></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Construction and heavy industry</h3>
-      <p class="mb-2">Jobs, dockets, timesheets and walkaround checks off paper, for contractor crews.</p>
-      <p class="mb-4"><a href="/contractors" class="underline">See the contractors page</a></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Solar, heat pump and retrofit installers</h3>
-      <p class="mb-2">Grant packs, forms and job packs handled, so the paperwork keeps up with the installs.</p>
-      <p class="mb-4"><a href="/installers" class="underline">See the installers page</a></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Mining and large site operations</h3>
-      <p class="mb-2">Progress tracking, defects and close-out for site crews. Built by someone who has stood on those sites.</p>
-      <p class="mb-4"><a href="/australia" class="underline">See the mining page</a></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Three ways we work with you</h2>
-      <p class="mb-4">Most people start with a build. Some want advice first, and some want their own team trained up. All three start with the same call.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Custom internal apps</h3>
-      <p class="mb-2">Your own app with an AI employee inside it, built around how your operation runs. It answers, books, chases, files and reports, so the office side runs without living on your evenings.</p>
-      <p class="mb-4"><a href="/how-it-works" class="underline">See how a build works</a></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI consulting</h3>
-      <p class="mb-4">Not sure where AI fits? We look at how the work actually flows, show you where AI would genuinely pay for itself and where it would not, and you leave with a plain plan whether or not we build it.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AI training and coaching</h3>
-      <p class="mb-2">Hands-on training for you and your team on the AI tools worth using day to day. Group sessions or one-to-one coaching, built around your work and kept current as the tools change.</p>
-      <p class="mb-4"><a href="/ai-training" class="underline">See the training and coaching options</a></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">The jobs we take off your plate</h2>
-      <p class="mb-4">These are the usual suspects. Every build is designed around your specific operation, so treat them as examples rather than a menu.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Chasing quotes and invoices</h3>
-      <p class="mb-4">Quotes followed up after you send them. Invoices chased politely until they're paid.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Scheduling and reminders</h3>
-      <p class="mb-4">Jobs, crews and bookings that write straight into the diary, with reminders that reduce no-shows.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Renewals and expiry dates</h3>
-      <p class="mb-4">Insurance, certs, service-due dates and test dates. Reminders go out on time, every time.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Enquiries answered</h3>
-      <p class="mb-4">Enquiries answered and logged without anyone sitting on the inbox, whatever hour they arrive.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Timesheets, dockets and sign-offs</h3>
-      <p class="mb-4">Filled in from the phone and filed where the office can see them, not living on paper in the van.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Your week's numbers</h3>
-      <p class="mb-4">One screen with the numbers that matter. No spreadsheet wrangling on a Sunday night.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Real systems, already built</h2>
-      <p class="mb-2">Staff certs and training tracked before the audit asks.</p>
-      <p class="mb-2">Bookings and jobs that write themselves into the diary.</p>
-      <p class="mb-2">The week's numbers on one screen, updated automatically.</p>
-      <p class="mb-4">Orders and new client details captured once, typed never.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Software we build and run ourselves</h2>
-      <p class="mb-4">You're not buying a slide deck. These are our own products, live with customers, billing and uptime to keep. The systems we'd build for you are the same kind we run for ourselves.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">AutoListing.io</h3>
-      <p class="mb-2">Turns a property listing into ready-to-post social content for estate agents, scheduled out on autopilot. A paid subscription product in Ireland, the UK and the US.</p>
-      <p class="mb-4"><a href="https://autolisting.io" class="underline">autolisting.io</a></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Rangplan.ie</h3>
-      <p class="mb-2">A planning app for Irish primary school teachers, built around how Irish schools actually plan. Live and in teachers' hands.</p>
-      <p class="mb-4"><a href="https://rangplan.ie" class="underline">rangplan.ie</a></p>
-      <p class="mb-4"><a href="/products" class="underline">More on both, on the products page</a></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How you start</h2>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A fifteen minute call</h3>
-      <p class="mb-4">You tell us where the hours are going. If a build will not pay for itself, you'll hear that on the call.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A price in writing</h3>
-      <p class="mb-4">What the system will do and what it costs, agreed before anything is built.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">One workflow working end to end</h3>
-      <p class="mb-4">Your team runs it on real work, and you expand only when it has earned it.</p>
-      <p class="mb-4">The longer answer on cost and timeline is on <a href="/how-it-works" class="underline">the how it works page</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">You deal with me, not an agency</h2>
-      <p class="mb-4">I'm Pete Harris, the founder and the builder. No account managers, no offshore team, no layers.</p>
-      <p class="mb-4">I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. That is why the work holds up: I can read an operation, not just write code for one.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Your data stays yours</h2>
-      <p class="mb-4">Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.</p>
-      <p class="mb-4">Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-
-      <p class="mb-2"><strong>As AI advances, so will you.</strong></p>
-      <p class="mb-4">The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell me where the hours are going</h2>
-      <p class="mb-4">One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.</p>
-      <p class="mb-4">Or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  "/business": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
-      <h1 class="text-4xl font-display font-bold mb-6">Grow your business without hiring more people.</h1>
-      <p class="mb-4">I'm Pete Harris, founder of Streamlined Tech, based here in Galway.</p>
-      <p class="mb-4">I help businesses adopt AI. That means custom internal apps that take the admin out of the day, the chasing, the reminders, the rekeying, the reporting, in the office and out in the field, and a team that knows how to use AI to multiply its own output. It can start with one workflow to prove the idea, or a full review of how your operation runs with custom systems built around it.</p>
-      <p class="mb-4">15 minute chat. No hard sell.</p>
-      <p class="mb-4">And if you're nearby, I'm happy to call in instead.</p>
-      <p class="mb-4">In construction or heavy industry? <a href="/contractors" class="underline">See what an internal app looks like on your jobs</a></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">The jobs I take off your plate</h2>
-      <p class="mb-4">Most businesses lose hours every week to the same handful of admin jobs. These are the usual suspects, and in a bigger operation there are normally a dozen more sitting behind them. Every build is designed around your specific operation, so treat these as examples rather than a menu. Taking them off your people does two things: it frees the hours a new hire would have covered, and it frees up your team's headspace for the work that actually needs a person.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Chasing quotes and invoices</h3>
-      <p class="mb-4">Quotes followed up after you send them. Invoices chased politely until they're paid.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Scheduling and reminders</h3>
-      <p class="mb-4">Jobs, crews and bookings that write straight into the diary, with reminders that reduce no-shows.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Renewals and expiry dates</h3>
-      <p class="mb-4">NCT, CVRT, insurance, certs, service-due dates. Reminders go out on time, every time.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Orders without rekeying</h3>
-      <p class="mb-4">Orders land in a list your team works from, not on the answering machine or a PDF form.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Timesheets, dockets and sign-offs</h3>
-      <p class="mb-4">Filled in from the phone and filed where the office can see them, not living on paper in the van.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Your week's numbers</h3>
-      <p class="mb-4">One screen with the numbers that matter. No spreadsheet wrangling on a Sunday night.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Real systems, already built</h2>
-      <p class="mb-2">Staff certs and training tracked before the audit asks.</p>
-      <p class="mb-2">Bookings and jobs that write themselves into the diary.</p>
-      <p class="mb-2">The week's numbers on one screen, updated automatically.</p>
-      <p class="mb-2">Orders and new client details captured once, typed never.</p>
-      <p class="mb-2">Renewals and expiry dates tracked from the phone.</p>
-      <p class="mb-4">Dockets and paperwork photographed, filed, and followed up.</p>
-
-      <p class="mb-2"><strong>Before</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Evenings lost to invoicing and paperwork</li>
-        <li>Quotes sent out and never followed up</li>
-        <li>The diary lives in someone's head</li>
-        <li>Deadline scrambles for documents and certs</li>
-        <li>Everything on the phone, nothing written down</li>
-      </ul>
-      <p class="mb-2"><strong>After</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Admin runs itself in the background</li>
-        <li>Every quote followed up, every time</li>
-        <li>Bookings and reminders happen automatically</li>
-        <li>Documents collected ahead of the deadline</li>
-        <li>You see the whole week on one screen</li>
-      </ul>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Two ways to work with me</h2>
-      <p class="mb-4">Same builder either way. The difference is how much of the business you want to put under the microscope on day one.</p>
-      <p class="mb-2">Low risk start</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Fix one job first</h3>
-      <p class="mb-4">Pick the single job that eats the most time. I build that one thing for a price agreed before we start, and it is usually working end to end inside a week or two.</p>
-      <p class="mb-4">This is what I suggest to most new clients, and it is a suggestion rather than a limit. It gets automation into the business without disrupting how your team works, and it lets you judge me on something real before you commit to anything larger.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>One workflow, one fixed price</li>
-        <li>Working inside a week or two</li>
-        <li>No disruption to the team</li>
-        <li>You expand only if it earns it</li>
-      </ul>
-      <p class="mb-2">Full engagement</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Or take the whole operation apart</h3>
-      <p class="mb-4">A full audit of how work actually moves through your business, department by department: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.</p>
-      <p class="mb-4">You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. And along the way I teach your staff to use AI themselves, so the gains keep compounding after I'm gone. This is a programme of work measured in months, not a one week fix.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Full operational audit, floor to office</li>
-        <li>Prioritised plan, costed before anything is built</li>
-        <li>Custom systems across the business, not templates</li>
-        <li>Your staff taught to use AI, not left dependent on me</li>
-        <li>Built and maintained by the person who audited you</li>
-      </ul>
-      <p class="mb-4">Most clients start on the left and move to the right once the first build has paid for itself. You are welcome to start on either.</p>
-
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">What it costs</h3>
-      <p class="mb-4">The price is agreed before anything starts. To give you an idea:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>One workflow, built end to end</strong>: from €3,900, usually working inside two weeks</li>
-        <li><strong>A bigger piece across a few connected jobs</strong>: €6,500 to €9,500</li>
-        <li><strong>A full review of how work moves through the business, with the systems built around it</strong>: priced after the review</li>
-      </ul>
-      <p class="mb-4">The longer answer on cost and timeline is on <a href="/how-it-works" class="underline">the how it works page</a>. New to AI altogether? Start with <a href="/guide/set-up-ai-for-business-ireland" class="underline">the plain-English guide to setting up AI</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">You deal with me, not an agency</h2>
-      <p class="mb-4">I'm the founder and the builder. No account managers, no offshore team, no layers.</p>
-      <p class="mb-4">I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.</p>
-      <p class="mb-4">I also build and run my own software company, <a href="https://autolisting.io" class="underline">AutoListing.io</a>, a full production platform that automates property marketing for real estate agents every day. It is not a demo. It has customers, billing, and uptime to keep.</p>
-      <p class="mb-4">So the systems I'd build for you are the same kind I build and run for myself.</p>
-
-      <p class="mb-2"><strong>As AI advances, so will you.</strong></p>
-      <p class="mb-4">The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Where I work</h2>
-      <p class="mb-4">I'm based in Galway and work across the west, the Mid-West and the midlands, on site:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Galway city</li><li>Oranmore</li><li>Athenry</li><li>Tuam</li><li>Loughrea</li><li>Ballinasloe</li><li>Ennis</li><li>Shannon</li><li>Limerick</li><li>Athlone</li><li>Roscommon</li><li>Castlebar</li>
-      </ul>
-      <p class="mb-4">Anywhere else in Ireland works too, remotely or by travelling to you for the parts that need me in the room. Being on site matters most during an audit, when I need to stand where the work actually happens and watch it.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Your data stays yours</h2>
-      <p class="mb-4">Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.</p>
-      <p class="mb-4">Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell me where the hours are going</h2>
-      <p class="mb-4">One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.</p>
-      <p class="mb-4">Or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  "/contractors": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">Galway based. On sites across Ireland.</p>
-      <h1 class="text-4xl font-display font-bold mb-4">Custom internal apps for construction and heavy industry.</h1>
-      <p class="mb-4"><strong>Grow the fleet without growing the office.</strong></p>
-      <p class="mb-4">I'm Pete Harris, founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. You deal with me directly.</p>
-      <p class="mb-4">15 minute chat. No hard sell.</p>
-      <p class="mb-4">And if you're nearby, I'm happy to call in instead.</p>
-      <p class="mb-4">You already know AI could be taking work off your plate. The hard part is knowing where to start. <strong>That's what we do.</strong></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Designed around your specific needs</h2>
-      <p class="mb-4">No two operations run the same way, so every build is custom. For example, your app could:</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Every job on one screen</h3>
-      <p class="mb-4">From booked to done, visibly moving or visibly stuck, across every crew.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">The full job pack in the crew's hand</h3>
-      <p class="mb-4">JHA, SOP, job description, contacts, job history and the pre-start checklist, all on the phone before they leave the yard.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Follow-ups that send themselves</h3>
-      <p class="mb-4">Quotes chased, invoices chased, reminders out on time, so nobody is ringing around.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Dockets, timesheets and sign-offs</h3>
-      <p class="mb-4">Filled in from the phone and filed where the office can see them, off paper for good.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Pre-starts and safety checks</h3>
-      <p class="mb-4">Answered from the cab and stored where the auditor can find them.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Service and cert dates</h3>
-      <p class="mb-4">CVRT, insurance, calibrations and service-due dates that flag themselves before they bite.</p>
-      <p class="mb-4">We work with you to identify the best tasks to start automating with your app for the biggest return. We specialise in making complex systems simple and as automated as possible.</p>
-
-      <p class="mb-2"><strong>It's your app. Built around how you already run jobs. You stay in control.</strong></p>
-      <p class="mb-4">Your internal app can become the central hub of all operations.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Real systems, already built</h2>
-      <p class="mb-2">Crews and jobs that write themselves into the schedule.</p>
-      <p class="mb-2">Crew tickets and training tracked before the audit asks.</p>
-      <p class="mb-2">The week's numbers on one screen, updated automatically.</p>
-      <p class="mb-2">Orders and job requests captured once, typed never.</p>
-      <p class="mb-2">CVRT, insurance and service dates tracked from the phone.</p>
-      <p class="mb-4">Dockets photographed, filed, and followed up.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Two ways to work with me</h2>
-      <p class="mb-4">Same builder either way. The difference is how much of the operation you want to put under the microscope on day one.</p>
-      <p class="mb-2">Low risk start</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Start with one job</h3>
-      <p class="mb-4">Pick the single job that eats the most time. I build that one thing for a price agreed before we start, and it is usually working end to end inside a week or two.</p>
-      <p class="mb-4">This is what I suggest to most new clients, and it is a suggestion rather than a limit. It gets automation into the business without disrupting how your crews work, and it lets you judge me on something real before you commit to anything larger.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>One workflow, one fixed price</li>
-        <li>Working inside a week or two</li>
-        <li>No disruption to the crews</li>
-        <li>You expand only if it earns it</li>
-      </ul>
-      <p class="mb-2">Full engagement</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Or take the whole operation apart</h3>
-      <p class="mb-4">A full audit of how work actually moves through your operation, yard to site to office: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.</p>
-      <p class="mb-4">You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. And along the way I teach your staff to use AI themselves, so the gains keep compounding after I'm gone. This is a programme of work measured in months, not a one week fix.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Full operational audit, site to office</li>
-        <li>Prioritised plan, costed before anything is built</li>
-        <li>Custom systems across the business, not templates</li>
-        <li>Your staff taught to use AI, not left dependent on me</li>
-        <li>Built and maintained by the person who audited you</li>
-      </ul>
-      <p class="mb-4">Most clients start on the left and move to the right once the first build has paid for itself. You are welcome to start on either.</p>
-
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">What it costs</h3>
-      <p class="mb-4">The price is agreed before anything starts. To give you an idea:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>One workflow, built end to end</strong>: from €3,900, usually working inside two weeks</li>
-        <li><strong>A bigger piece across a few connected jobs</strong>: €6,500 to €9,500</li>
-        <li><strong>A full review of how work moves through the operation, with the systems built around it</strong>: priced after the review</li>
-      </ul>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">You deal with me, not an agency</h2>
-      <p class="mb-4">I'm the founder and the builder. No account managers, no offshore team, no layers.</p>
-      <p class="mb-4">I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.</p>
-      <p class="mb-4">I also build and run my own software company, <a href="https://autolisting.io" class="underline">AutoListing.io</a>, a full production platform that automates property marketing for real estate agents every day. It is not a demo. It has customers, billing, and uptime to keep.</p>
-      <p class="mb-4">So the systems I'd build for you are the same kind I build and run for myself.</p>
-
-      <p class="mb-2"><strong>As AI advances, so will you.</strong></p>
-      <p class="mb-4">The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Where I work</h2>
-      <p class="mb-4">I'm based in Galway and work across the west, the Mid-West and the midlands, on site:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Galway city</li><li>Oranmore</li><li>Athenry</li><li>Tuam</li><li>Loughrea</li><li>Ballinasloe</li><li>Ennis</li><li>Shannon</li><li>Limerick</li><li>Athlone</li><li>Roscommon</li><li>Castlebar</li>
-      </ul>
-      <p class="mb-4">Anywhere else in Ireland works too, remotely or by travelling to you for the parts that need me in the room. Being on site matters most during an audit, when I need to stand where the work actually happens and watch it.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Your data stays yours</h2>
-      <p class="mb-4">Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.</p>
-      <p class="mb-4">Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell me where the hours are going</h2>
-      <p class="mb-4">One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.</p>
-      <p class="mb-4">Or call 085 190 5252, or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  "/installers": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">Galway based. Working with installers across Ireland.</p>
-      <h1 class="text-4xl font-display font-bold mb-4">Custom internal apps for solar and home energy upgrade installers.</h1>
-      <p class="mb-4"><strong>More jobs on the books without more hours in the office.</strong></p>
-      <p class="mb-4">I'm Pete Harris, founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software. You deal with me directly.</p>
-      <p class="mb-4">15 minute chat. No hard sell.</p>
-      <p class="mb-4">And if you're nearby, I'm happy to call in instead.</p>
-      <p class="mb-4">You already know AI could be taking work off your plate. The hard part is knowing where to start. <strong>That's what we do.</strong></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Designed around your specific needs</h2>
-      <p class="mb-4">No two operations run the same way, so every build is custom. For example, your app could:</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Every enquiry, quote and job on one screen</h3>
-      <p class="mb-4">From first contact to grant paid, visibly moving or visibly stuck, with any quote that has gone quiet flagged before it is lost.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">The grant pack builds itself as the job goes</h3>
-      <p class="mb-4">BER, forms, photos and certs collected per job, with the app chasing whoever owes the next piece so the pack goes in complete.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Enquiries that arrive ready to quote</h3>
-      <p class="mb-4">Roof photos, MPRN, build year and the measures wanted captured up front, so fewer wasted site visits and less phone tennis.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">NC6 and NC7 filed, every install</h3>
-      <p class="mb-4">The ESB Networks notification raised from the job record, so it never gets forgotten between the roof and the office.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">The job pack in the crew's hand</h3>
-      <p class="mb-4">Survey, roof plan, MPRN, grant offer, customer contact and the commissioning checklist on the phone before the van leaves the yard, with sign-offs done on site and filed.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">The clocks that bite</h3>
-      <p class="mb-4">Grant offer validity, warranty and service visits, and cert renewals that flag themselves before they run out.</p>
-      <p class="mb-4">We work with you to identify the best tasks to start automating with your app for the biggest return. We specialise in making complex systems simple and as automated as possible.</p>
-
-      <p class="mb-2"><strong>It's your app. Built around how you already run jobs. You stay in control.</strong></p>
-      <p class="mb-4">Your internal app can become the central hub of all operations.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Real systems, already built</h2>
-      <p class="mb-2">Surveys and installs that write themselves into the schedule.</p>
-      <p class="mb-2">Installer certs and training tracked before the audit asks.</p>
-      <p class="mb-2">The week's numbers on one screen, updated automatically.</p>
-      <p class="mb-2">Enquiries captured once, quote sent, never retyped.</p>
-      <p class="mb-2">Grant offer, warranty and cert dates tracked from the phone.</p>
-      <p class="mb-4">Install photos captured, NC6 filed, BER received, pack ready.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Two ways to work with me</h2>
-      <p class="mb-4">Same builder either way. The difference is how much of the operation you want to put under the microscope on day one.</p>
-      <p class="mb-2">Low risk start</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Start with one job</h3>
-      <p class="mb-4">Pick the single job that eats the most time. I build that one thing for a price agreed before we start, and it is usually working end to end inside a week or two.</p>
-      <p class="mb-4">This is what I suggest to most new clients, and it is a suggestion rather than a limit. It gets automation into the business without disrupting how your crews work, and it lets you judge me on something real before you commit to anything larger.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>One workflow, one fixed price</li>
-        <li>Working inside a week or two</li>
-        <li>No disruption to the crews</li>
-        <li>You expand only if it earns it</li>
-      </ul>
-      <p class="mb-2">Full engagement</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Or take the whole operation apart</h3>
-      <p class="mb-4">A full audit of how work actually moves through your operation, yard to site to office: where the hours go, what gets rekeyed, what gets missed, what a system should own instead of a person.</p>
-      <p class="mb-4">You get a prioritised plan of what to automate and in what order, then I build it. Custom software designed around how you already work, not an off-the-shelf tool you have to bend your process around. And along the way I teach your staff to use AI themselves, so the gains keep compounding after I'm gone. This is a programme of work measured in months, not a one week fix.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Full operational audit, site to office</li>
-        <li>Prioritised plan, costed before anything is built</li>
-        <li>Custom systems across the business, not templates</li>
-        <li>Your staff taught to use AI, not left dependent on me</li>
-        <li>Built and maintained by the person who audited you</li>
-      </ul>
-      <p class="mb-4">Most clients start on the left and move to the right once the first build has paid for itself. You are welcome to start on either.</p>
-
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">What it costs</h3>
-      <p class="mb-4">The price is agreed before anything starts. To give you an idea:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>One workflow, built end to end</strong>: from €3,900, usually working inside two weeks</li>
-        <li><strong>A bigger piece across a few connected jobs</strong>: €6,500 to €9,500</li>
-        <li><strong>A full review of how work moves through the operation, with the systems built around it</strong>: priced after the review</li>
-      </ul>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">You deal with me, not an agency</h2>
-      <p class="mb-4">I'm the founder and the builder. No account managers, no offshore team, no layers.</p>
-      <p class="mb-4">I've spent 20+ years in heavy industries and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why the audit work is worth having: I can read an operation, not just write code for one.</p>
-      <p class="mb-4">I also build and run my own software company, <a href="https://autolisting.io" class="underline">AutoListing.io</a>, a full production platform that automates property marketing for real estate agents every day. It is not a demo. It has customers, billing, and uptime to keep.</p>
-      <p class="mb-4">So the systems I'd build for you are the same kind I build and run for myself.</p>
-
-      <p class="mb-2"><strong>As AI advances, so will you.</strong></p>
-      <p class="mb-4">The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Where I work</h2>
-      <p class="mb-4">I'm based in Galway and work across the west, the Mid-West and the midlands, on site:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Galway city</li><li>Oranmore</li><li>Athenry</li><li>Tuam</li><li>Loughrea</li><li>Ballinasloe</li><li>Ennis</li><li>Shannon</li><li>Limerick</li><li>Athlone</li><li>Roscommon</li><li>Castlebar</li>
-      </ul>
-      <p class="mb-4">Anywhere else in Ireland works too, remotely or by travelling to you for the parts that need me in the room. Being on site matters most during an audit, when I need to stand where the work actually happens and watch it.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Your data stays yours</h2>
-      <p class="mb-4">Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.</p>
-      <p class="mb-4">Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell me where the hours are going</h2>
-      <p class="mb-4">One job or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.</p>
-      <p class="mb-4">Or call 085 190 5252, or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  "/australia": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">For Australian mining and construction</p>
-      <h1 class="text-4xl font-display font-bold mb-5">Internal apps that keep the job moving.</h1>
-      <p class="mb-4">Most of the value is not in a chatbot. It is in the ordinary systems that track progress, close out defects and chase the follow-ups, so work stops stalling between steps.</p>
-      <p class="mb-4">Custom built for how your site already runs, then developed further as the work changes.</p>
-      <p class="mb-4">Calls booked to suit Australian hours.</p>
-      <p class="mb-4">If you got here from the Handy video: yes, we build assistants like Handy too, ones that answer off your own run sheets and manuals. They work best on top of the kind of systems below.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Everyone is selling you an assistant</h2>
-      <p class="mb-4">It is the easiest thing to demo. You ask it a question, it gives you an answer, and the room nods. We build them too, and a good one is genuinely useful.</p>
-      <p class="mb-4">It is rarely the thing that changes your Monday. What changes your Monday is duller: knowing which jobs are stuck, who is holding them and what happens next, without a supervisor spending half a shift ringing around to find out.</p>
-      <p class="mb-4">That is the work we specialise in. Internal apps built around one operation, kept running and extended over time.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">The unglamorous list</h2>
-      <p class="mb-4">None of this is exciting to look at. It is what takes the admin load off a site.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Progress tracking that matches the real job</h3>
-      <p class="mb-4">One place that shows what is done, what is open and what is waiting on someone else. Built around your stages and your language, not a template you have to bend to fit.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Defects, NCRs and close-out</h3>
-      <p class="mb-4">Raised on a phone in the field, moved through the trades automatically, closed out with the evidence attached. The audit trail builds itself as the work happens.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Follow-ups that happen without chasing</h3>
-      <p class="mb-4">The system contacts the next person when it is their turn. Your supervisors stop spending their afternoon ringing around to find out where something got to.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Reporting that writes itself</h3>
-      <p class="mb-4">Daily and weekly reporting generated from what was already captured, so nobody rebuilds it from scratch in a spreadsheet on Sunday night.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Handovers and approvals</h3>
-      <p class="mb-4">Packs assembled from the record rather than compiled by hand, and approvals that move without sitting in somebody's inbox.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Assistants, where they earn their place</h3>
-      <p class="mb-4">An assistant trained on your gear, procedures and history is genuinely useful for answering questions on site. It works best sitting on top of systems that already hold good data.</p>
-
-      <p class="text-sm font-semibold mt-10 mb-2">A worked example</p>
-      <h2 class="text-2xl font-display font-bold mb-3">A defects tracker, built for one operation</h2>
-      <p class="mb-4">Defects do not cost money because they are hard to fix. They cost money because they stall between steps. Responsibility goes unclear, a contractor gets called to site before the work is ready for them, an inspection slips, and the status only becomes obvious once the time is already lost.</p>
-      <p class="mb-4">So the app does one job. It moves a defect from the moment somebody spots it to final sign off, and it makes stalling impossible to ignore.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Only the essential fields</h3>
-      <p class="mb-4">Raised in seconds with a photo, on a phone, with gloves on. Nothing is asked for that somebody else could fill in later.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">It moves itself</h3>
-      <p class="mb-4">The system contacts the next person when it is their turn. Your site staff are not the ones doing the chasing.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Nothing hides</h3>
-      <p class="mb-4">Every defect is visibly moving or visibly stuck. If one is not moving, it is immediately obvious why.</p>
-      <p class="mb-2">What it is, and what it is not</p>
-      <p class="mb-2"><strong>What it is</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>A custom tool specific to one operation</li>
-        <li>A movement and accountability layer</li>
-        <li>Something a chaotic site gets calmer with</li>
-      </ul>
-      <p class="mb-2"><strong>What it is not</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Document control</li>
-        <li>Finance or claims</li>
-        <li>Another enterprise platform to administer</li>
-        <li>A generic one size fits all</li>
-      </ul>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Why it gets used</h2>
-      <p class="mb-4">Software usually fails on site because it asks for too much. Adoption happens because the thing makes someone's day easier, not because it was mandated in a meeting they were not in.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Fast enough to use standing up</h3>
-      <p class="mb-4">Gloves on, one hand, in the weather. If it takes longer than the old way, it will not get used and no policy will fix that.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Photo first</h3>
-      <p class="mb-4">Capture the evidence, type as little as possible. A photo says more than a paragraph and takes a fraction of the time.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">No training day required</h3>
-      <p class="mb-4">It behaves like the apps people already use on their own phones, so the rollout is not a project in itself.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Plain language</h3>
-      <p class="mb-4">Fixes, not tickets or issues. The words on screen should be the words used on site.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">The build is where it starts</h2>
-      <p class="mb-4">A one off delivery gets handed over and slowly stops matching the job. These systems are meant to be lived in, so they are built in stages and kept developing after they land.</p>
-      <p class="text-sm font-semibold mt-6 mb-1">Pilot</p>
-      <h3 class="text-lg font-display font-semibold mb-2">One site, one problem</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>A single site and selected trades</li>
-        <li>One workflow, scoped tight</li>
-        <li>Rapid iteration while people use it</li>
-      </ul>
-      <p class="text-sm font-semibold mt-6 mb-1">Review</p>
-      <h3 class="text-lg font-display font-semibold mb-2">Adjusted to what actually happened</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Changed against real field feedback</li>
-        <li>Workflows refined, thresholds set</li>
-        <li>Widened once it is earning its keep</li>
-      </ul>
-      <p class="text-sm font-semibold mt-6 mb-1">Ongoing</p>
-      <h3 class="text-lg font-display font-semibold mb-2">It keeps developing</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Rolled out across projects</li>
-        <li>Repeat patterns surfaced from the data</li>
-        <li>New capability added as the work changes</li>
-      </ul>
-
-      <p class="mb-2"><strong>As AI advances, so will you.</strong></p>
-      <p class="mb-4">The AI underneath these systems gets better every few months. Because I build on it every day, the systems keep improving, and so does what your team can do with them. You are not buying a snapshot, you are buying a direction.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">You deal with me, not an agency</h2>
-      <p class="mb-4">I'm Pete Harris. Australian, now based in Ireland, and I still do most of my work with Australian operations. No account managers, no offshore team, no layers between you and the person building it.</p>
-      <p class="mb-4">I've spent 20+ years around mining and construction, from on the tools to training package production and now building the software, on sites where the paperwork was the bottleneck. That is why this work is worth having from me: I can read an operation, not just write code for one.</p>
-      <p class="mb-4">I also build and run my own software company, <a href="https://autolisting.io" class="underline">AutoListing.io</a>, a full production platform with customers, billing and uptime to keep. So the systems I'd build for you are the same kind I build and run for myself.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Working with Australian operations</h2>
-      <p class="mb-4">The work is done remotely, which is already how most Australian sites run their support functions. Calls get booked to land inside your business hours rather than mine.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Perth</li><li>Pilbara</li><li>Karratha</li><li>Port Hedland</li><li>Kalgoorlie</li><li>Darwin</li><li>Brisbane</li><li>Mackay</li><li>Bowen Basin</li><li>Gladstone</li><li>Hunter Valley</li><li>Newcastle</li>
-      </ul>
-      <p class="mb-4">FIFO rosters, multiple sites and head office all pulling on the same information is the normal starting point, not a complication.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Your data stays yours</h2>
-      <p class="mb-4">Modern, enterprise-grade security practices: secure authentication, encrypted data storage, and strict access controls.</p>
-      <p class="mb-4">Your systems run in isolated environments, your IP remains yours, and AI components do not train on or share your data.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell me where the job keeps stalling</h2>
-      <p class="mb-4">One workflow or the whole operation, fifteen minutes on the phone will tell us both whether it's worth doing. If it isn't, I'll say so.</p>
-      <p class="mb-4">Or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  "/products": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <h1 class="text-4xl font-display font-bold mb-6">Software we build and run</h1>
-      <p class="mb-4">Custom apps for clients are one half of the work. The other half is our own products, live and paid for, with customers, billing and uptime to keep. They are the proof behind the client work.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">AutoListing.io</h2>
-      <p class="mb-4">AutoListing takes a property listing and turns it into ready-to-post social content for the agent, scheduled out on autopilot. An agent adds the listing once and the posts, images and videos for it are generated and lined up without anyone sitting down to make them.</p>
-      <p class="mb-4">It is a paid subscription product for estate and letting agents, priced at €115 a month in Ireland, £100 in the UK and $130 a month in the US. Real customers, real billing, real uptime to keep.</p>
-      <p class="mb-4"><a href="https://autolisting.io" class="underline">autolisting.io</a></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Rangplan.ie</h2>
-      <p class="mb-4">Rang is a planning app for Irish primary school teachers. Fortnightly plans, long term plans and the monthly report, structured the way Irish schools actually plan, so the paperwork side of teaching takes less of the evening.</p>
-      <p class="mb-4">Built alongside practising teachers and live at <a href="https://rangplan.ie" class="underline">rangplan.ie</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Why this matters if you're hiring us</h2>
-      <p class="mb-4">Anyone can show a demo. A product with paying customers is different: it has to work every day, handle its own billing, and keep improving or people leave. That discipline is what carries over into the systems we build for clients.</p>
-      <p class="mb-4">The same person who builds and runs these builds yours.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Want something like this inside your business?</h2>
-      <p class="mb-4">The custom builds start from one workflow. Cost and timeline are on <a href="/how-it-works" class="underline">the how it works page</a>.</p>
-    </main>`,
+<main>
+<h1>Custom apps for Irish trade and service businesses.</h1>
+<p>Your own app, built around how you already work, with everything in one place. Not another subscription that can't talk to the rest.</p>
+<p>Tell us how your business runs on a 10 to 15 minute phone call. If it looks like a fit, we'll build you a free demo of your own app, usually within a few days.</p>
+<p>We're all about efficiency. That's why people come to us.</p>
+${NAV}
+<h2>Who it's for</h2>
+<p>Trade and service businesses where the work has outgrown the paperwork:</p>
+<ul>
+<li>Jobs tracked in a diary, a spreadsheet and a few apps that don't talk to each other.</li>
+<li>Services, certs and renewals that come due without anyone noticing.</li>
+<li>Job sheets and photos that never make it back to the office.</li>
+<li>Quotes and invoices waiting on someone to chase them.</li>
+</ul>
+<p>We work with</p>
+<ul>
+<li>Vehicle and machinery workshops</li>
+<li>Home service firms with repeat visits</li>
+<li>Windows and doors firms</li>
+<li>Other trades and service businesses</li>
+</ul>
+<h2>What goes on your board</h2>
+<ul>
+<li>Every job from enquiry to invoice</li>
+<li>Who is going where tomorrow</li>
+<li>Job sheets and photos on the phone</li>
+<li>What is due and when: services, certs and renewals</li>
+<li>Customers reminded before a visit</li>
+<li>The week at a glance</li>
+</ul>
+<p>Four weeks before a service is due, the app sends your customer a WhatsApp: reply yes if you want us to come.</p>
+<h2>How it works</h2>
+<ol>
+<li><h3>A phone call.</h3><p>10 to 15 minutes about how a job goes from enquiry to invoice.</p></li>
+<li><h3>A free demo, if it looks like a fit.</h3><p>Usually within a few days, built from the call, with made-up sample data so you can click anything.</p></li>
+<li><h3>A price in writing.</h3><p>A build fee plus a monthly fee. A 50% deposit starts the build.</p></li>
+<li><h3>The build.</h3><p>Done within 2 weeks of your go-ahead.</p></li>
+<li><h3>Two weeks of field testing.</h3><p>You use it on your own jobs while we refine it. You pay the second half once it is working on your own jobs.</p></li>
+<li><h3>Looked after from then on.</h3><p>The monthly fee covers hosting, support from real people and ongoing refinements to what we built.</p></li>
+</ol>
+<p><a href="/how-it-works">How it works, step by step</a></p>
+<h2>Our work</h2>
+<h3>IPM Enviro</h3>
+<p>The technician scans each numbered unit on an iPad and logs what they found, and the visit report writes itself.</p>
+<blockquote>
+<p>We were working with another company for 12 months and weren't even close to launch.</p>
+<p>Pete contacted us by email, we had a chat, and almost overnight we had a product sample to look at.</p>
+<p>Our client is a multinational pharmaceutical plant and they're very pleased with how professional it looks, but the most important thing is how user friendly it is.</p>
+<p>There's literally no training required for our techs or their people.</p>
+</blockquote>
+<p>Eamonn Kennedy, Director, IPM Enviro</p>
+<h3>Komplete Engineers</h3>
+<p>Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.</p>
+<blockquote>
+<p>It's made our process much more efficient, in speed and in knowing when invoices are due.</p>
+<p>Overall it's greatly benefited the efficiency of the business.</p>
+<p>We're definitely managing the work better and getting things done quicker.</p>
+</blockquote>
+<p>Ian O'Mahony, Komplete Engineers</p>
+<h2>What it costs</h2>
+${PRICING}
+${PERSON}
+${CLOSING}
+</main>`,
 
   "/how-it-works": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
-      <h1 class="text-4xl font-display font-bold mb-6">What a custom internal app costs, and how long it takes</h1>
-      <p class="mb-4">The short answer. A first build is a fixed price, from €3,900, and it is usually working end to end inside two weeks. The price is agreed in writing before anything is built, and there is no bill for time on top.</p>
-      <p class="mb-4">The rest of this page is the longer answer.</p>
-      <p class="mb-4">15 minute chat. No hard sell.</p>
+<main>
+<h1>How it works</h1>
+<p>A phone call, a free demo if it fits, a price in writing, the build, two weeks of testing on your own jobs, then we look after it.</p>
+${NAV}
+<h2>The six steps</h2>
+<ol>
+<li><h3>A phone call</h3><p>About 10 to 15 minutes. You tell us how a job goes from the first enquiry to the invoice, and where it hurts.</p><p>With your OK we record the call so Pete can build your demo from what you told us.</p></li>
+<li><h3>A free demo</h3><p>If it looks like a fit, we build a demo of your own app, usually within a few days. It uses made-up sample data, so click anything.</p><p>It won't be perfect and it isn't meant to be: it gives you something to react to. Editing is easier than creating.</p>
+<blockquote>Almost overnight, you brought it around to where it needed to be.</blockquote><p>Eamonn Kennedy, Director, IPM Enviro</p></li>
+<li><h3>A price in writing</h3><p>A build fee and a monthly fee, in writing, before anything is built. A 50% deposit starts the build.</p></li>
+<li><h3>The build</h3><p>Done within 2 weeks of your go-ahead. We don't give a finish date. We give the timeline.</p>
+<blockquote>The speed at which we could turn things around, I can't underestimate the value of that.</blockquote><p>Eamonn Kennedy, Director, IPM Enviro</p></li>
+<li><h3>Two weeks of field testing</h3><p>You use it on your own jobs while we refine it. You pay the second half once it is working for you.</p>
+<blockquote>We're definitely managing it better, probably getting things done quicker.</blockquote><p>Ian O'Mahony, Komplete Engineers</p></li>
+<li><h3>Looked after</h3><p>The monthly fee starts after field testing. It covers hosting, storage, support from real people and ongoing refinements to what we built.</p><p>There is no charge per user.</p><p>Every app has a Feedback button: tell us what isn't right and we change it and let you know.</p>
+<blockquote>Always accessible and very quick to come back to us, whether it's a sample or fixing the system. It literally happens almost instantly.</blockquote><p>Eamonn Kennedy, Director, IPM Enviro</p></li>
+</ol>
+<h2>What it costs</h2>
+${PRICING}
+<p>AI means we can build it far quicker and cheaper than it used to be, so having your own app now makes sense for a business your size.</p>
+<h2>What can go on the board</h2>
+<p>Any screen your office or crew works from that used to be paper, a spreadsheet or someone's memory. The usual candidates:</p>
+<h3>Jobs and who is going where</h3>
+<p>Jobs, crews and bookings on one board.</p>
+<h3>Job sheets and photos</h3>
+<p>Filled in from the phone and filed where the office can see them, not living on paper in the van.</p>
+<h3>Services due</h3>
+<p>Service dates, certs and renewals, with the reminder sent before they fall due.</p>
+<h3>Fitting and visit days</h3>
+<p>Planned ahead, with the customer reminded before you arrive.</p>
+<h3>Quotes and invoices</h3>
+<p>Quotes followed up after you send them, and a clear view of which invoices are due.</p>
+<h3>The week at a glance</h3>
+<p>The week's numbers on one screen. No Sunday night spreadsheet.</p>
+<p>It can start as one screen for one job and grow from there.</p>
+<h2>What happens after the first build?</h2>
+<p>The monthly fee covers hosting, storage, support from real people and ongoing refinements to the features in your build.</p>
+<p>A genuinely new feature is priced separately, at a fraction of the first build, and the monthly fee goes up a little with it.</p>
+<h2>Should you build it yourself or get it built for you?</h2>
+<p>Honest answer, sometimes you should build it yourself.</p>
+<p>If someone in the office has the time and the interest, a no-code tool can carry a simple job, a form that feeds a spreadsheet, a basic booking sheet.</p>
+<p>Where it usually falls down is afterwards.</p>
+<ul>
+<li>The person who built it becomes the person who maintains it, on top of the job they were already doing.</li>
+<li>And the data ends up scattered across subscriptions that do not talk to each other.</li>
+</ul>
+<p>What we offer is the custom route without those jobs landing back on you.</p>
+<p>The app is built around how you already work, we look after it, and your team just uses it.</p>
+<h2>Questions people ask</h2>
+<h3>How long will it take?</h3>
+<p>The demo usually takes a few days. The build is done within 2 weeks of your go-ahead, and then there are two weeks of field testing on your own jobs.</p>
+<h3>What does it cost?</h3>
+<p>From €4,900 + VAT for the build, then a monthly fee. You get the price in writing before anything is built.</p>
+<h3>Will it work with my accounts package?</h3>
+<p>Usually. We'd keep your accounts software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.</p>
+<h3>I'm not technical. Will I break it?</h3>
+<p>You can't break it. Few clicks, and nobody has needed training so far.</p>
+<h3>What if something's wrong after it's built?</h3>
+<p>Every app has a Feedback button. Tell us what isn't right and we change it and let you know. It is included in the monthly fee.</p>
+<h3>Why not an off-the-shelf app?</h3>
+<p>Off-the-shelf software works if someone sits at a desk feeding it. Ours does the chasing without them.</p>
+<h3>Can't I just use ChatGPT?</h3>
+<p>For one-off jobs, yes. But you have to do it every time, and it forgets your rules.</p>
+${CLOSING}
+</main>`,
 
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How much does it cost to get a custom app made in Ireland?</h2>
-      <p class="mb-4">A lot of custom software is priced by the developer and the month. The meter runs, and the real number only becomes clear near the end. I price the job instead. You tell me what the app has to do, I put a figure on it, and that figure is agreed in writing before anything is built.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>One workflow, built end to end</strong>: from €3,900, usually working inside two weeks</li>
-        <li><strong>A bigger piece across a few connected jobs</strong>: €6,500 to €9,500</li>
-        <li><strong>A full review of how work moves through the business, with the systems built around it</strong>: priced after the review</li>
-      </ul>
-      <p class="mb-4">Why is that less than most custom software quotes? Because I build with AI, every day, and that has changed what one builder can produce. You get software designed around how your business already works, without the overhead that usually comes with the word custom.</p>
+  "/our-work": `
+<main>
+<h1>Our work</h1>
+<p>Two of the apps we have built, and what each one does.</p>
+${NAV}
+<h2>IPM Enviro</h2>
+<p>The technician scans each numbered unit on an iPad and logs what they found, and the visit report writes itself.</p>
+<ul>
+<li>Scans each numbered unit</li>
+<li>Logs what they found</li>
+<li>The visit report writes itself</li>
+</ul>
+<h2>Komplete Engineers</h2>
+<p>Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.</p>
+<ul>
+<li>Quotes that chase themselves</li>
+<li>A new project set up in one tap</li>
+<li>Every live project at a glance</li>
+</ul>
+<p>We only name clients who have said we can. Their apps are their own, so we don't show screenshots of them here.</p>
+${CLOSING}
+</main>`,
 
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How do I get an app made for my business?</h2>
-      <p class="mb-4">Four steps, and the first one costs you fifteen minutes.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A fifteen minute call</h3>
-      <p class="mb-4">You tell me where the hours are going. If an app will not pay for itself, I will say so on the call and we both save the bother.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A price in writing</h3>
-      <p class="mb-4">What the app will do and what it costs, agreed before anything is built. No surprises later.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">The build</h3>
-      <p class="mb-4">You see working screens while the build is still in progress, not a big reveal at the end. Anything that looks wrong gets fixed while it is cheap to fix.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Working end to end, usually inside two weeks</h3>
-      <p class="mb-4">Your team runs it on real work and I shape it around what they find. A bigger build across connected jobs takes longer, and gets its own timeline agreed alongside the price.</p>
-      <p class="mb-4">A full review of the whole operation is a different animal, a programme of work measured in months rather than weeks. How that works is on <a href="/business" class="underline">the services page</a>.</p>
+  "/about": `
+<main>
+<h1>About Streamlined Tech</h1>
+<p>We build custom apps for Irish trade and service businesses. Your own app, built around how you already work, with everything in one place.</p>
+${NAV}
+${PERSON}
+<h2>Where we are</h2>
+<ul>
+<li>Based in Galway.</li>
+<li>Working with businesses across Ireland.</li>
+<li>Site visits by arrangement.</li>
+</ul>
+<h2>The company</h2>
+<p>Streamlined Tech is a trading name of Streamlined Digital Tech Limited, registered in Ireland, company number 805162.</p>
+<p>Registered office: Castleblakeney, Ballinasloe, Co. Galway, H53 YA97.</p>
+${CLOSING}
+</main>`,
 
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Should you build it yourself or get it built for you?</h2>
-      <p class="mb-4">Honest answer, sometimes you should build it yourself. If someone in the office has the time and the interest, a no-code tool can carry a simple job, a form that feeds a spreadsheet, a basic booking sheet. Plenty of businesses run that way and it is a fine place to start.</p>
-      <p class="mb-4">Where it usually falls down is afterwards. The person who built it becomes the person who maintains it, on top of the job they were already doing. Every new thing you want runs into the ceiling of the tool. And the data ends up scattered across subscriptions that do not talk to each other.</p>
-      <p class="mb-4">What I offer is the custom route without those jobs landing back on you. The app is built around how you already work, I maintain it and extend it, and your team just uses it.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">What counts as a custom internal app?</h2>
-      <p class="mb-4">Any screen your office or crew works from that used to be paper, a spreadsheet or someone's memory. The usual candidates:</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Jobs and scheduling</h3>
-      <p class="mb-4">Jobs, crews and bookings on one board, with reminders that go out on their own.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Dockets and timesheets</h3>
-      <p class="mb-4">Filled in from the phone and filed where the office can see them, not living on paper in the van.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Pre-starts and checks</h3>
-      <p class="mb-4">Walkaround checks and sign-offs done on site, stored where an audit can find them.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Quotes and invoices</h3>
-      <p class="mb-4">Quotes followed up after you send them. Invoices chased politely until they are paid.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Renewals and expiry dates</h3>
-      <p class="mb-4">NCT, CVRT, insurance, certs, service-due dates. Reminders on time, every time.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Reporting</h3>
-      <p class="mb-4">The week's numbers on one screen, updated automatically. No Sunday night spreadsheet.</p>
-      <p class="mb-4">It can start as one screen for one job and grow from there. Your internal app can become the central hub of all operations.</p>
-      <p class="mb-4">In construction or heavy industry? <a href="/contractors" class="underline">See what an internal app looks like on your jobs</a>. Solar, heat pump or retrofit installer? <a href="/installers" class="underline">There is a page for you too</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">What happens after the first build?</h2>
-      <p class="mb-4">A custom app is not a handover and goodbye. The first build proves the idea. After that, most clients extend it one job at a time, once the last piece has paid for itself, and I keep building and maintaining it as the operation changes.</p>
-      <p class="mb-4">The AI underneath these systems gets better every few months, and because I build on it every day, your app keeps improving too. Along the way your staff learn to use AI themselves, so the gains keep compounding rather than depending on me.</p>
-      <p class="mb-4">For a business that wants the ongoing side arranged properly, work after the first build can be set up as a yearly agreement. It covers support and changes once the system is running, and the figure is agreed in writing before it starts.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Get a figure on the job that eats the most time</h2>
-      <p class="mb-4">Fifteen minutes on the phone will tell us both whether it is worth doing. If it is not, I will say so.</p>
-      <p class="mb-4">Or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  "/ai-training": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
-      <h1 class="text-4xl font-display font-bold mb-6">Get more done with the team you already have</h1>
-      <p class="mb-4">Hands-on AI training and coaching for you and your team, built around your day-to-day work. Group sessions for the whole team or one-to-one coaching on your own workflow, packaged to suit your business. An introductory session starts from €400.</p>
-      <p class="mb-4">No hard sell.</p>
-      <p class="mb-4">And if you're nearby, we're happy to drop into your office instead.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">What your team could hand to AI</h2>
-      <p class="mb-4">Every business is different, so treat these as examples rather than a menu. The sessions are built around the jobs that eat the most time in yours.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Quotes and tenders</h3>
-      <p class="mb-4">First drafts of quotes and tender answers from your own notes, ready for a person to check before they go out.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Emails and replies</h3>
-      <p class="mb-4">Replies to customers and suppliers drafted in your own tone, so the inbox is less of an evening job.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Reports and write-ups</h3>
-      <p class="mb-4">Rough notes from a site visit or a meeting turned into a first draft of the report, for you to read over before it goes out.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Procedures and letters</h3>
-      <p class="mb-4">Procedures and standard letters drafted or brought up to date, with a person signing them off.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Numbers and spreadsheets</h3>
-      <p class="mb-4">Questions about the spreadsheets you already keep, asked in plain English, with the answer checked before anyone relies on it.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Rules and research</h3>
-      <p class="mb-4">Regulations and grant conditions summarised in plain words before you read the detail.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">As AI advances, so will your team</h2>
-      <p class="mb-4">Plenty of businesses have already sent someone on an AI course or bought a subscription. That's a good first step.</p>
-      <p class="mb-4">The trouble is how fast this space moves. What a team picks up on a training day tends to date quickly, because the tools keep changing under you. And the know-how often ends up sitting with one person instead of the whole team.</p>
-      <p class="mb-4">That's why we're not a one-off training shop. We train your team on their own work, then help them keep up with the latest, so what you've put into AI gets used across the business.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Training and coaching options</h2>
-      <p class="mb-4">Every package is put together for your team, with the price agreed in writing up front.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">An introductory session</h3>
-      <p class="mb-2">A single session to make a start, shaped around your business. From there, it can grow into a package with regular calls.</p>
-      <p class="mb-4"><strong>From €400</strong></p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Group sessions</h3>
-      <p class="mb-4">A general overview of the AI tools for your team, geared to the kind of work you do.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">One-to-one workflow coaching</h3>
-      <p class="mb-4">Time with one person on their own workflow, working out what to hand to AI and how.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Ongoing calls</h3>
-      <p class="mb-4">Weekly, fortnightly or monthly calls to keep up with the latest. Book a set number, or take them as a subscription.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How you start</h2>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A call</h3>
-      <p class="mb-4">You tell us where the hours go and what AI training anyone has done already, so the sessions start from there. If it won't pay for itself, we'll say so on the call.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">A package and a price in writing</h3>
-      <p class="mb-4">We put a package together from what you told us on the call. What it covers and what it costs are agreed before anything starts.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Sessions that fit your work</h3>
-      <p class="mb-4">Group sessions or one-to-one coaching, whichever suits, pitched at the jobs your team does each week.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Kept current</h3>
-      <p class="mb-4">The tools change every few months. Regular calls help your team keep up with the latest and spot where a newer tool would take more work off their plate. The aim is AI the whole team keeps using, in the office and out on jobs.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Which AI tools?</h2>
-      <p class="mb-4">Whichever ones suit the work. For most offices that means an assistant like ChatGPT or Claude, or the Copilot or Gemini that may already come with your Microsoft 365 or Google Workspace. We'll tell you when a free version is enough.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">When a job needs more than a chat tool</h2>
-      <p class="mb-4">Some jobs come round every week in exactly the same shape, and typing them into a chat tool each time is still work. If we spot one like that in the sessions, we'll tell you, because that's the kind of job a custom internal app takes off the team's plate. Those apps are the main thing we build.</p>
-      <p class="mb-4">What a build costs and how long it takes is on <a href="/how-it-works" class="underline">the cost and timeline page</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Built on daily use</h2>
-      <p class="mb-4">I'm Pete Harris, the founder of Streamlined Tech. 20+ years in heavy industries and construction, from on the tools to training package production and now building the software.</p>
-      <p class="mb-4">We build with AI every day and run our own software products, AutoListing.io and Rangplan.ie. The training and coaching come out of that daily use.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Tell us where the hours are going</h2>
-      <p class="mb-4">A free call lets us both see whether training or coaching is worth it for your business. If it isn't, we'll say so.</p>
-      <p class="mb-4">Not ready for a call? Email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a>, or start with <a href="/guide/set-up-ai-for-business-ireland" class="underline">the plain-English guide to setting up AI</a>.</p>
-    </main>
-  `,
-  "/guide/set-up-ai-for-business-ireland": `
-    <main class="container mx-auto px-6 py-16" style="max-width:48rem">
-      <p class="text-sm font-semibold mb-2">Based in Galway. Working across Ireland.</p>
-      <h1 class="text-4xl font-display font-bold mb-6">How to set up AI for your business</h1>
-      <p class="mb-4">A plain-English guide for Irish businesses that want to set up AI. What it actually means, what it costs, who runs it, and where to start.</p>
-      <p class="mb-4">There is no jargon in it, and no chatbot waiting at the end.</p>
-      <p class="mb-4">15 minute chat. No hard sell.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">What set up AI actually means for a small business</h2>
-      <p class="mb-4">It does not mean hiring a data scientist, and for most businesses it does not mean a chatbot on the website. For an Irish SMB it means two things, and they work best together.</p>
-      <p class="mb-4">The first is software. The repetitive admin that eats the week, the chasing, the reminders, the rekeying, the reporting, gets handed to a small custom app built around how you already work. It runs those jobs in the background so nobody has to remember them.</p>
-      <p class="mb-4">The second is your people. Your staff learn to use AI in their own day to day work, so the gains do not stop at the app. A team that knows what AI is good at keeps finding new places to use it.</p>
-      <p class="mb-4"><strong>That is the whole offer. We set up businesses with AI.</strong></p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How do I add AI to my business without hiring anyone?</h2>
-      <p class="mb-4">This is the question most owners are really asking, because the last thing a busy business needs is new software that needs a new person to run it.</p>
-      <p class="mb-4">The answer is to start with one job, not a transformation. Pick a single repetitive task, hand it to a small app, and change nothing else. Nobody's role changes on day one, and there is nothing new to staff. The point is the opposite of hiring. The same team gets through more work, so growth stops depending on finding the next person.</p>
-      <p class="mb-4">You can get some of the way with off-the-shelf tools, and for a simple job that can be enough. Where a custom app earns its keep is when your own way of doing things needs to be baked in, or when the job has to keep running without anyone in the office minding it.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">How much does AI cost for a small business in Ireland?</h2>
-      <p class="mb-4">On the teaching side, most of the AI tools your staff would use day to day are cheap or free. The skill is in knowing what to hand them, and that is what we teach in <a href="/ai-training" class="underline">our AI training and coaching</a>. It is built on your team's own work and kept current as the tools change. An introductory session starts from €400, and anything beyond that is priced for your business and agreed in writing first.</p>
-      <p class="mb-4">The software side has a public price list. A first custom build is a fixed price from €3,900, agreed in writing before anything starts, and it is usually working end to end inside two weeks. A bigger piece across a few connected jobs runs €6,500 to €9,500. A full review of the whole operation is priced after the review.</p>
-      <p class="mb-4">The longer answer on pricing and timelines, including how the fixed price works, is on <a href="/how-it-works" class="underline">the cost and timeline page</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Do you need someone to run it?</h2>
-      <p class="mb-4">No. That is the test of whether it was set up properly. The reminders send themselves and the reports write themselves. Your team just works from the screens, and if a system needs minding, it has only moved the admin around rather than removed it.</p>
-      <p class="mb-4">We maintain and extend the app as your operation changes, so the technical side stays off your desk. And because we encourage your staff to pick up AI themselves along the way, you are not left dependent on us for every small thing either.</p>
-      <p class="mb-4">One honest caution, though. AI does not run your business. It runs the repetitive parts, and it does that very well. The decisions stay with you.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Picking the first job to hand to AI</h2>
-      <p class="mb-4">Look at where the hours actually go in a normal week. A good first job is one that happens every week and follows the same steps every time. The usual candidates in an Irish SMB:</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Chasing quotes and invoices</h3>
-      <p class="mb-4">Quotes followed up after you send them. Invoices chased politely until they are paid.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Bookings and reminders</h3>
-      <p class="mb-4">Jobs and appointments that write straight into the diary, with reminders that reduce no-shows.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Renewals and expiry dates</h3>
-      <p class="mb-4">Insurance, certs, NCT, CVRT, service-due dates. Reminders go out on time, every time.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Rekeying orders and details</h3>
-      <p class="mb-4">Orders and new client details captured once and landing in a list your team works from.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">Follow-ups that get forgotten</h3>
-      <p class="mb-4">The enquiry from last Tuesday, the customer to call back. Followed up without anyone chasing.</p>
-      <h3 class="text-lg font-display font-semibold mt-6 mb-2">The week's numbers</h3>
-      <p class="mb-4">One screen with the numbers that matter, updated automatically. No Sunday night spreadsheet.</p>
-      <p class="mb-4">If one of those made you wince, that is probably your first job. Fix it and judge the result. Only then decide whether to hand over the next one.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">What Streamlined Tech builds instead of a chatbot</h2>
-      <p class="mb-4">A chatbot is the demo everyone leads with, and there is a place for one. But an assistant is only as good as the information behind it, so it works best on top of systems that already hold good data. For most businesses the bigger win comes first, and it is the boring, repetitive admin handled by a custom internal app.</p>
-      <p class="mb-4">That is what we specialise in. A small app, built around how your business already works, that takes a real job off a real person's plate. It can start as one screen for one job and grow from there. Your internal app can become the central hub of all operations.</p>
-      <p class="mb-4">I'm Pete Harris, the founder and the builder, based in Galway. What we build and what it costs is all on <a href="/business" class="underline">the services page</a>.</p>
-      <p class="mb-4">In construction or heavy industry? <a href="/contractors" class="underline">See what an internal app looks like on your jobs</a>. Solar, heat pump or retrofit installer? <a href="/installers" class="underline">There is a page for you too</a>.</p>
-
-      <h2 class="text-2xl font-display font-bold mt-10 mb-3">Not sure where AI fits in your business?</h2>
-      <p class="mb-4">Tell me how a normal week runs and I will tell you where I would start. Fifteen minutes on the phone, and if AI is not worth your money yet, I will say so.</p>
-      <p class="mb-4">Or email <a href="mailto:peter@streamlinedai.tech" class="underline">peter@streamlinedai.tech</a></p>
-    </main>`,
-
-  ...aiEmployeesMirrors(),
+  "/contact": `
+<main>
+<h1>Ask for a call</h1>
+<p>Tell us how you run things. We'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
+${NAV}
+<p>Your details go to Streamlined Tech. One of our team rings you, normally within 24 hours. To have them deleted, email peter@streamlinedai.tech.</p>
+<h2>Or email us</h2>
+<p>peter@streamlinedai.tech</p>
+<ul>
+<li>Based in Galway.</li>
+<li>Working with businesses across Ireland.</li>
+<li>Site visits by arrangement.</li>
+</ul>
+</main>`,
 };

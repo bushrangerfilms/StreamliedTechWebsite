@@ -17,9 +17,8 @@ export interface RouteSeo {
   image?: string;
   /**
    * LCP image preloads for this route. The prerender plugin strips the
-   * shell's image preloads and injects these instead, so a page with a
-   * gradient hero preloads nothing and /australia preloads its mining pair
-   * without every other route paying for it.
+   * shell's image preloads and injects these instead, so a route
+   * preloads only what it needs.
    */
   preloads?: { href: string; media?: string }[];
   /**
@@ -48,240 +47,55 @@ export interface RouteSeo {
  * (Facebook and LinkedIn among them). Keeping one table means the two cannot
  * drift, which is the failure this whole thing exists to prevent.
  */
-/**
- * The AI Employees campaign landers share one template with per-region
- * currency and wording. One URL per region (/ai-employees/<region>);
- * /ai-employees redirects to the Irish default. All noindex: they exist to
- * match each ad's message, not to rank, and the trend term stays
- * quarantined on them. This entry carries the head (meta and offer JSON-LD)
- * only. The rendered copy lives in REGIONS in client/src/pages/ai-employees.tsx,
- * and its crawlable body mirror in AI_EMPLOYEES_MIRRORS in seo-static-html.ts;
- * keep the copy identical in both.
- */
-function aiEmployeesRoute(r: {
-  regionPath: string;
-  title: string;
-  description: string;
-  image: string;
-  country: string;
-  offerAudience: string;
-  lowPrice: string;
-  priceCurrency: string;
-  offerPriceText: string;
-}): RouteSeo {
-  const path = `/ai-employees/${r.regionPath}`;
-  return {
-    path,
-    title: r.title,
-    description: r.description,
-    canonical: path,
-    noindex: true,
-    image: r.image,
-    // Machine-readable offer, so ad platforms and AI crawlers pointed at
-    // this landing page pick up the actual offer rather than guessing from
-    // the site at large.
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "AI Employees",
-      serviceType: "AI employee set-up and support",
-      url: `https://streamlinedai.tech${path}`,
-      description: `An AI employee is a system Streamlined Tech builds that does one named job in a business and keeps doing it. Full custom set-up for the business, human support, and the system runs around the clock. ${r.offerAudience}`,
-      provider: {
-        "@type": "ProfessionalService",
-        name: "Streamlined Tech",
-        url: "https://streamlinedai.tech/",
-      },
-      areaServed: { "@type": "Country", name: r.country },
-      offers: {
-        "@type": "AggregateOffer",
-        lowPrice: r.lowPrice,
-        priceCurrency: r.priceCurrency,
-        description: `${r.offerPriceText} a year for one AI employee doing one defined job, including full custom set-up and support. The exact figure is agreed in writing before work starts. Minimum one month, paid fortnightly, no lock-in contract; after the first month it can be stopped with two weeks' notice.`,
-      },
-    },
-  };
-}
-
 export const ROUTE_SEO = {
   home: {
     path: "/",
-    title: "Set Your Business Up with AI | Streamlined Tech",
+    title: "Custom Apps for Irish Trade Businesses | Streamlined Tech",
     description:
-      "We set businesses up with AI. Custom internal apps with an AI employee inside, AI consulting and AI training, for owner-run businesses buried in office work.",
+      "One board for your jobs, customers and paperwork, built around how you already work. Tell us how you run things and we'll build you a free demo.",
     canonical: "/",
     image: "/images/og-card-home.png",
-    preloads: [{ href: "/images/hero-operations.webp" }],
-  },
-  business: {
-    path: "/business",
-    title: "Custom AI Apps for Irish Businesses, Galway | Streamlined Tech",
-    description:
-      "Custom internal apps for owner-run Irish businesses. Built in Galway, working across Ireland. From EUR3,900, first build working inside two weeks.",
-    canonical: "/business",
-  },
-  contractors: {
-    path: "/contractors",
-    title: "Custom Apps for Irish Contractors | Streamlined Tech",
-    description:
-      "Custom apps for construction and heavy industry contractors in Ireland. Jobs, dockets, timesheets and walkaround checks off paper. Built in Galway.",
-    canonical: "/contractors",
-  },
-  guideSetUpAi: {
-    path: "/guide/set-up-ai-for-business-ireland",
-    title: "Set Up AI for Your Business in Ireland | Streamlined Tech",
-    description:
-      "Plain-English steps to set up AI for an Irish SMB. Pick one job, build one app, working inside two weeks.",
-    canonical: "/guide/set-up-ai-for-business-ireland",
   },
   howItWorks: {
     path: "/how-it-works",
-    title: "Custom Internal App Cost and Timeline | Streamlined Tech",
+    title: "How It Works | Streamlined Tech",
     description:
-      "What a custom internal app costs in Ireland and how long the first build takes. From EUR3,900, working inside two weeks.",
+      "A phone call, a free demo if it fits, a price in writing, the build, two weeks of testing on your own jobs, then we look after it.",
     canonical: "/how-it-works",
   },
-  installers: {
-    path: "/installers",
-    title: "Solar and Heat Pump Installer Apps, Ireland | Streamlined Tech",
+  ourWork: {
+    path: "/our-work",
+    title: "Our Work | Streamlined Tech",
     description:
-      "Custom apps for Irish solar, heat pump and retrofit installers. Grant packs, NC6 and NC7 forms and job packs off paper. Built in Galway.",
-    canonical: "/installers",
+      "Custom apps Streamlined Tech has built for IPM Enviro and Komplete Engineers, and what each one does.",
+    canonical: "/our-work",
   },
-  australia: {
-    path: "/australia",
-    title: "Mining and Construction Apps, Australia | Streamlined Tech",
+  about: {
+    path: "/about",
+    title: "About | Streamlined Tech",
     description:
-      "We build apps that get prestarts, dockets and job packs off paper for mining and construction contractor crews in Australia.",
-    canonical: "/australia",
-    image: "/images/og-card-mining.png",
-    preloads: [
-      { href: "/images/hero-mining-portrait.webp", media: "(max-width: 767px)" },
-      { href: "/images/hero-mining.webp", media: "(min-width: 768px)" },
-    ],
+      "Streamlined Tech builds custom apps for Irish trade and service businesses. Based in Galway, working with businesses across Ireland.",
+    canonical: "/about",
   },
-  aiTraining: {
-    path: "/ai-training",
-    title: "AI Training and Coaching in Ireland | Streamlined Tech",
+  contact: {
+    path: "/contact",
+    title: "Ask for a Call | Streamlined Tech",
     description:
-      "Get more done with the team you already have. AI training and coaching for Irish businesses, from EUR400 for an introductory session.",
-    canonical: "/ai-training",
-    // Offer facts from Pete, 17 Sep 2026: packages are custom per business,
-    // an introductory session starts from EUR 400. Keep every description
-    // string here under 165 characters: the SEO agent's route-wiring parser
-    // reads nested description fields as the route description.
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "AI training and coaching",
-      serviceType: "AI training and coaching",
-      url: "https://streamlinedai.tech/ai-training",
-      provider: {
-        "@type": "ProfessionalService",
-        name: "Streamlined Tech",
-        url: "https://streamlinedai.tech/",
-      },
-      areaServed: { "@type": "Country", name: "Ireland" },
-      // EUR 400 is the introductory session only, not the whole service.
-      offers: {
-        "@type": "Offer",
-        name: "Introductory session",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: "400",
-          priceCurrency: "EUR",
-        },
-        description:
-          "A single introductory session from EUR 400. Other packages are custom, with the price agreed in writing before they start.",
-      },
-    },
+      "Ask for a call and we'll ring you for 10 to 15 minutes about how your business runs. If an app wouldn't help, we'll tell you.",
+    canonical: "/contact",
   },
-  products: {
-    path: "/products",
-    title: "Software Products We Build and Run | Streamlined Tech",
-    description:
-      "AutoListing.io and Rangplan.ie, the software products Streamlined Tech builds and runs, and the proof behind the client work.",
-    canonical: "/products",
-  },
-  aiEmployeesIe: aiEmployeesRoute({
-    regionPath: "ie",
-    title: "AI Employees from €15K/year, Ireland | Streamlined Tech",
-    description:
-      "AI employees for Irish businesses, from €15K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
-    image: "/images/og-card-ai-employees-ie.png",
-    country: "Ireland",
-    offerAudience: "Offered to businesses in Ireland.",
-    lowPrice: "15000",
-    priceCurrency: "EUR",
-    offerPriceText: "From EUR 15,000",
-  }),
-  // AU, UK and US anchors are €15K converted at rounded market rates and
-  // rounded to clean figures. Changing a region's price means editing it
-  // here, in REGIONS in ai-employees.tsx, in AI_EMPLOYEES_MIRRORS in
-  // seo-static-html.ts, and regenerating that region's og card and square
-  // ad image.
-  aiEmployeesAu: aiEmployeesRoute({
-    regionPath: "au",
-    title: "AI Employees from AU$25K/year, Australia | Streamlined Tech",
-    description:
-      "AI employees for Australian businesses, from AU$25K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
-    image: "/images/og-card-ai-employees-au.png",
-    country: "Australia",
-    offerAudience: "Offered to businesses in Australia.",
-    lowPrice: "25000",
-    priceCurrency: "AUD",
-    offerPriceText: "From AUD 25,000",
-  }),
-  aiEmployeesUk: aiEmployeesRoute({
-    regionPath: "uk",
-    title: "AI Employees from £13K/year, UK | Streamlined Tech",
-    description:
-      "AI employees for UK businesses, from £13K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
-    image: "/images/og-card-ai-employees-uk.png",
-    country: "United Kingdom",
-    offerAudience: "Offered to businesses in the UK.",
-    lowPrice: "13000",
-    priceCurrency: "GBP",
-    offerPriceText: "From GBP 13,000",
-  }),
-  aiEmployeesUs: aiEmployeesRoute({
-    regionPath: "us",
-    title: "AI Employees from $17K/year, United States | Streamlined Tech",
-    description:
-      "AI employees for US businesses, from $17K a year with human support. Full custom set-up around how you already run. No lock-in. Works 24/7.",
-    image: "/images/og-card-ai-employees-us.png",
-    country: "United States",
-    offerAudience: "Offered to businesses in the United States.",
-    lowPrice: "17000",
-    priceCurrency: "USD",
-    offerPriceText: "From USD 17,000",
-  }),
   privacy: {
     path: "/privacy",
     title: "Privacy Policy | Streamlined Tech",
-    description: "How Streamlined Tech collects, uses and stores your data.",
+    description:
+      "What personal data Streamlined Tech holds, why, who it is shared with, how long it is kept and what your rights are.",
     canonical: "/privacy",
   },
   terms: {
     path: "/terms",
-    title: "Terms and Conditions | Streamlined Tech",
-    description: "The terms that apply to Streamlined Tech's services and website.",
+    title: "Website Terms of Use | Streamlined Tech",
+    description: "The terms that apply to the Streamlined Tech website and to any demo we send you.",
     canonical: "/terms",
-  },
-  details: {
-    path: "/details",
-    title: "The full rundown | Streamlined Tech",
-    description: "What Streamlined Tech builds for mining and construction crews.",
-    canonical: "/details",
-    noindex: true,
-    image: "/images/og-card-mining.png",
-  },
-  detailsThanks: {
-    path: "/details/thanks",
-    title: "On its way | Streamlined Tech",
-    description: "Thanks for getting in touch with Streamlined Tech.",
-    canonical: "/details/thanks",
-    noindex: true,
   },
   admin: {
     path: "/dev",
@@ -306,20 +120,10 @@ export const ROUTE_SEO = {
  */
 export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.home,
-  ROUTE_SEO.business,
-  ROUTE_SEO.contractors,
-  ROUTE_SEO.guideSetUpAi,
   ROUTE_SEO.howItWorks,
-  ROUTE_SEO.aiTraining,
-  ROUTE_SEO.installers,
-  ROUTE_SEO.australia,
-  ROUTE_SEO.products,
-  ROUTE_SEO.aiEmployeesIe,
-  ROUTE_SEO.aiEmployeesAu,
-  ROUTE_SEO.aiEmployeesUk,
-  ROUTE_SEO.aiEmployeesUs,
+  ROUTE_SEO.ourWork,
+  ROUTE_SEO.about,
+  ROUTE_SEO.contact,
   ROUTE_SEO.privacy,
   ROUTE_SEO.terms,
-  ROUTE_SEO.details,
-  ROUTE_SEO.detailsThanks,
 ];
