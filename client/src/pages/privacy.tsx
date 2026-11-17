@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 // atlas-website/drafts/privacy-policy.md. It is a DRAFT: the red box and
 // every highlighted [PETE TO CONFIRM] marker must be dealt with, and Pete
 // must approve the exact wording, before this page goes live. A production
-// build refuses to run while a marker is still here (script/build.ts).
+// build refuses to run while a marker is still here (vite-plugin-prerender-meta.ts).
 // Section 6 was changed from the draft to describe only what the Atlas demo
 // notice does (it notes that a demo was opened) and to quote that notice.
 

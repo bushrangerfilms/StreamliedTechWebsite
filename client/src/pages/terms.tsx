@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 // atlas-website/drafts/terms.md. It is a DRAFT: the red box and every
 // highlighted [PETE TO CONFIRM] marker must be dealt with, and Pete must
 // approve the exact wording, before this page goes live. A production build
-// refuses to run while a marker is still here (script/build.ts).
+// refuses to run while a marker is still here (vite-plugin-prerender-meta.ts).
 
 export default function Terms() {
   useSeo(ROUTE_SEO.terms);
