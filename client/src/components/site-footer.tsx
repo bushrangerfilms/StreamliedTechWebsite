@@ -4,6 +4,7 @@ import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 const FOOTER_LINKS = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/our-work", label: "Our work" },
+  { href: "/industries", label: "Industries" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy", label: "Privacy" },

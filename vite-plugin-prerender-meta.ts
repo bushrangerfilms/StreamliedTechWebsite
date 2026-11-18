@@ -104,7 +104,16 @@ function forMarket(html: string, market: Market, routePath: string): string {
   const to = MARKETS[market];
   const builds = html.split(from.build).length - 1;
   const wholes = html.split(from.whole).length - 1;
-  const expected: Record<string, [number, number]> = { "/": [1, 1], "/how-it-works": [2, 1] };
+  // A trade page carries the build price three times: the cost section, the
+  // visible FAQ answer and the same answer in the FAQPage structured data.
+  const expected: Record<string, [number, number]> = {
+    "/": [1, 1],
+    "/how-it-works": [2, 1],
+    "/window-and-door-software": [3, 0],
+    "/pest-control-app": [3, 0],
+    "/engineering-firm-software": [3, 0],
+    "/laboratory-sample-collection-app": [3, 0],
+  };
   const want = expected[routePath] ?? [0, 0];
   if (builds !== want[0] || wholes !== want[1]) {
     throw new Error(

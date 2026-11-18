@@ -63,7 +63,7 @@ export default function Privacy() {
             VAT number: IE4549950FH
           </p>
           <p>
-            We build custom apps for Irish trade and service businesses.
+            We build custom apps for trade and service businesses.
           </p>
           <p>
             For the personal data described in sections 3 to 7 of this policy, we are the "controller".
@@ -90,7 +90,7 @@ export default function Privacy() {
             <strong className="st-lead">What we collect.</strong> When you fill in the "Ask for a call" form, we collect your name, phone number, email address, business name and what your business does.
           </p>
           <p>
-            <strong className="st-lead">Why.</strong> So that one of our consultants can ring you, normally within 24 hours, to talk about what you need and see if we are a fit.
+            <strong className="st-lead">Why.</strong> So that one of our consultants can call you, normally within 24 hours, to talk about what you need and see if we are a fit.
           </p>
           <p>
             <strong className="st-lead">Where it goes.</strong> Your details are saved in Atlas, our own customer records system, which we built ourselves. It runs on Vercel and stores its data with Supabase (see section 10).
@@ -102,7 +102,7 @@ export default function Privacy() {
             Where you are asking on behalf of a company, we rely on our legitimate interest in answering an enquiry made to us (Article 6(1)(f)).
           </p>
           <p>
-            <strong className="st-lead">Do you have to give us this?</strong> No. But without a phone number and a name we cannot ring you.
+            <strong className="st-lead">Do you have to give us this?</strong> No. But without a phone number and a name we cannot call you.
           </p>
           <h2 id="section-4">4. Phone calls with us</h2>
           <p>

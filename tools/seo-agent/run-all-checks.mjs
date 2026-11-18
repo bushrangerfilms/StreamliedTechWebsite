@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CHECKS = ['gsc-snapshot', 'sitemap-audit', 'route-wiring', 'page-meta', 'copy-rules', 'cwv', 'link-check', 'indexing-status', 'image-audit'];
+const CHECKS = ['gsc-snapshot', 'sitemap-audit', 'route-wiring', 'page-meta', 'copy-rules', 'cwv', 'link-check', 'indexing-status', 'image-audit', 'trade-pages'];
 
 const RUN_TIMESTAMP = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
 const REPORTS_DIR = path.join(__dirname, 'reports', RUN_TIMESTAMP);

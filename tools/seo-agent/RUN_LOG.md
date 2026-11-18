@@ -3,6 +3,13 @@
 Entries are appended by the fortnightly routine, newest first. The toolkit was built on 2026-08-21;
 the first local dry run is recorded below by the session that built it.
 
+## 2026-11-18 (not a run: files updated by the Build Manager, PM brief seo-trade-pages-1118)
+- 18 Nov 2026, PM brief seo-trade-pages-1118; agent remains paused; self-merge removed.
+- Files: AGENT.md, README.md, config/keywords.json (worldwide trade clusters, candidates only), config/checks.json (twelve routes, trade page rules, founder check dropped), new config/trades-built.json, new checks/trade-pages.mjs, checks/route-wiring.mjs (per-market rewrites), run-all-checks.mjs.
+- The hub /industries and four trade pages are in the same pull request and are not live until Pete merges it.
+- Checks run locally without secrets on that branch: route-wiring 0 errors, trade-pages 0 findings, copy-rules source findings info only. The Search Console and live-site checks were not run.
+- First run after Pete re-enables the routine: report only, no pull request.
+
 ## 2026-11-15 11:07 UTC
 - Checks: 9 ok / 0 failed
 - GSC: 23 queries, about 798 page-level impressions, 39 page-level clicks in the last 28 days across 11 tracked routes; target keywords seen: 1 of 89 ("ai for small business ireland", 1 impression, position 32, first named match since mid-September)

@@ -1,76 +1,136 @@
 {
-  "_comment": "Target keywords for streamlinedai.tech, rewritten 17 Nov 2026 for the one-offer site (custom apps for Irish trade and service businesses). Top-level keys that do not start with _ are clusters of lowercase phrases matched exactly against GSC query strings by checks/gsc-snapshot.mjs. _journeys, _intent_traps and _page_map are the runtime summary the agent reports against. The custom_app_buyer_ie cluster survives from the 21 Aug 2026 SERP research. The trades_apps_ie cluster was added 17 Nov 2026 WITHOUT fresh SERP research, so on the next run verify the intent of each phrase (WebSearch spot check, label it US-weighted) before acting on it or proposing any page change. All clusters from the old AI Employees, set-up-AI, AI consulting, contractors, installers, Australia and AI training positioning were removed on purpose and must not come back. Edit only through the Atlas & Website Product Manager and the Build Manager.",
-  "custom_app_buyer_ie": [
-    "custom software development ireland",
-    "custom software development ireland cost",
-    "how much does custom software development cost",
-    "how can i get a custom app made for my business",
+  "_comment": "Target keywords for streamlinedai.tech. Rewritten 18 Nov 2026 (PM brief seo-trade-pages-1118) for a worldwide English-speaking audience: owners of trade and service businesses in the UK, US, Australia and Ireland. Top-level keys that do not start with _ are clusters of lowercase phrases matched exactly against GSC query strings by checks/gsc-snapshot.mjs. The pattern is trade + what the buyer wants, with NO country on the end: do not add 'ireland', 'galway' or any country to a target phrase unless a country page exists, and none does. EVERY PHRASE HERE IS A CANDIDATE: none has a measured volume and no SERP research was done for the trade clusters. Search Console decides, not guesses. Several are probably held by large software vendors, so zero impressions is a content gap, not an alarm, and no ranking may be claimed. A page may only be proposed for a trade in config/trades-built.json. All clusters from the old Irish-only, AI Employees, set-up-AI, AI consulting, contractors, installers, Australia and AI training positioning were removed on purpose and must not come back. Edit only through the Atlas & Website Product Manager and the Build Manager.",
+  "custom_app_buyer": [
+    "how much does a custom app cost",
     "how much does it cost to get a custom app made",
-    "how do i get an app made for my business",
-    "how much does it cost to develop an app in ireland",
-    "custom internal apps for business",
-    "custom app development for small business"
+    "how to get an app made for my business",
+    "how can i get a custom app made for my business",
+    "custom app development for small business",
+    "custom internal apps for business"
   ],
-  "trades_apps_ie": [
-    "job management app for trades ireland",
-    "app for boiler service business",
-    "job management software for trades ireland",
-    "service reminder app for customers",
-    "workshop job management software ireland",
-    "windows and doors installer software ireland",
-    "custom app for small business ireland"
+  "window_and_door": [
+    "software for window and door companies",
+    "window and door installer software",
+    "job management software for window fitters",
+    "window installation scheduling software",
+    "custom app for window and door businesses"
+  ],
+  "pest_control": [
+    "job management app for pest control companies",
+    "pest control inspection report app",
+    "pest control service report software",
+    "pest control visit scheduling software"
+  ],
+  "engineering_firms": [
+    "project software for engineering firms",
+    "quoting software for engineers",
+    "project and certificate software for engineering firms"
+  ],
+  "laboratories": [
+    "sample collection app for laboratories",
+    "laboratory sample pickup software",
+    "sample courier route app",
+    "sample collection management software"
   ],
   "_journeys": [
     {
-      "id": "custom_app_buyer_ie",
-      "persona": "Owner or manager of an Irish trade or service business who runs jobs, customers and paperwork across WhatsApp, spreadsheets and paper and wonders whether a custom app is realistic",
-      "market": "IE",
+      "id": "custom_app_buyer",
+      "persona": "Owner or manager of a trade or service business in the UK, US, Australia or Ireland who runs jobs, customers and paperwork across messages, spreadsheets and paper and wonders whether a custom app is realistic",
+      "market": "UK, US, AU, IE",
       "entry_queries": [
         "how can i get a custom app made for my business",
-        "custom app development for small business",
-        "custom software development ireland"
+        "how to get an app made for my business",
+        "custom app development for small business"
       ],
       "consideration_queries": [
+        "how much does a custom app cost",
         "how much does it cost to get a custom app made",
-        "how much does custom software development cost",
         "custom internal apps for business"
       ],
-      "conversion_queries": [
-        "custom app for small business ireland",
-        "custom software development ireland cost"
-      ],
+      "conversion_queries": [],
       "target_page": "/",
       "proposed_page": "none",
       "competitors": [],
-      "notes": "Carried over from the 21 Aug 2026 research. Cost questions are answered on /how-it-works (price in writing, From EUR4,900 + VAT), never with any other figure."
+      "notes": "Cost questions are answered on /how-it-works. Prices differ by country and live only in client/src/lib/pricing.ts: read them there, never write one. Google mostly crawls from the US and will see the dollar page."
     },
     {
-      "id": "trades_apps_ie",
-      "persona": "Owner of an Irish trade or service business (boiler and AC service, workshop, windows and doors installer) looking for job management software",
-      "market": "IE",
+      "id": "window_and_door",
+      "persona": "Owner of a window and door company",
+      "market": "UK, US, AU, IE",
       "entry_queries": [
-        "job management app for trades ireland",
-        "job management software for trades ireland"
+        "software for window and door companies",
+        "window and door installer software"
       ],
       "consideration_queries": [
-        "app for boiler service business",
-        "service reminder app for customers",
-        "workshop job management software ireland",
-        "windows and doors installer software ireland"
+        "job management software for window fitters",
+        "window installation scheduling software"
       ],
       "conversion_queries": [
-        "custom app for small business ireland"
+        "custom app for window and door businesses"
       ],
-      "target_page": "/",
-      "proposed_page": "none",
+      "target_page": "/window-and-door-software",
+      "proposed_page": "built",
       "competitors": [],
-      "notes": "Added 17 Nov 2026 without SERP research; verify intent on the next run. These are expected to be held by SaaS incumbents, so zero impressions is a content gap, not an alarm, and no new page may be proposed for them without Pete."
+      "notes": "Candidates only, added 18 Nov 2026 with no volumes and no SERP research."
+    },
+    {
+      "id": "pest_control",
+      "persona": "Owner of a pest control company",
+      "market": "UK, US, AU, IE",
+      "entry_queries": [
+        "job management app for pest control companies"
+      ],
+      "consideration_queries": [
+        "pest control inspection report app",
+        "pest control service report software",
+        "pest control visit scheduling software"
+      ],
+      "conversion_queries": [],
+      "target_page": "/pest-control-app",
+      "proposed_page": "built",
+      "competitors": [],
+      "notes": "Candidates only, added 18 Nov 2026 with no volumes and no SERP research."
+    },
+    {
+      "id": "engineering_firms",
+      "persona": "Owner or partner in an engineering firm",
+      "market": "UK, US, AU, IE",
+      "entry_queries": [
+        "project software for engineering firms"
+      ],
+      "consideration_queries": [
+        "quoting software for engineers",
+        "project and certificate software for engineering firms"
+      ],
+      "conversion_queries": [],
+      "target_page": "/engineering-firm-software",
+      "proposed_page": "built",
+      "competitors": [],
+      "notes": "Candidates only, added 18 Nov 2026. The page does not say which kind of engineering; do not add one."
+    },
+    {
+      "id": "laboratories",
+      "persona": "Manager of a laboratory that collects samples from customers",
+      "market": "UK, US, AU, IE",
+      "entry_queries": [
+        "sample collection app for laboratories"
+      ],
+      "consideration_queries": [
+        "laboratory sample pickup software",
+        "sample courier route app",
+        "sample collection management software"
+      ],
+      "conversion_queries": [],
+      "target_page": "/laboratory-sample-collection-app",
+      "proposed_page": "built",
+      "competitors": [],
+      "notes": "Candidates only, added 18 Nov 2026. The app is in field testing: the page says 'we have built', never 'in use at'."
     }
   ],
   "_intent_traps": [
     {
       "query": "custom internal apps for business",
-      "trap": "serps/google-ie/20: no-code platforms (Retool, Power Apps, Softr, Zapier, OutSystems) and build-it-yourself videos. Tracked medium; pair 'custom' with 'built for you' on the page and answer the PAA question.",
+      "trap": "From the 21 Aug 2026 research on Irish Google: no-code platforms (Retool, Power Apps, Softr, Zapier, OutSystems) and build-it-yourself videos. Tracked medium; pair 'custom' with 'built for you' on the page and answer the PAA question.",
       "use_instead": "how can i get a custom app made for my business"
     },
     {
@@ -80,36 +140,58 @@
     },
     {
       "query": "how much does custom software development cost",
-      "trap": "Not an intent trap: a pricing-model mismatch. Competitors price per engineer per month; Streamlined Tech publishes only From EUR4,900 + VAT for a build, then a monthly fee. A genuine target where the published price is the differentiator.",
+      "trap": "Not an intent trap: a pricing-model mismatch. Competitors price per engineer per month; Streamlined Tech publishes one From price for a build (by country, in client/src/lib/pricing.ts), then a monthly fee. A genuine target where the published price is the differentiator.",
       "use_instead": "how much does custom software development cost (answer it on /how-it-works)"
     }
   ],
   "_page_map": {
     "/": [
-      "custom app for small business ireland",
-      "custom internal apps for business",
       "custom app development for small business",
-      "custom software development ireland",
-      "job management app for trades ireland",
-      "job management software for trades ireland",
-      "app for boiler service business",
-      "service reminder app for customers",
-      "workshop job management software ireland",
-      "windows and doors installer software ireland"
+      "custom internal apps for business",
+      "how can i get a custom app made for my business",
+      "how to get an app made for my business"
     ],
     "/how-it-works": [
-      "how much does custom software development cost",
-      "how much does it cost to get a custom app made",
-      "how can i get a custom app made for my business",
-      "how do i get an app made for my business"
-    ]
+      "how much does a custom app cost",
+      "how much does it cost to get a custom app made"
+    ],
+    "/our-work": [],
+    "/about": [],
+    "/contact": [],
+    "/industries": [],
+    "/window-and-door-software": [
+      "software for window and door companies",
+      "window and door installer software",
+      "job management software for window fitters",
+      "window installation scheduling software",
+      "custom app for window and door businesses"
+    ],
+    "/pest-control-app": [
+      "job management app for pest control companies",
+      "pest control inspection report app",
+      "pest control service report software",
+      "pest control visit scheduling software"
+    ],
+    "/engineering-firm-software": [
+      "project software for engineering firms",
+      "quoting software for engineers",
+      "project and certificate software for engineering firms"
+    ],
+    "/laboratory-sample-collection-app": [
+      "sample collection app for laboratories",
+      "laboratory sample pickup software",
+      "sample courier route app",
+      "sample collection management software"
+    ],
+    "/privacy": [],
+    "/terms": []
   },
   "_proposed_pages": [],
   "_non_page_actions": [
     {
       "action": "Create a Google Business Profile for Streamlined Tech",
       "why": "Local packs on software and app developer queries cannot be entered without one. Pete's decision; report it, never act on it.",
-      "fields": "Primary category software company. Service area Ireland.",
+      "fields": "Pete's decision and Pete's own sign-in. Never created, claimed, verified or edited by the agent.",
       "priority": "medium"
     }
   ]

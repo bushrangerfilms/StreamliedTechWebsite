@@ -148,6 +148,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <p className="st-small" style={{ marginTop: "1rem" }}>
+              See the <Link href="/industries" data-testid="link-industries">industries we build custom apps for</Link>.
+            </p>
             </div>
             <ScreenShot screen="phone" phone />
             </div>

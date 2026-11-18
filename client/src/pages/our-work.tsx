@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { FileCheck, FolderPlus, LayoutDashboard, PencilLine, ScanLine, Send, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
@@ -83,6 +84,9 @@ export default function OurWork() {
                 <Flow items={KOMPLETE_FLOW} />
               </div>
             </div>
+            <p style={{ marginTop: "1.75rem" }}>
+              Read more about our <Link href="/pest-control-app">job management app for pest control companies</Link> and our <Link href="/engineering-firm-software">project software for engineering firms</Link>.
+            </p>
             <p className="st-note">
               <ShieldCheck strokeWidth={1.5} aria-hidden="true" />
               <span>We only name clients who have said we can. Their apps are their own, so we don't show screenshots of them here.</span>
