@@ -1,11 +1,13 @@
 import { Check } from "lucide-react";
+import { currentPrices } from "@/lib/pricing";
 
 /**
  * The pricing block (home and /how-it-works only). Two plain cards, same
- * size, the cheaper one first. Figures decided by Pete on 17 Nov 2026:
- * "from €4,900 + VAT" and "from €120,000 + VAT", no more than 2 of the
- * second a year. No other figure is published and no monthly figure. The
- * cards carry no button: the page's one call block follows at the end.
+ * size, the cheaper one first. The two figures and their tax wording come
+ * from client/src/lib/pricing.ts, by the visitor's market; never write a
+ * price in this file. No more than 2 of the second a year. No other figure
+ * is published and no monthly figure. The cards carry no button: the page's
+ * one call block follows at the end.
  *
  * The approved paragraphs are shown one sentence to a line with a tick, so
  * neither card is a slab of text. The words are unchanged.
@@ -38,13 +40,14 @@ function Ticks({ items }: { items: string[] }) {
 }
 
 export function PricingBlock() {
+  const prices = currentPrices();
   return (
     <div className="st-prices" data-testid="block-pricing">
       <div className="st-price" data-testid="card-price-one-app">
         <p className="st-price__label">One app</p>
         <h3>A custom app for your business</h3>
         <p className="st-price__figure">
-          From €4,900 + VAT
+          {prices.build}
           <small>then a monthly fee for hosting</small>
         </p>
         <p>Your own app, built around how you already work.</p>
@@ -57,7 +60,7 @@ export function PricingBlock() {
         <p className="st-price__label">The whole business</p>
         <h3>The Whole Business Build</h3>
         <p className="st-price__figure">
-          From €120,000 + VAT
+          {prices.whole}
           <small>your whole business, built with you over a year</small>
         </p>
         <p>Some businesses need more than one app.</p>

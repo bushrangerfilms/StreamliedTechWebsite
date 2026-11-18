@@ -25,6 +25,13 @@
  * /privacy and /terms have no mirror (head-only prerender).
  */
 
+import { DEFAULT_MARKET, MARKETS } from "./pricing";
+
+// Prices in the mirrors are the default market's, taken from lib/pricing.ts.
+// The build then writes each page once per market, swapping in that market's
+// prices (vite-plugin-prerender-meta.ts), so no-JavaScript readers in each
+// country see their own.
+
 const NAV = `
 <nav>
 <a href="/how-it-works">How it works</a>
@@ -35,7 +42,7 @@ const NAV = `
 
 const PRICING = `
 <h3>A custom app for your business</h3>
-<p>From €4,900 + VAT</p>
+<p>${MARKETS[DEFAULT_MARKET].build}</p>
 <p>then a monthly fee for hosting</p>
 <p>Your own app, built around how you already work.</p>
 <ul>
@@ -45,7 +52,7 @@ const PRICING = `
 </ul>
 <p>Done within 2 weeks of your go-ahead. Two weeks of testing on your own jobs.</p>
 <h3>The Whole Business Build</h3>
-<p>From €120,000 + VAT</p>
+<p>${MARKETS[DEFAULT_MARKET].whole}</p>
 <p>your whole business, built with you over a year</p>
 <p>Some businesses need more than one app.</p>
 <ul>
@@ -65,7 +72,7 @@ const PERSON = `
 <p>His work has covered video production, workplace safety and training, property, farming, pest control and engineering.</p>
 <h3>How Streamlined Tech looks after you</h3>
 <ol>
-<li><h4>A discovery call and a free demo</h4><p>We ring you for 10 to 15 minutes. If it looks like a fit, we build a free demo of your own app.</p></li>
+<li><h4>A discovery call and a free demo</h4><p>We call you for 10 to 15 minutes. If it looks like a fit, we build a free demo of your own app.</p></li>
 <li><h4>The build and a two-week field test</h4><p>We build it, then you use it on your own jobs for two weeks while we refine it.</p></li>
 <li><h4>Looked after from then on</h4><p>A dedicated product manager, support from real people, a Feedback button in every app and ongoing refinements.</p></li>
 </ol>`;
@@ -83,13 +90,13 @@ const AI_CHANGE = `
 
 const CLOSING = `
 <h2>Tell us how you run things.</h2>
-<p>Ask for a call and we'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
+<p>Ask for a call and we'll call you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
 <p><a href="/contact">Ask for a call</a></p>`;
 
 export const STATIC_HTML: Record<string, string> = {
   "/": `
 <main>
-<h1>Custom apps for Irish trade and service businesses.</h1>
+<h1>Custom apps for trade and service businesses.</h1>
 <p>Your own app, built around how you already work, with everything in one place. Not another subscription that can't talk to the rest.</p>
 <p>Tell us how your business runs on a 10 to 15 minute phone call. If it looks like a fit, we'll build you a free demo of your own app, usually within a few days.</p>
 <p>We're all about efficiency. That's why people come to us.</p>
@@ -207,9 +214,9 @@ ${PRICING}
 <h3>How long will it take?</h3>
 <p>The demo usually takes a few days. The build is done within 2 weeks of your go-ahead, and then there are two weeks of field testing on your own jobs.</p>
 <h3>What does it cost?</h3>
-<p>From €4,900 + VAT for the build, then a monthly fee. You get the price in writing before anything is built.</p>
-<h3>Will it work with my accounts package?</h3>
-<p>Usually. We'd keep your accounts software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.</p>
+<p><span>${MARKETS[DEFAULT_MARKET].build}</span> for the build, then a monthly fee. You get the price in writing before anything is built.</p>
+<h3>Will it work with my accounting software?</h3>
+<p>Usually. We'd keep your accounting software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.</p>
 <h3>I'm not technical. Will I break it?</h3>
 <p>You can't break it. Few clicks, and nobody has needed training so far.</p>
 <h3>What if something's wrong after it's built?</h3>
@@ -247,13 +254,13 @@ ${CLOSING}
   "/about": `
 <main>
 <h1>About Streamlined Tech</h1>
-<p>We build custom apps for Irish trade and service businesses. Your own app, built around how you already work, with everything in one place.</p>
+<p>We build custom apps for trade and service businesses. Your own app, built around how you already work, with everything in one place.</p>
 ${NAV}
 ${PERSON}
 <h2>Where we are</h2>
 <ul>
-<li>Based in Galway.</li>
-<li>Working with businesses across Ireland.</li>
+<li>Based in Galway, Ireland.</li>
+<li>Working with businesses in Ireland and overseas.</li>
 <li>Site visits by arrangement.</li>
 </ul>
 <h2>The company</h2>
@@ -265,14 +272,14 @@ ${CLOSING}
   "/contact": `
 <main>
 <h1>Ask for a call</h1>
-<p>Tell us how you run things. We'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
+<p>Tell us how you run things. We'll call you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
 ${NAV}
-<p>Your details go to Streamlined Tech. One of our team rings you, normally within 24 hours. To have them deleted, email peter@streamlinedai.tech.</p>
+<p>Your details go to Streamlined Tech. One of our team calls you, normally within 24 hours. To have them deleted, email peter@streamlinedai.tech.</p>
 <h2>Or email us</h2>
 <p>peter@streamlinedai.tech</p>
 <ul>
-<li>Based in Galway.</li>
-<li>Working with businesses across Ireland.</li>
+<li>Based in Galway, Ireland.</li>
+<li>Working with businesses in Ireland and overseas.</li>
 <li>Site visits by arrangement.</li>
 </ul>
 </main>`,

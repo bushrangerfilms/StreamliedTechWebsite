@@ -13,8 +13,8 @@ import { IconTile } from "@/components/icon-tile";
 // closing call block because the form is the call button here.
 
 const WHERE = [
-  { icon: MapPin, text: "Based in Galway." },
-  { icon: Map, text: "Working with businesses across Ireland." },
+  { icon: MapPin, text: "Based in Galway, Ireland." },
+  { icon: Map, text: "Working with businesses in Ireland and overseas." },
   { icon: Car, text: "Site visits by arrangement." },
 ];
 
@@ -29,7 +29,7 @@ export default function Contact() {
           <div className="st-wrap">
             <h1 data-testid="text-hero-headline">Ask for a call</h1>
             <p className="st-lede">
-              Tell us how you run things. We'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.
+              Tell us how you run things. We'll call you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.
             </p>
           </div>
         </section>

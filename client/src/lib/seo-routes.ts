@@ -50,7 +50,7 @@ export interface RouteSeo {
 export const ROUTE_SEO = {
   home: {
     path: "/",
-    title: "Custom Apps for Irish Trade Businesses | Streamlined Tech",
+    title: "Custom Apps for Trade and Service Businesses | Streamlined Tech",
     description:
       "One board for your jobs, customers and paperwork, built around how you already work. Tell us how you run things and we'll build you a free demo.",
     canonical: "/",
@@ -74,14 +74,14 @@ export const ROUTE_SEO = {
     path: "/about",
     title: "About | Streamlined Tech",
     description:
-      "Streamlined Tech builds custom apps for Irish trade and service businesses. Based in Galway, working with businesses across Ireland.",
+      "Streamlined Tech builds custom apps for trade and service businesses. Based in Galway, Ireland, working with businesses in Ireland and overseas.",
     canonical: "/about",
   },
   contact: {
     path: "/contact",
     title: "Ask for a Call | Streamlined Tech",
     description:
-      "Ask for a call and we'll ring you for 10 to 15 minutes about how your business runs. If an app wouldn't help, we'll tell you.",
+      "Ask for a call and we'll call you for 10 to 15 minutes about how your business runs. If an app wouldn't help, we'll tell you.",
     canonical: "/contact",
   },
   privacy: {

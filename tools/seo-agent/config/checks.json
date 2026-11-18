@@ -60,7 +60,7 @@
       "Change what a title or description says (that is content_pr scope and needs GSC evidence)",
       "Add or remove a route entry or touch PRERENDER_ROUTES (a new route needs vercel.json and App.tsx changes too; raise it in the issue)",
       "Touch vercel.json, client/index.html, vite-plugin-prerender-meta.ts, App.tsx, any page file, server/, api/, shared/, or any .env file",
-      "Alter the founder claim, prices (only From EUR4,900 + VAT and From EUR120,000 + VAT exist), or any tagline"
+      "Alter the founder claim, prices (the two From prices, per market, live only in client/src/lib/pricing.ts), or any tagline"
     ],
     "perf_pr_allowlist": [
       "client/index.html",
@@ -90,7 +90,7 @@
       "Any rewrite without GSC striking-distance evidence (speculative rewrites go in the issue as suggestions)",
       "Touching H1s, hero copy, body copy, CTAs, navigation or footer",
       "A title or description that breaks a copy rule",
-      "Adding a phone number, a demo link, a link to a client's website, a price other than the two published ones, or any call button"
+      "Adding a phone number, a demo link, a link to a client's website, a price other than the two in client/src/lib/pricing.ts, or any call button"
     ]
   },
   "copy_rules": {

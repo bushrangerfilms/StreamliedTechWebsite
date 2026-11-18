@@ -23,7 +23,7 @@ export function AskForCallForm() {
   const validate = () => {
     const next: Errors = {};
     if (name.trim().length < 2) next.name = "Please tell us your name.";
-    if (phone.replace(/\D/g, "").length < 7) next.phone = "We need a number to ring you on.";
+    if (phone.replace(/\D/g, "").length < 7) next.phone = "We need a number to call you on.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) next.email = "That email doesn't look right.";
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -62,7 +62,7 @@ export function AskForCallForm() {
         <p>
           <strong>Thanks, we have your details.</strong>
         </p>
-        <p>One of our team will ring you, normally within 24 hours.</p>
+        <p>One of our team will call you, normally within 24 hours.</p>
       </div>
     );
   }
@@ -109,7 +109,7 @@ export function AskForCallForm() {
         </button>
       </div>
       <p className="st-form__under" data-testid="text-call-under-button">
-        Your details go to Streamlined Tech. One of our team rings you, normally within 24 hours. To have them deleted, email peter@streamlinedai.tech.
+        Your details go to Streamlined Tech. One of our team calls you, normally within 24 hours. To have them deleted, email peter@streamlinedai.tech.
       </p>
     </form>
   );
