@@ -65,7 +65,7 @@ export default function Terms() {
             <li>Email: peter@streamlinedai.tech</li>
           </ul>
           <p>
-            We build custom apps for Irish trade and service businesses.
+            We build custom apps for trade and service businesses.
           </p>
           <h2 id="section-2">2. These are website terms, not your customer contract</h2>
           <p>
@@ -103,7 +103,7 @@ export default function Terms() {
             When you fill in the Ask for a call form, you give us your name, phone number, email address, business name and what your business does. We use these details to contact you about your enquiry, by phone or by email.
           </p>
           <p>
-            We aim to ring you within 24 hours.
+            We aim to call you within 24 hours.
           </p>
           <p>
             Asking for a call does not commit you or us to anything.
