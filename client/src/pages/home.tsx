@@ -34,6 +34,7 @@ import { IconTile } from "@/components/icon-tile";
 import { AppsDiagram } from "@/components/apps-diagram";
 import { PersonBlock } from "@/components/person-block";
 import { ScreenShot } from "@/components/screen-shot";
+import { AiChange } from "@/components/ai-change";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/"). Change both together: the build
@@ -122,6 +123,8 @@ export default function Home() {
           </div>
         </section>
 
+        <AiChange />
+
         <section className="st-section" data-testid="section-who">
           <div className="st-wrap">
             <h2>Who it's for</h2>
@@ -163,6 +166,12 @@ export default function Home() {
               ))}
             </ul>
             <ScreenShot screen="jobBoard" />
+            <div className="st-shots st-shots--3">
+              <ScreenShot screen="calendar" small />
+              <ScreenShot screen="customers" small />
+              <ScreenShot screen="reminders" small />
+            </div>
+            <p className="st-shots__note">Sample screens. The names, places and prices are made up.</p>
             <div className="st-reminder">
               <p className="st-example">
                 <MessageCircle strokeWidth={1.5} aria-hidden="true" />
