@@ -1,0 +1,61 @@
+{
+  "_comment": "The ONLY trades a page may exist or be proposed for. Added 18 Nov 2026 (PM brief seo-trade-pages-1118). The agent cannot read the private records, so this file is how it knows what Streamlined Tech has really built. ONLY PETE ADDS A TRADE HERE (through the Atlas & Website Product Manager and the Build Manager). Never add one from a search result, a demo, a sample screen or an outreach target. The evidence notes name no client: only IPM Enviro and Komplete Engineers may ever be named on the site.",
+  "rule": "Only Pete adds a trade here.",
+  "trades": [
+    {
+      "id": "window_and_door",
+      "trade": "Window and door companies",
+      "page": "/window-and-door-software",
+      "status": "built",
+      "may_name_client": false,
+      "testimonial": "none",
+      "evidence": "Two client apps built for window and door companies (jobs, measuring, fitting, yearly services). Neither client may be named."
+    },
+    {
+      "id": "pest_control",
+      "trade": "Pest control and hygiene monitoring",
+      "page": "/pest-control-app",
+      "status": "built",
+      "may_name_client": "IPM Enviro",
+      "testimonial": "Eamonn Kennedy, Director, IPM Enviro (approved main quote, word for word)",
+      "evidence": "A client app in daily use: the technician scans numbered units on a tablet, logs findings, and the visit report writes itself."
+    },
+    {
+      "id": "engineering_firms",
+      "trade": "Engineering firms",
+      "page": "/engineering-firm-software",
+      "status": "built",
+      "may_name_client": "Komplete Engineers",
+      "testimonial": "Ian O'Mahony, Komplete Engineers (approved main quote, word for word)",
+      "evidence": "A client app in use: quotes, projects, site visits, notes, invoices, certificates and letters from the firm's own templates. The kind of engineering is not stated; do not add one."
+    },
+    {
+      "id": "laboratories",
+      "trade": "Laboratories (sample collection)",
+      "page": "/laboratory-sample-collection-app",
+      "status": "built",
+      "may_name_client": false,
+      "testimonial": "none",
+      "evidence": "A sample collection app built for a laboratory and in field testing: customers mark samples ready, the driver sees pickups on a map in driving order. Say 'we have built', never 'in use at'."
+    }
+  ],
+  "held": [
+    {
+      "trade": "Made-to-order windows and joinery",
+      "status": "held, needs Pete",
+      "why": "One client only; a page would point at one firm. Add only when Pete says so."
+    }
+  ],
+  "never_propose": [
+    "engineering workshops",
+    "vehicle or machinery workshops",
+    "boiler and air-conditioning service",
+    "builders",
+    "solar",
+    "mining",
+    "contractors",
+    "installers",
+    "any town, country or sector page made from a template"
+  ],
+  "_never_propose_note": "No client app exists for these. The sample screens for car body shops and truck yards come from our own demos, not a client build. They are outreach targets, not pages."
+}

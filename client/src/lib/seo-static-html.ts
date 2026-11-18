@@ -23,9 +23,11 @@
  * mirror check import this file.
  *
  * /privacy and /terms have no mirror (head-only prerender).
+ * The trade pages and /industries (18 Nov 2026) have mirrors at the end.
  */
 
 import { DEFAULT_MARKET, MARKETS } from "./pricing";
+import { FAQ_AFTER, FAQ_CHANGE, FAQ_COST, FAQ_TRADE, type TradeKey } from "./trade-faq";
 
 // Prices in the mirrors are the default market's, taken from lib/pricing.ts.
 // The build then writes each page once per market, swapping in that market's
@@ -93,6 +95,55 @@ const CLOSING = `
 <p>Ask for a call and we'll call you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.</p>
 <p><a href="/contact">Ask for a call</a></p>`;
 
+// Shared by the trade pages (client/src/components/trade-sections.tsx and
+// client/src/lib/trade-faq.ts). The two quotes are the approved main quotes,
+// word for word, as on the home page.
+const IPM_QUOTE = `
+<blockquote>
+<p>We were working with another company for 12 months and weren't even close to launch.</p>
+<p>Pete contacted us by email, we had a chat, and almost overnight we had a product sample to look at.</p>
+<p>Our client is a multinational pharmaceutical plant and they're very pleased with how professional it looks, but the most important thing is how user friendly it is.</p>
+<p>There's literally no training required for our techs or their people.</p>
+</blockquote>
+<p>Eamonn Kennedy, Director, IPM Enviro</p>`;
+
+const KOMPLETE_QUOTE = `
+<blockquote>
+<p>It's made our process much more efficient, in speed and in knowing when invoices are due.</p>
+<p>Overall it's greatly benefited the efficiency of the business.</p>
+<p>We're definitely managing the work better and getting things done quicker.</p>
+</blockquote>
+<p>Ian O'Mahony, Komplete Engineers</p>`;
+
+const TRADE_CHANGE = `
+<h2>Do we have to change how we work?</h2>
+<p>No. Your app is built around how you already work, with everything in one place. Off-the-shelf software has to cater for thousands of businesses, which is why you end up bending to it.</p>
+<p>You see it before you pay for anything. If it looks like a fit after a 10 to 15 minute phone call, we build a free demo of your own app. It uses made-up sample data, so click anything.</p>
+<p>It won't be perfect and it isn't meant to be: it gives you something to react to.</p>`;
+
+const TRADE_COST = `
+<h2>What does it cost and how does it start?</h2>
+<p><span>${MARKETS[DEFAULT_MARKET].build}</span> for the build, then a monthly fee. You get the price in writing before anything is built, and a 50% deposit starts the build.</p>
+<p>It starts with a phone call of about 10 to 15 minutes. If it looks like a fit, we build a free demo. Then comes the price in writing, the build, and two weeks of field testing on your own jobs. You pay the second half once it is working for you.</p>
+<p>After that the monthly fee covers hosting, storage, support from real people and ongoing refinements to what we built. There is no charge per user.</p>
+<p><a href="/how-it-works">How it works, step by step</a></p>`;
+
+function tradeFaq(trade: TradeKey): string {
+  const own = FAQ_TRADE[trade];
+  return `
+<h2>Questions owners ask</h2>
+<dl>
+<dt>${FAQ_COST.q}</dt>
+<dd><span>${MARKETS[DEFAULT_MARKET].build}</span> ${FAQ_COST.a} <a href="${FAQ_COST.moreHref}">${FAQ_COST.more}</a>.</dd>
+<dt>${FAQ_CHANGE.q}</dt>
+<dd>${FAQ_CHANGE.a}</dd>
+<dt>${FAQ_AFTER.q}</dt>
+<dd>${FAQ_AFTER.a}</dd>
+<dt>${own.q}</dt>
+<dd>${own.a}</dd>
+</dl>`;
+}
+
 export const STATIC_HTML: Record<string, string> = {
   "/": `
 <main>
@@ -117,6 +168,7 @@ ${AI_CHANGE}
 <li>Windows and doors firms</li>
 <li>Other trades and service businesses</li>
 </ul>
+<p>See the <a href="/industries">industries we build custom apps for</a>.</p>
 <h2>What goes on your board</h2>
 <ul>
 <li>Every job from enquiry to invoice</li>
@@ -247,6 +299,7 @@ ${NAV}
 <li>A new project set up in one tap</li>
 <li>Every live project at a glance</li>
 </ul>
+<p>Read more about our <a href="/pest-control-app">job management app for pest control companies</a> and our <a href="/engineering-firm-software">project software for engineering firms</a>.</p>
 <p>We only name clients who have said we can. Their apps are their own, so we don't show screenshots of them here.</p>
 ${CLOSING}
 </main>`,
@@ -282,5 +335,132 @@ ${NAV}
 <li>Working with businesses in Ireland and overseas.</li>
 <li>Site visits by arrangement.</li>
 </ul>
+</main>`,
+
+  "/industries": `
+<main>
+<h1>Industries we build custom apps for</h1>
+<p>We build custom apps for trade and service businesses. These are the kinds of business we have built for so far.</p>
+<p>If yours isn't here, ask for a call and tell us how a job runs.</p>
+${NAV}
+<h2><a href="/window-and-door-software">Software for window and door companies</a></h2>
+<p>Every job from the first call to the final invoice, with measuring, fitting and what the van loads.</p>
+<h2><a href="/pest-control-app">Job management app for pest control companies</a></h2>
+<p>The technician scans each numbered unit, logs what they found, and the visit report writes itself.</p>
+<h2><a href="/engineering-firm-software">Project software for engineering firms</a></h2>
+<p>Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.</p>
+<h2><a href="/laboratory-sample-collection-app">Sample collection app for laboratories</a></h2>
+<p>Customers mark samples ready and the driver sees the pickups on a map in driving order.</p>
+${CLOSING}
+</main>`,
+
+  "/window-and-door-software": `
+<main>
+<h1>Software for window and door companies</h1>
+<p>If your window and door business runs on a quoting package, a spreadsheet, a whiteboard and a lot of phone calls, we can build you one app for all of it.</p>
+<p>Every job from the first call to the final invoice, who is measuring or fitting where tomorrow, and what the van needs to load in the morning.</p>
+<p>It is built around how your business already works, so you don't have to bend to someone else's software.</p>
+${NAV}
+<h2>What goes on your board</h2>
+<p>We have built apps for window and door companies. This is the kind of thing that goes on the board.</p>
+<h3>Every job in one place</h3>
+<p>Every job sits on one board, from the first request to fitted. You can see what is waiting on a price, what is ordered and what is booked for fitting.</p>
+<p>Every call and message lands in one list, and the customer list shows how each customer got in touch.</p>
+<h3>Measuring and fitting</h3>
+<p>The measuring list is on the measurer's phone, with a box for sizes and notes, so nothing is copied from a printed sheet.</p>
+<p>Fitting sits on a calendar with a column for each van, so you can see who is fitting where tomorrow.</p>
+<h3>On the phone in the van</h3>
+<p>Each crew sees its own day on the phone. The van's pick list for the morning shows what to load before it leaves.</p>
+<h3>After the fitting</h3>
+<p>Yearly services show when they are due, with who has said yes. Invoices are made from the job card, and you can see the profit on each finished job.</p>
+${TRADE_CHANGE}
+${TRADE_COST}
+${tradeFaq("windowDoor")}
+<p>We have also built a <a href="/pest-control-app">job management app for pest control companies</a>. See all the <a href="/industries">industries we build custom apps for</a>.</p>
+${CLOSING}
+</main>`,
+
+  "/pest-control-app": `
+<main>
+<h1>Job management app for pest control companies</h1>
+<p>If your technicians write up each visit by hand and someone in the office types it into a report, an app can do that for you.</p>
+<p>We build apps for pest control companies where the technician scans each numbered unit on a tablet, logs what they found, and the visit report writes itself.</p>
+${NAV}
+<h2>What goes on your board</h2>
+<h3>On the visit</h3>
+<p>The technician scans each numbered unit on a tablet and logs what they found at it. What was used on the visit is recorded on the report too.</p>
+<p>When the visit is done, the report has already written itself. Nobody types it up afterwards.</p>
+<h3>Reports your customer can read</h3>
+<p>A weekly service report comes out of the same visits. Fly killer and insect counts are tracked, and the higher counts are shaded so they stand out.</p>
+<p>Your customer can have their own login to see their own reports.</p>
+<h3>In the office</h3>
+<p>The office can work from one screen that shows what needs attention and who is out where. Visits that are due sit on a list, and each technician sees their own day on the phone.</p>
+<p>The sample screens on this page come from apps for other kinds of service business. They show the sort of screen we mean. Yours is built around your own visits and reports.</p>
+<h3>Visits that come round again</h3>
+<p>Regular visits do not depend on anyone's memory. The list shows what is due and who has said yes.</p>
+<h2>What our client says</h2>
+<h3>IPM Enviro</h3>
+<p>We built the inspection app IPM Enviro's technicians use on their visits.</p>
+<p><a href="/our-work">See the two apps we can name</a>.</p>
+${IPM_QUOTE}
+${TRADE_COST}
+${TRADE_CHANGE}
+${tradeFaq("pestControl")}
+<p>We have also built <a href="/engineering-firm-software">project software for engineering firms</a>. See all the <a href="/industries">industries we build custom apps for</a>.</p>
+${CLOSING}
+</main>`,
+
+  "/engineering-firm-software": `
+<main>
+<h1>Project software for engineering firms</h1>
+<p>Quotes, projects, site visits, certificates and invoices all have to end up on the right job.</p>
+<p>We build apps for engineering firms that chase your quotes for you, set a new project up in one tap and show every live project at a glance, built around how your firm already works.</p>
+${NAV}
+<h2>What goes on your board</h2>
+<h3>Quotes and projects</h3>
+<p>Quotes chase themselves, so a quote that has gone quiet is followed up without anyone having to remember it.</p>
+<p>A new project is set up in one tap. Every live project is there at a glance, and each one has a map link.</p>
+<h3>Site visits and notes</h3>
+<p>A site visit can be booked with up to four people. People can leave notes on a job and tag each other in them.</p>
+<h3>Certificates, letters and invoices</h3>
+<p>Certificates and letters are made from your own Word templates. Letters are laid out to fit a window envelope.</p>
+<p>Each job's documents are filed in that job's own folder in your cloud storage.</p>
+<p>Invoices come from the same job. One that has already been sent can be credited and reissued.</p>
+<h3>The numbers on each job</h3>
+<p>The sample screens on this page come from apps for other kinds of business. They show the sort of screen we mean, such as invoices made from the job and the profit on each finished job.</p>
+<p>Yours is built around your own projects, documents and wording.</p>
+<h2>What our client says</h2>
+<h3>Komplete Engineers</h3>
+<p>We built the app Komplete Engineers runs its quotes and projects on.</p>
+<p><a href="/our-work">See the two apps we can name</a>.</p>
+${KOMPLETE_QUOTE}
+${TRADE_COST}
+${TRADE_CHANGE}
+${tradeFaq("engineering")}
+<p>We have also built a <a href="/laboratory-sample-collection-app">sample collection app for laboratories</a>. See all the <a href="/industries">industries we build custom apps for</a>.</p>
+${CLOSING}
+</main>`,
+
+  "/laboratory-sample-collection-app": `
+<main>
+<h1>Sample collection app for laboratories</h1>
+<p>If your lab collects samples from customers by van, someone has to work out who has samples ready and in what order to collect them.</p>
+<p>We have built an app where the customer marks their samples as ready, the driver sees the pickups on a map in driving order, and the office sees the whole round.</p>
+${NAV}
+<h2>What goes on your board</h2>
+<p>We have built a sample collection app for a laboratory. Three kinds of people use it: the customer, the driver and the office.</p>
+<h3>For your customers</h3>
+<p>The customer marks their samples as ready. They sign in with a code sent to their email, so there are no passwords to lose.</p>
+<h3>For the driver</h3>
+<p>The driver sees the day's pickups on a map, in driving order. A new customer can be signed up by the driver or by the office.</p>
+<h3>For the office</h3>
+<p>The office sees the next run, adds pickups and keeps the customer list. The office can also look at what the driver sees and what a customer sees.</p>
+<p>The sample screens on this page come from apps for other kinds of business that send vans out. They show the sort of screen we mean. Yours is built around your own round and your own customers.</p>
+<p>It can start as one screen for one job and grow from there.</p>
+${TRADE_CHANGE}
+${TRADE_COST}
+${tradeFaq("laboratory")}
+<p>We have also built <a href="/window-and-door-software">software for window and door companies</a>. See all the <a href="/industries">industries we build custom apps for</a>.</p>
+${CLOSING}
 </main>`,
 };

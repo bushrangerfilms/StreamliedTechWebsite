@@ -37,14 +37,24 @@ const SHARED = {
   person: "client/src/components/person-block.tsx",
   ai: "client/src/components/ai-change.tsx",
   prices: "client/src/lib/pricing.ts",
+  tradeSections: "client/src/components/trade-sections.tsx",
+  tradeFaq: "client/src/lib/trade-faq.ts",
 };
 const PAGE_COMPONENTS: Record<string, string[]> = {
   "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.ai, SHARED.pricing, SHARED.prices, SHARED.quotes, SHARED.person, SHARED.closing],
   "/how-it-works": ["client/src/pages/how-it-works.tsx", SHARED.header, SHARED.pricing, SHARED.prices, SHARED.quotes, SHARED.closing],
   "/our-work": ["client/src/pages/our-work.tsx", SHARED.header, SHARED.closing],
   "/about": ["client/src/pages/about.tsx", SHARED.header, SHARED.person, SHARED.closing],
+  "/industries": ["client/src/pages/industries.tsx", SHARED.header, SHARED.closing],
+  "/window-and-door-software": ["client/src/pages/window-and-door-software.tsx", SHARED.header, SHARED.tradeSections, SHARED.tradeFaq, SHARED.prices, SHARED.closing],
+  "/pest-control-app": ["client/src/pages/pest-control-app.tsx", SHARED.header, SHARED.tradeSections, SHARED.tradeFaq, SHARED.prices, SHARED.quotes, SHARED.closing],
+  "/engineering-firm-software": ["client/src/pages/engineering-firm-software.tsx", SHARED.header, SHARED.tradeSections, SHARED.tradeFaq, SHARED.prices, SHARED.quotes, SHARED.closing],
+  "/laboratory-sample-collection-app": ["client/src/pages/laboratory-sample-collection-app.tsx", SHARED.header, SHARED.tradeSections, SHARED.tradeFaq, SHARED.prices, SHARED.closing],
   "/contact": ["client/src/pages/contact.tsx", SHARED.header, SHARED.form],
 };
+
+/** The trade pages: each shows the build price (never the whole-business one). */
+const TRADE_PAGES = ["/window-and-door-software", "/pest-control-app", "/engineering-firm-software", "/laboratory-sample-collection-app"];
 
 const collapse = (s: string) => s.replace(/\s+/g, " ").trim();
 
@@ -136,6 +146,10 @@ export function checkPrerenderMirrors(distDir = "dist/public"): void {
       const wrong = money.filter((m) => !allowed.includes(m));
       if (wrong.length) errors.push(`market ${market}: _m/${market}/${file} shows a price that is not this market's: ${wrong.join(", ")}`);
       const priced = route.path === "/" || route.path === "/how-it-works";
+      const buildOnly = TRADE_PAGES.includes(route.path);
+      if (buildOnly && !html.includes(MARKETS[market].build)) {
+        errors.push(`market ${market}: _m/${market}/${file} is missing its build price (${MARKETS[market].build})`);
+      }
       if (priced && !allowed.every((p) => html.includes(p))) {
         errors.push(`market ${market}: _m/${market}/${file} is missing one of its prices (${allowed.join(" / ")})`);
       }

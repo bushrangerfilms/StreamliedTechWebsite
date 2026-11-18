@@ -8,6 +8,11 @@ import HowItWorks from "@/pages/how-it-works";
 import OurWork from "@/pages/our-work";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
+import Industries from "@/pages/industries";
+import WindowAndDoorSoftware from "@/pages/window-and-door-software";
+import PestControlApp from "@/pages/pest-control-app";
+import EngineeringFirmSoftware from "@/pages/engineering-firm-software";
+import LaboratorySampleCollectionApp from "@/pages/laboratory-sample-collection-app";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Admin from "@/pages/admin";
@@ -25,6 +30,11 @@ function Router() {
       <Route path="/our-work" component={OurWork} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
+      <Route path="/industries" component={Industries} />
+      <Route path="/window-and-door-software" component={WindowAndDoorSoftware} />
+      <Route path="/pest-control-app" component={PestControlApp} />
+      <Route path="/engineering-firm-software" component={EngineeringFirmSoftware} />
+      <Route path="/laboratory-sample-collection-app" component={LaboratorySampleCollectionApp} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/dev" component={Admin} />

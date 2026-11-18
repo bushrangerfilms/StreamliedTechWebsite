@@ -357,6 +357,19 @@
 @media (min-width: 960px) { .st-hero__grid--shot { grid-template-columns: minmax(0, 1fr) minmax(0, 32rem); } }
 .st-hero__grid--shot .st-shot { margin-top: 0; }
 
+/* Trade pages: a short block of text with the sample screen it describes beside it. */
+.st-beside { display: grid; gap: 1.25rem; align-items: start; padding: 1.4rem 0; border-top: 1px solid var(--st-rule); }
+.st-beside:first-of-type { margin-top: 1rem; }
+@media (min-width: 860px) { .st-beside { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; } }
+.st-beside .st-shot { margin-top: 0; }
+.st-beside h3 + p { margin-top: 0; }
+.st-beside p + h3 { margin-top: 1.2rem; }
+.st-phones { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 24rem; }
+.st-phones .st-shot--phone { max-width: none; margin: 0; }
+.st-faq--plain { grid-template-columns: 1fr; }
+.st-faq--plain > div { display: block; }
+.st-card h2 a { color: var(--st-navy); text-underline-offset: 0.18em; }
+
 /* Contact: the form, with the email and where we are beside it. */
 .st-contact { display: grid; gap: 3rem; align-items: start; }
 @media (min-width: 900px) { .st-contact { grid-template-columns: minmax(0, 34rem) minmax(0, 1fr); gap: 4rem; } }
