@@ -20,7 +20,7 @@ const STAGES = [
   {
     icon: PhoneCall,
     title: "A discovery call and a free demo",
-    text: "We ring you for 10 to 15 minutes. If it looks like a fit, we build a free demo of your own app.",
+    text: "We call you for 10 to 15 minutes. If it looks like a fit, we build a free demo of your own app.",
   },
   {
     icon: ClipboardCheck,

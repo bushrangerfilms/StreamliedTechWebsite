@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { PRERENDER_ROUTES, SITE_ORIGIN, type RouteSeo } from "./client/src/lib/seo-routes";
 import { STATIC_HTML } from "./client/src/lib/seo-static-html";
+import { DEFAULT_MARKET, MARKETS, type Market } from "./client/src/lib/pricing";
 
 /**
  * Writes one static HTML file per route with that route's meta baked in.
@@ -49,19 +50,23 @@ export function prerenderMetaPlugin(): Plugin {
 
       const shell = fs.readFileSync(shellPath, "utf-8");
 
-      for (const route of PRERENDER_ROUTES) {
-        const html = applyMeta(shell, route);
-        // "/" is the shell itself; everything else becomes <path>.html, which
-        // the host rewrites to explicitly.
-        const target =
-          route.path === "/"
-            ? shellPath
-            : path.join(outDir, `${route.path.replace(/^\//, "")}.html`);
-
-        fs.mkdirSync(path.dirname(target), { recursive: true });
-        fs.writeFileSync(target, html, "utf-8");
-        console.log(`[prerender-meta] wrote ${path.relative(outDir, target)}`);
+      // Every page is written once per market, into _m/<market>/, with that
+      // market's prices already in the HTML (client/src/lib/pricing.ts).
+      // vercel.json sends each visitor to their market's folder by country.
+      for (const market of Object.keys(MARKETS) as Market[]) {
+        for (const route of PRERENDER_ROUTES) {
+          const html = forMarket(applyMeta(shell, route), market, route.path);
+          const file = route.path === "/" ? "index.html" : `${route.path.replace(/^\//, "")}.html`;
+          const target = path.join(outDir, "_m", market, file);
+          fs.mkdirSync(path.dirname(target), { recursive: true });
+          fs.writeFileSync(target, html, "utf-8");
+        }
+        console.log(`[prerender-meta] wrote _m/${market}/ (${PRERENDER_ROUTES.length} pages)`);
       }
+      // No index.html may be left at the root: Vercel serves a file before it
+      // looks at any rewrite, so a root index.html would give every country
+      // the same home page.
+      fs.rmSync(shellPath);
     },
   };
 }
@@ -91,6 +96,25 @@ function refuseDraftLegalPagesInProduction(): void {
         "Pete fills each [PETE TO CONFIRM] fact and approves the wording, and the draft box is removed, before go-live.",
     );
   }
+}
+
+/** One page's HTML for one market: its prices swapped in and its market marked. */
+function forMarket(html: string, market: Market, routePath: string): string {
+  const from = MARKETS[DEFAULT_MARKET];
+  const to = MARKETS[market];
+  const builds = html.split(from.build).length - 1;
+  const wholes = html.split(from.whole).length - 1;
+  const expected: Record<string, [number, number]> = { "/": [1, 1], "/how-it-works": [2, 1] };
+  const want = expected[routePath] ?? [0, 0];
+  if (builds !== want[0] || wholes !== want[1]) {
+    throw new Error(
+      `[prerender-meta] ${routePath}: expected ${want[0]} build price(s) and ${want[1]} whole-business price(s) in the page, found ${builds} and ${wholes}. A price must come from client/src/lib/pricing.ts and nowhere else.`,
+    );
+  }
+  const priced = html.split(from.whole).join(to.whole).split(from.build).join(to.build);
+  const marked = priced.replace(/<\/head>/i, `  <meta name="st-market" content="${market}" />\n  </head>`);
+  if (marked === priced) throw new Error(`[prerender-meta] ${routePath}: no </head> to mark the market in`);
+  return marked;
 }
 
 function escapeAttr(value: string): string {

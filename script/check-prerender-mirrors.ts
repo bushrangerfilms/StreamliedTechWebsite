@@ -19,6 +19,8 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { STATIC_HTML } from "../client/src/lib/seo-static-html";
 import { PRERENDER_ROUTES } from "../client/src/lib/seo-routes";
+import { DEFAULT_MARKET, MARKETS, type Market } from "../client/src/lib/pricing";
+import { expectedRewrites } from "./market-rewrites";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -34,10 +36,11 @@ const SHARED = {
   form: "client/src/components/ask-for-call-form.tsx",
   person: "client/src/components/person-block.tsx",
   ai: "client/src/components/ai-change.tsx",
+  prices: "client/src/lib/pricing.ts",
 };
 const PAGE_COMPONENTS: Record<string, string[]> = {
-  "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.ai, SHARED.pricing, SHARED.quotes, SHARED.person, SHARED.closing],
-  "/how-it-works": ["client/src/pages/how-it-works.tsx", SHARED.header, SHARED.pricing, SHARED.quotes, SHARED.closing],
+  "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.ai, SHARED.pricing, SHARED.prices, SHARED.quotes, SHARED.person, SHARED.closing],
+  "/how-it-works": ["client/src/pages/how-it-works.tsx", SHARED.header, SHARED.pricing, SHARED.prices, SHARED.quotes, SHARED.closing],
   "/our-work": ["client/src/pages/our-work.tsx", SHARED.header, SHARED.closing],
   "/about": ["client/src/pages/about.tsx", SHARED.header, SHARED.person, SHARED.closing],
   "/contact": ["client/src/pages/contact.tsx", SHARED.header, SHARED.form],
@@ -94,6 +97,8 @@ export function checkPrerenderMirrors(distDir = "dist/public"): void {
     const distFile = path.join(
       REPO_ROOT,
       distDir,
+      "_m",
+      DEFAULT_MARKET,
       routePath === "/" ? "index.html" : `${routePath.replace(/^\//, "")}.html`,
     );
     if (!existsSync(distFile)) {
@@ -111,6 +116,39 @@ export function checkPrerenderMirrors(distDir = "dist/public"): void {
         errors.push(`${routePath}: mirror text not found in ${componentRels.join(", ")}: "${chunk}"`);
       }
     }
+  }
+
+  // 3. Every market has every page, with its own prices and nobody else's.
+  for (const market of Object.keys(MARKETS) as Market[]) {
+    for (const route of PRERENDER_ROUTES) {
+      const file = route.path === "/" ? "index.html" : `${route.path.replace(/^\//, "")}.html`;
+      const full = path.join(REPO_ROOT, distDir, "_m", market, file);
+      if (!existsSync(full)) {
+        errors.push(`market ${market}: built file _m/${market}/${file} does not exist`);
+        continue;
+      }
+      const html = readFileSync(full, "utf-8");
+      if (!html.includes(`<meta name="st-market" content="${market}" />`)) {
+        errors.push(`market ${market}: _m/${market}/${file} does not carry its st-market tag`);
+      }
+      const money = html.match(/From (?:[A-Z]{0,2}[€£$])[\d,]+(?: \+ VAT| excl\. GST)?/g) ?? [];
+      const allowed = [MARKETS[market].build, MARKETS[market].whole];
+      const wrong = money.filter((m) => !allowed.includes(m));
+      if (wrong.length) errors.push(`market ${market}: _m/${market}/${file} shows a price that is not this market's: ${wrong.join(", ")}`);
+      const priced = route.path === "/" || route.path === "/how-it-works";
+      if (priced && !allowed.every((p) => html.includes(p))) {
+        errors.push(`market ${market}: _m/${market}/${file} is missing one of its prices (${allowed.join(" / ")})`);
+      }
+    }
+  }
+  if (existsSync(path.join(REPO_ROOT, distDir, "index.html"))) {
+    errors.push(`${distDir}/index.html exists: Vercel would serve it to every country ahead of the market rewrites`);
+  }
+
+  // 4. vercel.json sends each country to its market exactly as lib/pricing.ts says.
+  const vercel = JSON.parse(readFileSync(path.join(REPO_ROOT, "vercel.json"), "utf-8"));
+  if (JSON.stringify(vercel.rewrites) !== JSON.stringify(expectedRewrites())) {
+    errors.push("vercel.json rewrites do not match client/src/lib/pricing.ts. Run: npx tsx script/market-rewrites.ts --write");
   }
 
   const unmirrored = PRERENDER_ROUTES.filter((r) => !STATIC_HTML[r.path]).map((r) => r.path);

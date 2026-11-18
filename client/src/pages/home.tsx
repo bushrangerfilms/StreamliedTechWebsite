@@ -110,7 +110,7 @@ export default function Home() {
         <section className="st-hero" data-testid="section-hero">
           <div className="st-wrap st-hero__grid">
             <div>
-              <h1 data-testid="text-hero-headline">Custom apps for Irish trade and service businesses.</h1>
+              <h1 data-testid="text-hero-headline">Custom apps for trade and service businesses.</h1>
               <p className="st-lede">
                 Your own app, built around how you already work, with everything in one place. Not another subscription that can't talk to the rest.
               </p>

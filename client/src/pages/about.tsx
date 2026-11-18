@@ -16,8 +16,8 @@ import { ScreenShot } from "@/components/screen-shot";
 // this page stays empty until Pete supplies one.
 
 const WHERE = [
-  { icon: MapPin, text: "Based in Galway." },
-  { icon: Map, text: "Working with businesses across Ireland." },
+  { icon: MapPin, text: "Based in Galway, Ireland." },
+  { icon: Map, text: "Working with businesses in Ireland and overseas." },
   { icon: Car, text: "Site visits by arrangement." },
 ];
 
@@ -33,7 +33,7 @@ export default function About() {
             <div>
               <h1 data-testid="text-hero-headline">About Streamlined Tech</h1>
               <p className="st-lede">
-                We build custom apps for Irish trade and service businesses. Your own app, built around how you already work, with everything in one place.
+                We build custom apps for trade and service businesses. Your own app, built around how you already work, with everything in one place.
               </p>
             </div>
             <ScreenShot screen="today" eager />

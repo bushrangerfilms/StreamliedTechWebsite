@@ -15,7 +15,7 @@ export function ClosingCall() {
         <div>
           <h2>Tell us how you run things.</h2>
           <p>
-            Ask for a call and we'll ring you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.
+            Ask for a call and we'll call you for 10 to 15 minutes. If an app wouldn't help your business, we'll tell you.
           </p>
           <div className="st-closing__row">
             <Link href="/contact" className="st-btn" data-testid="button-call-closing">

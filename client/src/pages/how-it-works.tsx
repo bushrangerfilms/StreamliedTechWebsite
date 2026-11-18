@@ -35,6 +35,7 @@ import { PricingBlock } from "@/components/pricing-block";
 import { Testimonial } from "@/components/testimonial";
 import { IconTile } from "@/components/icon-tile";
 import { ScreenShot } from "@/components/screen-shot";
+import { currentPrices } from "@/lib/pricing";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/how-it-works"). Change both together:
@@ -96,12 +97,14 @@ const QUESTIONS = [
   {
     icon: Euro,
     q: "What does it cost?",
-    a: "From €4,900 + VAT for the build, then a monthly fee. You get the price in writing before anything is built.",
+    // The price itself is put in front of this by the page, from lib/pricing.ts.
+    priceFirst: true,
+    a: "for the build, then a monthly fee. You get the price in writing before anything is built.",
   },
   {
     icon: Link2,
-    q: "Will it work with my accounts package?",
-    a: "Usually. We'd keep your accounts software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.",
+    q: "Will it work with my accounting software?",
+    a: "Usually. We'd keep your accounting software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.",
   },
   {
     icon: MousePointerClick,
@@ -127,6 +130,7 @@ const QUESTIONS = [
 
 export default function HowItWorks() {
   useSeo(ROUTE_SEO.howItWorks);
+  const prices = currentPrices();
 
   return (
     <div className="st-page">
@@ -327,7 +331,10 @@ export default function HowItWorks() {
                 <div key={item.q}>
                   <IconTile icon={item.icon} small />
                   <dt>{item.q}</dt>
-                  <dd>{item.a}</dd>
+                  <dd>
+                    {"priceFirst" in item && item.priceFirst ? <span>{prices.build} </span> : null}
+                    {item.a}
+                  </dd>
                 </div>
               ))}
             </dl>

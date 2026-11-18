@@ -3,36 +3,283 @@
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ],
   "redirects": [
-    { "source": "/privacy-policy", "destination": "/privacy", "statusCode": 301 },
-    { "source": "/terms--conditions", "destination": "/terms", "statusCode": 301 },
-    { "source": "/home-8692-4637", "destination": "/", "statusCode": 301 },
-    { "source": "/business", "destination": "/", "statusCode": 301 },
-    { "source": "/galway", "destination": "/", "statusCode": 301 },
-    { "source": "/contractors", "destination": "/", "statusCode": 301 },
-    { "source": "/installers", "destination": "/", "statusCode": 301 },
-    { "source": "/australia", "destination": "/", "statusCode": 301 },
-    { "source": "/mining", "destination": "/", "statusCode": 301 },
-    { "source": "/au", "destination": "/", "statusCode": 301 },
-    { "source": "/ai-training", "destination": "/", "statusCode": 301 },
-    { "source": "/guide/set-up-ai-for-business-ireland", "destination": "/", "statusCode": 301 },
-    { "source": "/guide/:path*", "destination": "/", "statusCode": 301 },
-    { "source": "/ai-employees", "destination": "/", "statusCode": 301 },
-    { "source": "/ai-employees/:region", "destination": "/", "statusCode": 301 },
-    { "source": "/details", "destination": "/", "statusCode": 301 },
-    { "source": "/details/thanks", "destination": "/", "statusCode": 301 },
-    { "source": "/products", "destination": "/our-work", "statusCode": 301 }
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "statusCode": 301
+    },
+    {
+      "source": "/terms--conditions",
+      "destination": "/terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-8692-4637",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/business",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/galway",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contractors",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/installers",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/australia",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mining",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/au",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-training",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/guide/set-up-ai-for-business-ireland",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/guide/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-employees",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-employees/:region",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/details",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/details/thanks",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "destination": "/our-work",
+      "statusCode": 301
+    }
   ],
   "rewrites": [
-    { "source": "/how-it-works", "destination": "/how-it-works.html" },
-    { "source": "/our-work", "destination": "/our-work.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/((?!api/|_vercel/).*)", "destination": "/index.html" }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "GB"
+        }
+      ],
+      "destination": "/_m/gbp/index.html"
+    },
+    {
+      "source": "/:page(how-it-works|our-work|about|contact|privacy|terms)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "GB"
+        }
+      ],
+      "destination": "/_m/gbp/:page.html"
+    },
+    {
+      "source": "/((?!api/|_vercel/).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "GB"
+        }
+      ],
+      "destination": "/_m/gbp/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "US"
+        }
+      ],
+      "destination": "/_m/usd/index.html"
+    },
+    {
+      "source": "/:page(how-it-works|our-work|about|contact|privacy|terms)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "US"
+        }
+      ],
+      "destination": "/_m/usd/:page.html"
+    },
+    {
+      "source": "/((?!api/|_vercel/).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "US"
+        }
+      ],
+      "destination": "/_m/usd/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "AU"
+        }
+      ],
+      "destination": "/_m/aud/index.html"
+    },
+    {
+      "source": "/:page(how-it-works|our-work|about|contact|privacy|terms)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "AU"
+        }
+      ],
+      "destination": "/_m/aud/:page.html"
+    },
+    {
+      "source": "/((?!api/|_vercel/).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "AU"
+        }
+      ],
+      "destination": "/_m/aud/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|DE|GR|HU|IE|IT|LV|LT|LU|MT|NL|PL|PT|RO|SK|SI|ES|SE)"
+        }
+      ],
+      "destination": "/_m/eur-vat/index.html"
+    },
+    {
+      "source": "/:page(how-it-works|our-work|about|contact|privacy|terms)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|DE|GR|HU|IE|IT|LV|LT|LU|MT|NL|PL|PT|RO|SK|SI|ES|SE)"
+        }
+      ],
+      "destination": "/_m/eur-vat/:page.html"
+    },
+    {
+      "source": "/((?!api/|_vercel/).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|DE|GR|HU|IE|IT|LV|LT|LU|MT|NL|PL|PT|RO|SK|SI|ES|SE)"
+        }
+      ],
+      "destination": "/_m/eur-vat/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": ".+"
+        }
+      ],
+      "destination": "/_m/eur/index.html"
+    },
+    {
+      "source": "/:page(how-it-works|our-work|about|contact|privacy|terms)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": ".+"
+        }
+      ],
+      "destination": "/_m/eur/:page.html"
+    },
+    {
+      "source": "/((?!api/|_vercel/).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": ".+"
+        }
+      ],
+      "destination": "/_m/eur/index.html"
+    },
+    {
+      "source": "/",
+      "destination": "/_m/eur/index.html"
+    },
+    {
+      "source": "/:page(how-it-works|our-work|about|contact|privacy|terms)",
+      "destination": "/_m/eur/:page.html"
+    },
+    {
+      "source": "/((?!api/|_vercel/).*)",
+      "destination": "/_m/eur/index.html"
+    }
   ]
 }
