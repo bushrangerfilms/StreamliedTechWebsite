@@ -412,8 +412,6 @@ ${NAV}
 ${IPM_QUOTE}
 <h2>Komplete Engineers</h2>
 ${KOMPLETE_QUOTE}
-<p>A future customer's words will go here.</p>
-<p>A future customer's words will go here.</p>
 ${CLOSING}
 </main>`,
 

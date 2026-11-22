@@ -52,8 +52,7 @@ already work, with everything in one place." The only channels are SEO and cold 
   Custom Apps for Trade and Service Businesses..." as in `seo-routes.ts`; H1 "Questions people ask";
   fourteen answers from `client/src/lib/faq.ts`, with `FAQPage` markup equal to the visible text) and
   `/reviews` (H1 "What our customers say"; the two approved testimonials word for word, no star rating,
-  no Review or AggregateRating markup, two quiet empty slots that stay empty until Pete supplies a real
-  quote). Do not rewrite their copy, add answers to the FAQ or fill the empty slots. Each trade page
+  no Review or AggregateRating markup; no empty slots). Do not rewrite their copy, add answers to the FAQ or add review quotes. Each trade page
   has one H1 that is its title minus the brand, about 500 plain words, existing sample screens only, a
   visible four-question FAQ with matching `FAQPage` markup, a `Service` block (never an Offer, price,
   rating or review), and one call button: the page-end closing call. `/dev` stays `noindex`.
