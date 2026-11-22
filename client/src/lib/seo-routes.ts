@@ -1,4 +1,5 @@
-import { DEFAULT_MARKET, MARKETS } from "./pricing";
+import { DEFAULT_MARKET, MARKETS, inline } from "./pricing";
+import { faqPlainText as siteFaqPlainText } from "./faq";
 import { AREA_SERVED, faqPlainText, type TradeKey } from "./trade-faq";
 
 export const SITE_ORIGIN = "https://streamlinedai.tech";
@@ -71,7 +72,7 @@ function tradeJsonLd(trade: TradeKey, name: string, serviceType: string, descrip
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: faqPlainText(trade, MARKETS[DEFAULT_MARKET].build).map((item) => ({
+      mainEntity: faqPlainText(trade, MARKETS[DEFAULT_MARKET].build, inline(MARKETS[DEFAULT_MARKET].monthly)).map((item) => ({
         "@type": "Question",
         name: item.q,
         acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -134,6 +135,40 @@ export const ROUTE_SEO = {
     description:
       "The kinds of business we have built custom apps for: window and door companies, pest control, engineering firms and laboratories.",
     canonical: "/industries",
+  },
+  pricing: {
+    path: "/pricing",
+    title: "Pricing | Custom App Cost for Trade Businesses | Streamlined Tech",
+    // The default market's prices; the build swaps in each market's own.
+    description: `A build fee ${inline(MARKETS[DEFAULT_MARKET].build)}, then ${inline(MARKETS[DEFAULT_MARKET].monthly)}, which includes hosting, human support and ongoing app refinements. You get the price in writing before anything is built.`,
+    canonical: "/pricing",
+  },
+  faq: {
+    path: "/faq",
+    title: "FAQ | Custom Apps for Trade Businesses | Streamlined Tech",
+    description:
+      "Answers about cost, the free demo, how long a custom app takes, field testing, and who looks after it afterwards.",
+    canonical: "/faq",
+    // The answers are the visible answers word for word (client/src/lib/faq.ts).
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: siteFaqPlainText({
+        build: MARKETS[DEFAULT_MARKET].build,
+        monthly: inline(MARKETS[DEFAULT_MARKET].monthly),
+      }).map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+  },
+  reviews: {
+    path: "/reviews",
+    title: "Reviews | What Trade Businesses Say | Streamlined Tech",
+    description:
+      "What IPM Enviro and Komplete Engineers say about the custom apps Streamlined Tech built for them.",
+    canonical: "/reviews",
   },
   windowDoor: {
     path: "/window-and-door-software",
@@ -204,6 +239,9 @@ export const PRERENDER_ROUTES: RouteSeo[] = [
   ROUTE_SEO.about,
   ROUTE_SEO.contact,
   ROUTE_SEO.industries,
+  ROUTE_SEO.pricing,
+  ROUTE_SEO.faq,
+  ROUTE_SEO.reviews,
   ROUTE_SEO.windowDoor,
   ROUTE_SEO.pestControl,
   ROUTE_SEO.engineering,

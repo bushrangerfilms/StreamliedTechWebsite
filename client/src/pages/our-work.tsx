@@ -87,6 +87,9 @@ export default function OurWork() {
             <p style={{ marginTop: "1.75rem" }}>
               Read more about our <Link href="/pest-control-app">job management app for pest control companies</Link> and our <Link href="/engineering-firm-software">project software for engineering firms</Link>.
             </p>
+            <p>
+              <Link href="/reviews" data-testid="link-reviews">Read what our customers say.</Link>
+            </p>
             <p className="st-note">
               <ShieldCheck strokeWidth={1.5} aria-hidden="true" />
               <span>We only name clients who have said we can. Their apps are their own, so we don't show screenshots of them here.</span>

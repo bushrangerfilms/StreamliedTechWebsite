@@ -26,7 +26,8 @@
  * The trade pages and /industries (18 Nov 2026) have mirrors at the end.
  */
 
-import { DEFAULT_MARKET, MARKETS } from "./pricing";
+import { DEFAULT_MARKET, MARKETS, inline } from "./pricing";
+import { FAQ_ITEMS, FAQ_PRICING_LINK, faqParts } from "./faq";
 import { FAQ_AFTER, FAQ_CHANGE, FAQ_COST, FAQ_TRADE, type TradeKey } from "./trade-faq";
 
 // Prices in the mirrors are the default market's, taken from lib/pricing.ts.
@@ -45,7 +46,7 @@ const NAV = `
 const PRICING = `
 <h3>A custom app for your business</h3>
 <p>${MARKETS[DEFAULT_MARKET].build}</p>
-<p>then a monthly fee for hosting</p>
+<p>${MARKETS[DEFAULT_MARKET].monthly}</p>
 <p>Your own app, built around how you already work.</p>
 <ul>
 <li>Free demo first if it looks like a fit.</li>
@@ -123,7 +124,7 @@ const TRADE_CHANGE = `
 
 const TRADE_COST = `
 <h2>What does it cost and how does it start?</h2>
-<p><span>${MARKETS[DEFAULT_MARKET].build}</span> for the build, then a monthly fee. You get the price in writing before anything is built, and a 50% deposit starts the build.</p>
+<p><span>${MARKETS[DEFAULT_MARKET].build}</span> for the build, then <span>${inline(MARKETS[DEFAULT_MARKET].monthly)}</span>. You get the price in writing before anything is built, and a 50% deposit starts the build.</p>
 <p>It starts with a phone call of about 10 to 15 minutes. If it looks like a fit, we build a free demo. Then comes the price in writing, the build, and two weeks of field testing on your own jobs. You pay the second half once it is working for you.</p>
 <p>After that the monthly fee covers hosting, storage, support from real people and ongoing refinements to what we built. There is no charge per user.</p>
 <p><a href="/how-it-works">How it works, step by step</a></p>`;
@@ -134,14 +135,15 @@ function tradeFaq(trade: TradeKey): string {
 <h2>Questions owners ask</h2>
 <dl>
 <dt>${FAQ_COST.q}</dt>
-<dd><span>${MARKETS[DEFAULT_MARKET].build}</span> ${FAQ_COST.a} <a href="${FAQ_COST.moreHref}">${FAQ_COST.more}</a>.</dd>
+<dd><span>${MARKETS[DEFAULT_MARKET].build}</span> ${FAQ_COST.a} <span>${inline(MARKETS[DEFAULT_MARKET].monthly)}</span>. ${FAQ_COST.aEnd} <a href="${FAQ_COST.moreHref}">${FAQ_COST.more}</a>.</dd>
 <dt>${FAQ_CHANGE.q}</dt>
 <dd>${FAQ_CHANGE.a}</dd>
 <dt>${FAQ_AFTER.q}</dt>
 <dd>${FAQ_AFTER.a}</dd>
 <dt>${own.q}</dt>
 <dd>${own.a}</dd>
-</dl>`;
+</dl>
+<p><a href="/faq">More questions, answered plainly</a>.</p>`;
 }
 
 export const STATIC_HTML: Record<string, string> = {
@@ -207,8 +209,10 @@ ${AI_CHANGE}
 <p>We're definitely managing the work better and getting things done quicker.</p>
 </blockquote>
 <p>Ian O'Mahony, Komplete Engineers</p>
+<p><a href="/reviews">Read what our customers say.</a></p>
 <h2>What it costs</h2>
 ${PRICING}
+<p><a href="/pricing">See what a custom app costs, and what the monthly fee covers.</a></p>
 ${PERSON}
 ${CLOSING}
 </main>`,
@@ -266,7 +270,7 @@ ${PRICING}
 <h3>How long will it take?</h3>
 <p>The demo usually takes a few days. The build is done within 2 weeks of your go-ahead, and then there are two weeks of field testing on your own jobs.</p>
 <h3>What does it cost?</h3>
-<p><span>${MARKETS[DEFAULT_MARKET].build}</span> for the build, then a monthly fee. You get the price in writing before anything is built.</p>
+<p><span>${MARKETS[DEFAULT_MARKET].build}</span> for the build, then <span>${inline(MARKETS[DEFAULT_MARKET].monthly)}</span>. You get the price in writing before anything is built.</p>
 <h3>Will it work with my accounting software?</h3>
 <p>Usually. We'd keep your accounting software, because it keeps up with tax law for you, and link your app to it. Xero links best, then QuickBooks. Ask us about others.</p>
 <h3>I'm not technical. Will I break it?</h3>
@@ -277,6 +281,7 @@ ${PRICING}
 <p>Off-the-shelf software works if someone sits at a desk feeding it. Ours does the chasing without them.</p>
 <h3>Can't I just use ChatGPT?</h3>
 <p>For one-off jobs, yes. But you have to do it every time, and it forgets your rules.</p>
+<p><a href="/faq">More questions, answered plainly.</a></p>
 ${CLOSING}
 </main>`,
 
@@ -300,6 +305,7 @@ ${NAV}
 <li>Every live project at a glance</li>
 </ul>
 <p>Read more about our <a href="/pest-control-app">job management app for pest control companies</a> and our <a href="/engineering-firm-software">project software for engineering firms</a>.</p>
+<p><a href="/reviews">Read what our customers say.</a></p>
 <p>We only name clients who have said we can. Their apps are their own, so we don't show screenshots of them here.</p>
 ${CLOSING}
 </main>`,
@@ -351,6 +357,63 @@ ${NAV}
 <p>Quotes that chase themselves, a new project set up in one tap, and every live project at a glance.</p>
 <h2><a href="/laboratory-sample-collection-app">Sample collection app for laboratories</a></h2>
 <p>Customers mark samples ready and the driver sees the pickups on a map in driving order.</p>
+${CLOSING}
+</main>`,
+
+  "/pricing": `
+<main>
+<h1>Pricing</h1>
+<p>A build fee, then a monthly fee. You get the price in writing before anything is built.</p>
+${NAV}
+<h2>What it costs</h2>
+${PRICING}
+<h2>The monthly fee</h2>
+<p><span>${MARKETS[DEFAULT_MARKET].monthly}</span>, which includes hosting, human support and ongoing app refinements.</p>
+<p>It starts after field testing. There is no charge per user.</p>
+<p>A genuinely new feature is priced separately, at a fraction of the first build, and the monthly fee goes up a little with it.</p>
+<h2>How payment works</h2>
+<p>You get the price in writing before anything is built.</p>
+<p>A 50% deposit starts the build. You pay the second half once it is working on your own jobs.</p>
+<p><a href="/how-it-works">How it works, step by step</a></p>
+<p><a href="/faq">Questions people ask</a></p>
+${CLOSING}
+</main>`,
+
+  "/faq": `
+<main>
+<h1>Questions people ask</h1>
+<p>Plain answers about cost, the free demo, how long it takes, and who looks after the app afterwards.</p>
+${NAV}
+<dl>
+${FAQ_ITEMS.map(
+  (item) =>
+    `<dt>${item.q}</dt>\n<dd>${faqParts(item.a)
+      .map((part) =>
+        part.token === "build"
+          ? `<span>${MARKETS[DEFAULT_MARKET].build}</span>`
+          : part.token === "monthly"
+            ? `<span>${inline(MARKETS[DEFAULT_MARKET].monthly)}</span>`
+            : part.token === "link"
+              ? `<a href="${FAQ_PRICING_LINK.href}">${FAQ_PRICING_LINK.text}</a>`
+              : part.text,
+      )
+      .join("")}</dd>`,
+).join("\n")}
+</dl>
+${CLOSING}
+</main>`,
+
+  "/reviews": `
+<main>
+<h1>What our customers say</h1>
+<p>A few words from businesses we have built for. We only name the ones who have said we can.</p>
+${NAV}
+<h2>IPM Enviro</h2>
+${IPM_QUOTE}
+<h2>Komplete Engineers</h2>
+${KOMPLETE_QUOTE}
+<p>A future customer's words will go here.</p>
+<p>A future customer's words will go here.</p>
 ${CLOSING}
 </main>`,
 

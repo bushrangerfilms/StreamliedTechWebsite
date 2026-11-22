@@ -9,6 +9,24 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/agents.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -116,7 +134,7 @@
       "destination": "/_m/gbp/index.html"
     },
     {
-      "source": "/:page(how-it-works|our-work|about|contact|industries|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
+      "source": "/:page(how-it-works|our-work|about|contact|industries|pricing|faq|reviews|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
       "has": [
         {
           "type": "header",
@@ -127,7 +145,7 @@
       "destination": "/_m/gbp/:page.html"
     },
     {
-      "source": "/((?!api/|_vercel/).*)",
+      "source": "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)",
       "has": [
         {
           "type": "header",
@@ -149,7 +167,7 @@
       "destination": "/_m/usd/index.html"
     },
     {
-      "source": "/:page(how-it-works|our-work|about|contact|industries|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
+      "source": "/:page(how-it-works|our-work|about|contact|industries|pricing|faq|reviews|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
       "has": [
         {
           "type": "header",
@@ -160,7 +178,7 @@
       "destination": "/_m/usd/:page.html"
     },
     {
-      "source": "/((?!api/|_vercel/).*)",
+      "source": "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)",
       "has": [
         {
           "type": "header",
@@ -182,7 +200,7 @@
       "destination": "/_m/aud/index.html"
     },
     {
-      "source": "/:page(how-it-works|our-work|about|contact|industries|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
+      "source": "/:page(how-it-works|our-work|about|contact|industries|pricing|faq|reviews|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
       "has": [
         {
           "type": "header",
@@ -193,7 +211,7 @@
       "destination": "/_m/aud/:page.html"
     },
     {
-      "source": "/((?!api/|_vercel/).*)",
+      "source": "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)",
       "has": [
         {
           "type": "header",
@@ -215,7 +233,7 @@
       "destination": "/_m/eur-vat/index.html"
     },
     {
-      "source": "/:page(how-it-works|our-work|about|contact|industries|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
+      "source": "/:page(how-it-works|our-work|about|contact|industries|pricing|faq|reviews|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
       "has": [
         {
           "type": "header",
@@ -226,7 +244,7 @@
       "destination": "/_m/eur-vat/:page.html"
     },
     {
-      "source": "/((?!api/|_vercel/).*)",
+      "source": "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)",
       "has": [
         {
           "type": "header",
@@ -248,7 +266,7 @@
       "destination": "/_m/eur/index.html"
     },
     {
-      "source": "/:page(how-it-works|our-work|about|contact|industries|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
+      "source": "/:page(how-it-works|our-work|about|contact|industries|pricing|faq|reviews|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
       "has": [
         {
           "type": "header",
@@ -259,7 +277,7 @@
       "destination": "/_m/eur/:page.html"
     },
     {
-      "source": "/((?!api/|_vercel/).*)",
+      "source": "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)",
       "has": [
         {
           "type": "header",
@@ -274,11 +292,11 @@
       "destination": "/_m/eur/index.html"
     },
     {
-      "source": "/:page(how-it-works|our-work|about|contact|industries|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
+      "source": "/:page(how-it-works|our-work|about|contact|industries|pricing|faq|reviews|window-and-door-software|pest-control-app|engineering-firm-software|laboratory-sample-collection-app|privacy|terms)",
       "destination": "/_m/eur/:page.html"
     },
     {
-      "source": "/((?!api/|_vercel/).*)",
+      "source": "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)",
       "destination": "/_m/eur/index.html"
     }
   ]

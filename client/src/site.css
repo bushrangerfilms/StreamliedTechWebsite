@@ -145,6 +145,8 @@
 .st-section--tint .st-quote--short { background: var(--st-white); }
 /* Home: each client as a row, who they are on the left, their words on the right. */
 .st-clients--rows { grid-template-columns: 1fr; gap: 0; }
+.st-clients--rows .st-client--empty { display: block; padding: 1.1rem 0; }
+.st-client--empty p { margin: 0; color: var(--st-ink-soft); font-size: 0.95rem; }
 .st-clients--rows .st-client { display: grid; gap: 1.25rem; padding: 1.4rem 0; }
 @media (min-width: 760px) { .st-clients--rows .st-client { grid-template-columns: 20rem 1fr; gap: 3.5rem; } }
 .st-quote blockquote { margin: 0 0 0.7rem; font-family: var(--st-serif); font-size: 1.05rem; line-height: 1.5; color: var(--st-ink); }

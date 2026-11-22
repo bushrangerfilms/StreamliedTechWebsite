@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { PRERENDER_ROUTES, SITE_ORIGIN, type RouteSeo } from "./client/src/lib/seo-routes";
 import { STATIC_HTML } from "./client/src/lib/seo-static-html";
-import { DEFAULT_MARKET, MARKETS, type Market } from "./client/src/lib/pricing";
+import { DEFAULT_MARKET, MARKETS, inline, type Market } from "./client/src/lib/pricing";
 
 /**
  * Writes one static HTML file per route with that route's meta baked in.
@@ -102,25 +102,36 @@ function refuseDraftLegalPagesInProduction(): void {
 function forMarket(html: string, market: Market, routePath: string): string {
   const from = MARKETS[DEFAULT_MARKET];
   const to = MARKETS[market];
-  const builds = html.split(from.build).length - 1;
-  const wholes = html.split(from.whole).length - 1;
-  // A trade page carries the build price three times: the cost section, the
-  // visible FAQ answer and the same answer in the FAQPage structured data.
-  const expected: Record<string, [number, number]> = {
-    "/": [1, 1],
-    "/how-it-works": [2, 1],
-    "/window-and-door-software": [3, 0],
-    "/pest-control-app": [3, 0],
-    "/engineering-firm-software": [3, 0],
-    "/laboratory-sample-collection-app": [3, 0],
+  // Each figure appears in its capitalised form ("From €4,900") and in its
+  // sentence-middle form ("from €4,900"); both are counted and both swapped.
+  const count = (text: string) => html.split(text).length - 1 + (html.split(inline(text)).length - 1);
+  const builds = count(from.build);
+  const wholes = count(from.whole);
+  const monthlies = count(from.monthly);
+  // A trade page carries the build price and the monthly wording three times
+  // each: the cost section, the visible FAQ answer and the same answer in the
+  // FAQPage structured data. /pricing carries them in the page and in the
+  // description, og:description and twitter:description. /faq carries them in
+  // the cost answer and in its structured data.
+  const expected: Record<string, [number, number, number]> = {
+    "/": [1, 1, 1],
+    "/how-it-works": [2, 1, 2],
+    "/pricing": [4, 1, 5],
+    "/faq": [2, 0, 2],
+    "/window-and-door-software": [3, 0, 3],
+    "/pest-control-app": [3, 0, 3],
+    "/engineering-firm-software": [3, 0, 3],
+    "/laboratory-sample-collection-app": [3, 0, 3],
   };
-  const want = expected[routePath] ?? [0, 0];
-  if (builds !== want[0] || wholes !== want[1]) {
+  const want = expected[routePath] ?? [0, 0, 0];
+  if (builds !== want[0] || wholes !== want[1] || monthlies !== want[2]) {
     throw new Error(
-      `[prerender-meta] ${routePath}: expected ${want[0]} build price(s) and ${want[1]} whole-business price(s) in the page, found ${builds} and ${wholes}. A price must come from client/src/lib/pricing.ts and nowhere else.`,
+      `[prerender-meta] ${routePath}: expected ${want[0]} build price(s), ${want[1]} whole-business price(s) and ${want[2]} monthly price(s) in the page, found ${builds}, ${wholes} and ${monthlies}. A price must come from client/src/lib/pricing.ts and nowhere else.`,
     );
   }
-  const priced = html.split(from.whole).join(to.whole).split(from.build).join(to.build);
+  const swap = (text: string, one: string, two: string) =>
+    text.split(one).join(two).split(inline(one)).join(inline(two));
+  const priced = swap(swap(swap(html, from.whole, to.whole), from.build, to.build), from.monthly, to.monthly);
   const marked = priced.replace(/<\/head>/i, `  <meta name="st-market" content="${market}" />\n  </head>`);
   if (marked === priced) throw new Error(`[prerender-meta] ${routePath}: no </head> to mark the market in`);
   return marked;

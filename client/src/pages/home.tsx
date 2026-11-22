@@ -233,6 +233,12 @@ export default function Home() {
                 <Testimonial quote="kompleteMain" />
               </div>
             </div>
+            <p style={{ marginTop: "1.5rem" }}>
+              <Link href="/reviews" className="st-more" data-testid="link-reviews">
+                Read what our customers say.
+                <ArrowRight strokeWidth={1.5} aria-hidden="true" />
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -240,6 +246,12 @@ export default function Home() {
           <div className="st-wrap">
             <h2>What it costs</h2>
             <PricingBlock />
+            <p style={{ marginTop: "1.5rem" }}>
+              <Link href="/pricing" className="st-more" data-testid="link-pricing">
+                See what a custom app costs, and what the monthly fee covers.
+                <ArrowRight strokeWidth={1.5} aria-hidden="true" />
+              </Link>
+            </p>
           </div>
         </section>
 

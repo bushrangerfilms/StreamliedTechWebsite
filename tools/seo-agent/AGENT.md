@@ -6,6 +6,10 @@
 > prices by country, the five new pages and the rule that this agent never merges. The Atlas & Website
 > Product Manager owns these files (Pete, 17 Nov 2026); edits go through the Build Manager.
 >
+> Updated again on 22 Nov 2026 (job website-ai-ready-1122): the monthly fee is now published by country,
+> and `/pricing`, `/faq` and `/reviews`, `/llms.txt`, `/agents.md` and a WebMCP tool on `/contact` were
+> added (pull request awaiting Pete; until it is merged they are not live, so say so, do not "fix" it).
+>
 > **First run after Pete re-enables it: report only, no pull request.** Pete reads the report and confirms
 > the new config is right before any PR is opened.
 
@@ -36,13 +40,20 @@ already work, with everything in one place." The only channels are SEO and cold 
   first, then all six: seo-routes.ts, the page in `client/src/pages/`, App.tsx, vercel.json
   (regenerated), the sitemap, a mirror, and `config/checks.json`. `checks/route-wiring.mjs` and
   `checks/trade-pages.mjs` catch a missed one.
-- **Indexable routes (twelve):** `/` (`client/src/pages/home.tsx`; title "Custom Apps for Trade and Service
+- **Indexable routes (fifteen):** `/` (`client/src/pages/home.tsx`; title "Custom Apps for Trade and Service
   Businesses | Streamlined Tech"; H1 "Custom apps for trade and service businesses."; description
   "One board for your jobs, customers and paperwork, built around how you already work. Tell us how you
   run things and we'll build you a free demo."), `/how-it-works` (title "How It Works | Streamlined Tech",
   H1 "How it works"), `/our-work`, `/about`, `/contact` (the "Ask for a call" form), `/privacy`, `/terms`,
   and since 18 Nov 2026 the hub `/industries` and four trade pages: `/window-and-door-software`,
-  `/pest-control-app`, `/engineering-firm-software`, `/laboratory-sample-collection-app`. Each trade page
+  `/pest-control-app`, `/engineering-firm-software`, `/laboratory-sample-collection-app`. Three more were
+  added on 22 Nov 2026: `/pricing` (title "Pricing | Custom App Cost for Trade Businesses | Streamlined Tech",
+  H1 "Pricing"; the two price cards plus the monthly fee and how payment works), `/faq` (title "FAQ |
+  Custom Apps for Trade and Service Businesses..." as in `seo-routes.ts`; H1 "Questions people ask";
+  fourteen answers from `client/src/lib/faq.ts`, with `FAQPage` markup equal to the visible text) and
+  `/reviews` (H1 "What our customers say"; the two approved testimonials word for word, no star rating,
+  no Review or AggregateRating markup, two quiet empty slots that stay empty until Pete supplies a real
+  quote). Do not rewrite their copy, add answers to the FAQ or fill the empty slots. Each trade page
   has one H1 that is its title minus the brand, about 500 plain words, existing sample screens only, a
   visible four-question FAQ with matching `FAQPage` markup, a `Service` block (never an Offer, price,
   rating or review), and one call button: the page-end closing call. `/dev` stays `noindex`.
@@ -59,11 +70,21 @@ already work, with everything in one place." The only channels are SEO and cold 
   IPM's pharmaceutical client. Their two approved testimonials sit on the home page, `/how-it-works`,
   `/pest-control-app` (Eamonn Kennedy) and `/engineering-firm-software` (Ian O'Mahony), word for word.
   Never move, shorten or reword one, and never put one on another trade's page.
-- **Prices differ by country and live only in `client/src/lib/pricing.ts`:** two "From" prices per market
-  (a build fee, then a monthly fee with no monthly figure published; and The Whole Business Build, no
-  more than 2 a year), with that market's tax wording. Read prices there; never write a price, a
+- **Prices differ by country and live only in `client/src/lib/pricing.ts`:** three "From" prices per market
+  (a build fee; a monthly fee, "From €120 a month + VAT" in Ireland and the EU, "From £100 a month + VAT"
+  in the UK, "From $135 a month" in the US, "From A$210 a month excl. GST" in Australia and "From €120 a
+  month" elsewhere, which includes hosting, human support and ongoing app refinements; and The Whole
+  Business Build, no more than 2 a year), with that market's tax wording. All of them are approved by
+  Pete (monthly points 22 Nov 2026). Read prices there; never write a price, a
   currency symbol or tax wording anywhere else, and never in a title or description. Google mostly
   crawls from the US and will see the dollar page. No other figure, and never a finish date.
+- **Two files are for AI agents, not for Google:** `client/public/llms.txt` and `client/public/agents.md`.
+  They are real files, not routes, not in the sitemap, and `vercel.json` serves them as text and leaves
+  them out of the catch-all rewrite (`script/market-rewrites.ts`). Never turn them into redirects, never
+  list them in the sitemap, and never add a claim to them that is not on the site. `checks/route-wiring.mjs`
+  checks they exist and are served as text. The `/contact` form also offers one WebMCP tool,
+  `ask_for_call` (`client/src/lib/webmcp.ts`); never add a second tool or send agent enquiries anywhere
+  but the form's own request.
 - **Process:** a 10 to 15 minute phone call; a free demo within a few days if it looks like a fit; price
   in writing, 50% deposit; build done within 2 weeks of go-ahead; two weeks of field testing; then the
   monthly fee covers hosting, support from real people and ongoing refinements.
@@ -319,7 +340,7 @@ opened, open one small PR titled `chore(seo): run log YYYY-MM-DD` with only that
 
 - The site was rewritten to one offer on 17 Nov 2026, made worldwide with prices by country on 18 Nov
   2026 (PR 70), and five pages were added the same day (the hub and four trade pages; see "What the site
-  is"). The twelve indexable routes are the only routes in `marketing_routes`; `/dev` is the only
+  is"). The fifteen indexable routes (twelve until 22 Nov 2026) are the only routes in `marketing_routes`; `/dev` is the only
   `noindex` route; there are no aliases.
 - The five new pages ship in the pull request "SEO trade pages". Until Pete merges it they are not live,
   so a first run before that merge will find them missing from the live site: say so, do not "fix" it.

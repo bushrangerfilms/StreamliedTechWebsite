@@ -22,21 +22,41 @@
  * JavaScript runs. The build fails if vercel.json and MARKET_COUNTRIES drift
  * (script/check-prerender-mirrors.ts).
  *
- * THE GBP, USD AND AUD FIGURES ARE PROPOSALS (Claude, 18 Nov 2026), not yet
- * approved by Pete. The euro figures are his (17 Nov 2026) and must not change.
+ * EVERY FIGURE IN THE TABLE IS APPROVED BY PETE. The euro build and Whole
+ * Business figures are his (17 Nov 2026); the GBP, USD and AUD build and Whole
+ * Business points he approved on 18 Nov 2026 at 13:19; all five monthly
+ * points he approved on 22 Nov 2026 at 13:57. The euro figures must not change.
+ *
+ * The monthly fee includes hosting, human support and ongoing app refinements.
+ * Its tax wording follows the same market rules as the build fee.
  */
 
 export type Market = "eur" | "eur-vat" | "gbp" | "usd" | "aud";
 
 export const DEFAULT_MARKET: Market = "eur";
 
-export const MARKETS: Record<Market, { currency: string; build: string; whole: string }> = {
-  eur: { currency: "EUR", build: "From €4,900", whole: "From €120,000" },
-  "eur-vat": { currency: "EUR", build: "From €4,900 + VAT", whole: "From €120,000 + VAT" },
-  gbp: { currency: "GBP", build: "From £4,200 + VAT", whole: "From £100,000 + VAT" },
-  usd: { currency: "USD", build: "From $5,500", whole: "From $130,000" },
-  aud: { currency: "AUD", build: "From A$8,500 excl. GST", whole: "From A$200,000 excl. GST" },
+export const MARKETS: Record<Market, { currency: string; build: string; whole: string; monthly: string }> = {
+  eur: { currency: "EUR", build: "From €4,900", whole: "From €120,000", monthly: "From €120 a month" },
+  "eur-vat": { currency: "EUR", build: "From €4,900 + VAT", whole: "From €120,000 + VAT", monthly: "From €120 a month + VAT" },
+  gbp: { currency: "GBP", build: "From £4,200 + VAT", whole: "From £100,000 + VAT", monthly: "From £100 a month + VAT" },
+  usd: { currency: "USD", build: "From $5,500", whole: "From $130,000", monthly: "From $135 a month" },
+  aud: { currency: "AUD", build: "From A$8,500 excl. GST", whole: "From A$200,000 excl. GST", monthly: "From A$210 a month excl. GST" },
 };
+
+/** The same wording with a lower-case first letter, for the middle of a sentence ("then from €120 a month"). */
+export function inline(price: string): string {
+  return price.charAt(0).toLowerCase() + price.slice(1);
+}
+
+/**
+ * The approved monthly wording for a market, e.g. "From €120 a month + VAT".
+ * `inline: true` gives it for the middle of a sentence ("from €120 a month + VAT").
+ * Defaults to the visitor's market. Never write a monthly figure anywhere else.
+ */
+export function monthlyDisplay(options: { market?: Market; inline?: boolean } = {}): string {
+  const text = MARKETS[options.market ?? currentMarket()].monthly;
+  return options.inline ? inline(text) : text;
+}
 
 /** The 27 EU member states, as two-letter country codes. */
 export const EU_COUNTRIES = [
