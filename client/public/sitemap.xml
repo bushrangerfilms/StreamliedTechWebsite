@@ -31,6 +31,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://streamlinedai.tech/pricing</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://streamlinedai.tech/faq</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://streamlinedai.tech/reviews</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://streamlinedai.tech/window-and-door-software</loc>
     <lastmod>2026-11-18</lastmod>
     <priority>0.7</priority>

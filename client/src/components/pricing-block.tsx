@@ -2,12 +2,12 @@ import { Check } from "lucide-react";
 import { currentPrices } from "@/lib/pricing";
 
 /**
- * The pricing block (home and /how-it-works only). Two plain cards, same
- * size, the cheaper one first. The two figures and their tax wording come
- * from client/src/lib/pricing.ts, by the visitor's market; never write a
- * price in this file. No more than 2 of the second a year. No other figure
- * is published and no monthly figure. The cards carry no button: the page's
- * one call block follows at the end.
+ * The pricing block (home, /how-it-works and /pricing). Two plain cards, same
+ * size, the cheaper one first. The figures (build, monthly and Whole Business)
+ * and their tax wording come from client/src/lib/pricing.ts, by the visitor's
+ * market; never write a price in this file. No more than 2 of the second a
+ * year. The cards carry no button: the page's one call block follows at the
+ * end.
  *
  * The approved paragraphs are shown one sentence to a line with a tick, so
  * neither card is a slab of text. The words are unchanged.
@@ -48,7 +48,7 @@ export function PricingBlock() {
         <h3>A custom app for your business</h3>
         <p className="st-price__figure">
           {prices.build}
-          <small>then a monthly fee for hosting</small>
+          <small>{prices.monthly}</small>
         </p>
         <p>Your own app, built around how you already work.</p>
         <Ticks items={ONE_APP} />

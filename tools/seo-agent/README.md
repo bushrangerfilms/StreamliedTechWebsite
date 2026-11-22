@@ -7,6 +7,10 @@ safely fixable. **It opens pull requests only and never merges one.**
 **Status: paused by Pete on 17 Nov 2026, and it stays paused.** Re-enabling the routine is Pete's
 call, in his own routine settings. The first run after that is report only, with no pull request.
 
+- 22 Nov 2026, job website-ai-ready-1122: files updated for the monthly price by country, the pages
+  `/pricing`, `/faq` and `/reviews` (fifteen routes), `llms.txt` and `agents.md`; `checks/route-wiring.mjs`
+  now checks the two agent files exist, are served as text and are left out of the catch-all. Agent still
+  paused.
 - 18 Nov 2026, PM brief seo-trade-pages-1118: files updated for the worldwide site, prices by country
   and twelve routes (the hub `/industries` and four trade pages added); new `config/trades-built.json`
   and `checks/trade-pages.mjs`; `checks/route-wiring.mjs` now understands the per-market rewrites;

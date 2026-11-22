@@ -9,6 +9,9 @@ import OurWork from "@/pages/our-work";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Industries from "@/pages/industries";
+import Pricing from "@/pages/pricing";
+import Faq from "@/pages/faq";
+import Reviews from "@/pages/reviews";
 import WindowAndDoorSoftware from "@/pages/window-and-door-software";
 import PestControlApp from "@/pages/pest-control-app";
 import EngineeringFirmSoftware from "@/pages/engineering-firm-software";
@@ -31,6 +34,9 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/industries" component={Industries} />
+      <Route path="/pricing" component={Pricing} />
+      <Route path="/faq" component={Faq} />
+      <Route path="/reviews" component={Reviews} />
       <Route path="/window-and-door-software" component={WindowAndDoorSoftware} />
       <Route path="/pest-control-app" component={PestControlApp} />
       <Route path="/engineering-firm-software" component={EngineeringFirmSoftware} />

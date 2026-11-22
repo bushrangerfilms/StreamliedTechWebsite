@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { registerAskForCallTool, validateCall, type CallErrors, type CallValues, type ToolResult } from "@/lib/webmcp";
 
-type Errors = { name?: string; phone?: string; email?: string };
+type Errors = CallErrors;
 
 /**
  * The "Ask for a call" form. It posts to /api/details-lead with variant
@@ -8,6 +9,12 @@ type Errors = { name?: string; phone?: string; email?: string };
  * server/details-lead-core.ts). No cookie is set and nothing is sent to any
  * other service. The line under the button says what happens; keep it true
  * to that server code.
+ *
+ * Agents: where the browser offers WebMCP (document.modelContext), the form
+ * also registers one tool, ask_for_call (client/src/lib/webmcp.ts). The tool
+ * fills this same form and sends through the same checks and the same
+ * request below, honeypot included; it is not a second way in. A browser
+ * without WebMCP sees no difference.
  */
 export function AskForCallForm() {
   const [name, setName] = useState("");
@@ -20,41 +27,70 @@ export function AskForCallForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [state, setState] = useState<"idle" | "sending" | "sent" | "failed">("idle");
 
-  const validate = () => {
-    const next: Errors = {};
-    if (name.trim().length < 2) next.name = "Please tell us your name.";
-    if (phone.replace(/\D/g, "").length < 7) next.phone = "We need a number to call you on.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) next.email = "That email doesn't look right.";
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (state === "sending") return;
-    if (!validate()) return;
+  const post = async (values: CallValues, signal?: AbortSignal) => {
     setState("sending");
     try {
       const res = await fetch("/api/details-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal,
         body: JSON.stringify({
           variant: "call",
-          name: name.trim(),
-          phone: phone.trim(),
-          email: email.trim(),
-          company: company.trim() || null,
-          about: about.trim() || null,
+          name: values.name.trim(),
+          phone: values.phone.trim(),
+          email: values.email.trim(),
+          company: values.company.trim() || null,
+          about: values.about.trim() || null,
           source: "website",
           website,
         }),
       });
       const data = await res.json().catch(() => null);
-      setState(res.ok && data?.success ? "sent" : "failed");
+      const ok = Boolean(res.ok && data?.success);
+      setState(ok ? "sent" : "failed");
+      return ok;
     } catch {
       setState("failed");
+      return false;
     }
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (state === "sending") return;
+    const values = { name, phone, email, company, about };
+    const next = validateCall(values);
+    setErrors(next);
+    if (Object.keys(next).length > 0) return;
+    await post(values);
+  };
+
+  // The agent's way in (WebMCP). It puts the details in this form so they
+  // show on screen, and sends only when the agent asks it to (submit: true),
+  // through the same checks and the same request as the button.
+  const agent = useRef<(values: CallValues, submit: boolean, signal: AbortSignal) => Promise<ToolResult>>(null);
+  agent.current = async (values, submit, signal) => {
+    setName(values.name);
+    setPhone(values.phone);
+    setEmail(values.email);
+    setCompany(values.company);
+    setAbout(values.about);
+    const next = validateCall(values);
+    setErrors(next);
+    if (Object.keys(next).length > 0) return { ok: false, message: "The form was not filled in correctly.", errors: next };
+    if (!submit) return { ok: true, message: "The form is filled in and has not been sent. Send it again with submit set to true, or press Ask for a call." };
+    if (state === "sending") return { ok: false, message: "The form is already being sent." };
+    const sent = await post(values, signal);
+    return sent
+      ? { ok: true, message: "Sent. One of our team will call, normally within 24 hours." }
+      : { ok: false, message: "That didn't send. Please try again, or use the email address on the page." };
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    registerAskForCallTool((values, submit, signal) => agent.current!(values, submit, signal), controller.signal);
+    return () => controller.abort();
+  }, []);
 
   if (state === "sent") {
     return (

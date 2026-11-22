@@ -26,7 +26,9 @@ function rulesFor(market: Market, has?: Has[]): Rewrite[] {
     withHas({ source: "/", destination: `/_m/${market}/index.html` }),
     withHas({ source: `/:page(${pages})`, destination: `/_m/${market}/:page.html` }),
     // Everything else that is not a file, an API route or Vercel's own path: the app shell.
-    withHas({ source: "/((?!api/|_vercel/).*)", destination: `/_m/${market}/index.html` }),
+    // /llms.txt and /agents.md are real files for agents (client/public); they
+    // are left out so a missing one can never fall through to the home page.
+    withHas({ source: "/((?!api/|_vercel/|llms\\.txt$|agents\\.md$).*)", destination: `/_m/${market}/index.html` }),
   ];
 }
 

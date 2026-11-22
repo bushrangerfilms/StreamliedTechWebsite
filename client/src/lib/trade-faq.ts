@@ -5,8 +5,8 @@
  * crawl copy (client/src/lib/seo-static-html.ts). Marked-up answers must be
  * the visible answers, word for word.
  *
- * The price is never written here. The cost answer starts with the visitor's
- * market price from client/src/lib/pricing.ts.
+ * The price is never written here. The cost answer carries the visitor's
+ * market build price and monthly wording from client/src/lib/pricing.ts.
  *
  * Answers come only from the live site and the allowed facts in the PM brief
  * of 18 Nov 2026 (streamlined-bot-files atlas-website/briefs/
@@ -20,8 +20,10 @@ export const AREA_SERVED = ["Ireland", "United Kingdom", "United States", "Austr
 
 export const FAQ_COST = {
   q: "How much does it cost?",
-  // The price is put in front of this sentence.
-  a: "for the build, then a monthly fee. You get the price in writing before anything is built.",
+  // The build price is put in front of this, and the monthly wording after it
+  // (both from client/src/lib/pricing.ts); aEnd follows the monthly wording.
+  a: "for the build, then",
+  aEnd: "You get the price in writing before anything is built.",
   more: "How it works, step by step",
   moreHref: "/how-it-works",
 };
@@ -55,10 +57,10 @@ export const FAQ_TRADE: Record<TradeKey, { q: string; a: string }> = {
   },
 };
 
-/** The four questions as plain text, with the price in the cost answer. */
-export function faqPlainText(trade: TradeKey, buildPrice: string): { q: string; a: string }[] {
+/** The four questions as plain text, with the prices in the cost answer. */
+export function faqPlainText(trade: TradeKey, buildPrice: string, monthlyInline: string): { q: string; a: string }[] {
   return [
-    { q: FAQ_COST.q, a: `${buildPrice} ${FAQ_COST.a} ${FAQ_COST.more}.` },
+    { q: FAQ_COST.q, a: `${buildPrice} ${FAQ_COST.a} ${monthlyInline}. ${FAQ_COST.aEnd} ${FAQ_COST.more}.` },
     FAQ_CHANGE,
     FAQ_AFTER,
     FAQ_TRADE[trade],

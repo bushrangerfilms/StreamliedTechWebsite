@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import {
   ArrowRight,
   BarChart3,
@@ -35,7 +36,7 @@ import { PricingBlock } from "@/components/pricing-block";
 import { Testimonial } from "@/components/testimonial";
 import { IconTile } from "@/components/icon-tile";
 import { ScreenShot } from "@/components/screen-shot";
-import { currentPrices } from "@/lib/pricing";
+import { currentPrices, inline } from "@/lib/pricing";
 
 // Copy on this page is mirrored word for word in
 // client/src/lib/seo-static-html.ts ("/how-it-works"). Change both together:
@@ -99,7 +100,8 @@ const QUESTIONS = [
     q: "What does it cost?",
     // The price itself is put in front of this by the page, from lib/pricing.ts.
     priceFirst: true,
-    a: "for the build, then a monthly fee. You get the price in writing before anything is built.",
+    a: "for the build, then",
+    aEnd: "You get the price in writing before anything is built.",
   },
   {
     icon: Link2,
@@ -332,12 +334,22 @@ export default function HowItWorks() {
                   <IconTile icon={item.icon} small />
                   <dt>{item.q}</dt>
                   <dd>
-                    {"priceFirst" in item && item.priceFirst ? <span>{prices.build} </span> : null}
+                    {"priceFirst" in item && item.priceFirst ? <span>{prices.build}</span> : null}
+                    {"priceFirst" in item && item.priceFirst ? " " : null}
                     {item.a}
+                    {"aEnd" in item ? (
+                      <>
+                        {" "}
+                        <span>{inline(prices.monthly)}</span>. {item.aEnd}
+                      </>
+                    ) : null}
                   </dd>
                 </div>
               ))}
             </dl>
+            <p>
+              <Link href="/faq" data-testid="link-more-questions">More questions, answered plainly.</Link>
+            </p>
           </div>
         </section>
 

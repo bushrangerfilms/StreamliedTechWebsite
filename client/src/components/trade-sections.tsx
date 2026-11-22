@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { currentPrices } from "@/lib/pricing";
+import { currentPrices, inline } from "@/lib/pricing";
 import { FAQ_AFTER, FAQ_CHANGE, FAQ_COST, FAQ_TRADE, type TradeKey } from "@/lib/trade-faq";
 
 // The parts every trade page shares. The wording is the live site's own
@@ -33,7 +33,7 @@ export function TradeCost() {
       <div className="st-wrap st-narrow">
         <h2>What does it cost and how does it start?</h2>
         <p>
-          <span>{prices.build}</span> for the build, then a monthly fee. You get the price in writing before anything is built, and a 50% deposit starts the build.
+          <span>{prices.build}</span> for the build, then <span>{inline(prices.monthly)}</span>. You get the price in writing before anything is built, and a 50% deposit starts the build.
         </p>
         <p>
           It starts with a phone call of about 10 to 15 minutes. If it looks like a fit, we build a free demo. Then comes the price in writing, the build, and two weeks of field testing on your own jobs. You pay the second half once it is working for you.
@@ -63,7 +63,7 @@ export function TradeFaq({ trade }: { trade: TradeKey }) {
           <div>
             <dt>{FAQ_COST.q}</dt>
             <dd>
-              <span>{prices.build}</span> {FAQ_COST.a} <Link href={FAQ_COST.moreHref}>{FAQ_COST.more}</Link>.
+              <span>{prices.build}</span> {FAQ_COST.a} <span>{inline(prices.monthly)}</span>. {FAQ_COST.aEnd} <Link href={FAQ_COST.moreHref}>{FAQ_COST.more}</Link>.
             </dd>
           </div>
           <div>
@@ -79,6 +79,9 @@ export function TradeFaq({ trade }: { trade: TradeKey }) {
             <dd>{tradeQuestion.a}</dd>
           </div>
         </dl>
+        <p>
+          <Link href="/faq" data-testid="link-more-questions">More questions, answered plainly</Link>.
+        </p>
       </div>
     </section>
   );

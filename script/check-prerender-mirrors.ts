@@ -19,7 +19,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { STATIC_HTML } from "../client/src/lib/seo-static-html";
 import { PRERENDER_ROUTES } from "../client/src/lib/seo-routes";
-import { DEFAULT_MARKET, MARKETS, type Market } from "../client/src/lib/pricing";
+import { DEFAULT_MARKET, MARKETS, inline, type Market } from "../client/src/lib/pricing";
 import { expectedRewrites } from "./market-rewrites";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -39,10 +39,14 @@ const SHARED = {
   prices: "client/src/lib/pricing.ts",
   tradeSections: "client/src/components/trade-sections.tsx",
   tradeFaq: "client/src/lib/trade-faq.ts",
+  faq: "client/src/lib/faq.ts",
 };
 const PAGE_COMPONENTS: Record<string, string[]> = {
   "/": ["client/src/pages/home.tsx", SHARED.header, SHARED.ai, SHARED.pricing, SHARED.prices, SHARED.quotes, SHARED.person, SHARED.closing],
   "/how-it-works": ["client/src/pages/how-it-works.tsx", SHARED.header, SHARED.pricing, SHARED.prices, SHARED.quotes, SHARED.closing],
+  "/pricing": ["client/src/pages/pricing.tsx", SHARED.header, SHARED.pricing, SHARED.prices, SHARED.closing],
+  "/faq": ["client/src/pages/faq.tsx", SHARED.header, SHARED.faq, SHARED.prices, SHARED.closing],
+  "/reviews": ["client/src/pages/reviews.tsx", SHARED.header, SHARED.quotes, SHARED.closing],
   "/our-work": ["client/src/pages/our-work.tsx", SHARED.header, SHARED.closing],
   "/about": ["client/src/pages/about.tsx", SHARED.header, SHARED.person, SHARED.closing],
   "/industries": ["client/src/pages/industries.tsx", SHARED.header, SHARED.closing],
@@ -141,14 +145,20 @@ export function checkPrerenderMirrors(distDir = "dist/public"): void {
       if (!html.includes(`<meta name="st-market" content="${market}" />`)) {
         errors.push(`market ${market}: _m/${market}/${file} does not carry its st-market tag`);
       }
-      const money = html.match(/From (?:[A-Z]{0,2}[€£$])[\d,]+(?: \+ VAT| excl\. GST)?/g) ?? [];
-      const allowed = [MARKETS[market].build, MARKETS[market].whole];
-      const wrong = money.filter((m) => !allowed.includes(m));
+      const money = html.match(/[Ff]rom (?:[A-Z]{0,2}[€£$])\d+(?:,\d{3})*(?: a month)?(?: \+ VAT| excl\. GST)?/g) ?? [];
+      const allowed = [MARKETS[market].build, MARKETS[market].whole, MARKETS[market].monthly];
+      const wrong = money.filter((m) => !allowed.some((a) => a === m || inline(a) === m));
       if (wrong.length) errors.push(`market ${market}: _m/${market}/${file} shows a price that is not this market's: ${wrong.join(", ")}`);
-      const priced = route.path === "/" || route.path === "/how-it-works";
+      const priced = route.path === "/" || route.path === "/how-it-works" || route.path === "/pricing";
       const buildOnly = TRADE_PAGES.includes(route.path);
       if (buildOnly && !html.includes(MARKETS[market].build)) {
         errors.push(`market ${market}: _m/${market}/${file} is missing its build price (${MARKETS[market].build})`);
+      }
+      if (route.path !== "/faq" && buildOnly && !html.includes(inline(MARKETS[market].monthly))) {
+        errors.push(`market ${market}: _m/${market}/${file} is missing its monthly wording (${MARKETS[market].monthly})`);
+      }
+      if (route.path === "/faq" && !(html.includes(MARKETS[market].build) && html.includes(inline(MARKETS[market].monthly)))) {
+        errors.push(`market ${market}: _m/${market}/${file} is missing its prices (${MARKETS[market].build} / ${inline(MARKETS[market].monthly)})`);
       }
       if (priced && !allowed.every((p) => html.includes(p))) {
         errors.push(`market ${market}: _m/${market}/${file} is missing one of its prices (${allowed.join(" / ")})`);

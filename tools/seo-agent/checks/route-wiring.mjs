@@ -129,6 +129,18 @@ for (const ca of catchAlls) {
   const pageIdx = rewrites.findIndex(r => /^\/:page\(/.test(r.source) && marketOf(r) === m && JSON.stringify(r.has || null) === JSON.stringify(ca.has || null));
   if (pageIdx === -1 || pageIdx > rewrites.indexOf(ca)) findings.push({ severity: 'error', kind: 'catch_all_before_page_rule', detail: `In vercel.json the catch-all for /_m/${m}/ comes before its page rule, so pages there would never match` });
 }
+// /llms.txt and /agents.md (22 Nov 2026, job website-ai-ready-1122) are real files for AI agents. They are
+// not routes and not in the sitemap. Each catch-all must leave them out, or a missing file would fall
+// through to the home page HTML again, and each must be served as text.
+let vercelHeaders = [];
+try { vercelHeaders = JSON.parse(read(S.vercel_json) || '{}').headers || []; } catch { /* reported above */ }
+for (const f of ['llms.txt', 'agents.md']) {
+  if (!existsSync(path.join(REPO_ROOT, S.public_dir, f))) findings.push({ severity: 'error', kind: 'agent_file_missing', detail: `${S.public_dir}/${f} is missing (it must be a real file, not a route)` });
+  for (const ca of catchAlls) {
+    if (!ca.source.includes(f.replace('.', '\\.'))) findings.push({ severity: 'error', kind: 'catch_all_serves_agent_file', detail: `A catch-all rewrite in vercel.json does not exclude /${f}, so a missing file would return the home page. Regenerate: npx tsx script/market-rewrites.ts --write` });
+  }
+  if (!vercelHeaders.some(h => h.source === '/' + f && (h.headers || []).some(x => /^content-type$/i.test(x.key) && /^text\//.test(x.value)))) findings.push({ severity: 'error', kind: 'agent_file_content_type', detail: `vercel.json has no text Content-Type header for /${f}` });
+}
 if (rewrites.length && rewrites[rewrites.length - 1].has) findings.push({ severity: 'error', kind: 'no_default_catch_all', detail: 'The last rewrite must be the catch-all with no country test (the default market)' });
 
 console.log(JSON.stringify({
